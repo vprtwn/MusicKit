@@ -54,11 +54,17 @@ public struct ScaleCollection : CollectionType {
         var scaleLength = scale.intervals.count
         var index = startIndex
         var degree = index%scaleLength
+        var previousPitchOpt : Pitch?
         return GeneratorOf<Pitch> {
             if index < self.endIndex {
                 let pitch = Pitch(midiNumber: midiNum)
+                if let previousPitch = previousPitchOpt {
+                    // if the previous pitch has a preferred name
+                }
+
                 midiNum = midiNum + self.scale.intervals[degree]
                 degree = (++index)%scaleLength
+                previousPitchOpt = pitch
                 return pitch
             }
             else {
