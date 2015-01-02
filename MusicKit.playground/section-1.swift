@@ -29,7 +29,7 @@ enum Accidental : String {
 typealias PitchClassName = (LetterName, Accidental)
 
 struct PitchClass {
-    let index : Int
+    let index : UInt
     var names : [PitchClassName] {
         switch self.index {
         case 0:
@@ -63,10 +63,10 @@ struct PitchClass {
 }
 
 struct Pitch {
-    let midiNumber : Int
+    let midiNumber : UInt
     var noteName : String
 
-    init(midiNumber: Int, noteName: String = "") {
+    init(midiNumber: UInt, noteName: String = "") {
         self.midiNumber = midiNumber
         self.noteName = noteName.utf16Count > 0 ? noteName : Pitch.noteName(self.midiNumber)
     }
@@ -83,17 +83,17 @@ struct Pitch {
         return Pitch.octaveNumber(self.midiNumber)
     }
 
-    static func pitchClass(midiNumber: Int) -> PitchClass {
+    static func pitchClass(midiNumber: UInt) -> PitchClass {
         return PitchClass(index: midiNumber%12)
     }
 
-    static func octaveNumber(midiNumber: Int) -> Int {
+    static func octaveNumber(midiNumber: UInt) -> Int {
         return (midiNumber - 12)/12
     }
 
-    /// If the optional neighbor letter name parameter is provided, noteName will return an enharmonic equivalent
-    /// with a different letter name.
-    static func noteName(midiNumber: Int, neighbor: LetterName? = nil) -> String {
+    /// If the optional neighbor letter name parameter is provided, noteName will return
+    /// the optimal enharmonic equivalent.
+    static func noteName(midiNumber: UInt, neighbor: LetterName? = nil) -> String {
         let pitchClass = PitchClass(index: (midiNumber%12))
         var nameOptional : (LetterName, Accidental)? = pitchClass.names.first
         if let neighborLetter = neighbor {
@@ -127,6 +127,15 @@ struct Scale {
         self.intervals = intervals
     }
 
+    /// Returns the number of semitones from the first note of the scale to the given index
+    func semitones(index: Int) -> Float {
+        let scaleLength = self.intervals.count
+        let octaves = Int(index/scaleLength)
+        let indexRemainder = index%scaleLength
+        let semitoneRemainder = self.intervals[0..<indexRemainder].reduce(0.0, combine: +)
+        return Float(octaves)*12.0 + semitoneRemainder
+    }
+
     static let Chromatic = Scale(intervals: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
     static let Octatonic1 = Scale(intervals: [2, 1, 2, 1, 2, 1, 2, 1])
     static let Octatonic2 = Scale(intervals: Octatonic1!.intervals.rotate(1))
@@ -146,29 +155,39 @@ struct ScaleCollection : CollectionType {
     let endIndex : Int
 
     func generate() -> GeneratorOf<Pitch> {
-        var midiNum = firstPitch.midiNumber
-        var degree = 0
+        var midiNum = firstPitch.midiNumber + Int(scale.semitones(startIndex))
         var scaleLength = scale.intervals.count
         var index = startIndex
+        var degree = index%scaleLength
         return GeneratorOf<Pitch> {
-            midiNum =  midiNum + Int(self.scale.intervals[degree])
-            degree = (++index)%scaleLength
-            return Pitch(midiNumber: midiNum)
+            if index < self.endIndex {
+                let pitch = Pitch(midiNumber: midiNum)
+                midiNum = midiNum + Int(self.scale.intervals[degree])
+                degree = (++index)%scaleLength
+                return pitch
+            }
+            else {
+                return nil
+            }
         }
     }
 
     subscript(i: Int) -> Pitch {
-        return Pitch(midiNumber: 2)
+        let midiNum = firstPitch.midiNumber + Int(scale.semitones(startIndex + i))
+        return Pitch(midiNumber: midiNum)
     }
 }
 
 
-var p = Pitch(midiNumber: 21)
-print(p.noteName)
-p = Pitch(midiNumber: 22)
-print(p.noteName)
-p = Pitch(midiNumber: 86)
-print(p.noteName)
+var sc = ScaleCollection(firstPitch: Pitch(midiNumber: 23), scale: Scale.Major,
+    startIndex: 0, endIndex: 7)
+for p in sc {
+    print(p.noteName)
+    print("\n")
+}
+
+
+print(sc[3].noteName)
 
 
 
