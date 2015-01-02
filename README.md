@@ -1,3 +1,3 @@
 # MusicKit
 
-Swift goes to music school
+Open `MusicKit.xcworkspace` to try the included playground.
