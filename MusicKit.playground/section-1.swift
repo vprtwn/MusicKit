@@ -8,6 +8,10 @@ extension Array {
     }
 }
 
+struct MusicKit {
+    static var concertA : Double = 440.0
+}
+
 enum LetterName : String {
     case C = "C"
     case D = "D"
@@ -62,53 +66,33 @@ struct PitchClass {
     }
 }
 
+infix operator ** { associativity left precedence 160 }
+func ** (left: Double, right: Double) -> Double {
+    return pow(left, right)
+}
+
 struct Pitch {
     let midiNumber : UInt
-    var noteName : String
-
-    init(midiNumber: UInt, noteName: String = "") {
-        self.midiNumber = midiNumber
-        self.noteName = noteName.utf16Count > 0 ? noteName : Pitch.noteName(self.midiNumber)
-    }
 
     var frequency : Float {
-        return 440 // TODO
+        let exponent = Double((Float(midiNumber) - 69.0)/12.0)
+        let freq = pow(Double(2), exponent)*MusicKit.concertA
+        return Float(freq)
     }
 
     var pitchClass : PitchClass {
-        return Pitch.pitchClass(self.midiNumber)
-    }
-
-    var octaveNumber : Int {
-        return Pitch.octaveNumber(self.midiNumber)
-    }
-
-    static func pitchClass(midiNumber: UInt) -> PitchClass {
         return PitchClass(index: midiNumber%12)
     }
 
-    static func octaveNumber(midiNumber: UInt) -> Int {
+    var octaveNumber : Int {
         return (midiNumber - 12)/12
     }
 
-    /// If the optional neighbor letter name parameter is provided, noteName will return
-    /// the optimal enharmonic equivalent.
-    static func noteName(midiNumber: UInt, neighbor: LetterName? = nil) -> String {
-        let pitchClass = PitchClass(index: (midiNumber%12))
-        var nameOptional : (LetterName, Accidental)? = pitchClass.names.first
-        if let neighborLetter = neighbor {
-            for t in pitchClass.names {
-                if t.0 != neighborLetter {
-                    nameOptional = t
-                    break
-                }
-            }
-        }
-
-        if let name = nameOptional {
+    var noteName : String {
+        if let name = pitchClass.names.first {
             let letterName = name.0.rawValue
             let accidental = name.1 == .Natural ? "" : name.1.rawValue
-            return "\(letterName)\(accidental)\(Pitch.octaveNumber(midiNumber))"
+            return "\(letterName)\(accidental)\(octaveNumber)"
         }
         else {
             return ""
@@ -127,7 +111,7 @@ struct Scale {
         self.intervals = intervals
     }
 
-    /// Returns the number of semitones from the first note of the scale to the given index
+    /// Returns the number of semitones between the first note of the scale and the given scale index
     func semitones(index: Int) -> Float {
         let scaleLength = self.intervals.count
         let octaves = Int(index/scaleLength)
@@ -178,16 +162,14 @@ struct ScaleCollection : CollectionType {
     }
 }
 
-
+MusicKit.concertA = 444;
 var sc = ScaleCollection(firstPitch: Pitch(midiNumber: 23), scale: Scale.Major,
     startIndex: 0, endIndex: 7)
 for p in sc {
-    print(p.noteName)
+    print("\(p.noteName) \(p.frequency)")
     print("\n")
 }
 
-
-print(sc[3].noteName)
 
 
 
