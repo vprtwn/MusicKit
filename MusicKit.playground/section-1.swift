@@ -46,3 +46,9 @@ E5: 659.255Hz
 F♯5: 739.989Hz
 A♭5: 830.609Hz
 */
+
+
+let p3 = Pitch(midiNumber: 72)
+println(p3.pitchClass)
+println(p3.noteName)
+println(p3.frequency)
