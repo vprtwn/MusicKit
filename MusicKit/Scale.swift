@@ -1,6 +1,6 @@
 //  Copyright (c) 2015 Ben Guo. All rights reserved.
 
-public struct Scale {
+public struct Scale : Printable {
     public let intervals : [Float]
 
     public init!(intervals: [Float]) {
@@ -12,7 +12,7 @@ public struct Scale {
     }
 
     /// Returns the number of semitones between the first note of the scale and the given scale index
-    func semitones(index: Int) -> Float {
+    public func semitones(index: Int) -> Float {
         let scaleLength = self.intervals.count
         let octaves = Int(index/scaleLength)
         let indexRemainder = index%scaleLength
@@ -20,7 +20,12 @@ public struct Scale {
         return Float(octaves)*12.0 + semitoneRemainder
     }
 
+    public var description : String {
+        return "\(intervals)"
+    }
+
     public static let Chromatic = Scale(intervals: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+    public static let Wholetone = Scale(intervals: [2, 2, 2, 2, 2, 2])
     public static let Octatonic1 = Scale(intervals: [2, 1, 2, 1, 2, 1, 2, 1])
     public static let Octatonic2 = Scale(intervals: Octatonic1!.intervals.rotate(1))
     public static let Major = Scale(intervals: [2, 2, 1, 2, 2, 2, 1])
@@ -45,14 +50,14 @@ public struct ScaleCollection : CollectionType {
     }
 
     public func generate() -> GeneratorOf<Pitch> {
-        var midiNum = firstPitch.midiNumber + Int(scale.semitones(startIndex))
+        var midiNum = firstPitch.midiNumber + scale.semitones(startIndex)
         var scaleLength = scale.intervals.count
         var index = startIndex
         var degree = index%scaleLength
         return GeneratorOf<Pitch> {
             if index < self.endIndex {
                 let pitch = Pitch(midiNumber: midiNum)
-                midiNum = midiNum + Int(self.scale.intervals[degree])
+                midiNum = midiNum + self.scale.intervals[degree]
                 degree = (++index)%scaleLength
                 return pitch
             }
@@ -63,7 +68,7 @@ public struct ScaleCollection : CollectionType {
     }
 
     public subscript(i: Int) -> Pitch {
-        let midiNum = firstPitch.midiNumber + Int(scale.semitones(startIndex + i))
+        let midiNum = firstPitch.midiNumber + scale.semitones(startIndex + i)
         return Pitch(midiNumber: midiNum)
     }
 }

@@ -20,7 +20,7 @@ public enum Accidental : String {
 
 public typealias PitchClassName = (LetterName, Accidental)
 
-public struct PitchClass {
+public struct PitchClass : Printable {
     public let index : UInt
     public init(index: UInt) {
         self.index = index
@@ -56,30 +56,66 @@ public struct PitchClass {
             return []
         }
     }
+
+    public var description : String {
+        if let first = self.names.first {
+            let letter = first.0.rawValue
+            let accidental = first.1.rawValue
+            return "\(letter)\(accidental)"
+        }
+        else {
+            return ""
+        }
+
+    }
 }
 
-public struct Pitch {
-    public let midiNumber : UInt
-    public init(midiNumber: UInt) {
-        self.midiNumber = midiNumber
-    }
-
-    public var frequency : Float {
+public struct Pitch : Printable {
+    public static func mtof(midiNumber: Float) -> Float {
         let exponent = Double((Float(midiNumber) - 69.0)/12.0)
         let freq = pow(Double(2), exponent)*MusicKit.concertA
         return Float(freq)
     }
 
-    public var pitchClass : PitchClass {
-        return PitchClass(index: midiNumber%12)
+    public static func ftom(frequency: Float) -> Float {
+        let octaves = log2(Double(frequency) / MusicKit.concertA)
+        return Float(69.0 + (12.0*octaves))
+    }
+
+    public let midiNumber : Float
+
+    public init(midiNumber: Float) {
+        self.midiNumber = midiNumber
+    }
+
+    public init(frequency: Float) {
+        self.midiNumber = Pitch.ftom(frequency)
+    }
+
+    public var frequency : Float {
+        return Pitch.mtof(self.midiNumber)
+    }
+
+    var hasName : Bool {
+        return self.midiNumber - floor(self.midiNumber) == 0
+    }
+
+    public var pitchClass : PitchClass? {
+        if self.hasName {
+            return PitchClass(index: UInt(self.midiNumber)%12)
+        }
+        return nil
     }
 
     public var octaveNumber : Int {
-        return (midiNumber - 12)/12
+        return Int((self.midiNumber - 12.0)/12.0)
     }
 
     public var noteName : String {
-        if let name = pitchClass.names.first {
+        if pitchClass == nil {
+            return ""
+        }
+        if let name = pitchClass!.names.first {
             let letterName = name.0.rawValue
             let accidental = name.1 == .Natural ? "" : name.1.rawValue
             return "\(letterName)\(accidental)\(octaveNumber)"
@@ -87,5 +123,9 @@ public struct Pitch {
         else {
             return ""
         }
+    }
+
+    public var description : String {
+        return "\(noteName): \(frequency)Hz"
     }
 }

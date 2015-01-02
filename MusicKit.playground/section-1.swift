@@ -1,12 +1,48 @@
 import MusicKit
 
+// Create a Pitch using either a MIDI number or a frequency.
+let p1 = Pitch(midiNumber: 69)
+println(p1.pitchClass)                   // A♮
+println(p1.noteName)                     // A4
+println(p1.frequency)                    // 440.0
 
-print(MusicKit.concertA)
+// A Pitch initialized with a frequency may not have an associated 
+// pitch class or note name.
+let p2 = Pitch(frequency: 445)
+println(p2.midiNumber)                   // 69.1956
+println(p2.pitchClass)                   // nil
+println(p2.noteName)                     // ""
 
-var collection = ScaleCollection(firstPitch: Pitch(midiNumber: 23),
-    scale: Scale.Major,
-    end: 14)
+// Changing the value of concert A changes the computed frequency 
+// of all pitches.
+MusicKit.concertA = 444
+println(p1.frequency)                    // 444.0
+MusicKit.concertA = 440
 
-for p in collection {
-    print("\(p.noteName) \(p.frequency)\n")
+// Create common scales using the provided Scale constants.
+let majorScale = Scale.Major
+let wholetoneScale = Scale.Wholetone
+
+// Create a custom scale using an array of semitone intervals that sum 
+// to a multiple of 12.
+let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4])
+
+// Use ScaleCollection to create a collection of pitches from the given 
+// starting pitch and scale
+var majorScaleCollection = ScaleCollection(firstPitch: p1,
+    scale: majorScale,
+    end: 7)
+
+for p in majorScaleCollection {
+    println(p)
 }
+
+/*
+A4: 440.0Hz
+B4: 493.883Hz
+D♭5: 554.365Hz
+D5: 587.33Hz
+E5: 659.255Hz
+F♯5: 739.989Hz
+A♭5: 830.609Hz
+*/
