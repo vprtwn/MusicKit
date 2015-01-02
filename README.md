@@ -2,7 +2,7 @@
 
 Open `MusicKit.xcworkspace` to try the included playground.
 
-```
+```Swift
 import MusicKit
 
 // Create a Pitch using either a MIDI number or a frequency.
