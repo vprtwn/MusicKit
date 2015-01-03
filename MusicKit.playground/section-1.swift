@@ -29,7 +29,7 @@ let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4])
 
 // Use a ScaleCollection to create a collection of pitches from the given
 // starting pitch and scale
-var majorScaleCollection = ScaleCollection(firstPitch: p1,
+let majorScaleCollection = ScaleCollection(firstPitch: p1,
     scale: majorScale,
     end: 7)
 

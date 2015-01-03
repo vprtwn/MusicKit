@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 benzguo. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for MusicKit.
 FOUNDATION_EXPORT double MusicKitVersionNumber;

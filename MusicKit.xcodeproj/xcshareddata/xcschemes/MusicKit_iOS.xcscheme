@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0600"
+   LastUpgradeVersion = "0610"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,24 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DAEB6B8D1943873100289F44"
-               BuildableName = "Quick.framework"
-               BlueprintName = "Quick-OSX"
-               ReferencedContainer = "container:Quick.xcodeproj">
+               BlueprintIdentifier = "9693F6521A57C403006270F4"
+               BuildableName = "MusicKit.framework"
+               BlueprintName = "MusicKit_iOS"
+               ReferencedContainer = "container:MusicKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9693F65C1A57C403006270F4"
+               BuildableName = "MusicKit-iOSTests.xctest"
+               BlueprintName = "MusicKit-iOSTests"
+               ReferencedContainer = "container:MusicKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,30 +46,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DAEB6B981943873100289F44"
-               BuildableName = "Quick-OSXTests.xctest"
-               BlueprintName = "Quick-OSXTests"
-               ReferencedContainer = "container:Quick.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DA5663E71A4C8D8500193C88"
-               BuildableName = "QuickFocused-OSXTests.xctest"
-               BlueprintName = "QuickFocused-OSXTests"
-               ReferencedContainer = "container:Quick.xcodeproj">
+               BlueprintIdentifier = "9691BB231A57C75500421B56"
+               BuildableName = "MusicKit_iOSTests.xctest"
+               BlueprintName = "MusicKit_iOSTests"
+               ReferencedContainer = "container:MusicKit.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DAEB6B8D1943873100289F44"
-            BuildableName = "Quick.framework"
-            BlueprintName = "Quick-OSX"
-            ReferencedContainer = "container:Quick.xcodeproj">
+            BlueprintIdentifier = "9693F6521A57C403006270F4"
+            BuildableName = "MusicKit.framework"
+            BlueprintName = "MusicKit_iOS"
+            ReferencedContainer = "container:MusicKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -71,10 +75,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DAEB6B8D1943873100289F44"
-            BuildableName = "Quick.framework"
-            BlueprintName = "Quick-OSX"
-            ReferencedContainer = "container:Quick.xcodeproj">
+            BlueprintIdentifier = "9693F6521A57C403006270F4"
+            BuildableName = "MusicKit.framework"
+            BlueprintName = "MusicKit_iOS"
+            ReferencedContainer = "container:MusicKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -89,10 +93,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "DAEB6B8D1943873100289F44"
-            BuildableName = "Quick.framework"
-            BlueprintName = "Quick-OSX"
-            ReferencedContainer = "container:Quick.xcodeproj">
+            BlueprintIdentifier = "9693F6521A57C403006270F4"
+            BuildableName = "MusicKit.framework"
+            BlueprintName = "MusicKit_iOS"
+            ReferencedContainer = "container:MusicKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
