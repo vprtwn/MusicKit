@@ -22,12 +22,12 @@ let majorScale = Scale.Major
 let wholetoneScale = Scale.Wholetone
 ```
 
-##### Create a custom scale using an array of intervals (in semitones) that sum to a multiple of 12.
+##### Create a custom scale using an array of intervals
 ```Swift
 let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4])
 ```
 
-##### Create a `PitchSet` with a scale, a starting pitch, and a count
+##### Create a `PitchSet` from a scale, a starting pitch, and a count
 ```Swift
 let pitchSet = PitchSet(scale: majorScale, firstPitch: p1, count: 7)
 for p in pitchSet {
