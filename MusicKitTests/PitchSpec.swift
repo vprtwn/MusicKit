@@ -3,8 +3,8 @@ import Nimble
 
 class PitchSpec: QuickSpec {
     override func spec() {
-        describe("PitchClass") {
-            it("should pass") {
+        describe("TODO") {
+            it("TODO") {
                 expect(true).to(beTrue())
             }
         }
