@@ -39,7 +39,7 @@ var majorScaleCollection = ScaleCollection(firstPitch: p1,
     end: 7)
 
 // Note names in a scale collection will automatically use the correct
-// enharmonic spelling for the given starting pitch and scale.
+// enharmonic spellings
 for p in majorScaleCollection {
     println(p.noteName)
 }
