@@ -8,6 +8,25 @@ public enum LetterName : String {
     case G = "G"
     case A = "A"
     case B = "B"
+
+    static let letters : [LetterName] = [.C, .D, .E, .F, .G, .A, .B]
+    public func next() -> LetterName {
+        let index : Int = find(LetterName.letters, self)!
+        let newIndex = (index + 1) % LetterName.letters.count
+        return LetterName.letters[newIndex]
+    }
+
+    public func previous() -> LetterName {
+        let index : Int = find(LetterName.letters, self)!
+        var newIndex : Int
+        if index == 0 {
+            newIndex = LetterName.letters.count - 1
+        }
+        else {
+            newIndex = index - 1
+        }
+        return LetterName.letters[newIndex]
+    }
 }
 
 public enum Accidental : String {
@@ -18,7 +37,7 @@ public enum Accidental : String {
     case DoubleFlat = "𝄫"
 }
 
-public typealias PitchClassName = (LetterName, Accidental)
+public typealias PitchClassNameTuple = (LetterName, Accidental)
 public func == (p1:(LetterName, Accidental), p2:(LetterName, Accidental)) -> Bool
 {
     return (p1.0 == p2.0) && (p1.1 == p2.1)
@@ -30,7 +49,7 @@ public struct PitchClass : Printable {
         self.index = index
     }
 
-    public var names : [PitchClassName] {
+    public var names : [PitchClassNameTuple] {
         switch self.index {
         case 0:
             return [(.C, .Natural), (.B, .Sharp)]
@@ -61,6 +80,12 @@ public struct PitchClass : Printable {
         }
     }
 
+    public func hasName(name: PitchClassNameTuple) -> Bool {
+        return self.names.reduce(false, combine: { (a, r) -> Bool in
+            a || (r == name)
+        })
+    }
+
     public var description : String {
         if let first = self.names.first {
             let letter = first.0.rawValue
@@ -70,7 +95,6 @@ public struct PitchClass : Printable {
         else {
             return ""
         }
-
     }
 }
 
@@ -90,7 +114,24 @@ public struct Pitch : Printable {
 
     public let midiNumber : Float
 
-    public var preferredPitchClassName : PitchClassName?
+    // the preferred pitch class name
+    // default is nil, can only be set to a valid name
+    var _preferredName : PitchClassNameTuple?
+    public var preferredName : PitchClassNameTuple? {
+        get {
+            return _preferredName
+        }
+        set(newName) {
+            if newName == nil {
+                return
+            }
+            if let pitchClass = self.pitchClass {
+                if pitchClass.hasName(newName!) {
+                    _preferredName = newName
+                }
+            }
+        }
+    }
 
     public init(midiNumber: Float) {
         self.midiNumber = midiNumber
@@ -119,7 +160,7 @@ public struct Pitch : Printable {
         if pitchClass == nil {
             return nil
         }
-        else if let name = preferredPitchClassName {
+        else if let name = preferredName {
             return applyOctaveNumber(octaveNumber, toPitchClassName: name)
         }
         else if let name = pitchClass!.names.first {
@@ -149,10 +190,10 @@ public struct Pitch : Printable {
 
     // Apply an octave number to a pitch class name, taking into account
     // edge cases for enharmonics like B#
-    func applyOctaveNumber(octaveNumber: Int, toPitchClassName name: PitchClassName)
+    func applyOctaveNumber(octaveNumber: Int, toPitchClassName name: PitchClassNameTuple)
         -> (LetterName, Accidental, Int) {
-            let cFlat : PitchClassName = (.C, .Flat)
-            let bSharp : PitchClassName = (.B, .Sharp)
+            let cFlat : PitchClassNameTuple = (.C, .Flat)
+            let bSharp : PitchClassNameTuple = (.B, .Sharp)
             var adjustedOctaveNumber = octaveNumber
             if name == cFlat {
                 adjustedOctaveNumber++

@@ -27,23 +27,17 @@ let wholetoneScale = Scale.Wholetone
 // to a multiple of 12.
 let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4])
 
-// Use ScaleCollection to create a collection of pitches from the given 
+// Use a ScaleCollection to create a collection of pitches from the given
 // starting pitch and scale
 var majorScaleCollection = ScaleCollection(firstPitch: p1,
     scale: majorScale,
     end: 7)
 
+// Note names in a scale collection will automatically use the correct
+// enharmonic spelling for the given starting pitch and scale.
 for p in majorScaleCollection {
-    println(p)
+    println(p.noteName)
 }
+// A4 B4 C♯5 D5 E5 F♯5 G♯5
 
-/*
-A4: 440.0Hz
-B4: 493.883Hz
-D♭5: 554.365Hz
-D5: 587.33Hz
-E5: 659.255Hz
-F♯5: 739.989Hz
-A♭5: 830.609Hz
-*/
 

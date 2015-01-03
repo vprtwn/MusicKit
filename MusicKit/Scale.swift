@@ -57,9 +57,19 @@ public struct ScaleCollection : CollectionType {
         var previousPitchOpt : Pitch?
         return GeneratorOf<Pitch> {
             if index < self.endIndex {
-                let pitch = Pitch(midiNumber: midiNum)
-                if let previousPitch = previousPitchOpt {
-                    // if the previous pitch has a preferred name
+                var pitch = Pitch(midiNumber: midiNum)
+
+                // if necessary, set a preferred pitch class name
+                if let pitchClass = pitch.pitchClass {
+                    if let previousPitch = previousPitchOpt {
+                        if let previousPitchName = previousPitch.noteNameTuple {
+                            let preferredLetterName = previousPitchName.0.next()
+                            let preferredPitchName = pitchClass.names.filter {
+                                n in n.0 == preferredLetterName
+                            }.first
+                            pitch.preferredName = preferredPitchName
+                        }
+                    }
                 }
 
                 midiNum = midiNum + self.scale.intervals[degree]
