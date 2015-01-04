@@ -25,19 +25,15 @@ let wholetoneScale = Scale.Wholetone
 
 // Create a custom scale using an array of semitone intervals that sum 
 // to a multiple of 12.
-let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4])
+let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4],
+    name: "Equidistant Pentatonic")
 
-// Use a ScaleCollection to create a collection of pitches from the given
-// starting pitch and scale
-let majorScaleCollection = ScaleCollection(firstPitch: p1,
-    scale: majorScale,
-    end: 7)
+// Create a PitchSet with a scale, a starting pitch, and a count
+let pitchSet = PitchSet(scale: majorScale, firstPitch: p1, count: 7)
 
-// Note names in a scale collection will automatically use the correct
-// enharmonic spelling for the given starting pitch and scale.
-for p in majorScaleCollection {
+// Note names in a pitch set initialized with a scale will automatically 
+// use the correct enharmonic spellings
+for p in pitchSet {
     println(p.noteName)
 }
 // A4 B4 C♯5 D5 E5 F♯5 G♯5
-
-

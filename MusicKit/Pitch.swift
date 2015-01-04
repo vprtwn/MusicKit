@@ -20,23 +20,18 @@ public enum LetterName : String {
 
     public func previous() -> LetterName {
         let index : Int = find(LetterName.letters, self)!
-        var newIndex : Int
-        if index == 0 {
-            newIndex = LetterName.letters.count - 1
-        }
-        else {
-            newIndex = index - 1
-        }
+        let count = LetterName.letters.count
+        let newIndex = (((index - 1)%count) + count)%count
         return LetterName.letters[newIndex]
     }
 }
 
 public enum Accidental : String {
+    case DoubleFlat = "𝄫"
+    case Flat = "♭"
     case Natural = "♮"
     case Sharp = "♯"
-    case Flat = "♭"
     case DoubleSharp = "𝄪"
-    case DoubleFlat = "𝄫"
 }
 
 public typealias PitchClassNameTuple = (LetterName, Accidental)
@@ -101,14 +96,14 @@ public struct PitchClass : Printable {
 }
 
 public struct Pitch : Printable {
-    // midi number to frequency
+    /// midi number to frequency
     public static func mtof(midiNumber: Float) -> Float {
         let exponent = Double((Float(midiNumber) - 69.0)/12.0)
         let freq = pow(Double(2), exponent)*MusicKit.concertA
         return Float(freq)
     }
 
-    // frequency to midi number
+    /// frequency to midi number
     public static func ftom(frequency: Float) -> Float {
         let octaves = log2(Double(frequency) / MusicKit.concertA)
         return Float(69.0 + (12.0*octaves))
@@ -116,8 +111,8 @@ public struct Pitch : Printable {
 
     public let midiNumber : Float
 
-    // the preferred pitch class name
-    // default is nil, can only be set to a valid name
+    /// The preferred pitch class name.
+    /// Can only be set to a valid name. Default is nil.
     var _preferredName : PitchClassNameTuple?
     public var preferredName : PitchClassNameTuple? {
         get {
@@ -143,10 +138,13 @@ public struct Pitch : Printable {
         self.midiNumber = Pitch.ftom(frequency)
     }
 
+    /// Frequency in Hz
     public var frequency : Float {
         return Pitch.mtof(self.midiNumber)
     }
 
+    /// A PitchClass, or nil if the pitch doesn't align with the pitch classes
+    /// in the current tuning system.
     public var pitchClass : PitchClass? {
         if self.midiNumber - floor(self.midiNumber) == 0 {
             return PitchClass(index: UInt(self.midiNumber)%12)
@@ -154,19 +152,15 @@ public struct Pitch : Printable {
         return nil
     }
 
-    public var octaveNumber : Int {
-        return Int((self.midiNumber - 12.0)/12.0)
-    }
-
     public var noteNameTuple : (LetterName, Accidental, Int)? {
         if pitchClass == nil {
             return nil
         }
         else if let name = preferredName {
-            return applyOctaveNumber(octaveNumber, toPitchClassName: name)
+            return noteNameWithOctave(octaveNumber, pitchClassName: name)
         }
         else if let name = pitchClass!.names.first {
-            return applyOctaveNumber(octaveNumber, toPitchClassName: name)
+            return noteNameWithOctave(octaveNumber, pitchClassName: name)
         }
         else {
             return nil
@@ -185,25 +179,29 @@ public struct Pitch : Printable {
         }
     }
 
-    // Strip naturals for note names
+    // Strips naturals for note names
     func stringForAccidental(a: Accidental) -> String {
         return a == .Natural ? "" : a.rawValue
     }
 
-    // Apply an octave number to a pitch class name, taking into account
+    // Unadjusted octave number
+    var octaveNumber : Int {
+        return Int((self.midiNumber - 12.0)/12.0)
+    }
+
+    // Combines an octave number with a pitch class name, taking into account
     // edge cases for enharmonics like B#
-    func applyOctaveNumber(octaveNumber: Int, toPitchClassName name: PitchClassNameTuple)
-        -> (LetterName, Accidental, Int) {
-            let cFlat : PitchClassNameTuple = (.C, .Flat)
-            let bSharp : PitchClassNameTuple = (.B, .Sharp)
-            var adjustedOctaveNumber = octaveNumber
-            if name == cFlat {
-                adjustedOctaveNumber++
-            }
-            else if name == bSharp {
-                adjustedOctaveNumber--
-            }
-            return (name.0, name.1, adjustedOctaveNumber)
+    func noteNameWithOctave(octave: Int, pitchClassName name: PitchClassNameTuple) -> (LetterName, Accidental, Int) {
+        let cFlat : PitchClassNameTuple = (.C, .Flat)
+        let bSharp : PitchClassNameTuple = (.B, .Sharp)
+        var adjustedOctaveNumber = octave
+        if name == cFlat {
+            adjustedOctaveNumber++
+        }
+        else if name == bSharp {
+            adjustedOctaveNumber--
+        }
+        return (name.0, name.1, adjustedOctaveNumber)
     }
 
     public var description : String {
