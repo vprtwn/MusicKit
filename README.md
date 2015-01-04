@@ -24,7 +24,8 @@ let wholetoneScale = Scale.Wholetone
 
 ##### Create a custom scale using an array of intervals
 ```Swift
-let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4])
+let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4],
+    name: "Equidistant Pentatonic")
 ```
 
 ##### Create a `PitchSet` with a scale, a starting pitch, and a count
