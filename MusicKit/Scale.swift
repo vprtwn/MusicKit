@@ -11,7 +11,8 @@ public struct Scale : Printable {
         self.name = name
     }
 
-    /// Returns the number of semitones between the first note of the scale and the given scale index
+    /// Returns the number of semitones between the first note of the scale 
+    /// and the given index in the scale
     public func semitones(index: Int) -> Float {
         let scaleLength = self.intervals.count
         let octaves = Int(index/scaleLength)
@@ -24,11 +25,11 @@ public struct Scale : Printable {
         return "\(name)"
     }
 
-    public static let Chromatic = Scale(intervals: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+    public static let Chromatic = Scale(intervals: [1],
         name: "Chromatic")
-    public static let Wholetone = Scale(intervals: [2, 2, 2, 2, 2, 2],
+    public static let Wholetone = Scale(intervals: [2],
         name: "Wholetone")
-    public static let Octatonic1 = Scale(intervals: [2, 1, 2, 1, 2, 1, 2, 1],
+    public static let Octatonic1 = Scale(intervals: [2, 1],
         name: "Octatonic mode 1")
     public static let Octatonic2 = Scale(intervals: Octatonic1.intervals.rotate(1),
         name: "Octatonic mode 2")

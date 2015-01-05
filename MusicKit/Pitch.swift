@@ -97,16 +97,11 @@ public struct PitchClass : Printable {
 
 public struct Pitch : Printable {
     /// midi number to frequency
+    /// TODO: move this to an equal temperament constant
     public static func mtof(midiNumber: Float) -> Float {
         let exponent = Double((Float(midiNumber) - 69.0)/12.0)
         let freq = pow(Double(2), exponent)*MusicKit.concertA
         return Float(freq)
-    }
-
-    /// frequency to midi number
-    public static func ftom(frequency: Float) -> Float {
-        let octaves = log2(Double(frequency) / MusicKit.concertA)
-        return Float(69.0 + (12.0*octaves))
     }
 
     public let midiNumber : Float
@@ -132,10 +127,6 @@ public struct Pitch : Printable {
 
     public init(midiNumber: Float) {
         self.midiNumber = midiNumber
-    }
-
-    public init(frequency: Float) {
-        self.midiNumber = Pitch.ftom(frequency)
     }
 
     /// Frequency in Hz

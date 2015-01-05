@@ -19,14 +19,17 @@ public struct PitchSet : CollectionType {
             midiNum = midiNum + scale.intervals[prevDegree]
             var pitch = Pitch(midiNumber: midiNum)
 
-            // if necessary, set a preferred pitch class name
-            if let pitchClass = pitch.pitchClass {
-                if let previousPitchName = previousPitch.noteNameTuple {
-                    let preferredLetterName = previousPitchName.0.next()
-                    let preferredPitchName = pitchClass.names.filter {
-                        n in n.0 == preferredLetterName
-                        }.first
-                    pitch.preferredName = preferredPitchName
+            // if the scale is diatonic and the current and previous pitch
+            /// have names, set a preferred pitch class name
+            if scaleLength == 7 {
+                if let pitchClass = pitch.pitchClass {
+                    if let previousPitchName = previousPitch.noteNameTuple {
+                        let preferredLetterName = previousPitchName.0.next()
+                        let preferredPitchName = pitchClass.names.filter {
+                            n in n.0 == preferredLetterName
+                            }.first
+                        pitch.preferredName = preferredPitchName
+                    }
                 }
             }
 
