@@ -84,14 +84,12 @@ public struct PitchClass : Printable {
     }
 
     public var description : String {
-        if let first = self.names.first {
-            let letter = first.0.rawValue
-            let accidental = first.1.rawValue
-            return "\(letter)\(accidental)"
-        }
-        else {
+        let n : PitchClassNameTuple? = self.names.first
+        let stringOpt = n.map { "\($0.0.rawValue)\($0.1.rawValue)" }
+        if stringOpt == nil {
             return ""
         }
+        return stringOpt!
     }
 }
 

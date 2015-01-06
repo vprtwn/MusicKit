@@ -38,6 +38,31 @@ public struct PitchSet : CollectionType {
         }
     }
 
+    public init(chord: Chord, firstPitch: Pitch, count: Int) {
+        self.endIndex = count - 1
+
+        pitches.append(firstPitch)
+        var previousPitch = firstPitch
+        var chordLength = chord.intervals.count
+        var midiNum = firstPitch.midiNumber
+        for var i=1; i<count; i++ {
+            let firstInterval = chord.intervals[(i-1) % chordLength]
+            let secondInterval = chord.intervals[i % chordLength]
+
+            if secondInterval >= firstInterval {
+                midiNum += secondInterval - firstInterval
+            }
+            else {
+                midiNum += secondInterval + 12 - firstInterval
+            }
+            var pitch = Pitch(midiNumber: midiNum)
+
+            pitches.append(pitch)
+            previousPitch = pitch
+        }
+
+    }
+
     public func generate() -> GeneratorOf<Pitch> {
         var index = startIndex
         return GeneratorOf<Pitch> {

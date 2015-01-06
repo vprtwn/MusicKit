@@ -6,19 +6,9 @@ public struct Scale : Printable {
     public let intervals : [Float]
     public let name : String
 
-    public init(intervals: [Float], name: String) {
+    public init(intervals: [Float], name: String = "") {
         self.intervals = intervals
         self.name = name
-    }
-
-    /// Returns the number of semitones between the first note of the scale 
-    /// and the given index in the scale
-    public func semitones(index: Int) -> Float {
-        let scaleLength = self.intervals.count
-        let octaves = Int(index/scaleLength)
-        let indexRemainder = index%scaleLength
-        let semitoneRemainder = self.intervals[0..<indexRemainder].reduce(0.0, combine: +)
-        return Float(octaves)*12.0 + semitoneRemainder
     }
 
     public var description : String {

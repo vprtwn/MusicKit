@@ -27,3 +27,16 @@ for p in pitchSet {
     println(p.noteName)
 }
 // A4 B4 C♯5 D5 E5 F♯5 G♯5
+
+let c = Chord.MajorTriad
+let a = c.inversion(1)
+let b = a.inversion(0)
+print(a)
+
+let chordPitches = PitchSet(chord: Chord.DiminishedNinth, firstPitch: Pitch(midiNumber: 73), count: 7)
+for p in chordPitches {
+    println(p.noteName)
+}
+
+
+

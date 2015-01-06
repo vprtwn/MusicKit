@@ -5,7 +5,7 @@ import Foundation
 extension Array {
     func rotate(n: Int) -> [T] {
         let count = self.count
-        let index = n % count
+        let index = (n >= 0) ? n % count : count - (abs(n) % count)
         return Array(self[index..<count] + self[0..<index])
     }
 }
