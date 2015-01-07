@@ -41,12 +41,12 @@ for p in scalePitchSet {
 // A4 B4 C♯5 D5 E5 F♯5 G♯5
 
 // A PitchSet can also be created with a chord
-let chordPitchSet = PitchSet(chord: Chord.MinorSeventh,
-    firstPitch: Pitch(midiNumber: 69), count: 7)
+let chordPitchSet = PitchSet(chord: Chord.DiminishedSeventh,
+    firstPitch: Pitch(midiNumber: 72), count: 7)
 for p in chordPitchSet {
     println(p.noteName)
 }
-// A4 C5 E5 G5 A5 C6 E6
+// C5 E♭5 G♭5 B𝄫5 C6 E♭6 G♭6
 
 
 

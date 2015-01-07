@@ -49,29 +49,29 @@ public struct PitchClass : Printable {
     public var names : [PitchClassNameTuple] {
         switch self.index {
         case 0:
-            return [(.C, .Natural), (.B, .Sharp)]
+            return [(.C, .Natural), (.B, .Sharp), (.D, .DoubleFlat)]
         case 1:
-            return [(.D, .Flat), (.C, .Sharp)]
+            return [(.D, .Flat), (.C, .Sharp), (.B, .DoubleSharp)]
         case 2:
-            return [(.D, .Natural)]
+            return [(.D, .Natural), (.C, .DoubleSharp), (.E, .DoubleFlat)]
         case 3:
-            return [(.E, .Flat), (.D, .Sharp)]
+            return [(.E, .Flat), (.D, .Sharp), (.F, .DoubleFlat)]
         case 4:
-            return [(.E, .Natural)]
+            return [(.E, .Natural), (.F, .Flat), (.D, .DoubleSharp)]
         case 5:
-            return [(.F, .Natural), (.E, .Sharp)]
+            return [(.F, .Natural), (.E, .Sharp), (.G, .DoubleFlat)]
         case 6:
-            return [(.F, .Sharp), (.G, .Flat)]
+            return [(.F, .Sharp), (.G, .Flat), (.E, .DoubleSharp)]
         case 7:
-            return [(.G, .Natural)]
+            return [(.G, .Natural), (.F, .DoubleSharp), (.A, .DoubleFlat)]
         case 8:
             return [(.A, .Flat), (.G, .Sharp)]
         case 9:
-            return [(.A, .Natural)]
+            return [(.A, .Natural), (.G, .DoubleSharp), (.B, .DoubleFlat)]
         case 10:
-            return [(.B, .Flat), (.A, .Sharp)]
+            return [(.B, .Flat), (.A, .Sharp), (.C, .DoubleFlat)]
         case 11:
-            return [(.B, .Natural), (.C, .Flat)]
+            return [(.B, .Natural), (.C, .Flat), (.A, .DoubleSharp)]
         default:
             return []
         }
