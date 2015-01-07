@@ -3,13 +3,16 @@
    version = "3.0">
    <TimelineItems>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "file:///Users/bguo/github.com/benzguo/MusicKit/MusicKit.playground#CharacterRangeLen=20&amp;CharacterRangeLoc=863&amp;EndingLineNumber=25&amp;StartingLineNumber=25&amp;Timestamp=442113248.806066">
+         documentLocation = "file:///Users/bguo/github.com/benzguo/MusicKit/MusicKit.playground#CharacterRangeLen=0&amp;CharacterRangeLoc=756&amp;EndingLineNumber=26&amp;StartingLineNumber=25&amp;Timestamp=442296414.036485">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=19&amp;CharacterRangeLoc=888&amp;EndingColumnNumber=15&amp;EndingLineNumber=26&amp;StartingColumnNumber=5&amp;StartingLineNumber=26&amp;Timestamp=442113248.806293">
+         documentLocation = "#CharacterRangeLen=0&amp;CharacterRangeLoc=756&amp;EndingColumnNumber=15&amp;EndingLineNumber=26&amp;StartingColumnNumber=5&amp;StartingLineNumber=25&amp;Timestamp=442296414.036485">
       </LoggerValueHistoryTimelineItem>
       <LoggerValueHistoryTimelineItem
-         documentLocation = "#CharacterRangeLen=19&amp;CharacterRangeLoc=1150&amp;EndingColumnNumber=24&amp;EndingLineNumber=37&amp;StartingColumnNumber=5&amp;StartingLineNumber=37&amp;Timestamp=442291589.204298">
+         documentLocation = "#CharacterRangeLen=0&amp;CharacterRangeLoc=1073&amp;EndingColumnNumber=24&amp;EndingLineNumber=34&amp;StartingColumnNumber=5&amp;StartingLineNumber=34&amp;Timestamp=442296578.300175">
+      </LoggerValueHistoryTimelineItem>
+      <LoggerValueHistoryTimelineItem
+         documentLocation = "#CharacterRangeLen=19&amp;CharacterRangeLoc=1497&amp;EndingColumnNumber=24&amp;EndingLineNumber=46&amp;StartingColumnNumber=5&amp;StartingLineNumber=46&amp;Timestamp=442296578.300175">
       </LoggerValueHistoryTimelineItem>
    </TimelineItems>
 </Timeline>
