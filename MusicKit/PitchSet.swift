@@ -5,8 +5,12 @@ import Foundation
 public struct PitchSet : CollectionType {
 
     var pitches : [Pitch] = []
-    public let startIndex : Int = 0
-    public let endIndex : Int
+    public var startIndex : Int = 0
+    public var endIndex : Int = 0
+
+    public init() {
+
+    }
 
     public init(scale: Scale, firstPitch: Pitch, count: Int) {
         self.endIndex = count - 1
@@ -87,8 +91,9 @@ public struct PitchSet : CollectionType {
             pitches.append(pitch)
             previousPitch = pitch
         }
-
     }
+
+    // MARK: CollectionType
 
     public func generate() -> GeneratorOf<Pitch> {
         var index = startIndex
@@ -101,6 +106,13 @@ public struct PitchSet : CollectionType {
             else {
                 return nil
             }
+        }
+    }
+
+    public mutating func add(pitch: Pitch) {
+        // TODO: optimize
+        for i in 0..<pitches.count {
+
         }
     }
 

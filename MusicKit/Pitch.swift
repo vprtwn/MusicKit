@@ -40,7 +40,8 @@ public func == (p1:(LetterName, Accidental), p2:(LetterName, Accidental)) -> Boo
     return (p1.0 == p2.0) && (p1.1 == p2.1)
 }
 
-public struct PitchClass : Printable {
+// MARK: PitchClass
+public struct PitchClass : Printable, Comparable {
     public let index : UInt
     public init(index: UInt) {
         self.index = index
@@ -93,7 +94,16 @@ public struct PitchClass : Printable {
     }
 }
 
-public struct Pitch : Printable {
+public func ==(lhs: PitchClass, rhs: PitchClass) -> Bool {
+    return lhs.index == rhs.index
+}
+
+public func <(lhs: PitchClass, rhs: PitchClass) -> Bool {
+    return lhs.index < rhs.index
+}
+
+// MARK: Pitch
+public struct Pitch : Printable, Comparable {
     /// midi number to frequency
     /// TODO: move this to an equal temperament constant
     public static func mtof(midiNumber: Float) -> Float {
@@ -196,4 +206,13 @@ public struct Pitch : Printable {
     public var description : String {
         return "\(noteName): \(frequency)Hz"
     }
+
+}
+
+public func ==(lhs: Pitch, rhs: Pitch) -> Bool {
+    return lhs.midiNumber == rhs.midiNumber
+}
+
+public func <(lhs: Pitch, rhs: Pitch) -> Bool {
+    return lhs.midiNumber < rhs.midiNumber
 }
