@@ -13,10 +13,14 @@ MusicKit.concertA = 444
 println(p1.frequency)                    // 444.0
 MusicKit.concertA = 440
 
-//== Scale ==
-// Create common scales using the provided Scale constants
-let major = Scale.Major
-let wholetone = Scale.Wholetone
+var ps = PitchSet()
+ps.add(p1)
+
+// A Scale given a Pitch will return a PitchSet
+let major = Scale.Major(Pitch(midiNumber: 72))
+
+
+let wholetone = Scale.Wholetone()
 
 // Create a custom scale using an array of semitone intervals
 let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4],
@@ -33,11 +37,11 @@ let superMajor = Chord(intervals: [0, 4.5, 6], name: "Supermajor",
 
 //== PitchSet ==
 // Create a PitchSet with a scale, a starting pitch, and a count
-let scalePitchSet = PitchSet(scale: Scale.Major,
-    firstPitch: Pitch(midiNumber: 69), count: 7)
-for p in scalePitchSet {
-    println(p.noteName)
-}
+//let scalePitchSet = PitchSet(scale: Scale.Major,
+//    firstPitch: Pitch(midiNumber: 69), count: 7)
+//for p in scalePitchSet {
+//    println(p.noteName)
+//}
 // A4 B4 C♯5 D5 E5 F♯5 G♯5
 
 // A PitchSet can also be created with a chord

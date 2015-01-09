@@ -12,36 +12,6 @@ public struct PitchSet : CollectionType {
 
     }
 
-    public init(scale: Scale, firstPitch: Pitch, count: Int) {
-        self.endIndex = count - 1
-        pitches.append(firstPitch)
-        var previousPitch = firstPitch
-        var scaleLength = scale.intervals.count
-        var midiNum = firstPitch.midiNumber
-        for var i=1; i<count; i++ {
-            let prevDegree = (i-1)%scaleLength
-            midiNum = midiNum + scale.intervals[prevDegree]
-            var pitch = Pitch(midiNumber: midiNum)
-
-            // if the scale is diatonic and the current and previous pitch
-            /// have names, set a preferred pitch class name
-            if scaleLength == 7 {
-                if let pitchClass = pitch.pitchClass {
-                    if let previousPitchName = previousPitch.noteNameTuple {
-                        let preferredLetterName = previousPitchName.0.next()
-                        let preferredPitchName = pitchClass.names.filter {
-                            n in n.0 == preferredLetterName
-                            }.first
-                        pitch.preferredName = preferredPitchName
-                    }
-                }
-            }
-
-            pitches.append(pitch)
-            previousPitch = pitch
-        }
-    }
-
     public init(chord: Chord, firstPitch: Pitch, count: Int) {
         self.endIndex = count - 1
 
@@ -110,9 +80,21 @@ public struct PitchSet : CollectionType {
     }
 
     public mutating func add(pitch: Pitch) {
-        // TODO: optimize
-        for i in 0..<pitches.count {
-
+        // this is wrong
+        let count = pitches.count
+        if count == 0 {
+            pitches.insert(pitch, atIndex: 0)
+            endIndex++
+        }
+        else {
+            for i in 1..<pitches.count {
+                let previousPitch = pitches[i-1]
+                let currentPitch = pitches[i]
+                if pitch > previousPitch && pitch < currentPitch {
+                    pitches.insert(pitch, atIndex: i)
+                    endIndex++
+                }
+            }
         }
     }
 
