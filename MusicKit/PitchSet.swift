@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct PitchSet : CollectionType {
+public struct PitchSet : CollectionType, Printable {
 
     var pitches : [Pitch] = []
     public var startIndex : Int = 0
@@ -83,8 +83,18 @@ public struct PitchSet : CollectionType {
         // this is wrong
         let count = pitches.count
         if count == 0 {
-            pitches.insert(pitch, atIndex: 0)
+            pitches.append(pitch)
             endIndex++
+        }
+        else if count == 1 {
+            if pitch < pitches[0] {
+                pitches.insert(pitch, atIndex: 0)
+                endIndex++
+            }
+            else if pitch > pitches[0] {
+                pitches.append(pitch)
+                endIndex++
+            }
         }
         else {
             for i in 1..<pitches.count {
@@ -95,11 +105,22 @@ public struct PitchSet : CollectionType {
                     endIndex++
                 }
             }
+            let lastPitchOpt = pitches.last
+            if let lastPitch = lastPitchOpt {
+                if pitch > lastPitch {
+                    pitches.append(pitch)
+                    endIndex++
+                }
+            }
         }
     }
 
     public subscript(i: Int) -> Pitch {
         return pitches[i]
+    }
+
+    public var description : String {
+        return pitches.description
     }
 }
 

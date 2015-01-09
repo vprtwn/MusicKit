@@ -7,7 +7,7 @@ public typealias ScaleTuple = ([Float], String)
 
 public enum Scale {
 
-    public static func PitchToPitchSet(intervals: [Float]) -> (Pitch -> PitchSet) {
+    public static func New(intervals: [Float]) -> (Pitch -> PitchSet) {
         return { firstPitch in
             var pitches : [Pitch] = []
             pitches.append(firstPitch)
@@ -52,15 +52,15 @@ public enum Scale {
     public static let Minor : ScaleTuple = (Major.0.rotate(5), "Minor")
     public static let Locrian : ScaleTuple = (Major.0.rotate(6), "Locrian")
 
-    public static func Chromatic(pitch: Pitch) -> PitchSet { return PitchToPitchSet(Chromatic.0)(pitch) }
-    public static func Wholetone(pitch: Pitch) -> PitchSet { return PitchToPitchSet(Wholetone.0)(pitch) }
-    public static func Octatonic1(pitch: Pitch) -> PitchSet { return PitchToPitchSet(Octatonic1.0)(pitch) }
-    public static func Octatonic2(pitch: Pitch) -> PitchSet { return PitchToPitchSet(Octatonic2.0)(pitch) }
-    public static func Major(pitch: Pitch) -> PitchSet { return PitchToPitchSet(Major.0)(pitch) }
-    public static func Dorian(pitch: Pitch) -> PitchSet { return PitchToPitchSet(Dorian.0)(pitch) }
-    public static func Phrygian(pitch: Pitch) -> PitchSet { return PitchToPitchSet(Phrygian.0)(pitch) }
-    public static func Lydian(pitch: Pitch) -> PitchSet { return PitchToPitchSet(Lydian.0)(pitch) }
-    public static func Mixolydian(pitch: Pitch) -> PitchSet { return PitchToPitchSet(Mixolydian.0)(pitch) }
-    public static func Minor(pitch: Pitch) -> PitchSet { return PitchToPitchSet(Minor.0)(pitch) }
-    public static func Locrian(pitch: Pitch) -> PitchSet { return PitchToPitchSet(Locrian.0)(pitch) }
+    public static func Chromatic(pitch: Pitch) -> PitchSet { return New(Chromatic.0)(pitch) }
+    public static func Wholetone(pitch: Pitch) -> PitchSet { return New(Wholetone.0)(pitch) }
+    public static func Octatonic1(pitch: Pitch) -> PitchSet { return New(Octatonic1.0)(pitch) }
+    public static func Octatonic2(pitch: Pitch) -> PitchSet { return New(Octatonic2.0)(pitch) }
+    public static func Major(pitch: Pitch) -> PitchSet { return New(Major.0)(pitch) }
+    public static func Dorian(pitch: Pitch) -> PitchSet { return New(Dorian.0)(pitch) }
+    public static func Phrygian(pitch: Pitch) -> PitchSet { return New(Phrygian.0)(pitch) }
+    public static func Lydian(pitch: Pitch) -> PitchSet { return New(Lydian.0)(pitch) }
+    public static func Mixolydian(pitch: Pitch) -> PitchSet { return New(Mixolydian.0)(pitch) }
+    public static func Minor(pitch: Pitch) -> PitchSet { return New(Minor.0)(pitch) }
+    public static func Locrian(pitch: Pitch) -> PitchSet { return New(Locrian.0)(pitch) }
 }

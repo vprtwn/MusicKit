@@ -14,17 +14,22 @@ println(p1.frequency)                    // 444.0
 MusicKit.concertA = 440
 
 var ps = PitchSet()
-ps.add(p1)
+ps.add(Pitch(midiNumber: 40))
+print(ps)
+ps.add(Pitch(midiNumber: 41))
+print(ps)
+ps.add(Pitch(midiNumber: 40))
+print(ps)
+ps.add(Pitch(midiNumber: 39))
+print(ps)
 
 // A Scale given a Pitch will return a PitchSet
 let major = Scale.Major(Pitch(midiNumber: 72))
-
-
-let wholetone = Scale.Wholetone()
+let wholetone = Scale.Wholetone
 
 // Create a custom scale using an array of semitone intervals
-let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4],
-    name: "Equidistant Pentatonic")
+//let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4],
+//    name: "Equidistant Pentatonic")
 
 //== Chord ==
 // Create common chords using the provided Chord constants
