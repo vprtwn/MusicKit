@@ -2,6 +2,7 @@
 
 import Foundation
 
+/// Ordered set of Pitches
 public struct PitchSet : CollectionType, Printable {
 
     var pitches : [Pitch] = []
@@ -12,16 +13,16 @@ public struct PitchSet : CollectionType, Printable {
 
     }
 
-    public init(chord: Chord, firstPitch: Pitch, count: Int) {
+    public init(intervals: [Float], firstPitch: Pitch, count: Int) {
         self.endIndex = count - 1
 
         pitches.append(firstPitch)
         var previousPitch = firstPitch
-        var chordLength = chord.intervals.count
+        var chordLength = 5
         var midiNum = firstPitch.midiNumber
-        for var i=1; i<count; i++ {
-            let firstInterval = chord.intervals[(i-1) % chordLength]
-            let secondInterval = chord.intervals[i % chordLength]
+        for i in 1..<count {
+            let firstInterval = intervals[(i-1) % chordLength]
+            let secondInterval = intervals[i % chordLength]
             var delta : Float = 0.0
 
             if secondInterval >= firstInterval {
@@ -79,8 +80,8 @@ public struct PitchSet : CollectionType, Printable {
         }
     }
 
+    // O(n) :(
     public mutating func add(pitch: Pitch) {
-        // this is wrong
         let count = pitches.count
         if count == 0 {
             pitches.append(pitch)
@@ -97,6 +98,10 @@ public struct PitchSet : CollectionType, Printable {
             }
         }
         else {
+            if pitch < pitches.first {
+                pitches.insert(pitch, atIndex: 0)
+                endIndex++
+            }
             for i in 1..<pitches.count {
                 let previousPitch = pitches[i-1]
                 let currentPitch = pitches[i]

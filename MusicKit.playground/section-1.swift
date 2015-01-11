@@ -16,16 +16,18 @@ MusicKit.concertA = 440
 var ps = PitchSet()
 ps.add(Pitch(midiNumber: 40))
 print(ps)
-ps.add(Pitch(midiNumber: 41))
+ps.add(Pitch(midiNumber: 42))
 print(ps)
-ps.add(Pitch(midiNumber: 40))
+ps.add(Pitch(midiNumber: 41))
 print(ps)
 ps.add(Pitch(midiNumber: 39))
 print(ps)
+ps.add(Pitch(midiNumber: 50))
+print(ps)
 
 // A Scale given a Pitch will return a PitchSet
-let major = Scale.Major(Pitch(midiNumber: 72))
-let wholetone = Scale.Wholetone
+let major = Scale.Major
+print(major(Pitch(midiNumber: 69)))
 
 // Create a custom scale using an array of semitone intervals
 //let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4],
@@ -33,12 +35,17 @@ let wholetone = Scale.Wholetone
 
 //== Chord ==
 // Create common chords using the provided Chord constants
-let majorSeventh = Chord.MajorSeventh
-let halfDiminished = Chord.HalfDiminishedSeventh
+//let majorSeventh = Chord.MajorSeventh
+//let halfDiminished = Chord.HalfDiminishedSeventh
+
+
+let bla = Chord.invert([0, 4, 7], n: 3)
+let a = Chord.create(bla)
+print(a(Pitch(midiNumber: 69)))
 
 // Create a custom chord using an array of semitones from the root
-let superMajor = Chord(intervals: [0, 4.5, 6], name: "Supermajor",
-    inversion: 0)
+//let superMajor = Chord(intervals: [0, 4.5, 6], name: "Supermajor",
+//    inversion: 0)
 
 //== PitchSet ==
 // Create a PitchSet with a scale, a starting pitch, and a count
@@ -50,11 +57,11 @@ let superMajor = Chord(intervals: [0, 4.5, 6], name: "Supermajor",
 // A4 B4 C♯5 D5 E5 F♯5 G♯5
 
 // A PitchSet can also be created with a chord
-let chordPitchSet = PitchSet(chord: Chord.DiminishedSeventh,
-    firstPitch: Pitch(midiNumber: 72), count: 7)
-for p in chordPitchSet {
-    println(p.noteName)
-}
+//let chordPitchSet = PitchSet(chord: Chord.DiminishedSeventh,
+//    firstPitch: Pitch(midiNumber: 72), count: 7)
+//for p in chordPitchSet {
+//    println(p.noteName)
+//}
 // C5 E♭5 G♭5 B𝄫5 C6 E♭6 G♭6
 
 
