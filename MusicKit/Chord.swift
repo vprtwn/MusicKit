@@ -15,10 +15,11 @@ public enum ChordAddition : Float {
 }
 
 public enum Chord  {
-    public static func invert(semitones: [Float], n: UInt) -> [Float] {
-        let count = semitones.count
+    /// Inverts an array of indices
+    public static func invert(indices: [Float], n: UInt) -> [Float] {
+        let count = indices.count
         let modN = Int(n) % count
-        var semitones = semitones
+        var semitones = indices
         for i in 0..<modN {
             let next = semitones[0] + 12
             semitones = Array(semitones[1..<count] + [next])
@@ -26,21 +27,26 @@ public enum Chord  {
         return semitones
     }
 
-    /// Converts an array of semitones to intervals
+    /// Converts an array of indices to intervals
     /// e.g. [0, 4, 7] -> [4, 3]
-    static func semitones(intervals: [Float]) -> [Float] {
-        var semitones : [Float] = [0]
+    static func indices(intervals: [Float]) -> [Float] {
+        var indices : [Float] = [0]
         for i in 0..<intervals.count {
-            let next = semitones[i] + intervals[i]
-            semitones.append(next)
+            let next = indices[i] + intervals[i]
+            indices.append(next)
         }
-        return semitones
+        return indices
     }
 
-    /// Converts an array of intervals to semitones
+    /// Converts an array of intervals to indices
     /// e.g. [4, 3] -> [0, 4, 7]
-    static func intervals(semitones: [Float]) -> [Float] {
-        return []
+    static func intervals(indices: [Float]) -> [Float] {
+        var intervals : [Float] = []
+        for i in 1..<indices.count {
+            let delta = indices[i] - indices[i-1]
+            intervals.append(delta)
+        }
+        return intervals
     }
 
     public static func create(scale: (Pitch -> PitchSet), indices: [UInt]) -> (Pitch -> PitchSet) {
@@ -87,11 +93,32 @@ public enum Chord  {
         }
     }
 
+    static func create(intervals: [Float], inversion: UInt, additions: [ChordAddition]) -> (Pitch -> PitchSet) {
+        // convert to indices
+        let originalIndices = Chord.indices(intervals)
+        var indices = originalIndices
+
+        // add additions
+        for addition in additions {
+            indices.append(addition.rawValue)
+        }
+
+        // invert
+        let inversion = Int(inversion) % indices.count
+        indices = invert(indices, n: UInt(inversion))
+
+        // convert to intervals
+        let intervals = Chord.intervals(indices)
+
+        return PitchSet.transpose(create(intervals), semitones: originalIndices[inversion])
+    }
+
     static let _Major : ChordTuple = ([4, 3], "Major triad", "")
     static let _Minor : ChordTuple = ([3, 4], "Minor triad", "m")
     static let _Augmented : ChordTuple = ([4, 4], "Augmented triad", "+")
     static let _Diminished : ChordTuple = ([3, 3], "Diminished triad", "°")
-    // TODO: add Sus2, Sus4
+    static let _Sus2 : ChordTuple = ([2, 5], "Suspended second", "sus2")
+    static let _Sus4 : ChordTuple = ([5, 2], "Suspended fourth", "sus4")
 
     static let _DominantSeventh : ChordTuple = ([4, 3, 3], "Dominant seventh", "7")
     static let _MajorSeventh : ChordTuple = ([4, 3, 4], "Major seventh", "Δ7")
@@ -102,14 +129,72 @@ public enum Chord  {
     static let _HalfDiminishedSeventh : ChordTuple = ([3, 3, 4], "Half-diminished seventh", "ø7")
     static let _DiminishedSeventh : ChordTuple = ([3, 3, 3], "Diminished seventh", "°")
     static let _DominantSeventhFlatFive : ChordTuple = ([4, 2, 4], "Dominant seventh flat five", "7♭5")
-    // TODO: add M6, m6
+    static let _MajorSeventhFlatFive : ChordTuple = ([5, 2, 4], "Major seventh flat five", "Δ7♭5")
+    static let _DominantSeventhSusFour : ChordTuple = ([5, 2, 3], "Dominant seventh sus four", "7sus4")
+    static let _MajorSeventhSusFour : ChordTuple = ([5, 2, 4], "Major seventh sus four", "Δ7sus4")
+    static let _MajorSixth : ChordTuple = ([4, 3, 2], "Major sixth", "6")
+    static let _MinorSixth : ChordTuple = ([3, 4, 2], "Minor sixth", "m6")
 
     public static func Major(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
-        // convert to semitones
-        // add additions
-        // invert
-        // convert to intervals
-        return create(_Major.0)
+        return create(_Major.0, inversion: inversion, additions: additions)
+    }
+    public static func Minor(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_Minor.0, inversion: inversion, additions: additions)
+    }
+    public static func Augmented(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_Augmented.0, inversion: inversion, additions: additions)
+    }
+    public static func Diminished(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_Diminished.0, inversion: inversion, additions: additions)
+    }
+    public static func Sus2(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_Sus2.0, inversion: inversion, additions: additions)
+    }
+    public static func Sus4(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_Sus4.0, inversion: inversion, additions: additions)
+    }
+
+    public static func DominantSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_DominantSeventh.0, inversion: inversion, additions: additions)
+    }
+    public static func MajorSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_MajorSeventh.0, inversion: inversion, additions: additions)
+    }
+    public static func MinorMajorSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_MinorMajorSeventh.0, inversion: inversion, additions: additions)
+    }
+    public static func MinorSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_MinorSeventh.0, inversion: inversion, additions: additions)
+    }
+    public static func AugmentedMajorSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_AugmentedMajorSeventh.0, inversion: inversion, additions: additions)
+    }
+    public static func AugmentedSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_AugmentedSeventh.0, inversion: inversion, additions: additions)
+    }
+    public static func HalfDiminishedSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_HalfDiminishedSeventh.0, inversion: inversion, additions: additions)
+    }
+    public static func DiminishedSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_DiminishedSeventh.0, inversion: inversion, additions: additions)
+    }
+    public static func DominantSeventhFlatFive(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_DominantSeventhFlatFive.0, inversion: inversion, additions: additions)
+    }
+    public static func MajorSeventhFlatFive(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_MajorSeventhFlatFive.0, inversion: inversion, additions: additions)
+    }
+    public static func DominantSeventhSusFour(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_DominantSeventhSusFour.0, inversion: inversion, additions: additions)
+    }
+    public static func MajorSeventhSusFour(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_MajorSeventhSusFour.0, inversion: inversion, additions: additions)
+    }
+    public static func MajorSixth(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_MajorSixth.0, inversion: inversion, additions: additions)
+    }
+    public static func MinorSixth(inversion: UInt = 0, additions: [ChordAddition] = []) -> (Pitch -> PitchSet) {
+        return create(_MinorSixth.0, inversion: inversion, additions: additions)
     }
 
 }

@@ -13,59 +13,6 @@ public struct PitchSet : CollectionType, Printable {
 
     }
 
-    public init(intervals: [Float], firstPitch: Pitch, count: Int) {
-        self.endIndex = count - 1
-
-        pitches.append(firstPitch)
-        var previousPitch = firstPitch
-        var chordLength = 5
-        var midiNum = firstPitch.midiNumber
-        for i in 1..<count {
-            let firstInterval = intervals[(i-1) % chordLength]
-            let secondInterval = intervals[i % chordLength]
-            var delta : Float = 0.0
-
-            if secondInterval >= firstInterval {
-                delta = secondInterval - firstInterval
-            }
-            else {
-                delta = secondInterval + 12 - firstInterval
-            }
-            midiNum += delta
-            var pitch = Pitch(midiNumber: midiNum)
-
-            // set a preferred pitch class name
-            if i < chordLength {
-                if let pitchClass = pitch.pitchClass {
-                    if let previousPitchName = previousPitch.noteNameTuple {
-                        var preferredLetterName : LetterName?
-                        // maj/min second
-                        if delta == 1 || delta == 2 {
-                            preferredLetterName = previousPitchName.0.next()
-                        }
-                        // maj/min third
-                        else if delta == 3 || delta == 4 {
-                            preferredLetterName = previousPitchName.0.next().next()
-                        }
-                        let preferredPitchName = pitchClass.names.filter {
-                            n in n.0 == preferredLetterName
-                            }.first
-                        pitch.preferredName = preferredPitchName
-                    }
-                }
-            }
-            else {
-                let pitchOctaveBelow = pitches[i - chordLength]
-                pitch.preferredName = pitchOctaveBelow.preferredName
-            }
-
-            pitches.append(pitch)
-            previousPitch = pitch
-        }
-    }
-
-    // MARK: CollectionType
-
     public func generate() -> GeneratorOf<Pitch> {
         var index = startIndex
         return GeneratorOf<Pitch> {
@@ -126,6 +73,12 @@ public struct PitchSet : CollectionType, Printable {
 
     public var description : String {
         return pitches.description
+    }
+
+    public static func transpose(f: Pitch -> PitchSet, semitones: Float) -> (Pitch -> PitchSet) {
+        return { pitch in
+            f(Pitch(midiNumber: pitch.midiNumber + semitones))
+        }
     }
 }
 

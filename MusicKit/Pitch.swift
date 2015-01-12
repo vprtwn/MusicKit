@@ -52,7 +52,7 @@ public struct PitchClass : Printable, Comparable {
         case 0:
             return [(.C, .Natural), (.B, .Sharp), (.D, .DoubleFlat)]
         case 1:
-            return [(.D, .Flat), (.C, .Sharp), (.B, .DoubleSharp)]
+            return [(.C, .Sharp), (.D, .Flat), (.B, .DoubleSharp)]
         case 2:
             return [(.D, .Natural), (.C, .DoubleSharp), (.E, .DoubleFlat)]
         case 3:

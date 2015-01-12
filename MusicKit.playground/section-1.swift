@@ -43,6 +43,10 @@ let bla = Chord.invert([0, 4, 7], n: 3)
 let a = Chord.create(bla)
 print(a(Pitch(midiNumber: 69)))
 
+let maj = Chord.Major()
+let b = maj(Pitch(midiNumber: 69))
+print(b)
+
 // Create a custom chord using an array of semitones from the root
 //let superMajor = Chord(intervals: [0, 4.5, 6], name: "Supermajor",
 //    inversion: 0)
