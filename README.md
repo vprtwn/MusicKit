@@ -27,7 +27,7 @@ let minor = Chord.Minor(inversion: 1, additions: [.Nine])
 print(minor(A4))                         // [C5, E5, A5, B5]
 ```
 
-##### Chords can be created from scales
+##### A custom chord can be created from any harmonizer
 ```Swift
 let chord = Chord.create(Scale.Major, indices: [0, 2, 4, 6])
 print(chord(A4))                         // [A4, C♯5, E5, G♯5]
