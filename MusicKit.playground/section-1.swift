@@ -13,17 +13,23 @@ MusicKit.concertA = 444
 println(p1.frequency)                    // 444.0
 MusicKit.concertA = 440
 
+
+
+
 var ps = PitchSet()
 ps.add(Pitch(midiNumber: 40))
-print(ps)
 ps.add(Pitch(midiNumber: 42))
 print(ps)
-ps.add(Pitch(midiNumber: 41))
-print(ps)
-ps.add(Pitch(midiNumber: 39))
-print(ps)
-ps.add(Pitch(midiNumber: 50))
-print(ps)
+
+var ps2 = PitchSet()
+ps2.add(Pitch(midiNumber: 60))
+ps2.add(Pitch(midiNumber: 72))
+ps2.add(Pitch(midiNumber: 81))
+print(ps2)
+
+
+let a = ps + ps2
+print(a)
 
 // A Scale given a Pitch will return a PitchSet
 let major = Scale.Major
@@ -39,13 +45,22 @@ print(major(Pitch(midiNumber: 69)))
 //let halfDiminished = Chord.HalfDiminishedSeventh
 
 
-let bla = Chord.invert([0, 4, 7], n: 3)
-let a = Chord.create(bla)
-print(a(Pitch(midiNumber: 69)))
+let minor = Chord.Minor(inversion: 1, additions: [.Nine])
+print(minor(Pitch(midiNumber: 69)))
 
-let maj = Chord.Major()
-let b = maj(Pitch(midiNumber: 69))
-print(b)
+let chord = Chord.create(major, indices: [0, 2, 4, 6])
+let ch = chord(Pitch(midiNumber: 69))
+print(ch)
+
+
+let maxIndex : UInt = [1, 0, 4, 10, 6, 3].reduce(0, combine: { a, x in
+    if (a > UInt(x)) {
+        return a
+    }
+    else {
+        return UInt(x)
+    }
+})
 
 // Create a custom chord using an array of semitones from the root
 //let superMajor = Chord(intervals: [0, 4.5, 6], name: "Supermajor",

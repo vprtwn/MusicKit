@@ -103,7 +103,7 @@ public func <(lhs: PitchClass, rhs: PitchClass) -> Bool {
 }
 
 // MARK: Pitch
-public struct Pitch : Printable, Comparable {
+public struct Pitch : Printable, Comparable, Hashable {
     /// midi number to frequency
     /// TODO: move this to an equal temperament constant
     public static func mtof(midiNumber: Float) -> Float {
@@ -205,6 +205,10 @@ public struct Pitch : Printable, Comparable {
 
     public var description : String {
         return (noteName.utf16Count != 0) ? "\(noteName)" : "\(frequency)Hz"
+    }
+
+    public var hashValue : Int {
+        return midiNumber.hashValue
     }
 
 }

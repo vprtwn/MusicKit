@@ -12,4 +12,12 @@ extension Array {
 
 public struct MusicKit {
     public static var concertA : Double = 440.0
+
+    public static let IdentityHarmonizer : Harmonizer = { pitch in
+        var s = PitchSet()
+        s.add(pitch)
+        return s
+    }
 }
+
+public typealias Harmonizer = (Pitch -> PitchSet)

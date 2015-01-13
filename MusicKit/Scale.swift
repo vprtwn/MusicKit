@@ -7,7 +7,7 @@ public typealias ScaleTuple = ([Float], String)
 
 public enum Scale {
 
-    public static func create(intervals: [Float]) -> (Pitch -> PitchSet) {
+    public static func create(intervals: [Float]) -> Harmonizer {
         return { firstPitch in
             var pitchSet = PitchSet()
             pitchSet.add(firstPitch)
