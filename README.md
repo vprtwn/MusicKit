@@ -13,9 +13,10 @@ println(A4.frequency)                    // 440.0
 ##### A `PitchSet` is an ordered collection of pitches
 ```Swift
 var ps = PitchSet()
-ps.add(Pitch(midiNumber: 40))
-ps.add(Pitch(midiNumber: 42))
-print(ps)                                // [E2, F♯2]
+ps.add(Pitch(midiNumber: 69))
+ps.add(Pitch(midiNumber: 69))
+ps.add(Pitch(midiNumber: 67))
+print(ps)                                // [G4, A4]
 ```
 
 ##### Scales and chords are `Harmonizer` functions of the form `(Pitch -> PitchSet)`
