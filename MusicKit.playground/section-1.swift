@@ -2,7 +2,7 @@ import MusicKit
 
 //== Pitch ==
 // Create a Pitch using either a MIDI number or a frequency
-let p1 = Pitch(midiNumber: 69)
+let p1 = Pitch(midi: 69)
 println(p1.pitchClass)                   // A♮
 println(p1.noteName)                     // A4
 println(p1.frequency)                    // 440.0
@@ -17,14 +17,14 @@ MusicKit.concertA = 440
 
 
 var ps = PitchSet()
-ps.add(Pitch(midiNumber: 40))
-ps.add(Pitch(midiNumber: 42))
+ps.add(Pitch(midi: 40))
+ps.add(Pitch(midi: 42))
 print(ps)
 
 var ps2 = PitchSet()
-ps2.add(Pitch(midiNumber: 60))
-ps2.add(Pitch(midiNumber: 72))
-ps2.add(Pitch(midiNumber: 81))
+ps2.add(Pitch(midi: 60))
+ps2.add(Pitch(midi: 72))
+ps2.add(Pitch(midi: 81))
 print(ps2)
 
 
@@ -33,7 +33,7 @@ print(a)
 
 // A Scale given a Pitch will return a PitchSet
 let major = Scale.Major
-print(major(Pitch(midiNumber: 69)))
+print(major(Pitch(midi: 69)))
 
 // Create a custom scale using an array of semitone intervals
 //let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4],
@@ -46,10 +46,10 @@ print(major(Pitch(midiNumber: 69)))
 
 
 let minor = Chord.Minor(inversion: 1, additions: [.Nine])
-print(minor(Pitch(midiNumber: 69)))
+print(minor(Pitch(midi: 69)))
 
 let chord = Chord.create(major, indices: [0, 2, 4, 6])
-let ch = chord(Pitch(midiNumber: 69))
+let ch = chord(Pitch(midi: 69))
 print(ch)
 
 

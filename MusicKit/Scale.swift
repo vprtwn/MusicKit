@@ -13,11 +13,11 @@ public enum Scale {
             pitchSet.add(firstPitch)
             var previousPitch = firstPitch
             let scaleLength = intervals.count
-            var midiNum = firstPitch.midiNumber
+            var midiNum = firstPitch.midi
             for i in 1..<scaleLength {
                 let prevDegree = (i-1)
                 midiNum = midiNum + intervals[prevDegree]
-                var pitch = Pitch(midiNumber: midiNum)
+                var pitch = Pitch(midi: midiNum)
 
                 // if the scale is diatonic and the current and previous pitch
                 /// have names, set a preferred pitch class name

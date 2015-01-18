@@ -4,7 +4,7 @@ Work in progress. Open `MusicKit.xcworkspace` to try the included playground.
 
 ##### A `Pitch` can be initialized with a MIDI number
 ```Swift
-let A4 = Pitch(midiNumber: 69)
+let A4 = Pitch(midi: 69)
 println(A4.pitchClass)                   // A♮
 println(A4.noteName)                     // A4
 println(A4.frequency)                    // 440.0
@@ -13,9 +13,9 @@ println(A4.frequency)                    // 440.0
 ##### A `PitchSet` is an ordered collection of pitches
 ```Swift
 var ps = PitchSet()
-ps.add(Pitch(midiNumber: 69))
-ps.add(Pitch(midiNumber: 69))
-ps.add(Pitch(midiNumber: 67))
+ps.add(Pitch(midi: 69))
+ps.add(Pitch(midi: 69))
+ps.add(Pitch(midi: 67))
 print(ps)                                // [G4, A4]
 ```
 

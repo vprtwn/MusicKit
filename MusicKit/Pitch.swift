@@ -106,13 +106,13 @@ public func <(lhs: PitchClass, rhs: PitchClass) -> Bool {
 public struct Pitch : Printable, Comparable, Hashable {
     /// midi number to frequency
     /// TODO: move this to an equal temperament constant
-    public static func mtof(midiNumber: Float) -> Float {
-        let exponent = Double((Float(midiNumber) - 69.0)/12.0)
+    public static func mtof(midi: Float) -> Float {
+        let exponent = Double((Float(midi) - 69.0)/12.0)
         let freq = pow(Double(2), exponent)*MusicKit.concertA
         return Float(freq)
     }
 
-    public let midiNumber : Float
+    public let midi : Float
 
     /// The preferred pitch class name.
     /// Can only be set to a valid name. Default is nil.
@@ -133,20 +133,20 @@ public struct Pitch : Printable, Comparable, Hashable {
         }
     }
 
-    public init(midiNumber: Float) {
-        self.midiNumber = midiNumber
+    public init(midi: Float) {
+        self.midi = midi
     }
 
     /// Frequency in Hz
     public var frequency : Float {
-        return Pitch.mtof(self.midiNumber)
+        return Pitch.mtof(self.midi)
     }
 
     /// A PitchClass, or nil if the pitch doesn't align with the pitch classes
     /// in the current tuning system.
     public var pitchClass : PitchClass? {
-        if self.midiNumber - floor(self.midiNumber) == 0 {
-            return PitchClass(index: UInt(self.midiNumber)%12)
+        if self.midi - floor(self.midi) == 0 {
+            return PitchClass(index: UInt(self.midi)%12)
         }
         return nil
     }
@@ -185,7 +185,7 @@ public struct Pitch : Printable, Comparable, Hashable {
 
     // Unadjusted octave number
     var octaveNumber : Int {
-        return Int((self.midiNumber - 12.0)/12.0)
+        return Int((self.midi - 12.0)/12.0)
     }
 
     // Combines an octave number with a pitch class name, taking into account
@@ -208,15 +208,15 @@ public struct Pitch : Printable, Comparable, Hashable {
     }
 
     public var hashValue : Int {
-        return midiNumber.hashValue
+        return midi.hashValue
     }
 
 }
 
 public func ==(lhs: Pitch, rhs: Pitch) -> Bool {
-    return lhs.midiNumber == rhs.midiNumber
+    return lhs.midi == rhs.midi
 }
 
 public func <(lhs: Pitch, rhs: Pitch) -> Bool {
-    return lhs.midiNumber < rhs.midiNumber
+    return lhs.midi < rhs.midi
 }

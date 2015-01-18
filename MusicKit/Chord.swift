@@ -52,7 +52,7 @@ public enum Chord  {
     /// Transposes a Harmonizer
     static func transpose(f: Harmonizer, semitones: Float) -> Harmonizer {
         return { pitch in
-            f(Pitch(midiNumber: pitch.midiNumber + semitones))
+            f(Pitch(midi: pitch.midi + semitones))
         }
     }
 
@@ -68,11 +68,11 @@ public enum Chord  {
 
         // create a scale extending enough octaves to include the max index
         var scalePitchSet = PitchSet()
-        var firstPitch = Pitch(midiNumber: 69)
+        var firstPitch = Pitch(midi: 69)
         while (scalePitchSet.count < maxIndex) {
             let scaleOctave = harmonizer(firstPitch)
             scalePitchSet += scaleOctave
-            firstPitch = Pitch(midiNumber: firstPitch.midiNumber + 12)
+            firstPitch = Pitch(midi: firstPitch.midi + 12)
         }
 
         var intervals : [Float] = []
@@ -81,7 +81,7 @@ public enum Chord  {
             let curIndex = Int(indices[i])
             let prevPitch = scalePitchSet[prevIndex]
             let curPitch = scalePitchSet[curIndex]
-            let delta = curPitch.midiNumber - prevPitch.midiNumber
+            let delta = curPitch.midi - prevPitch.midi
             intervals.append(delta)
         }
 
@@ -94,12 +94,12 @@ public enum Chord  {
             pitchSet.add(firstPitch)
             var previousPitch = firstPitch
             let chordLength = intervals.count + 1
-            var midiNum = firstPitch.midiNumber
+            var midiNum = firstPitch.midi
             for i in 1..<chordLength {
                 let prevDegree = (i-1)
                 let interval = intervals[prevDegree]
                 midiNum = midiNum + interval
-                var pitch = Pitch(midiNumber: midiNum)
+                var pitch = Pitch(midi: midiNum)
 
                 if let pitchClass = pitch.pitchClass {
                     if let previousPitchName = previousPitch.noteNameTuple {
