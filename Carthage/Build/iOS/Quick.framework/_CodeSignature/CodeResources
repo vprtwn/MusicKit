@@ -6,11 +6,11 @@
 	<dict>
 		<key>Headers/QCKDSL.h</key>
 		<data>
-		UIsq4ztNsy3z+SXpBwssGQSAQxY=
+		7PbIJRcEKu110FAe5LNaPVYKGuw=
 		</data>
 		<key>Headers/Quick-Swift.h</key>
 		<data>
-		g3mgMx6toEbTH8Gr8PyA1itcxLI=
+		GhK9GU5/z4W4V5yhuvfd4uoOZFw=
 		</data>
 		<key>Headers/Quick.h</key>
 		<data>
@@ -26,23 +26,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		ZNnCCNHGkJusmc+q42VQ9zpZSnY=
+		XWFFPghetL4m69yPy1WgY75vOb0=
 		</data>
 		<key>Modules/Quick.swiftmodule/arm.swiftdoc</key>
 		<data>
-		qj/6/yvpDVCofbeQbyoMSjbWY44=
+		nneJJXwVKWmSU81eyoS62MNPye4=
 		</data>
 		<key>Modules/Quick.swiftmodule/arm.swiftmodule</key>
 		<data>
-		mkr3UwryQh0JnNqKLwYsNj6KePY=
+		sbHQ6XJ9EFHej00BGsBXGrQapnw=
 		</data>
 		<key>Modules/Quick.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		qj/6/yvpDVCofbeQbyoMSjbWY44=
+		cly/Ztl6hanO5tcRLYTNPvZRfsY=
 		</data>
 		<key>Modules/Quick.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		qQsgCEZ3yYOH0aqhvGTXR/neVII=
+		/HRhl/9Z9QbFOEsjj3dxTZ0HG9o=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -53,11 +53,11 @@
 	<dict>
 		<key>Headers/QCKDSL.h</key>
 		<data>
-		UIsq4ztNsy3z+SXpBwssGQSAQxY=
+		7PbIJRcEKu110FAe5LNaPVYKGuw=
 		</data>
 		<key>Headers/Quick-Swift.h</key>
 		<data>
-		g3mgMx6toEbTH8Gr8PyA1itcxLI=
+		GhK9GU5/z4W4V5yhuvfd4uoOZFw=
 		</data>
 		<key>Headers/Quick.h</key>
 		<data>
@@ -73,19 +73,19 @@
 		</data>
 		<key>Modules/Quick.swiftmodule/arm.swiftdoc</key>
 		<data>
-		qj/6/yvpDVCofbeQbyoMSjbWY44=
+		nneJJXwVKWmSU81eyoS62MNPye4=
 		</data>
 		<key>Modules/Quick.swiftmodule/arm.swiftmodule</key>
 		<data>
-		mkr3UwryQh0JnNqKLwYsNj6KePY=
+		sbHQ6XJ9EFHej00BGsBXGrQapnw=
 		</data>
 		<key>Modules/Quick.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		qj/6/yvpDVCofbeQbyoMSjbWY44=
+		cly/Ztl6hanO5tcRLYTNPvZRfsY=
 		</data>
 		<key>Modules/Quick.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		qQsgCEZ3yYOH0aqhvGTXR/neVII=
+		/HRhl/9Z9QbFOEsjj3dxTZ0HG9o=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>

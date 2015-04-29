@@ -204,7 +204,7 @@ public struct Pitch : Printable, Comparable, Hashable {
     }
 
     public var description : String {
-        return (noteName.utf16Count != 0) ? "\(noteName)" : "\(frequency)Hz"
+        return (count(noteName) != 0) ? "\(noteName)" : "\(frequency)Hz"
     }
 
     public var hashValue : Int {

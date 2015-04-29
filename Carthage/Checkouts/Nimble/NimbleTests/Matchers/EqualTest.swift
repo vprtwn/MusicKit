@@ -39,6 +39,37 @@ class EqualTest: XCTestCase {
         }
     }
 
+    func testSetEquality() {
+        expect(Set([1, 2])).to(equal(Set([1, 2])))
+        expect(Set<Int>()).to(equal(Set<Int>()))
+        expect(Set<Int>()) == Set<Int>()
+        expect(Set([1, 2])) != Set<Int>()
+
+        failsWithErrorMessageForNil("expected to equal <[1, 2]>, got <nil>") {
+            expect(nil as Set<Int>?).to(equal(Set([1, 2])))
+        }
+
+        failsWithErrorMessage("expected to equal <[1, 2, 3]>, got <[2, 3]>, missing <[1]>") {
+            expect(Set([2, 3])).to(equal(Set([1, 2, 3])))
+        }
+
+        failsWithErrorMessage("expected to equal <[1, 2, 3]>, got <[1, 2, 3, 4]>, extra <[4]>") {
+            expect(Set([1, 2, 3, 4])).to(equal(Set([1, 2, 3])))
+        }
+
+        failsWithErrorMessage("expected to equal <[1, 2, 3]>, got <[2, 3, 4]>, missing <[1]>, extra <[4]>") {
+            expect(Set([2, 3, 4])).to(equal(Set([1, 2, 3])))
+        }
+
+        failsWithErrorMessage("expected to equal <[1, 2, 3]>, got <[2, 3, 4]>, missing <[1]>, extra <[4]>") {
+            expect(Set([2, 3, 4])) == Set([1, 2, 3])
+        }
+
+        failsWithErrorMessage("expected to not equal <[1, 2, 3]>, got <[1, 2, 3]>") {
+            expect(Set([1, 2, 3])) != Set([1, 2, 3])
+        }
+    }
+
     func testDoesNotMatchNils() {
         failsWithErrorMessageForNil("expected to equal <nil>, got <nil>") {
             expect(nil as String?).to(equal(nil as String?))

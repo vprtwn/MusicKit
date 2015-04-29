@@ -1,5 +1,7 @@
 import Foundation
 
+let DefaultDelta = 0.0001
+
 internal func isCloseTo(actualValue: Double?, expectedValue: Double, delta: Double, failureMessage: FailureMessage) -> Bool {
     failureMessage.postfixMessage = "be close to <\(stringify(expectedValue))> (within \(stringify(delta)))"
     if actualValue != nil {
@@ -14,7 +16,7 @@ internal func isCloseTo(actualValue: Double?, expectedValue: Double, delta: Doub
 /// point values which can have imprecise results when doing arithmetic on them.
 ///
 /// @see equal
-public func beCloseTo(expectedValue: Double, within delta: Double = 0.0001) -> NonNilMatcherFunc<Double> {
+public func beCloseTo(expectedValue: Double, within delta: Double = DefaultDelta) -> NonNilMatcherFunc<Double> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
         return isCloseTo(actualExpression.evaluate(), expectedValue, delta, failureMessage)
     }
@@ -24,7 +26,7 @@ public func beCloseTo(expectedValue: Double, within delta: Double = 0.0001) -> N
 /// point values which can have imprecise results when doing arithmetic on them.
 ///
 /// @see equal
-public func beCloseTo(expectedValue: NMBDoubleConvertible, within delta: Double = 0.0001) -> NonNilMatcherFunc<NMBDoubleConvertible> {
+public func beCloseTo(expectedValue: NMBDoubleConvertible, within delta: Double = DefaultDelta) -> NonNilMatcherFunc<NMBDoubleConvertible> {
     return NonNilMatcherFunc { actualExpression, failureMessage in
         return isCloseTo(actualExpression.evaluate()?.doubleValue, expectedValue.doubleValue, delta, failureMessage)
     }
@@ -67,4 +69,50 @@ extension NMBObjCMatcher {
     public class func beCloseToMatcher(expected: NSNumber, within: CDouble) -> NMBObjCBeCloseToMatcher {
         return NMBObjCBeCloseToMatcher(expected: expected, within: within)
     }
+}
+
+public func beCloseTo(expectedValues: [Double], within delta: Double = DefaultDelta) -> NonNilMatcherFunc <[Double]> {
+    return NonNilMatcherFunc { actualExpression, failureMessage in
+        failureMessage.postfixMessage = "be close to <\(stringify(expectedValues))> (each within \(stringify(delta)))"
+        if let actual = actualExpression.evaluate() {
+            if actual.count != expectedValues.count {
+                return false
+            } else {
+                for (index, actualItem) in enumerate(actual) {
+                    if fabs(actualItem - expectedValues[index]) > delta {
+                        return false
+                    }
+                }
+                return true
+            }
+        }
+        return false
+    }
+}
+
+// MARK: - Operators
+
+infix operator ≈ {}
+
+public func ≈(lhs: Expectation<[Double]>, rhs: [Double]) {
+    lhs.to(beCloseTo(rhs))
+}
+
+public func ≈(lhs: Expectation<Double>, rhs: Double) {
+    lhs.to(beCloseTo(rhs))
+}
+
+public func ≈(lhs: Expectation<Double>, rhs: (expected: Double, delta: Double)) {
+    lhs.to(beCloseTo(rhs.expected, within: rhs.delta))
+}
+
+public func ==(lhs: Expectation<Double>, rhs: (expected: Double, delta: Double)) {
+    lhs.to(beCloseTo(rhs.expected, within: rhs.delta))
+}
+
+// make this higher precedence than exponents so the Doubles either end aren't pulled in
+// unexpectantly
+infix operator ± { precedence 170 }
+public func ±(lhs: Double, rhs: Double) -> (expected: Double, delta: Double) {
+    return (expected: lhs, delta: rhs)
 }

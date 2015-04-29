@@ -2,24 +2,23 @@ import XCTest
 import Nimble
 
 class AsyncTest: XCTestCase {
-
-    func testAsyncPolling() {
+    func testAsyncTestnigViaEventually() {
         var value = 0
         deferToMainQueue { value = 1 }
-        expect(value).toEventually(equal(1))
+        expect { value }.toEventually(equal(1))
 
         deferToMainQueue { value = 0 }
-        expect(value).toEventuallyNot(equal(1))
+        expect { value }.toEventuallyNot(equal(1))
 
         failsWithErrorMessage("expected to eventually not equal <0>, got <0>") {
-            expect(value).toEventuallyNot(equal(0))
+            expect { value }.toEventuallyNot(equal(0))
         }
         failsWithErrorMessage("expected to eventually equal <1>, got <0>") {
-            expect(value).toEventually(equal(1))
+            expect { value }.toEventually(equal(1))
         }
     }
 
-    func testAsyncCallback() {
+    func testAsyncTestingViaWaitUntil() {
         waitUntil { done in
             done()
         }

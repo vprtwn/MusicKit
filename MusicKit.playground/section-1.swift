@@ -1,87 +1,78 @@
 import MusicKit
 
-//== Pitch ==
-// Create a Pitch using either a MIDI number or a frequency
+///## Pitch
+///* Pitches are specified by MIDI number.
+///* Note: non-integral midi values can be used for microtones
+
+///```swift
 let p1 = Pitch(midi: 69)
-println(p1.pitchClass)                   // A♮
-println(p1.noteName)                     // A4
-println(p1.frequency)                    // 440.0
+println(p1.pitchClass)  // A♮
+println(p1.noteName)    // A4
+println(p1.frequency)   // 440.0
+///```
 
-// Changing the value of concert A changes the computed frequency 
-// of all pitches
+///* Changing the value of concert A changes the computed frequency of all pitches
+
+///```swift
 MusicKit.concertA = 444
-println(p1.frequency)                    // 444.0
+println(p1.frequency)   // 444.0
 MusicKit.concertA = 440
+///```
 
+///## PitchSet ==
+/// * A `PitchSet` is a set of `Pitch` objects
 
-
-
+///```swift
 var ps = PitchSet()
 ps.add(Pitch(midi: 40))
 ps.add(Pitch(midi: 42))
-print(ps)
+print(ps)   // [E2, F♯2]
 
 var ps2 = PitchSet()
 ps2.add(Pitch(midi: 60))
 ps2.add(Pitch(midi: 72))
 ps2.add(Pitch(midi: 81))
-print(ps2)
-
+print(ps2)  // [C4, C5, A5]
 
 let a = ps + ps2
-print(a)
+print(a)    // [E2, F♯2, C4, C5, A5]
+///```
 
-// A Scale given a Pitch will return a PitchSet
+///## Harmonizer
+///* A `Harmonizer` is a function with the signature `(Pitch -> PitchSet)`
+///* The `Scale` and `Chord` enums define common scales and chords as Harmonizers
+
+///### Scale
+///* Given a `Pitch`, any `Harmonizer` will return a `PitchSet`.
+
+///```swift
 let major = Scale.Major
-print(major(Pitch(midi: 69)))
+print(major(Pitch(midi: 69)))   // [A4, B4, C♯5, D5, E5, F♯5, G♯5]
+///```
 
-// Create a custom scale using an array of semitone intervals
-//let customScale = Scale(intervals: [2.4, 2.4, 2.4, 2.4, 2.4],
-//    name: "Equidistant Pentatonic")
+///* Custom scales can be created using an array of semitone intervals
 
-//== Chord ==
-// Create common chords using the provided Chord constants
-//let majorSeventh = Chord.MajorSeventh
-//let halfDiminished = Chord.HalfDiminishedSeventh
+///```swift
+let equidistantPentatonic = Scale.create([2.4, 2.4, 2.4, 2.4, 2.4])
+///```
 
+///### Chord
+///* When creating a chord, you must also specify the inversion and any additions
 
+///```swift
 let minor = Chord.Minor(inversion: 1, additions: [.Nine])
-print(minor(Pitch(midi: 69)))
+print(minor(Pitch(midi: 69)))   // [C5, E5, A5, B5]
+///```
 
+///* A scale can be used to create a chord
+///```swift
 let chord = Chord.create(major, indices: [0, 2, 4, 6])
 let ch = chord(Pitch(midi: 69))
-print(ch)
+print(ch) // [A4, C♯5, E5, G♯5]
+///```
 
 
-let maxIndex : UInt = [1, 0, 4, 10, 6, 3].reduce(0, combine: { a, x in
-    if (a > UInt(x)) {
-        return a
-    }
-    else {
-        return UInt(x)
-    }
-})
 
-// Create a custom chord using an array of semitones from the root
-//let superMajor = Chord(intervals: [0, 4.5, 6], name: "Supermajor",
-//    inversion: 0)
-
-//== PitchSet ==
-// Create a PitchSet with a scale, a starting pitch, and a count
-//let scalePitchSet = PitchSet(scale: Scale.Major,
-//    firstPitch: Pitch(midiNumber: 69), count: 7)
-//for p in scalePitchSet {
-//    println(p.noteName)
-//}
-// A4 B4 C♯5 D5 E5 F♯5 G♯5
-
-// A PitchSet can also be created with a chord
-//let chordPitchSet = PitchSet(chord: Chord.DiminishedSeventh,
-//    firstPitch: Pitch(midiNumber: 72), count: 7)
-//for p in chordPitchSet {
-//    println(p.noteName)
-//}
-// C5 E♭5 G♭5 B𝄫5 C6 E♭6 G♭6
 
 
 

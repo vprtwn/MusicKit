@@ -1,6 +1,6 @@
 # Nimble
 
-[![Build Status](https://travis-ci.org/Quick/Nimble.svg?branch=master)](https://travis-ci.org/Quick/Nimble)
+[![Build Status](https://travis-ci.org/Quick/Nimble.svg?branch=swift-1.1)](https://travis-ci.org/Quick/Nimble)
 
 Use Nimble to express the expected outcomes of Swift
 or Objective-C expressions. Inspired by
@@ -40,6 +40,7 @@ expect(ocean.isClean).toEventually(beTruthy())
   - [Exceptions](#exceptions)
   - [Collection Membership](#collection-membership)
   - [Strings](#strings)
+  - [Checking if all elements of a collection pass a condition](#checking-if-all-elements-of-a-collection-pass-a-condition)
 - [Writing Your Own Matchers](#writing-your-own-matchers)
   - [Lazy Evaluation](#lazy-evaluation)
   - [Type Checking via Swift Generics](#type-checking-via-swift-generics)
@@ -47,6 +48,8 @@ expect(ocean.isClean).toEventually(beTruthy())
   - [Supporting Objective-C](#supporting-objective-c)
     - [Properly Handling `nil` in Objective-C Matchers](#properly-handling-nil-in-objective-c-matchers)
 - [Installing Nimble](#installing-nimble)
+  - [Installing Nimble as a Submodule](#installing-nimble-as-a-submodule)
+  - [Installing Nimble via CocoaPods](#installing-nimble-via-cocoapods)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -70,23 +73,15 @@ Or, in Objective-C:
 XCTAssertEqual(1 + 1, 2, @"expected one plus one to equal two");
 ```
 
-XCTest assertions have several drawbacks:
+XCTest assertions have a couple of drawbacks:
 
 1. **Not enough macros.** There's no easy way to assert that a string
    contains a particular substring, or that a number is less than or
    equal to another.
-2. **No type checking.** It doesn't make sense to comapre a number to
-   a string, but XCTest assertions allow it. Assertions are implemented
-   using macros, so there's no type checking.
-
-   `XCTAssertEqual(1 + 1, "2")` compiles and runs--you won't
-   find out that you've made an impossible comparison until the test
-   runs and fails. That could take seconds, or even minutes in larger test
-   suites.
-3. **It's hard to write asynchronous tests.** XCTest forces you to write
+2. **It's hard to write asynchronous tests.** XCTest forces you to write
    a lot of boilerplate code.
 
-Nimble addresses all three of these concerns.
+Nimble addresses these concerns.
 
 # Nimble: Expectations Using `expect(...).to`
 
@@ -176,11 +171,24 @@ exception once evaluated:
 ```swift
 // Swift
 
+// Note: Swift currently doesn't have exceptions.
+//       Only Objective-C code can raise exceptions
+//       that Nimble will catch.
 let exception = NSException(
   name: NSInternalInconsistencyException,
   reason: "Not enough fish in the sea.",
-  userInfo: nil)
-expect(exception.raise()).to(raiseException())
+  userInfo: ["something": "is fishy"])
+expect { exception.raise() }.to(raiseException())
+
+// Also, you can customize raiseException to be more specific
+expect { exception.raise() }.to(raiseException(named: NSInternalInconsistencyException))
+expect { exception.raise() }.to(raiseException(
+    named: NSInternalInconsistencyException,
+    reason: "Not enough fish in the sea"))
+expect { exception.raise() }.to(raiseException(
+    named: NSInternalInconsistencyException,
+    reason: "Not enough fish in the sea",
+    userInfo: ["something": "is fishy"]))
 ```
 
 Objective-C works the same way, but you must use the `expectAction`
@@ -194,16 +202,16 @@ NSException *exception = [NSException exceptionWithName:NSInternalInconsistencyE
                                                  reason:@"Not enough fish in the sea."
                                                userInfo:nil];
 expectAction([exception raise]).to(raiseException());
-```
 
-In Swift, the `expect` function can also take a trailing closure:
-
-```swift
-// Swift
-
-expect {
-  exception.raise()
-}.to(raiseException(named: NSInternalInconsistencyException))
+// Use the property-block syntax to be more specific.
+expectAction([exception raise]).to(raiseException().named(NSInternalInconsistencyException));
+expectAction([exception raise]).to(raiseException().
+    named(NSInternalInconsistencyException).
+    reason("Not enough fish in the sea"));
+expectAction([exception raise]).to(raiseException().
+    named(NSInternalInconsistencyException).
+    reason("Not enough fish in the sea").
+    userInfo(@{@"something": @"is fishy"}));
 ```
 
 ## C Primitives
@@ -295,6 +303,16 @@ waitUntil { done in
 }
 ```
 
+```objc
+// Objective-C
+
+waitUntil(^(void (^done)(void)){
+  // do some stuff that takes a while...
+  [NSThread sleepForTimeInterval:0.5];
+  done();
+});
+```
+
 `waitUntil` also optionally takes a timeout parameter:
 
 ```swift
@@ -307,7 +325,15 @@ waitUntil(timeout: 10) { done in
 }
 ```
 
-> Sorry, [Nimble doesn't support specifying custom timeouts for waitUntil in Objective-C yet](https://github.com/Quick/Nimble/issues/25).
+```objc
+// Objective-C
+
+waitUntilTimeout(10, ^(void (^done)(void)){
+  // do some stuff that takes a while...
+  [NSThread sleepForTimeInterval:1];
+  done();
+});
+```
 
 ## Objective-C Support
 
@@ -476,6 +502,38 @@ expect(10.01).to(beCloseTo(10, within: 0.1))
 expect(@(10.01)).to(beCloseTo(@10).within(0.1));
 ```
 
+There is also an operator shortcut available in Swift:
+
+```swift
+// Swift
+
+expect(actual) ≈ expected
+expect(actual) ≈ (expected, delta)
+
+```
+(Type Option-x to get ≈ on a U.S. keyboard)
+
+The former version uses the default delta of 0.0001. Here is yet another way to do this:
+
+```swift
+// Swift
+
+expect(actual) ≈ expected ± delta
+expect(actual) == expected ± delta
+
+```
+(Type Option-Shift-= to get ± on a U.S. keyboard)
+
+If you are comparing arrays of floating point numbers, you'll find the following useful:
+
+```swift
+// Swift
+
+expect([0.0, 2.0]) ≈ [0.0001, 2.0001]
+expect([0.0, 2.0]).to(beCloseTo([0.1, 2.1], within: 0.1))
+
+```
+
 > Values given to the `beCloseTo` matcher must be coercable into a
   `Double`.
 
@@ -572,6 +630,16 @@ expect(actual).to(raiseException(named: name))
 
 // Passes if actual raises an exception with the given name and reason:
 expect(actual).to(raiseException(named: name, reason: reason))
+
+// Passes if actual raises an exception with a name equal "a name"
+expect(actual).to(raiseException(named: equal("a name")))
+
+// Passes if actual raises an exception with a reason that begins with "a r"
+expect(actual).to(raiseException(reason: beginWith("a r")))
+
+// Passes if actual raises an exception with a name equal "a name"
+// and a reason that begins with "a r"
+expect(actual).to(raiseException(named: equal("a name"), reason: beginWith("a r")))
 ```
 
 ```objc
@@ -579,9 +647,26 @@ expect(actual).to(raiseException(named: name, reason: reason))
 
 // Passes if actual, when evaluated, raises an exception:
 expect(actual).to(raiseException())
+
+// Passes if actual raises an exception with the given name
+expect(actual).to(raiseException().named(name))
+
+// Passes if actual raises an exception with the given name and reason:
+expect(actual).to(raiseException().named(name).reason(reason))
+
+// Passes if actual raises an exception with a name equal "a name"
+expect(actual).to(raiseException().withName(equal("a name")))
+
+// Passes if actual raises an exception with a reason that begins with "a r"
+expect(actual).to(raiseException().withName(withReason(beginWith(@"a r")))
+
+// Passes if actual raises an exception with a name equal "a name"
+// and a reason that begins with "a r"
+expect(actual).to(raiseException().withName(equal("a name")).withReason(beginWith(@"a r")))
 ```
 
-> Sorry, [Nimble doesn't support matching on exception `name`, `reason`, or `userInfo` yet](https://github.com/Quick/Nimble/issues/26).
+Note: Swift currently doesn't have exceptions. Only Objective-C code can raise
+exceptions that Nimble will catch.
 
 ## Collection Membership
 
@@ -698,6 +783,29 @@ expect(actual).to(beEmpty());
 expect(actual).to(match(expected))
 ```
 
+## Checking if all elements of a collection pass a condition
+
+```swift
+// Swift
+
+// with a custom function:
+expect([1,2,3,4]).to(allPass({$0 < 5}))
+
+// with another matcher:
+expect([1,2,3,4]).to(allPass(beLessThan(5)))
+```
+
+```objc
+// Objective-C
+
+expect(@[@1, @2, @3,@4]).to(allPass(beLessThan(@5)));
+```
+
+For Swift the actual value has to be a SequenceType, e.g. an array, a set or a custom seqence type.
+
+For Objective-C the actual value has to be a NSFastEnumeration, e.g. NSArray and NSSet, of NSObjects and only the variant which
+uses another matcher is available here.
+
 # Writing Your Own Matchers
 
 In Nimble, matchers are Swift functions that take an expected
@@ -737,9 +845,10 @@ also check out the tips below.
 
 ## Lazy Evaluation
 
-`actualExpression` is a lazy, memoized closure around the value provided to
-the `expect` function. In order to determine whether that value matches,
-custom matchers should call `actualExpression.evalaute()`:
+`actualExpression` is a lazy, memoized closure around the value provided to the
+`expect` function. The expression can either be a closure or a value directly
+passed to `expect(...)`. In order to determine whether that value matches,
+custom matchers should call `actualExpression.evaluate()`:
 
 ```swift
 // Swift
@@ -756,6 +865,9 @@ In the above example, `actualExpression` is not `nil`--it is a closure
 that returns a value. The value it returns, which is accessed via the
 `evaluate()` method, may be `nil`. If that value is `nil`, the `beNil`
 matcher function returns `true`, indicating that the expectation passed.
+
+Use `expression.isClosure` to determine if the expression will be invoking
+a closure to produce its value.
 
 ## Type Checking via Swift Generics
 
@@ -901,14 +1013,17 @@ extension NMBObjCMatcher {
   Quick and Nimble, follow [the installation instructions in the Quick
   README](https://github.com/Quick/Quick#how-to-install-quick).
 
-Nimble can currently be installed in one of two ways: using a pre-release 
-version of CocoaPods, or with git submodules. 
+Nimble can currently be installed in one of two ways: using CocoaPods, or with git submodules. The master branch of
+Nimble supports Swift 1.2. For Swift 1.1 support, use the `swift-1.1`
+branch.
+
+## Installing Nimble as a Submodule
 
 To use Nimble as a submodule to test your iOS or OS X applications, follow these
 4 easy steps:
 
 1. Clone the Nimble repository
-2. Add Nimble.xcodeproj to your test target
+2. Add Nimble.xcodeproj to the Xcode workspace for your project
 3. Link Nimble.framework to your test target
 4. Start writing expectations!
 
@@ -917,24 +1032,10 @@ read [How to Install Quick](https://github.com/Quick/Quick#how-to-install-quick)
 Ignore the steps involving adding Quick to your project in order to
 install just Nimble.
 
-To use Nimble in CocoaPods to test your iOS or OS X applications, we'll need a 
-*Gemfile* that will specify unreleased versions of CocoaPods. Create an empty 
-file called "Gemfile" in your project's directory and add the following lines. 
+## Installing Nimble via CocoaPods
 
-```ruby
-source 'https://rubygems.org'
-
-gem 'cocoapods', :git => 'https://github.com/CocoaPods/CocoaPods.git', :branch => 'swift'
-gem 'cocoapods-core', :git => 'https://github.com/CocoaPods/Core.git', :branch => 'swift'
-gem 'xcodeproj',  :git => "https://github.com/CocoaPods/Xcodeproj.git", :branch => 'ext_build_settings'
-```
-
-Now that you have these specified, run `bundle install` from the command line in
-that directory. This will install the prerelease version of CocoaPods. To run
-this version, you'll need to type `bundle exec` in front of your pod commands. 
-
-In that directory, run `bundle exec pod init` to create a blank podfile. iIt 
-will look something like the following (add the line for Nimble).
+To use Nimble in CocoaPods to test your iOS or OS X applications, update CocoaPods to Version 0.36.0.
+Then add Nimble to your podfile and add the ```use_frameworks!``` line to enable Swift support for Cocoapods.
 
 ```ruby
 platform :ios, '8.0'
@@ -943,9 +1044,13 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 # Whatever pods you need for your app go here
 
-target 'YOUR_APP_NAME_HERE_Tests' do
-  pod 'Nimble', :git => "https://github.com/Quick/Nimble"
+target 'YOUR_APP_NAME_HERE_Tests', :exclusive => true do
+  use_frameworks!
+  # If you're using Swift 1.2 (Xcode 6.3 beta), use this:
+  pod 'Nimble', '~> 0.4.0'
+  # Otherwise, use this commented out line for Swift 1.1 (Xcode 6.2):
+  # pod 'Nimble', '~> 0.3.0'
 end
 ```
 
-Finally run `bundle exec pod install`. 
+Finally run `pod install`. 

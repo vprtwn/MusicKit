@@ -1,53 +1,32 @@
-import Foundation
-
-// Begins an assertion on a given value.
-// file: and line: can be omitted to default to the current line this function is called on.
-public func expect<T>(expression: @autoclosure () -> T?, file: String = __FILE__, line: UInt = __LINE__) -> Expectation<T> {
+/// Make an expectation on a given actual value. The value given is lazily evaluated.
+public func expect<T>(@autoclosure(escaping) expression: () -> T?, file: String = __FILE__, line: UInt = __LINE__) -> Expectation<T> {
     return Expectation(
         expression: Expression(
             expression: expression,
-            location: SourceLocation(file: file, line: line)))
+            location: SourceLocation(file: file, line: line),
+            isClosure: true))
 }
 
-// Begins an assertion on a given value.
-// file: and line: can be omitted to default to the current line this function is called on.
+/// Make an expectation on a given actual value. The closure is lazily invoked.
 public func expect<T>(file: String = __FILE__, line: UInt = __LINE__, expression: () -> T?) -> Expectation<T> {
     return Expectation(
         expression: Expression(
             expression: expression,
-            location: SourceLocation(file: file, line: line)))
+            location: SourceLocation(file: file, line: line),
+            isClosure: true))
 }
 
-// Begins an assertion on a given value.
-// file: and line: can be omitted to default to the current line this function is called on.
-public func waitUntil(#timeout: NSTimeInterval, action: (() -> Void) -> Void, file: String = __FILE__, line: UInt = __LINE__) -> Void {
-    var completed = false
-    dispatch_async(dispatch_get_main_queue()) {
-        action() { completed = true }
-    }
-    let passed = _pollBlock(pollInterval: 0.01, timeoutInterval: timeout) {
-        return completed
-    }
-    if !passed {
-        let pluralize = (timeout == 1 ? "" : "s")
-        fail("Waited more than \(timeout) second\(pluralize)", file: file, line: line)
-    }
-}
-
-// Begins an assertion on a given value.
-// file: and line: can be omitted to default to the current line this function is called on.
-public func waitUntil(action: (() -> Void) -> Void, file: String = __FILE__, line: UInt = __LINE__) -> Void {
-    waitUntil(timeout: 1, action, file: file, line: line)
-}
-
+/// Always fails the test with a message and a specified location.
 public func fail(message: String, #location: SourceLocation) {
-    CurrentAssertionHandler.assert(false, message: message, location: location)
+    NimbleAssertionHandler.assert(false, message: message, location: location)
 }
 
+/// Always fails the test with a message.
 public func fail(message: String, file: String = __FILE__, line: UInt = __LINE__) {
     fail(message, location: SourceLocation(file: file, line: line))
 }
 
+/// Always fails the test.
 public func fail(file: String = __FILE__, line: UInt = __LINE__) {
     fail("fail() always fails")
 }

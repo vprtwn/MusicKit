@@ -14,7 +14,6 @@ public struct PitchSet : CollectionType, Equatable, Printable {
 
     }
 
-    /// How many elements the PitchSet stores
     public var count: UInt {
         return UInt(endIndex - startIndex) + 1
     }

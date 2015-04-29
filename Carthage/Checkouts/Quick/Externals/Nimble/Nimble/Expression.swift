@@ -2,7 +2,7 @@ import Foundation
 
 // Memoizes the given closure, only calling the passed
 // closure once; even if repeat calls to the returned closure
-func _memoizedClosure<T>(closure: () -> T) -> (Bool) -> T {
+internal func memoizedClosure<T>(closure: () -> T) -> (Bool) -> T {
     var cache: T?
     return ({ withoutCaching in
         if (withoutCaching || cache == nil) {
@@ -13,21 +13,27 @@ func _memoizedClosure<T>(closure: () -> T) -> (Bool) -> T {
 }
 
 public struct Expression<T> {
-    public let _expression: (Bool) -> T?
+    internal let _expression: (Bool) -> T?
+    internal let _withoutCaching: Bool
     public let location: SourceLocation
-    public let _withoutCaching: Bool
-    public var cache: T?
+    public let isClosure: Bool
 
-    public init(expression: () -> T?, location: SourceLocation) {
-        self._expression = _memoizedClosure(expression)
+    public init(expression: () -> T?, location: SourceLocation, isClosure: Bool = false) {
+        self._expression = memoizedClosure(expression)
         self.location = location
         self._withoutCaching = false
+        self.isClosure = isClosure
     }
 
-    public init(memoizedExpression: (Bool) -> T?, location: SourceLocation, withoutCaching: Bool) {
+    public init(memoizedExpression: (Bool) -> T?, location: SourceLocation, withoutCaching: Bool, isClosure: Bool = false) {
         self._expression = memoizedExpression
         self.location = location
         self._withoutCaching = withoutCaching
+        self.isClosure = isClosure
+    }
+
+    public func cast<U>(block: (T?) -> U?) -> Expression<U> {
+        return Expression<U>(expression: ({ block(self.evaluate()) }), location: self.location, isClosure: self.isClosure)
     }
 
     public func evaluate() -> T? {
@@ -35,6 +41,6 @@ public struct Expression<T> {
     }
 
     public func withoutCaching() -> Expression<T> {
-        return Expression(memoizedExpression: self._expression, location: location, withoutCaching: true)
+        return Expression(memoizedExpression: self._expression, location: location, withoutCaching: true, isClosure: isClosure)
     }
 }

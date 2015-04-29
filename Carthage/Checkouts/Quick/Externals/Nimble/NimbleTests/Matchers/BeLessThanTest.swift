@@ -12,13 +12,18 @@ class BeLessThanTest: XCTestCase {
         expect(2).to(beLessThan(NSNumber(integer:10)))
         expect(2).toNot(beLessThan(NSNumber(integer:1)))
 
-        failsWithErrorMessage("expected <2> to be less than <0>") {
+        failsWithErrorMessage("expected to be less than <0>, got <2>") {
             expect(2).to(beLessThan(0))
-            return
         }
-        failsWithErrorMessage("expected <0> to not be less than <1>") {
+        failsWithErrorMessage("expected to not be less than <1>, got <0>") {
             expect(0).toNot(beLessThan(1))
-            return
+        }
+
+        failsWithErrorMessageForNil("expected to be less than <2>, got <nil>") {
+            expect(nil as Int?).to(beLessThan(2))
+        }
+        failsWithErrorMessageForNil("expected to not be less than <-1>, got <nil>") {
+            expect(nil as Int?).toNot(beLessThan(-1))
         }
     }
 
@@ -26,7 +31,7 @@ class BeLessThanTest: XCTestCase {
         expect(0) < 1
         expect(NSNumber(int:0)) < 1
 
-        failsWithErrorMessage("expected <2.0000> to be less than <1.0000>") {
+        failsWithErrorMessage("expected to be less than <1.0000>, got <2.0000>") {
             expect(2) < 1
             return
         }

@@ -64,6 +64,10 @@ NIMBLE_EXPORT id<NMBMatcher> NMB_beNil() {
     return [NMBObjCMatcher beNilMatcher];
 }
 
+NIMBLE_EXPORT id<NMBMatcher> NMB_beEmpty() {
+    return [NMBObjCMatcher beEmptyMatcher];
+}
+
 NIMBLE_EXPORT id<NMBMatcher> NMB_contain(id itemOrSubstring) {
     return [NMBObjCMatcher containMatcher:itemOrSubstring];
 }
@@ -80,7 +84,22 @@ NIMBLE_EXPORT id<NMBMatcher> NMB_match(id expectedValue) {
     return [NMBObjCMatcher matchMatcher:expectedValue];
 }
 
+NIMBLE_EXPORT id<NMBMatcher> NMB_allPass(id expectedValue) {
+    return [NMBObjCMatcher allPassMatcher:expectedValue];
+}
+
 NIMBLE_EXPORT NMBObjCRaiseExceptionMatcher *NMB_raiseException() {
     return [NMBObjCMatcher raiseExceptionMatcher];
 }
 
+NIMBLE_EXPORT NMBWaitUntilTimeoutBlock nmb_wait_until_timeout_builder(NSString *file, NSUInteger line) {
+    return ^(NSTimeInterval timeout, void (^action)(void (^)(void))) {
+        [NMBWait untilTimeout:timeout file:file line:line action:action];
+    };
+}
+
+NIMBLE_EXPORT NMBWaitUntilBlock nmb_wait_until_builder(NSString *file, NSUInteger line) {
+  return ^(void (^action)(void (^)(void))) {
+    [NMBWait untilFile:file line:line action:action];
+  };
+}

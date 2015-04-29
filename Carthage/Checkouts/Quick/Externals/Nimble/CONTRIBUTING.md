@@ -13,7 +13,7 @@
 
 # Welcome to Nimble!
 
-We're building a BDD framework for a new generation of Swift and
+We're building a testing framework for a new generation of Swift and
 Objective-C developers.
 
 Nimble should be easy to use and easy to maintain. Let's keep things
@@ -52,6 +52,10 @@ it.
   the latest of OS X and iOS.
 - If you've added a file to the project, make sure it's included in both
   the OS X and iOS targets.
+- To make minor updates to old versions of Nimble that support Swift
+  1.1, issue a pull request against the `swift-1.1` branch. The master
+  branch supports Swift 1.2. Travis CI will only pass for pull requests
+  issued against the `swift-1.1` branch.
 
 ### Style Conventions
 
@@ -86,3 +90,14 @@ some "ground rules":
   issues or pull requests submitted to the project. Please provide kind,
   constructive feedback. Please don't be sarcastic or snarky.
 
+### Creating a Release
+
+The process is relatively straight forward, but here's is a useful checklist for tagging:
+
+- Bump the version in `Nimble.podspec` (update, commit, push to github)
+- Look a changes from the previously tagged release and write release notes: `git log v0.4.0....HEAD`
+- Tag the version: `git tag -s vA.B.C -F release-notes-file`
+- Push the tag: `git push origin master --tags`
+- Push the podspec file to trunk: `pod trunk push Nimble.podspec`
+- Go to [github releases](https://github.com/Quick/Nimble/releases) and mark the tagged commit as a release.
+- Announce!

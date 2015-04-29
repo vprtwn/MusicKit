@@ -13,10 +13,10 @@ class EqualTest: XCTestCase {
             1
         }.to(equal(1))
 
-        failsWithErrorMessage("expected <hello> to equal <world>") {
+        failsWithErrorMessage("expected to equal <world>, got <hello>") {
             expect("hello").to(equal("world"))
         }
-        failsWithErrorMessage("expected <hello> to not equal <hello>") {
+        failsWithErrorMessage("expected to not equal <hello>, got <hello>") {
             expect("hello").toNot(equal("hello"))
         }
     }
@@ -34,39 +34,70 @@ class EqualTest: XCTestCase {
 
         expect(NSArray(array: [1, 2, 3])).to(equal(NSArray(array: [1, 2, 3])))
 
-        failsWithErrorMessage("expected <[1, 2, 3]> to equal <[1, 2]>") {
+        failsWithErrorMessage("expected to equal <[1, 2]>, got <[1, 2, 3]>") {
             expect([1, 2, 3]).to(equal([1, 2]))
         }
     }
 
+    func testSetEquality() {
+        expect(Set([1, 2])).to(equal(Set([1, 2])))
+        expect(Set<Int>()).to(equal(Set<Int>()))
+        expect(Set<Int>()) == Set<Int>()
+        expect(Set([1, 2])) != Set<Int>()
+
+        failsWithErrorMessageForNil("expected to equal <[1, 2]>, got <nil>") {
+            expect(nil as Set<Int>?).to(equal(Set([1, 2])))
+        }
+
+        failsWithErrorMessage("expected to equal <[1, 2, 3]>, got <[2, 3]>, missing <[1]>") {
+            expect(Set([2, 3])).to(equal(Set([1, 2, 3])))
+        }
+
+        failsWithErrorMessage("expected to equal <[1, 2, 3]>, got <[1, 2, 3, 4]>, extra <[4]>") {
+            expect(Set([1, 2, 3, 4])).to(equal(Set([1, 2, 3])))
+        }
+
+        failsWithErrorMessage("expected to equal <[1, 2, 3]>, got <[2, 3, 4]>, missing <[1]>, extra <[4]>") {
+            expect(Set([2, 3, 4])).to(equal(Set([1, 2, 3])))
+        }
+
+        failsWithErrorMessage("expected to equal <[1, 2, 3]>, got <[2, 3, 4]>, missing <[1]>, extra <[4]>") {
+            expect(Set([2, 3, 4])) == Set([1, 2, 3])
+        }
+
+        failsWithErrorMessage("expected to not equal <[1, 2, 3]>, got <[1, 2, 3]>") {
+            expect(Set([1, 2, 3])) != Set([1, 2, 3])
+        }
+    }
+
     func testDoesNotMatchNils() {
-        failsWithErrorMessage("expected <nil> to equal <nil> (will not match nils, use beNil() instead)") {
+        failsWithErrorMessageForNil("expected to equal <nil>, got <nil>") {
             expect(nil as String?).to(equal(nil as String?))
         }
-        failsWithErrorMessage("expected <foo> to not equal <nil> (will not match nils, use beNil() instead)") {
+        failsWithErrorMessageForNil("expected to not equal <nil>, got <foo>") {
             expect("foo").toNot(equal(nil as String?))
         }
-        failsWithErrorMessage("expected <nil> to not equal <bar> (will not match nils, use beNil() instead)") {
+        failsWithErrorMessageForNil("expected to not equal <bar>, got <nil>") {
             expect(nil as String?).toNot(equal("bar"))
         }
 
-        failsWithErrorMessage("expected <nil> to equal <nil> (will not match nils, use beNil() instead)") {
+        failsWithErrorMessageForNil("expected to equal <nil>, got <nil>") {
             expect(nil as [Int]?).to(equal(nil as [Int]?))
         }
-        failsWithErrorMessage("expected <nil> to not equal <[1]> (will not match nils, use beNil() instead)") {
+        failsWithErrorMessageForNil("expected to not equal <[1]>, got <nil>") {
             expect(nil as [Int]?).toNot(equal([1]))
         }
-        failsWithErrorMessage("expected <[1]> to not equal <nil> (will not match nils, use beNil() instead)") {
+        failsWithErrorMessageForNil("expected to not equal <nil>, got <[1]>") {
             expect([1]).toNot(equal(nil as [Int]?))
         }
 
-        failsWithErrorMessage("expected <nil> to equal <nil> (will not match nils, use beNil() instead)") {
+        failsWithErrorMessageForNil("expected to equal <nil>, got <nil>") {
             expect(nil as [Int: Int]?).to(equal(nil as [Int: Int]?))
         }
-        failsWithErrorMessage("expected <nil> to not equal <[1: 1]> (will not match nils, use beNil() instead)") {
+        failsWithErrorMessageForNil("expected to not equal <[1: 1]>, got <nil>") {
             expect(nil as [Int: Int]?).toNot(equal([1: 1]))
         }
-        failsWithErrorMessage("expected <[1: 1]> to not equal <nil> (will not match nils, use beNil() instead)") {
+        failsWithErrorMessageForNil("expected to not equal <nil>, got <[1: 1]>") {
             expect([1: 1]).toNot(equal(nil as [Int: Int]?))
         }
     }
@@ -96,11 +127,11 @@ class EqualTest: XCTestCase {
         expect("foo") == "foo"
         expect("foo") != "bar"
 
-        failsWithErrorMessage("expected <hello> to equal <world>") {
+        failsWithErrorMessage("expected to equal <world>, got <hello>") {
             expect("hello") == "world"
             return
         }
-        failsWithErrorMessage("expected <hello> to not equal <hello>") {
+        failsWithErrorMessage("expected to not equal <hello>, got <hello>") {
             expect("hello") != "hello"
             return
         }
@@ -125,8 +156,46 @@ class EqualTest: XCTestCase {
     func testOptionalEquality() {
         expect(1 as CInt?).to(equal(1))
         expect(1 as CInt?).to(equal(1 as CInt?))
-        expect(nil as NSObject?).toNot(equal(1))
 
         expect(1).toNot(equal(nil))
+    }
+
+    func testDictionariesWithDifferentSequences() {
+        // see: https://github.com/Quick/Nimble/issues/61
+        // these dictionaries generate different orderings of sequences.
+        let result = ["how":1, "think":1, "didnt":2, "because":1,
+            "interesting":1, "always":1, "right":1, "such":1,
+            "to":3, "say":1, "cool":1, "you":1,
+            "weather":3, "be":1, "went":1, "was":2,
+            "sometimes":1, "and":3, "mind":1, "rain":1,
+            "whole":1, "everything":1, "weather.":1, "down":1,
+            "kind":1, "mood.":1, "it":2, "everyday":1, "might":1,
+            "more":1, "have":2, "person":1, "could":1, "tenth":2,
+            "night":1, "write":1, "Youd":1, "affects":1, "of":3,
+            "Who":1, "us":1, "an":1, "I":4, "my":1, "much":2,
+            "wrong.":1, "peacefully.":1, "amazing":3, "would":4,
+            "just":1, "grade.":1, "Its":2, "The":2, "had":1, "that":1,
+            "the":5, "best":1, "but":1, "essay":1, "for":1, "summer":2,
+            "your":1, "grade":1, "vary":1, "pretty":1, "at":1, "rain.":1,
+            "about":1, "allow":1, "thought":1, "in":1, "sleep":1, "a":1,
+            "hot":1, "really":1, "beach":1, "life.":1, "we":1, "although":1]
+
+        let storyCount = ["The":2, "summer":2, "of":3, "tenth":2, "grade":1,
+            "was":2, "the":5, "best":1, "my":1, "life.":1, "I":4,
+            "went":1, "to":3, "beach":1, "everyday":1, "and":3,
+            "we":1, "had":1, "amazing":3, "weather.":1, "weather":3,
+            "didnt":2, "really":1, "vary":1, "much":2, "always":1,
+            "pretty":1, "hot":1, "although":1, "sometimes":1, "at":1,
+            "night":1, "it":2, "would":4, "rain.":1, "mind":1, "rain":1,
+            "because":1, "cool":1, "everything":1, "down":1, "allow":1,
+            "us":1, "sleep":1, "peacefully.":1, "Its":2, "how":1,
+            "affects":1, "your":1, "mood.":1, "Who":1, "have":2,
+            "thought":1, "that":1, "could":1, "write":1, "a":1,
+            "whole":1, "essay":1, "just":1, "about":1, "in":1,
+            "grade.":1, "kind":1, "right":1, "Youd":1, "think":1,
+            "for":1, "such":1, "an":1, "interesting":1, "person":1,
+            "might":1, "more":1, "say":1, "but":1, "you":1, "be":1, "wrong.":1]
+
+        expect(result).to(equal(storyCount))
     }
 }
