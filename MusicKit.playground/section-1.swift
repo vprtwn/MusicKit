@@ -19,7 +19,7 @@ println(p1.frequency)   // 444.0
 MusicKit.concertA = 440
 ///```
 
-///## PitchSet ==
+///## PitchSet
 /// * A `PitchSet` is a set of `Pitch` objects
 
 ///```swift
