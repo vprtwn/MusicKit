@@ -64,10 +64,12 @@ print(FSharpMajor)  // [F♯2, B♭2, C♯3]
 
 ///* `PitchSet` supports many operations.
 ///```swift
-let petrushka = CMajor + FSharpMajor
+var petrushka = CMajor + FSharpMajor
 print(petrushka)                    // [C2, E2, F♯2, G2, B♭2, C♯3]
 print(CMajor == FSharpMajor)        // false
 print(petrushka.pitchClassSet())    // [F♯, G, B♭, C, E, C♯]
+petrushka.remove(Pitch(pitchClass: PitchClass.G, octave: 2))
+print(petrushka)                    // [C2, E2, F♯2, B♭2, C♯3]
 let F = PitchClass.F
 print(CMajor / F)                   // [F1, C2, E2, G2]
 ///```
@@ -125,6 +127,4 @@ print(plagalCadence)   // [[F5, A5, C6], [C5, E5, G5]]
 let V7ofV = Harmony.create(Scale.Major, degree: 5, chord: Major.V7)
 print(V7ofV(C5))      // [D6, F♯6, A6, C7]
 ///```
-
-
 

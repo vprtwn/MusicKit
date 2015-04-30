@@ -82,7 +82,20 @@ public struct PitchSet : CollectionType, Equatable, Printable {
         }
     }
 
-    // TODO: implement remove
+    public mutating func remove(pitch: Pitch) {
+        var indexOpt : Int? = nil
+        for i in 0..<pitches.count {
+            let currentPitch = pitches[i]
+            if currentPitch == pitch {
+                indexOpt = Optional(i)
+            }
+        }
+        if let index = indexOpt  {
+            pitches.removeAtIndex(index)
+            pitchToBool[pitch] = false
+            endIndex--
+        }
+    }
 
     /// Returns the set of pitch classes contained in the pitch set
     public func pitchClassSet() -> Set<PitchClass> {
@@ -120,6 +133,8 @@ public func +=(inout lhs: PitchSet, rhs: PitchSet) -> PitchSet {
     }
     return lhs
 }
+
+// TODO: implement - and -=
 
 public func /(lhs: PitchSet, rhs: PitchClass) -> PitchSet {
     if lhs.count == 0 {
