@@ -77,11 +77,25 @@ public struct PitchClass : Printable, Comparable, Hashable {
         }
     }
 
-    public func hasName(name: PitchClassNameTuple) -> Bool {
+    /// Returns true if the given name tuple is a valid name
+    public func validateName(name: PitchClassNameTuple) -> Bool {
         return self.names.reduce(false, combine: { (a, r) -> Bool in
             a || (r == name)
         })
     }
+
+    public static let C = PitchClass(index: 0)
+    public static let Cs = PitchClass(index: 1)
+    public static let D = PitchClass(index: 2)
+    public static let Ds = PitchClass(index: 3)
+    public static let E = PitchClass(index: 4)
+    public static let F = PitchClass(index: 5)
+    public static let Fs = PitchClass(index: 6)
+    public static let G = PitchClass(index: 7)
+    public static let Gs = PitchClass(index: 8)
+    public static let A = PitchClass(index: 9)
+    public static let As = PitchClass(index: 10)
+    public static let B = PitchClass(index: 11)
 
     public var description : String {
         let nameTupleOpt : PitchClassNameTuple? = self.names.first

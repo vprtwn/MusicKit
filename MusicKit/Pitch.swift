@@ -20,12 +20,11 @@ public struct Pitch : Printable, Comparable, Hashable {
             return _preferredName
         }
         set(newName) {
-            if newName == nil {
-                return
-            }
             if let pitchClass = self.pitchClass {
-                if pitchClass.hasName(newName!) {
-                    _preferredName = newName
+                if let name = newName {
+                    if pitchClass.validateName(name) {
+                        _preferredName = name
+                    }
                 }
             }
         }

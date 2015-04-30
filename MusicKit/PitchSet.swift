@@ -121,5 +121,22 @@ public func +=(inout lhs: PitchSet, rhs: PitchSet) -> PitchSet {
     return lhs
 }
 
+public func /(lhs: PitchSet, rhs: PitchClass) -> PitchSet {
+    if lhs.count == 0 {
+        return lhs
+    }
+    var lhs = lhs
+    let firstPitch = lhs[0]
+    if firstPitch.pitchClass == nil {
+        return lhs
+    }
+    var newFirstPitch = firstPitch
+    while (newFirstPitch.pitchClass.map { $0 == rhs } != Optional(true)) {
+        newFirstPitch = Pitch(midi: newFirstPitch.midi - 1)
+    }
+    lhs.insert(newFirstPitch)
+    return lhs
+}
+
 
 

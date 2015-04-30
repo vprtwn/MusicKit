@@ -22,5 +22,13 @@ public struct MusicKit {
 
 public typealias Harmonizer = (Pitch -> PitchSet)
 
+public func *(lhs: [Harmonizer], rhs: Pitch) -> [PitchSet] {
+    return lhs.map { $0(rhs) }
+}
+
+public func *(lhs: Pitch, rhs: [Harmonizer]) -> [PitchSet] {
+    return rhs.map { $0(lhs) }
+}
+
 
 
