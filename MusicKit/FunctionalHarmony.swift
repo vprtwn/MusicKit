@@ -7,6 +7,6 @@ public enum FunctionalHarmony  {
     /// @param distance     The distance in semitones from the root
     /// @param harmonizer   The harmonizer representing the chord
     public static func create(distance: UInt, harmonizer: Harmonizer) -> Harmonizer {
-
+        return { pitch in PitchSet() }
     }
 }

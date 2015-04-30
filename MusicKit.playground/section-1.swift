@@ -1,4 +1,5 @@
 import MusicKit
+// Note: to run this playground, you'll need to first build the MusicKit_OSX framework.
 
 ///## Pitch
 ///* Pitches are specified by MIDI number.
@@ -23,10 +24,10 @@ MusicKit.concertA = 440
 ///* A `PitchSet` is an ordered set of `Pitch` objects
 
 ///```swift
-var ps = PitchSet()
-ps.add(Pitch(midi: 40))
-ps.add(Pitch(midi: 42))
-print(ps)   // [E2, F♯2]
+var ps1 = PitchSet()
+ps1.add(Pitch(midi: 40))
+ps1.add(Pitch(midi: 42))
+print(ps1)   // [E2, F♯2]
 
 var ps2 = PitchSet()
 ps2.add(Pitch(midi: 60))
@@ -34,8 +35,9 @@ ps2.add(Pitch(midi: 72))
 ps2.add(Pitch(midi: 81))
 print(ps2)  // [C4, C5, A5]
 
-let a = ps + ps2
-print(a)    // [E2, F♯2, C4, C5, A5]
+print(ps1 + ps2)     // [E2, F♯2, C4, C5, A5]
+print(ps1 == ps2)    // false
+print(ps2.pitchClassSet())  // C, A
 ///```
 
 ///## Harmonizer

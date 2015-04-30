@@ -85,12 +85,12 @@ public struct PitchClass : Printable, Comparable, Hashable {
     }
 
     public var description : String {
-        let n : PitchClassNameTuple? = self.names.first
-        let stringOpt = n.map { "\($0.0.rawValue)\($0.1.rawValue)" }
-        if stringOpt == nil {
-            return ""
+        let nameTupleOpt : PitchClassNameTuple? = self.names.first
+        if let n = nameTupleOpt {
+            let accidental = (n.1 != .Natural) ? n.1.rawValue : ""
+            return "\(n.0.rawValue)\(accidental)"
         }
-        return stringOpt!
+        return ""
     }
 
     public var hashValue : Int {
@@ -118,8 +118,7 @@ public struct Pitch : Printable, Comparable, Hashable {
 
     public let midi : Float
 
-    /// The preferred pitch class name.
-    /// Can only be set to a valid name. Default is nil.
+    /// The preferred pitch class name. Default is nil.
     var _preferredName : PitchClassNameTuple?
     public var preferredName : PitchClassNameTuple? {
         get {
