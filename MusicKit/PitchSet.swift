@@ -82,6 +82,11 @@ public struct PitchSet : CollectionType, Equatable, Printable {
         }
     }
 
+    public func pitchClassSet() -> Set<PitchClass> {
+        // TODO: implement
+        return Set()
+    }
+
     public subscript(i: Int) -> Pitch {
         return pitches[i]
     }

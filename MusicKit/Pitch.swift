@@ -41,7 +41,7 @@ public func == (p1:(LetterName, Accidental), p2:(LetterName, Accidental)) -> Boo
 }
 
 // MARK: PitchClass
-public struct PitchClass : Printable, Comparable {
+public struct PitchClass : Printable, Comparable, Hashable {
     public let index : UInt
     public init(index: UInt) {
         self.index = index
@@ -91,6 +91,10 @@ public struct PitchClass : Printable, Comparable {
             return ""
         }
         return stringOpt!
+    }
+
+    public var hashValue : Int {
+        return index.hashValue
     }
 }
 

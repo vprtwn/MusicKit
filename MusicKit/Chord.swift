@@ -168,6 +168,7 @@ public enum Chord  {
     static let _MajorSixth : ChordTuple = ([4, 3, 2], "Major sixth", "6")
     static let _MinorSixth : ChordTuple = ([3, 4, 2], "Minor sixth", "m6")
 
+    public static func Major() -> Harmonizer { return Major(inversion: 0, additions: []) }
     public static func Major(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_Major.0, inversion: inversion, additions: additions)
     }

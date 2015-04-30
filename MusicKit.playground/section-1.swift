@@ -20,7 +20,7 @@ MusicKit.concertA = 440
 ///```
 
 ///## PitchSet
-/// * A `PitchSet` is a set of `Pitch` objects
+///* A `PitchSet` is an ordered set of `Pitch` objects
 
 ///```swift
 var ps = PitchSet()
@@ -40,31 +40,32 @@ print(a)    // [E2, F♯2, C4, C5, A5]
 
 ///## Harmonizer
 ///* A `Harmonizer` is a function with the signature `(Pitch -> PitchSet)`
-///* The `Scale` and `Chord` enums define common scales and chords as Harmonizers
+///* The `Scale` and `Chord` enums can be used to create common scale and chord harmonizers.
 
 ///### Scale
-///* Given a `Pitch`, any `Harmonizer` will return a `PitchSet`.
+///* The `Scale` enum contains common scale harmonizers.
 
 ///```swift
 let major = Scale.Major
 print(major(Pitch(midi: 69)))   // [A4, B4, C♯5, D5, E5, F♯5, G♯5]
 ///```
 
-///* Custom scales can be created using an array of semitone intervals
+///* The `Scale` enum also provides a way to create a custom scale from an array of semitone intervals.
 
 ///```swift
 let equidistantPentatonic = Scale.create([2.4, 2.4, 2.4, 2.4, 2.4])
 ///```
 
 ///### Chord
-///* When creating a chord, you must also specify the inversion and any additions
+///* The `Chord` enum contains common chord harmonizers.
+///* Chords are in root position by default. You may also specify the inversion and any additions.
 
 ///```swift
 let minor = Chord.Minor(inversion: 1, additions: [.Nine])
 print(minor(Pitch(midi: 69)))   // [C5, E5, A5, B5]
 ///```
 
-///* A scale can be used to create a chord
+///* The `Chord` enum also provides a function to create a chord based on a `Harmonizer` (typically a scale)
 ///```swift
 let chord = Chord.create(major, indices: [0, 2, 4, 6])
 let ch = chord(Pitch(midi: 69))
