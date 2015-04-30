@@ -30,5 +30,9 @@ public func *(lhs: Pitch, rhs: [Harmonizer]) -> [PitchSet] {
     return rhs.map { $0(lhs) }
 }
 
+public func *(lhs: Harmonizer, rhs: Pitch) -> PitchSet { return lhs(rhs) }
+
+public func *(lhs: Pitch, rhs: Harmonizer) -> PitchSet { return rhs(lhs) }
+
 
 
