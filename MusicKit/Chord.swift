@@ -91,7 +91,7 @@ public enum Chord  {
     public static func create(intervals: [Float]) -> Harmonizer {
         return { firstPitch in
             var pitchSet = PitchSet()
-            pitchSet.add(firstPitch)
+            pitchSet.insert(firstPitch)
             var previousPitch = firstPitch
             let chordLength = intervals.count + 1
             var midiNum = firstPitch.midi
@@ -119,7 +119,7 @@ public enum Chord  {
                     }
                 }
 
-                pitchSet.add(pitch)
+                pitchSet.insert(pitch)
                 previousPitch = pitch
             }
             return pitchSet
@@ -168,65 +168,84 @@ public enum Chord  {
     static let _MajorSixth : ChordTuple = ([4, 3, 2], "Major sixth", "6")
     static let _MinorSixth : ChordTuple = ([3, 4, 2], "Minor sixth", "m6")
 
+    /// TODO: autogenerate the code below using the above tuples
     public static let Major : Harmonizer = Chord.Major(inversion: 0, additions: [])
     public static func Major(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_Major.0, inversion: inversion, additions: additions)
     }
+    public static let Minor : Harmonizer = Chord.Minor(inversion: 0, additions: [])
     public static func Minor(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_Minor.0, inversion: inversion, additions: additions)
     }
+    public static let Augmented : Harmonizer = Chord.Augmented(inversion: 0, additions: [])
     public static func Augmented(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_Augmented.0, inversion: inversion, additions: additions)
     }
+    public static let Diminished : Harmonizer = Chord.Diminished(inversion: 0, additions: [])
     public static func Diminished(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_Diminished.0, inversion: inversion, additions: additions)
     }
+    public static let Sus2 : Harmonizer = Chord.Sus2(inversion: 0, additions: [])
     public static func Sus2(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_Sus2.0, inversion: inversion, additions: additions)
     }
+    public static let Sus4 : Harmonizer = Chord.Sus4(inversion: 0, additions: [])
     public static func Sus4(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_Sus4.0, inversion: inversion, additions: additions)
     }
-
+    public static let DominantSeventh : Harmonizer = Chord.DominantSeventh(inversion: 0, additions: [])
     public static func DominantSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_DominantSeventh.0, inversion: inversion, additions: additions)
     }
+    public static let MajorSeventh : Harmonizer = Chord.MajorSeventh(inversion: 0, additions: [])
     public static func MajorSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_MajorSeventh.0, inversion: inversion, additions: additions)
     }
+    public static let MinorMajorSeventh : Harmonizer = Chord.MinorMajorSeventh(inversion: 0, additions: [])
     public static func MinorMajorSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_MinorMajorSeventh.0, inversion: inversion, additions: additions)
     }
+    public static let MinorSeventh : Harmonizer = Chord.MinorSeventh(inversion: 0, additions: [])
     public static func MinorSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_MinorSeventh.0, inversion: inversion, additions: additions)
     }
+    public static let AugmentedMajorSeventh : Harmonizer = Chord.AugmentedMajorSeventh(inversion: 0, additions: [])
     public static func AugmentedMajorSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_AugmentedMajorSeventh.0, inversion: inversion, additions: additions)
     }
+    public static let AugmentedSeventh : Harmonizer = Chord.AugmentedSeventh(inversion: 0, additions: [])
     public static func AugmentedSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_AugmentedSeventh.0, inversion: inversion, additions: additions)
     }
+    public static let HalfDiminishedSeventh : Harmonizer = Chord.HalfDiminishedSeventh(inversion: 0, additions: [])
     public static func HalfDiminishedSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_HalfDiminishedSeventh.0, inversion: inversion, additions: additions)
     }
+    public static let DiminishedSeventh : Harmonizer = Chord.DiminishedSeventh(inversion: 0, additions: [])
     public static func DiminishedSeventh(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_DiminishedSeventh.0, inversion: inversion, additions: additions)
     }
+    public static let DominantSeventhFlatFive : Harmonizer = Chord.DominantSeventhFlatFive(inversion: 0, additions: [])
     public static func DominantSeventhFlatFive(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_DominantSeventhFlatFive.0, inversion: inversion, additions: additions)
     }
+    public static let MajorSeventhFlatFive : Harmonizer = Chord.MajorSeventhFlatFive(inversion: 0, additions: [])
     public static func MajorSeventhFlatFive(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_MajorSeventhFlatFive.0, inversion: inversion, additions: additions)
     }
+    public static let DominantSeventhSusFour : Harmonizer = Chord.DominantSeventhSusFour(inversion: 0, additions: [])
     public static func DominantSeventhSusFour(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_DominantSeventhSusFour.0, inversion: inversion, additions: additions)
     }
+    public static let MajorSeventhSusFour : Harmonizer = Chord.MajorSeventhSusFour(inversion: 0, additions: [])
     public static func MajorSeventhSusFour(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_MajorSeventhSusFour.0, inversion: inversion, additions: additions)
     }
+    public static let MajorSixth : Harmonizer = Chord.MajorSixth(inversion: 0, additions: [])
     public static func MajorSixth(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_MajorSixth.0, inversion: inversion, additions: additions)
     }
+    public static let MinorSixth : Harmonizer = Chord.MinorSixth(inversion: 0, additions: [])
     public static func MinorSixth(inversion: UInt = 0, additions: [ChordAddition] = []) -> Harmonizer {
         return create(_MinorSixth.0, inversion: inversion, additions: additions)
     }

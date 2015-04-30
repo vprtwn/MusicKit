@@ -2,7 +2,7 @@
 
 import Foundation
 
-/// Ordered set of Pitches
+/// A collection of unique `Pitch` instances ordered by frequency.
 public struct PitchSet : CollectionType, Equatable, Printable {
 
     var pitches : [Pitch] = []
@@ -32,12 +32,12 @@ public struct PitchSet : CollectionType, Equatable, Printable {
         }
     }
 
-    mutating func _add(pitch: Pitch) {
+    mutating func _insert(pitch: Pitch) {
         pitchToBool[pitch] = true
         endIndex++
     }
 
-    public mutating func add(pitch: Pitch) {
+    public mutating func insert(pitch: Pitch) {
         if let containsPitch = pitchToBool[pitch] {
             return
         }
@@ -50,17 +50,17 @@ public struct PitchSet : CollectionType, Equatable, Printable {
         else if count == 1 {
             if pitch < pitches[0] {
                 pitches.insert(pitch, atIndex: 0)
-                _add(pitch)
+                _insert(pitch)
             }
             else if pitch > pitches[0] {
                 pitches.append(pitch)
-                _add(pitch)
+                _insert(pitch)
             }
         }
         else {
             if pitch < pitches.first {
                 pitches.insert(pitch, atIndex: 0)
-                _add(pitch)
+                _insert(pitch)
                 return
             }
             for i in 1..<pitches.count {
@@ -68,7 +68,7 @@ public struct PitchSet : CollectionType, Equatable, Printable {
                 let currentPitch = pitches[i]
                 if pitch > previousPitch && pitch < currentPitch {
                     pitches.insert(pitch, atIndex: i)
-                    _add(pitch)
+                    _insert(pitch)
                     return
                 }
             }
@@ -76,11 +76,13 @@ public struct PitchSet : CollectionType, Equatable, Printable {
             if let lastPitch = lastPitchOpt {
                 if pitch > lastPitch {
                     pitches.append(pitch)
-                    _add(pitch)
+                    _insert(pitch)
                 }
             }
         }
     }
+
+    // TODO: implement remove
 
     /// Returns the set of pitch classes contained in the pitch set
     public func pitchClassSet() -> Set<PitchClass> {
@@ -107,14 +109,14 @@ public func ==(lhs: PitchSet, rhs: PitchSet) -> Bool {
 public func +(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
     var lhs = lhs
     for pitch in rhs {
-        lhs.add(pitch)
+        lhs.insert(pitch)
     }
     return lhs
 }
 
 public func +=(inout lhs: PitchSet, rhs: PitchSet) -> PitchSet {
     for pitch in rhs {
-        lhs.add(pitch)
+        lhs.insert(pitch)
     }
     return lhs
 }

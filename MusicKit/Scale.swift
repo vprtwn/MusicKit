@@ -10,7 +10,7 @@ public enum Scale {
     public static func create(intervals: [Float]) -> Harmonizer {
         return { firstPitch in
             var pitchSet = PitchSet()
-            pitchSet.add(firstPitch)
+            pitchSet.insert(firstPitch)
             var previousPitch = firstPitch
             let scaleLength = intervals.count
             var midiNum = firstPitch.midi
@@ -33,7 +33,7 @@ public enum Scale {
                     }
                 }
                 
-                pitchSet.add(pitch)
+                pitchSet.insert(pitch)
                 previousPitch = pitch
             }
             return pitchSet

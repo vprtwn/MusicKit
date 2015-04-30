@@ -15,7 +15,7 @@ public struct MusicKit {
 
     public static let IdentityHarmonizer : Harmonizer = { pitch in
         var s = PitchSet()
-        s.add(pitch)
+        s.insert(pitch)
         return s
     }
 }

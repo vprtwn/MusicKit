@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		964A7F5A1A58A85B000E2D5A /* PitchSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964A7F591A58A85B000E2D5A /* PitchSet.swift */; };
 		964A7F5B1A58A85B000E2D5A /* PitchSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964A7F591A58A85B000E2D5A /* PitchSet.swift */; };
-		965331331AF1C20000EEDA02 /* FunctionalHarmony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331321AF1C20000EEDA02 /* FunctionalHarmony.swift */; };
-		965331341AF1C20000EEDA02 /* FunctionalHarmony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331321AF1C20000EEDA02 /* FunctionalHarmony.swift */; };
+		965331331AF1C20000EEDA02 /* Harmony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331321AF1C20000EEDA02 /* Harmony.swift */; };
+		965331341AF1C20000EEDA02 /* Harmony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331321AF1C20000EEDA02 /* Harmony.swift */; };
 		96686DB51A573B7F00350A2D /* PitchSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96686DB41A573B7F00350A2D /* PitchSpec.swift */; };
 		96686DDA1A573D4B00350A2D /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96686DD71A573D3000350A2D /* Nimble.framework */; };
 		96686DDB1A573D4B00350A2D /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96686DC01A573D2400350A2D /* Quick.framework */; };
@@ -18,6 +18,7 @@
 		9691BB301A57C78800421B56 /* PitchSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96686DB41A573B7F00350A2D /* PitchSpec.swift */; };
 		9691BB311A57C86D00421B56 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96686DD31A573D3000350A2D /* Nimble.framework */; };
 		9691BB321A57C86D00421B56 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96686DC01A573D2400350A2D /* Quick.framework */; };
+		969220C41AF1E75A00560A20 /* PitchClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969220C31AF1E75A00560A20 /* PitchClass.swift */; };
 		9693F6761A57C44A006270F4 /* MusicKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F2993E1A56654800D7B006 /* MusicKit.swift */; };
 		9693F6771A57C44A006270F4 /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F299401A5665CA00D7B006 /* Pitch.swift */; };
 		9693F6781A57C44A006270F4 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F299421A56661300D7B006 /* Scale.swift */; };
@@ -120,11 +121,12 @@
 
 /* Begin PBXFileReference section */
 		964A7F591A58A85B000E2D5A /* PitchSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSet.swift; sourceTree = "<group>"; };
-		965331321AF1C20000EEDA02 /* FunctionalHarmony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionalHarmony.swift; sourceTree = "<group>"; };
+		965331321AF1C20000EEDA02 /* Harmony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Harmony.swift; sourceTree = "<group>"; };
 		96686DB41A573B7F00350A2D /* PitchSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSpec.swift; sourceTree = "<group>"; };
 		96686DB61A573D2300350A2D /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Carthage/Checkouts/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
 		96686DCB1A573D3000350A2D /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = Carthage/Checkouts/Nimble/Nimble.xcodeproj; sourceTree = SOURCE_ROOT; };
 		9691BB241A57C75500421B56 /* MusicKit_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicKit_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		969220C31AF1E75A00560A20 /* PitchClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchClass.swift; sourceTree = "<group>"; };
 		9693F6531A57C403006270F4 /* MusicKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		969A02B11A5C13BA003EB476 /* Chord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		96F299221A5663E500D7B006 /* MusicKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,9 +229,10 @@
 				96F2993E1A56654800D7B006 /* MusicKit.swift */,
 				96F299401A5665CA00D7B006 /* Pitch.swift */,
 				964A7F591A58A85B000E2D5A /* PitchSet.swift */,
+				969220C31AF1E75A00560A20 /* PitchClass.swift */,
 				96F299421A56661300D7B006 /* Scale.swift */,
 				969A02B11A5C13BA003EB476 /* Chord.swift */,
-				965331321AF1C20000EEDA02 /* FunctionalHarmony.swift */,
+				965331321AF1C20000EEDA02 /* Harmony.swift */,
 				96F299441A5666D100D7B006 /* MusicKit.playground */,
 				96F299251A5663E500D7B006 /* Supporting Files */,
 			);
@@ -531,7 +534,7 @@
 				969A02B31A5C13BA003EB476 /* Chord.swift in Sources */,
 				964A7F5B1A58A85B000E2D5A /* PitchSet.swift in Sources */,
 				9693F6771A57C44A006270F4 /* Pitch.swift in Sources */,
-				965331341AF1C20000EEDA02 /* FunctionalHarmony.swift in Sources */,
+				965331341AF1C20000EEDA02 /* Harmony.swift in Sources */,
 				9693F6781A57C44A006270F4 /* Scale.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -544,7 +547,8 @@
 				969A02B21A5C13BA003EB476 /* Chord.swift in Sources */,
 				964A7F5A1A58A85B000E2D5A /* PitchSet.swift in Sources */,
 				96F299431A56661300D7B006 /* Scale.swift in Sources */,
-				965331331AF1C20000EEDA02 /* FunctionalHarmony.swift in Sources */,
+				965331331AF1C20000EEDA02 /* Harmony.swift in Sources */,
+				969220C41AF1E75A00560A20 /* PitchClass.swift in Sources */,
 				96F2993F1A56654800D7B006 /* MusicKit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
