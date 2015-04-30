@@ -34,6 +34,10 @@ public struct Pitch : Printable, Comparable, Hashable {
         self.midi = midi
     }
 
+    public init(pitchClass: PitchClass, octave: UInt) {
+        self.midi = Float(pitchClass.index + (octave+1)*12)
+    }
+
     /// Frequency in Hz
     public var frequency : Float {
         return Pitch.mtof(self.midi)

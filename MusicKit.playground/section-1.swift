@@ -6,7 +6,6 @@ import MusicKit
 ///### Pitch
 ///* `Pitch` is the basic unit of `MusicKit`. 
 ///* A `Pitch` can be created with a MIDI number.
-///* Non-integral MIDI numbers can be used to create microtones.
 
 ///```swift
 let A4 = Pitch(midi: 69)
@@ -29,6 +28,13 @@ MusicKit.concertA = 440
 println(A4.pitchClass)          // Optional(A)
 let AHalfSharp = Pitch(midi: 69.5)
 println(AHalfSharp.pitchClass)  // nil
+///```
+
+///* A `PitchClass` and an octave number can be used to create a `Pitch`.
+
+///```swift
+let D5 = Pitch(pitchClass: PitchClass.D, octave: 5)
+println(D5)         // D5
 ///```
 
 ///* A `PitchClass` can be created with an index or using one of the provided constants.
