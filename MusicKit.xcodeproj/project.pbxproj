@@ -7,20 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9610685F1AF3390500BF9E91 /* ChordPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9610685E1AF3390500BF9E91 /* ChordPalette.swift */; };
-		961068601AF3390500BF9E91 /* ChordPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9610685E1AF3390500BF9E91 /* ChordPalette.swift */; };
+		9610685F1AF3390500BF9E91 /* HarmonicPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9610685E1AF3390500BF9E91 /* HarmonicPalette.swift */; };
+		961068601AF3390500BF9E91 /* HarmonicPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9610685E1AF3390500BF9E91 /* HarmonicPalette.swift */; };
 		9610686B1AF3390F00BF9E91 /* PitchClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969220C31AF1E75A00560A20 /* PitchClass.swift */; };
 		964A7F5A1A58A85B000E2D5A /* PitchSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964A7F591A58A85B000E2D5A /* PitchSet.swift */; };
 		964A7F5B1A58A85B000E2D5A /* PitchSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964A7F591A58A85B000E2D5A /* PitchSet.swift */; };
-		965331331AF1C20000EEDA02 /* Harmony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331321AF1C20000EEDA02 /* Harmony.swift */; };
-		965331341AF1C20000EEDA02 /* Harmony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331321AF1C20000EEDA02 /* Harmony.swift */; };
-		96686DB51A573B7F00350A2D /* PitchSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96686DB41A573B7F00350A2D /* PitchSpec.swift */; };
-		96686DDA1A573D4B00350A2D /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96686DD71A573D3000350A2D /* Nimble.framework */; };
-		96686DDB1A573D4B00350A2D /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96686DC01A573D2400350A2D /* Quick.framework */; };
+		965331331AF1C20000EEDA02 /* HarmonicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331321AF1C20000EEDA02 /* HarmonicFunction.swift */; };
+		965331341AF1C20000EEDA02 /* HarmonicFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965331321AF1C20000EEDA02 /* HarmonicFunction.swift */; };
+		96686DB51A573B7F00350A2D /* PitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96686DB41A573B7F00350A2D /* PitchTests.swift */; };
 		9691BB2A1A57C75500421B56 /* MusicKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9693F6531A57C403006270F4 /* MusicKit.framework */; };
-		9691BB301A57C78800421B56 /* PitchSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96686DB41A573B7F00350A2D /* PitchSpec.swift */; };
-		9691BB311A57C86D00421B56 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96686DD31A573D3000350A2D /* Nimble.framework */; };
-		9691BB321A57C86D00421B56 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96686DC01A573D2400350A2D /* Quick.framework */; };
+		9691BB301A57C78800421B56 /* PitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96686DB41A573B7F00350A2D /* PitchTests.swift */; };
 		969220C41AF1E75A00560A20 /* PitchClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969220C31AF1E75A00560A20 /* PitchClass.swift */; };
 		9693F6761A57C44A006270F4 /* MusicKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F2993E1A56654800D7B006 /* MusicKit.swift */; };
 		9693F6771A57C44A006270F4 /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F299401A5665CA00D7B006 /* Pitch.swift */; };
@@ -36,76 +32,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		96686DBF1A573D2400350A2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96686DB61A573D2300350A2D /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DAEB6B8E1943873100289F44;
-			remoteInfo = "Quick-OSX";
-		};
-		96686DC11A573D2400350A2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96686DB61A573D2300350A2D /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DAEB6B991943873100289F44;
-			remoteInfo = "Quick-OSXTests";
-		};
-		96686DC31A573D2400350A2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96686DB61A573D2300350A2D /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA5663E81A4C8D8500193C88;
-			remoteInfo = "QuickFocused-OSXTests";
-		};
-		96686DC51A573D2400350A2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96686DB61A573D2300350A2D /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5A5D117C19473F2100F6D13D;
-			remoteInfo = "Quick-iOS";
-		};
-		96686DC71A573D2400350A2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96686DB61A573D2300350A2D /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 5A5D118619473F2100F6D13D;
-			remoteInfo = "Quick-iOSTests";
-		};
-		96686DC91A573D2400350A2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96686DB61A573D2300350A2D /* Quick.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = DA9876B21A4C70EB0004AA17;
-			remoteInfo = "QuickFocused-iOSTests";
-		};
-		96686DD21A573D3000350A2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96686DCB1A573D3000350A2D /* Nimble.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1F1A74291940169200FFFC47;
-			remoteInfo = "Nimble-iOS";
-		};
-		96686DD41A573D3000350A2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96686DCB1A573D3000350A2D /* Nimble.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1F1A74341940169200FFFC47;
-			remoteInfo = "Nimble-iOSTests";
-		};
-		96686DD61A573D3000350A2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96686DCB1A573D3000350A2D /* Nimble.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1F925EAD195C0D6300ED456B;
-			remoteInfo = "Nimble-OSX";
-		};
-		96686DD81A573D3000350A2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 96686DCB1A573D3000350A2D /* Nimble.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 1F925EB7195C0D6300ED456B;
-			remoteInfo = "Nimble-OSXTests";
-		};
 		9691BB2B1A57C75500421B56 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 96F299191A5663E500D7B006 /* Project object */;
@@ -123,12 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9610685E1AF3390500BF9E91 /* ChordPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordPalette.swift; sourceTree = "<group>"; };
+		9610685E1AF3390500BF9E91 /* HarmonicPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarmonicPalette.swift; sourceTree = "<group>"; };
 		964A7F591A58A85B000E2D5A /* PitchSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSet.swift; sourceTree = "<group>"; };
-		965331321AF1C20000EEDA02 /* Harmony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Harmony.swift; sourceTree = "<group>"; };
-		96686DB41A573B7F00350A2D /* PitchSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSpec.swift; sourceTree = "<group>"; };
-		96686DB61A573D2300350A2D /* Quick.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Quick.xcodeproj; path = Carthage/Checkouts/Quick/Quick.xcodeproj; sourceTree = SOURCE_ROOT; };
-		96686DCB1A573D3000350A2D /* Nimble.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimble.xcodeproj; path = Carthage/Checkouts/Nimble/Nimble.xcodeproj; sourceTree = SOURCE_ROOT; };
+		965331321AF1C20000EEDA02 /* HarmonicFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarmonicFunction.swift; sourceTree = "<group>"; };
+		96686DB41A573B7F00350A2D /* PitchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchTests.swift; sourceTree = "<group>"; };
 		9691BB241A57C75500421B56 /* MusicKit_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicKit_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		969220C31AF1E75A00560A20 /* PitchClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchClass.swift; sourceTree = "<group>"; };
 		9693F6531A57C403006270F4 /* MusicKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,8 +73,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9691BB311A57C86D00421B56 /* Nimble.framework in Frameworks */,
-				9691BB321A57C86D00421B56 /* Quick.framework in Frameworks */,
 				9691BB2A1A57C75500421B56 /* MusicKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,8 +95,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96686DDA1A573D4B00350A2D /* Nimble.framework in Frameworks */,
-				96686DDB1A573D4B00350A2D /* Quick.framework in Frameworks */,
 				96F2992E1A5663E500D7B006 /* MusicKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -182,30 +102,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		96686DB71A573D2300350A2D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				96686DC01A573D2400350A2D /* Quick.framework */,
-				96686DC21A573D2400350A2D /* Quick-OSXTests.xctest */,
-				96686DC41A573D2400350A2D /* QuickFocused-OSXTests.xctest */,
-				96686DC61A573D2400350A2D /* Quick.framework */,
-				96686DC81A573D2400350A2D /* Quick-iOSTests.xctest */,
-				96686DCA1A573D2400350A2D /* QuickFocused-iOSTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		96686DCC1A573D3000350A2D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				96686DD31A573D3000350A2D /* Nimble.framework */,
-				96686DD51A573D3000350A2D /* NimbleTests.xctest */,
-				96686DD71A573D3000350A2D /* Nimble.framework */,
-				96686DD91A573D3000350A2D /* NimbleTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		96F299181A5663E500D7B006 = {
 			isa = PBXGroup;
 			children = (
@@ -236,8 +132,8 @@
 				969220C31AF1E75A00560A20 /* PitchClass.swift */,
 				96F299421A56661300D7B006 /* Scale.swift */,
 				969A02B11A5C13BA003EB476 /* Chord.swift */,
-				965331321AF1C20000EEDA02 /* Harmony.swift */,
-				9610685E1AF3390500BF9E91 /* ChordPalette.swift */,
+				965331321AF1C20000EEDA02 /* HarmonicFunction.swift */,
+				9610685E1AF3390500BF9E91 /* HarmonicPalette.swift */,
 				96F299441A5666D100D7B006 /* MusicKit.playground */,
 				96F299251A5663E500D7B006 /* Supporting Files */,
 			);
@@ -255,9 +151,7 @@
 		96F299311A5663E500D7B006 /* MusicKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				96686DCB1A573D3000350A2D /* Nimble.xcodeproj */,
-				96686DB61A573D2300350A2D /* Quick.xcodeproj */,
-				96686DB41A573B7F00350A2D /* PitchSpec.swift */,
+				96686DB41A573B7F00350A2D /* PitchTests.swift */,
 				96F299321A5663E500D7B006 /* Supporting Files */,
 			);
 			path = MusicKitTests;
@@ -398,16 +292,6 @@
 			mainGroup = 96F299181A5663E500D7B006;
 			productRefGroup = 96F299231A5663E500D7B006 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 96686DCC1A573D3000350A2D /* Products */;
-					ProjectRef = 96686DCB1A573D3000350A2D /* Nimble.xcodeproj */;
-				},
-				{
-					ProductGroup = 96686DB71A573D2300350A2D /* Products */;
-					ProjectRef = 96686DB61A573D2300350A2D /* Quick.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				96F299211A5663E500D7B006 /* MusicKit_OSX */,
@@ -417,79 +301,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		96686DC01A573D2400350A2D /* Quick.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Quick.framework;
-			remoteRef = 96686DBF1A573D2400350A2D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		96686DC21A573D2400350A2D /* Quick-OSXTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Quick-OSXTests.xctest";
-			remoteRef = 96686DC11A573D2400350A2D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		96686DC41A573D2400350A2D /* QuickFocused-OSXTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "QuickFocused-OSXTests.xctest";
-			remoteRef = 96686DC31A573D2400350A2D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		96686DC61A573D2400350A2D /* Quick.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Quick.framework;
-			remoteRef = 96686DC51A573D2400350A2D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		96686DC81A573D2400350A2D /* Quick-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "Quick-iOSTests.xctest";
-			remoteRef = 96686DC71A573D2400350A2D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		96686DCA1A573D2400350A2D /* QuickFocused-iOSTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = "QuickFocused-iOSTests.xctest";
-			remoteRef = 96686DC91A573D2400350A2D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		96686DD31A573D3000350A2D /* Nimble.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Nimble.framework;
-			remoteRef = 96686DD21A573D3000350A2D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		96686DD51A573D3000350A2D /* NimbleTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = NimbleTests.xctest;
-			remoteRef = 96686DD41A573D3000350A2D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		96686DD71A573D3000350A2D /* Nimble.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Nimble.framework;
-			remoteRef = 96686DD61A573D3000350A2D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		96686DD91A573D3000350A2D /* NimbleTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = NimbleTests.xctest;
-			remoteRef = 96686DD81A573D3000350A2D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9691BB221A57C75500421B56 /* Resources */ = {
@@ -527,7 +338,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9691BB301A57C78800421B56 /* PitchSpec.swift in Sources */,
+				9691BB301A57C78800421B56 /* PitchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -538,10 +349,10 @@
 				9693F6761A57C44A006270F4 /* MusicKit.swift in Sources */,
 				9610686B1AF3390F00BF9E91 /* PitchClass.swift in Sources */,
 				969A02B31A5C13BA003EB476 /* Chord.swift in Sources */,
-				961068601AF3390500BF9E91 /* ChordPalette.swift in Sources */,
+				961068601AF3390500BF9E91 /* HarmonicPalette.swift in Sources */,
 				964A7F5B1A58A85B000E2D5A /* PitchSet.swift in Sources */,
 				9693F6771A57C44A006270F4 /* Pitch.swift in Sources */,
-				965331341AF1C20000EEDA02 /* Harmony.swift in Sources */,
+				965331341AF1C20000EEDA02 /* HarmonicFunction.swift in Sources */,
 				9693F6781A57C44A006270F4 /* Scale.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,8 +365,8 @@
 				969A02B21A5C13BA003EB476 /* Chord.swift in Sources */,
 				964A7F5A1A58A85B000E2D5A /* PitchSet.swift in Sources */,
 				96F299431A56661300D7B006 /* Scale.swift in Sources */,
-				9610685F1AF3390500BF9E91 /* ChordPalette.swift in Sources */,
-				965331331AF1C20000EEDA02 /* Harmony.swift in Sources */,
+				9610685F1AF3390500BF9E91 /* HarmonicPalette.swift in Sources */,
+				965331331AF1C20000EEDA02 /* HarmonicFunction.swift in Sources */,
 				969220C41AF1E75A00560A20 /* PitchClass.swift in Sources */,
 				96F2993F1A56654800D7B006 /* MusicKit.swift in Sources */,
 			);
@@ -565,7 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96686DB51A573B7F00350A2D /* PitchSpec.swift in Sources */,
+				96686DB51A573B7F00350A2D /* PitchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

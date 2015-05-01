@@ -12,7 +12,7 @@ print(plagalCadence * G4)   // [[C5, E5, G5], [G4, B4, D5]]
 ```
 
 ```swift
-let V7ofV = HarmonicRelationship.create(Scale.Major, degree: 5, chord: Major.V7)
+let V7ofV = HarmonicFunction.create(Scale.Major, degree: 5, chord: Major.V7)
 print(V7ofV(C5))      // [D6, F♯6, A6, C7]
 ```
 

@@ -127,7 +127,7 @@ print(plagalCadence)   // [[F5, A5, C6], [C5, E5, G5]]
 ///* `Harmony` provides a way to create custom functional harmonizers.
 
 ///```swift
-let V7ofV = Harmony.create(Scale.Major, degree: 5, chord: Major.V7)
+let V7ofV = HarmonicFunction.create(Scale.Major, degree: 5, chord: Major.V7)
 print(V7ofV(C5))      // [D6, F♯6, A6, C7]
 ///```
 
