@@ -2,6 +2,7 @@
 
 import Foundation
 
+/// A type representing `Pitch`
 public struct Pitch : Printable, Comparable, Hashable {
     /// midi number to frequency
     /// TODO: move this to a temperament enum
@@ -114,6 +115,7 @@ public struct Pitch : Printable, Comparable, Hashable {
 
 }
 
+// MARK: Operators
 public func ==(lhs: Pitch, rhs: Pitch) -> Bool {
     return lhs.midi == rhs.midi
 }

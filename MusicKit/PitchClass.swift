@@ -111,6 +111,8 @@ public struct PitchClass : Printable, Comparable, Hashable {
     }
 }
 
+// MARK: Operators
+
 public func ==(lhs: PitchClass, rhs: PitchClass) -> Bool {
     return lhs.index == rhs.index
 }

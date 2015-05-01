@@ -106,10 +106,13 @@ public struct PitchSet : CollectionType, Equatable, Printable {
         return set
     }
 
+    /// Returns a harmonizer representation of this pitch set
     public func harmonizer() -> Harmonizer {
         return MusicKit.IdentityHarmonizer
     }
 
+    /// Returns a harmonizer representation of this pitch set, 
+    /// transposed by the given scale and degree
     public func harmonizer(scale: Harmonizer, degree: Float) {
 
     }
@@ -122,6 +125,8 @@ public struct PitchSet : CollectionType, Equatable, Printable {
         return pitches.description
     }
 }
+
+// MARK: Operators
 
 public func ==(lhs: PitchSet, rhs: PitchSet) -> Bool {
     return lhs.pitches == rhs.pitches

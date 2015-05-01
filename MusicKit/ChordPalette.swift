@@ -2,3 +2,7 @@
 
 import Foundation
 
+/// A `ChordPalette` is a mapping from all pitch classes to harmonizers.
+public struct ChordPalette {
+
+}

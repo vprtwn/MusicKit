@@ -11,8 +11,10 @@ extension Array {
 }
 
 public struct MusicKit {
+    /// The global value of concert A
     public static var concertA : Double = 440.0
 
+    /// The identity Harmonizer function
     public static let IdentityHarmonizer : Harmonizer = { pitch in
         var s = PitchSet()
         s.insert(pitch)
@@ -22,6 +24,7 @@ public struct MusicKit {
 
 public typealias Harmonizer = (Pitch -> PitchSet)
 
+// MARK: Global Operators
 public func *(lhs: [Harmonizer], rhs: Pitch) -> [PitchSet] {
     return lhs.map { $0(rhs) }
 }
