@@ -3,11 +3,12 @@
 MusicKit is a Swift framework for programmatically interacting with musical abstractions.
 
 ```swift
-let neapolitan = Major.bII
 let C5 = Pitch(midi: 72)
+let neapolitan = Major.bII
 print(neapolitan(C5))  // [C♯5, E♯5, G♯5]
-let plagalCadence = [Major.IV, Major.I] * C5
-print(plagalCadence)   // [[F5, A5, C6], [C5, E5, G5]]
+let G4 = Pitch(pitchClass: PitchClass.G, octave: 4)
+let plagalCadence = [Major.IV, Major.I] * G4
+print(plagalCadence)   // [[C5, E5, G5], [G4, B4, D5]]
 ```
 
 ```swift
