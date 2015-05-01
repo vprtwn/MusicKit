@@ -15,7 +15,7 @@ let V7ofV = Harmony.create(Scale.Major, degree: 5, chord: Major.V7)
 print(V7ofV(C5))      // [D6, F♯6, A6, C7]
 ```
 
-* [Framework Overview](/Documentation/FrameworkOverview)
+* [Framework Overview](/Documentation/FrameworkOverview.md)
 
 
 
