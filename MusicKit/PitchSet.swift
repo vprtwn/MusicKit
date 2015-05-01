@@ -106,6 +106,14 @@ public struct PitchSet : CollectionType, Equatable, Printable {
         return set
     }
 
+    public func harmonizer() -> Harmonizer {
+        return MusicKit.IdentityHarmonizer
+    }
+
+    public func harmonizer(scale: Harmonizer, degree: Float) {
+
+    }
+
     public subscript(i: Int) -> Pitch {
         return pitches[i]
     }
