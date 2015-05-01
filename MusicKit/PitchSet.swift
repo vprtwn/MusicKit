@@ -3,6 +3,9 @@
 import Foundation
 
 /// A collection of unique `Pitch` instances ordered by frequency.
+/// TODO: split these up into extensions
+/// TODO: implement Sliceable
+/// reference: https://github.com/natecook1000/SortedCollection/blob/master/SortedCollection/SortedCollection.swift
 public struct PitchSet : CollectionType, Equatable, Printable {
 
     var pitches : [Pitch] = []
