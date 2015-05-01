@@ -5,11 +5,13 @@ import Foundation
 public enum Harmony {
     /// Creates a harmonizer that applies a chord to a scale at a (1-indexed) scale degree.
     /// Note that non-integral scale degrees may be used to specify non-scale tones.
-    /// TODO: handle negative degrees
+    /// Negative degrees will be transposed by octave until they are non-negative
     public static func create(scale: Harmonizer, degree: Float, chord: Harmonizer) -> Harmonizer {
         return { pitch in
-            let degreeIsPositive = degree >= 1
-            let zDegree = degree - 1 // 0-indexed degree
+            var zDegree = degree - 1 // 0-indexed degree
+            while zDegree > 1 {
+                zDegree = zDegree + 12
+            }
             let scalePitchSet = scale(pitch)
             let scaleCount = Int(scalePitchSet.count)
             let floorDegree = Int(floorf(zDegree)) % scaleCount
