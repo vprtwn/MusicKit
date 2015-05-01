@@ -16,7 +16,7 @@ let V7ofV = HarmonicRelationship.create(Scale.Major, degree: 5, chord: Major.V7)
 print(V7ofV(C5))      // [D6, F♯6, A6, C7]
 ```
 
-* [Framework Overview](/Documentation/FrameworkOverview.md)
+**[Framework Overview](/Documentation/FrameworkOverview.md)**
 
 
 
