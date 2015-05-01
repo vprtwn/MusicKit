@@ -118,3 +118,11 @@ public func ==(lhs: PitchClass, rhs: PitchClass) -> Bool {
 public func <(lhs: PitchClass, rhs: PitchClass) -> Bool {
     return lhs.index < rhs.index
 }
+
+public func -(lhs: PitchClass, rhs: UInt) -> PitchClass {
+    return PitchClass(index: lhs.index - UInt(rhs % 12))
+}
+
+public func +(lhs: PitchClass, rhs: UInt) -> PitchClass {
+    return PitchClass(index: lhs.index + UInt(rhs % 12))
+}

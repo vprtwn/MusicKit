@@ -134,7 +134,27 @@ public func +=(inout lhs: PitchSet, rhs: PitchSet) -> PitchSet {
     return lhs
 }
 
-// TODO: implement - and -=
+public func +(lhs: PitchSet, rhs: Pitch) -> PitchSet {
+    var lhs = lhs
+    lhs.insert(rhs)
+    return lhs
+}
+
+public func +=(inout lhs: PitchSet, rhs: Pitch) -> PitchSet {
+    lhs.insert(rhs)
+    return lhs
+}
+
+public func -(lhs: PitchSet, rhs: Pitch) -> PitchSet {
+    var lhs = lhs
+    lhs.remove(rhs)
+    return lhs
+}
+
+public func -=(inout lhs: PitchSet, rhs: Pitch) -> PitchSet {
+    lhs.remove(rhs)
+    return lhs
+}
 
 public func /(lhs: PitchSet, rhs: PitchClass) -> PitchSet {
     if lhs.count == 0 {

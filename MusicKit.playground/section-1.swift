@@ -9,15 +9,15 @@ import MusicKit
 
 ///```swift
 let A4 = Pitch(midi: 69)
-println(A4.noteName)    // A4
-println(A4.frequency)   // 440.0
+print(A4.noteName)    // A4
+print(A4.frequency)   // 440.0
 ///```
 
 ///* Changing the value of MusicKit's concert A changes the computed frequency of all pitches.
 
 ///```swift
 MusicKit.concertA = 444
-println(A4.frequency)   // 444.0
+print(A4.frequency)   // 444.0
 MusicKit.concertA = 440
 ///```
 
@@ -25,24 +25,26 @@ MusicKit.concertA = 440
 ///* A `Pitch` has a `PitchClass` if it has an integral MIDI number.
 
 ///```swift
-println(A4.pitchClass)          // Optional(A)
+print(A4.pitchClass)          // Optional(A)
 let AHalfSharp = Pitch(midi: 69.5)
-println(AHalfSharp.pitchClass)  // nil
+print(AHalfSharp.pitchClass)  // nil
 ///```
 
 ///* A `PitchClass` and an octave number can be used to create a `Pitch`.
 
 ///```swift
 let D5 = Pitch(pitchClass: PitchClass.D, octave: 5)
-println(D5)         // D5
+print(D5)         // D5
 ///```
 
 ///* A `PitchClass` can be created with an index or using one of the provided constants.
 ///```swift
-let c = PitchClass(index: 0)
-println(c)          // C
-let cSharp = PitchClass.Cs
-println(cSharp)     // C♯
+let C = PitchClass(index: 0)
+print(C)          // C
+let CSharp = PitchClass.Cs
+print(CSharp)     // C♯
+let D = C + 2
+print(D)          // D
 ///```
 
 ///### PitchSet
