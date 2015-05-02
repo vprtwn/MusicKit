@@ -3,7 +3,7 @@
 import Foundation
 
 /// A type representing `Pitch`
-public struct Pitch : Printable, Comparable, Hashable {
+public struct Pitch : Comparable {
     /// midi number to frequency
     /// TODO: move this to a temperament enum
     public static func mtof(midi: Float) -> Float {
@@ -104,15 +104,22 @@ public struct Pitch : Printable, Comparable, Hashable {
         }
         return (name.0, name.1, adjustedOctaveNumber)
     }
+}
 
+// MARK: Printable
+
+extension Pitch : Printable {
     public var description : String {
         return (count(noteName) != 0) ? "\(noteName)" : "\(frequency)Hz"
     }
+}
 
+// MARK: Hashable
+
+extension Pitch: Hashable {
     public var hashValue : Int {
         return midi.hashValue
     }
-
 }
 
 // MARK: Operators

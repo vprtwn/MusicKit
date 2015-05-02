@@ -6,7 +6,7 @@ import Foundation
 /// TODO: split these up into extensions
 /// TODO: implement Sliceable
 /// reference: https://github.com/natecook1000/SortedCollection/blob/master/SortedCollection/SortedCollection.swift
-public struct PitchSet : CollectionType, Equatable, Printable {
+public struct PitchSet : CollectionType, Equatable {
 
     var pitches : [Pitch] = []
     var pitchToBool : [Pitch : Bool] = [:]
@@ -123,14 +123,16 @@ public struct PitchSet : CollectionType, Equatable, Printable {
     public subscript(i: Int) -> Pitch {
         return pitches[i]
     }
+}
 
+// MARK: Printable
+extension PitchSet : Printable {
     public var description : String {
         return pitches.description
     }
 }
 
 // MARK: Operators
-
 public func ==(lhs: PitchSet, rhs: PitchSet) -> Bool {
     return lhs.pitches == rhs.pitches
 }

@@ -2,8 +2,8 @@
 
 import Foundation
 
-/// a ScaleTuple describes a scale with an array of intervals and a name
-public typealias ScaleTuple = ([Float], String)
+/// (intervals, name)
+typealias ScaleTuple = ([Float], String)
 
 public enum Scale {
 

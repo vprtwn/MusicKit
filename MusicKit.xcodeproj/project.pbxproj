@@ -24,6 +24,10 @@
 		9693F6791A57C49E006270F4 /* MusicKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F299271A5663E500D7B006 /* MusicKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		969A02B21A5C13BA003EB476 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969A02B11A5C13BA003EB476 /* Chord.swift */; };
 		969A02B31A5C13BA003EB476 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969A02B11A5C13BA003EB476 /* Chord.swift */; };
+		96BB1B121AF458A0005830DC /* LetterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BB1B111AF458A0005830DC /* LetterName.swift */; };
+		96BB1B131AF458A0005830DC /* LetterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BB1B111AF458A0005830DC /* LetterName.swift */; };
+		96BB1B151AF458D7005830DC /* Accidental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BB1B141AF458D7005830DC /* Accidental.swift */; };
+		96BB1B161AF458D7005830DC /* Accidental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BB1B141AF458D7005830DC /* Accidental.swift */; };
 		96F299281A5663E500D7B006 /* MusicKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F299271A5663E500D7B006 /* MusicKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96F2992E1A5663E500D7B006 /* MusicKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F299221A5663E500D7B006 /* MusicKit.framework */; };
 		96F2993F1A56654800D7B006 /* MusicKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F2993E1A56654800D7B006 /* MusicKit.swift */; };
@@ -57,6 +61,8 @@
 		969220C31AF1E75A00560A20 /* PitchClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchClass.swift; sourceTree = "<group>"; };
 		9693F6531A57C403006270F4 /* MusicKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		969A02B11A5C13BA003EB476 /* Chord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
+		96BB1B111AF458A0005830DC /* LetterName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterName.swift; sourceTree = "<group>"; };
+		96BB1B141AF458D7005830DC /* Accidental.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accidental.swift; sourceTree = "<group>"; };
 		96F299221A5663E500D7B006 /* MusicKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F299261A5663E500D7B006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96F299271A5663E500D7B006 /* MusicKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicKit.h; sourceTree = "<group>"; };
@@ -130,6 +136,8 @@
 				96F299401A5665CA00D7B006 /* Pitch.swift */,
 				964A7F591A58A85B000E2D5A /* PitchSet.swift */,
 				969220C31AF1E75A00560A20 /* PitchClass.swift */,
+				96BB1B111AF458A0005830DC /* LetterName.swift */,
+				96BB1B141AF458D7005830DC /* Accidental.swift */,
 				96F299421A56661300D7B006 /* Scale.swift */,
 				969A02B11A5C13BA003EB476 /* Chord.swift */,
 				965331321AF1C20000EEDA02 /* HarmonicFunction.swift */,
@@ -353,7 +361,9 @@
 				964A7F5B1A58A85B000E2D5A /* PitchSet.swift in Sources */,
 				9693F6771A57C44A006270F4 /* Pitch.swift in Sources */,
 				965331341AF1C20000EEDA02 /* HarmonicFunction.swift in Sources */,
+				96BB1B161AF458D7005830DC /* Accidental.swift in Sources */,
 				9693F6781A57C44A006270F4 /* Scale.swift in Sources */,
+				96BB1B131AF458A0005830DC /* LetterName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,7 +378,9 @@
 				9610685F1AF3390500BF9E91 /* HarmonicPalette.swift in Sources */,
 				965331331AF1C20000EEDA02 /* HarmonicFunction.swift in Sources */,
 				969220C41AF1E75A00560A20 /* PitchClass.swift in Sources */,
+				96BB1B151AF458D7005830DC /* Accidental.swift in Sources */,
 				96F2993F1A56654800D7B006 /* MusicKit.swift in Sources */,
+				96BB1B121AF458A0005830DC /* LetterName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

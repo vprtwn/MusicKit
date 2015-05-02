@@ -22,9 +22,16 @@ public struct MusicKit {
     }
 }
 
+// MARK: Type Aliases
 public typealias Harmonizer = (Pitch -> PitchSet)
+public typealias PitchClassNameTuple = (LetterName, Accidental)
 
-// MARK: Global Operators
+// MARK: Operators
+public func == (p1:(LetterName, Accidental), p2:(LetterName, Accidental)) -> Bool
+{
+    return (p1.0 == p2.0) && (p1.1 == p2.1)
+}
+
 public func *(lhs: [Harmonizer], rhs: Pitch) -> [PitchSet] {
     return lhs.map { $0(rhs) }
 }

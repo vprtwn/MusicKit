@@ -2,45 +2,7 @@
 
 import Foundation
 
-public enum LetterName : String {
-    case C = "C"
-    case D = "D"
-    case E = "E"
-    case F = "F"
-    case G = "G"
-    case A = "A"
-    case B = "B"
-
-    static let letters : [LetterName] = [.C, .D, .E, .F, .G, .A, .B]
-    public func next() -> LetterName {
-        let index : Int = find(LetterName.letters, self)!
-        let newIndex = (index + 1) % LetterName.letters.count
-        return LetterName.letters[newIndex]
-    }
-
-    public func previous() -> LetterName {
-        let index : Int = find(LetterName.letters, self)!
-        let count = LetterName.letters.count
-        let newIndex = (((index - 1)%count) + count)%count
-        return LetterName.letters[newIndex]
-    }
-}
-
-public enum Accidental : String {
-    case DoubleFlat = "𝄫"
-    case Flat = "♭"
-    case Natural = "♮"
-    case Sharp = "♯"
-    case DoubleSharp = "𝄪"
-}
-
-public typealias PitchClassNameTuple = (LetterName, Accidental)
-public func == (p1:(LetterName, Accidental), p2:(LetterName, Accidental)) -> Bool
-{
-    return (p1.0 == p2.0) && (p1.1 == p2.1)
-}
-
-public struct PitchClass : Printable, Comparable, Hashable {
+public struct PitchClass : Comparable {
     public let index : UInt
     public init(index: UInt) {
         self.index = index
@@ -96,7 +58,10 @@ public struct PitchClass : Printable, Comparable, Hashable {
     public static let A = PitchClass(index: 9)
     public static let As = PitchClass(index: 10)
     public static let B = PitchClass(index: 11)
+}
 
+// MARK: Printable
+extension PitchClass : Printable {
     public var description : String {
         let nameTupleOpt : PitchClassNameTuple? = self.names.first
         if let n = nameTupleOpt {
@@ -105,7 +70,10 @@ public struct PitchClass : Printable, Comparable, Hashable {
         }
         return ""
     }
+}
 
+// MARK: Hashable
+extension PitchClass : Hashable {
     public var hashValue : Int {
         return index.hashValue
     }

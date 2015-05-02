@@ -2,7 +2,7 @@
 
 import Foundation
 
-/// a ChordTuple describes a chord with an array of intervals, a full name, and an abbreviated name
+/// (intervals, full name, abbreviated name)
 public typealias ChordTuple = ([Float], String, String)
 
 public enum ChordAddition : Float {
