@@ -69,7 +69,7 @@ print(FSharpMajor)  // [F♯2, B♭2, C♯3]
 var petrushka = CMajor + FSharpMajor
 print(petrushka)                    // [C2, E2, F♯2, G2, B♭2, C♯3]
 print(CMajor == FSharpMajor)        // false
-print(petrushka.pitchClassSet())    // [F♯, G, B♭, C, E, C♯]
+print(petrushka.gamut())    // [F♯, G, B♭, C, E, C♯]
 petrushka.remove(Pitch(pitchClass: PitchClass.G, octave: 2))
 print(petrushka)                    // [C2, E2, F♯2, B♭2, C♯3]
 let F = PitchClass.F

@@ -3,152 +3,170 @@
 import Foundation
 
 /// A collection of unique `Pitch` instances ordered by frequency.
-/// TODO: split these up into extensions
 /// TODO: implement Sliceable
 /// reference: https://github.com/natecook1000/SortedCollection/blob/master/SortedCollection/SortedCollection.swift
-public struct PitchSet : CollectionType, Equatable {
+public struct PitchSet : Equatable {
 
-    var pitches : [Pitch] = []
+    private var contents : [Pitch] = []
     var pitchToBool : [Pitch : Bool] = [:]
-    public var startIndex : Int = 0
-    public var endIndex : Int = 0
 
-    public init() {
-
+    /// The number of pitches the `PitchSet` contains.
+    public var count: Int {
+        return contents.count
     }
 
-    public var count: UInt {
-        return UInt(endIndex - startIndex) + 1
+    /// Creates an empty `PitchSet`
+    public init() { }
+
+    /// Create a new `PitchSet` with the contents of a given sequence of pitches.
+    public init<S : SequenceType where S.Generator.Element == Pitch>(_ sequence: S) {
+        contents = sorted(sequence)
     }
 
+    /// Create a new `PitchSet` with the given pitches.
+    public init(values: Pitch...) {
+        contents = sorted(values)
+    }
+
+    /// Returns the index of the given `pitch`
+    ///
+    /// :returns: The index of the first instance of `pitch`, or `nil` if `pitch` isn't found.
+    public func indexOf(pitch: Pitch) -> Int? {
+        let index = _insertionIndex(contents, pitch)
+        if index == count {
+            return nil
+        }
+        return contents[index] == pitch ? index : nil
+    }
+
+    /// Returns a new `PitchSet` with the combined contents of `self` and the given pitches.
+    public func merge(pitches: Pitch...) -> PitchSet {
+        return merge(pitches)
+    }
+
+    /// Returns a new `PitchSet` with the combined contents of `self` and the given sequence of pitches.
+    public func merge<S: SequenceType where S.Generator.Element == Pitch>(pitches: S) -> PitchSet {
+        return PitchSet(contents + pitches)
+    }
+
+    /// Inserts one or more new pitches into the `PItchSet` in the correct order.
+    public mutating func insert(pitches: Pitch...) {
+        for pitch in pitches {
+            contents.insert(pitch, atIndex: _insertionIndex(contents, pitch))
+        }
+    }
+
+    /// Inserts the contents of a sequence of pitches into the `PitchSet`.
+    public mutating func insert<S: SequenceType where S.Generator.Element == Pitch>(pitches: S) {
+        contents = sorted(contents + pitches)
+    }
+
+    /// Removes `pitch` from the `PitchSet` if it exists.
+    ///
+    /// :returns: The given pitch if found, otherwise `nil`.
+    public mutating func remove(pitch: Pitch) -> Pitch? {
+        if let index = indexOf(pitch) {
+            return contents.removeAtIndex(index)
+        }
+        return nil
+    }
+
+    /// Removes and returns the pitch at `index`. Requires count > 0.
+    public mutating func removeAtIndex(index: Int) -> Pitch {
+        return contents.removeAtIndex(index)
+    }
+
+    /// Removes all elements from the `PitchSet`.
+    public mutating func removeAll(keepCapacity: Bool = true) {
+        contents.removeAll(keepCapacity: keepCapacity)
+    }
+}
+
+// MARK: SequenceType
+extension PitchSet : SequenceType {
+    /// Returns a generator of the elements of the collection.
     public func generate() -> GeneratorOf<Pitch> {
-        var index = startIndex
-        return GeneratorOf<Pitch> {
-            if index <= self.endIndex {
-                let pitch = self.pitches[index]
-                index++
-                return pitch
-            }
-            else {
-                return nil
-            }
-        }
+        return GeneratorOf(contents.generate())
+    }
+}
+
+// MARK: CollectionType
+extension PitchSet : CollectionType {
+    /// The position of the first pitch in the collection. (Always zero.)
+    public var startIndex: Int {
+        return 0
     }
 
-    mutating func _insert(pitch: Pitch) {
-        pitchToBool[pitch] = true
-        endIndex++
+    /// One greater than the position of the last element in the collection. 
+    /// Zero when the collection is empty.
+    public var endIndex: Int {
+        return count
     }
 
-    public mutating func insert(pitch: Pitch) {
-        if let containsPitch = pitchToBool[pitch] {
-            return
-        }
-
-        let count = pitches.count
-        if count == 0 {
-            pitches.append(pitch)
-            pitchToBool[pitch] = true
-        }
-        else if count == 1 {
-            if pitch < pitches[0] {
-                pitches.insert(pitch, atIndex: 0)
-                _insert(pitch)
-            }
-            else if pitch > pitches[0] {
-                pitches.append(pitch)
-                _insert(pitch)
-            }
-        }
-        else {
-            if pitch < pitches.first {
-                pitches.insert(pitch, atIndex: 0)
-                _insert(pitch)
-                return
-            }
-            for i in 1..<pitches.count {
-                let previousPitch = pitches[i-1]
-                let currentPitch = pitches[i]
-                if pitch > previousPitch && pitch < currentPitch {
-                    pitches.insert(pitch, atIndex: i)
-                    _insert(pitch)
-                    return
-                }
-            }
-            let lastPitchOpt = pitches.last
-            if let lastPitch = lastPitchOpt {
-                if pitch > lastPitch {
-                    pitches.append(pitch)
-                    _insert(pitch)
-                }
-            }
-        }
-    }
-
-    public mutating func remove(pitch: Pitch) {
-        var indexOpt : Int? = nil
-        for i in 0..<pitches.count {
-            let currentPitch = pitches[i]
-            if currentPitch == pitch {
-                indexOpt = Optional(i)
-            }
-        }
-        if let index = indexOpt  {
-            pitches.removeAtIndex(index)
-            pitchToBool[pitch] = false
-            endIndex--
-        }
-    }
-
-    /// Returns the set of pitch classes contained in the pitch set
-    public func pitchClassSet() -> Set<PitchClass> {
-        var set = Set<PitchClass>()
-        for pitch in self.pitches {
-            pitch.pitchClass.map { set.insert($0) }
-        }
-        return set
-    }
-
-    /// Returns a harmonizer representation of this pitch set
-    public func harmonizer() -> Harmonizer {
-        return MusicKit.IdentityHarmonizer
-    }
-
-    /// Returns a harmonizer representation of this pitch set, 
-    /// transposed by the given scale and degree
-    public func harmonizer(scale: Harmonizer, degree: Float) {
-
-    }
-
+    /// Accesses the pitch at index `i`.
+    /// Read-only to ensure sorting - use `insert` to add new elements.
     public subscript(i: Int) -> Pitch {
-        return pitches[i]
+        return contents[i]
+    }
+}
+
+// MARK: ArrayLiteralConvertible
+extension PitchSet : ArrayLiteralConvertible {
+    public init(arrayLiteral elements: Pitch...) {
+        self.contents = sorted(elements)
     }
 }
 
 // MARK: Printable
 extension PitchSet : Printable {
     public var description : String {
-        return pitches.description
+        return contents.description
     }
+}
+
+// MARK: Gamut
+extension PitchSet {
+    /// Returns the set of pitch classes contained in the `PitchSet`
+    public func gamut() -> Set<PitchClass> {
+        var set = Set<PitchClass>()
+        for pitch in self.contents {
+            pitch.pitchClass.map { set.insert($0) }
+        }
+        return set
+    }
+}
+
+// MARK: Harmonizer
+extension PitchSet {
+    /// Returns a harmonizer representation of this pitch set
+    public func harmonizer() -> Harmonizer {
+        return MusicKit.IdentityHarmonizer
+    }
+
+    /// Returns a harmonizer representation of this pitch set,
+    /// transposed by the given scale and degree
+    public func harmonizer(scale: Harmonizer, degree: Float) -> Harmonizer {
+        // TODO: implement
+        return MusicKit.IdentityHarmonizer
+    }
+}
+
+// MARK: Equatable
+public func ==(lhs: PitchSet, rhs: PitchSet) -> Bool {
+    return lhs.contents == rhs.contents
 }
 
 // MARK: Operators
-public func ==(lhs: PitchSet, rhs: PitchSet) -> Bool {
-    return lhs.pitches == rhs.pitches
-}
+public func -(lhs: PitchSet, rhs: PitchSet) -> PitchSet { return lhs - rhs }
+public func +(lhs: PitchSet, rhs: PitchSet) -> PitchSet { return lhs + rhs }
 
-public func +(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
-    var lhs = lhs
-    for pitch in rhs {
-        lhs.insert(pitch)
-    }
+public func -=(inout lhs: PitchSet, rhs: PitchSet) -> PitchSet {
+    lhs -= rhs
     return lhs
 }
 
 public func +=(inout lhs: PitchSet, rhs: PitchSet) -> PitchSet {
-    for pitch in rhs {
-        lhs.insert(pitch)
-    }
+    lhs += rhs
     return lhs
 }
 
@@ -191,5 +209,37 @@ public func /(lhs: PitchSet, rhs: PitchClass) -> PitchSet {
     return lhs
 }
 
+// MARK: _insertionIndex
+/// Returns the insertion point for `pitch` in the array of `pitches`.
+///
+/// If `pitch` exists at least once in `pitches`, the returned index will point to the
+/// first instance of `pitch`. Otherwise, it will point to the location where `pitch`
+/// could be inserted, keeping `pitchSet` in order.
+///
+/// :returns: An index in the range `0...count(pitches)` where `pitch` can be inserted.
+private func _insertionIndex(pitches: [Pitch], pitch: Pitch) -> Int
+{
+    if isEmpty(pitches) {
+        return 0
+    }
+
+    var (low, high) = (0, pitches.endIndex - 1)
+    var mid = 0
+
+    while low < high {
+        mid = (high - low) / 2 + low
+        if pitches[mid] < pitch {
+            low = mid + 1
+        } else {
+            high = mid
+        }
+    }
+
+    if pitches[low] >= pitch {
+        return low
+    }
+
+    return pitches.endIndex
+}
 
 

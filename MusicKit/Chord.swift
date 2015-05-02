@@ -64,7 +64,7 @@ public enum Chord  {
         // sort indices
         var indices = indices
         indices.sort { $0 < $1 }
-        let maxIndex : UInt = indices.last!
+        let maxIndex : Int = Int(indices.last!)
 
         // create a scale extending enough octaves to include the max index
         var scalePitchSet = PitchSet()
