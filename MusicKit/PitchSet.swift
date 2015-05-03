@@ -2,13 +2,11 @@
 
 import Foundation
 
+// MARK: == PitchSet ==
 /// A collection of unique `Pitch` instances ordered by frequency.
-/// TODO: implement Sliceable
-/// reference: https://github.com/natecook1000/SortedCollection/blob/master/SortedCollection/SortedCollection.swift
 public struct PitchSet : Equatable {
 
-    private var contents : [Pitch] = []
-    var pitchToBool : [Pitch : Bool] = [:]
+    var contents : [Pitch] = []
 
     /// The number of pitches the `PitchSet` contains.
     public var count: Int {
@@ -18,14 +16,14 @@ public struct PitchSet : Equatable {
     /// Creates an empty `PitchSet`
     public init() { }
 
-    /// Create a new `PitchSet` with the contents of a given sequence of pitches.
+    /// Creates a new `PitchSet` with the contents of a given sequence of pitches.
     public init<S : SequenceType where S.Generator.Element == Pitch>(_ sequence: S) {
         contents = sorted(sequence)
     }
 
-    /// Create a new `PitchSet` with the given pitches.
-    public init(values: Pitch...) {
-        contents = sorted(values)
+    /// Creates a new `PitchSet` with the given pitches.
+    public init(pitches: Pitch...) {
+        contents = sorted(pitches)
     }
 
     /// Returns the index of the given `pitch`
@@ -37,6 +35,11 @@ public struct PitchSet : Equatable {
             return nil
         }
         return contents[index] == pitch ? index : nil
+    }
+
+    /// Returns true iff `pitch` is found in the collection.
+    public func contains(pitch: Pitch) -> Bool {
+        return indexOf(pitch) != nil
     }
 
     /// Returns a new `PitchSet` with the combined contents of `self` and the given pitches.
@@ -76,9 +79,16 @@ public struct PitchSet : Equatable {
         return contents.removeAtIndex(index)
     }
 
-    /// Removes all elements from the `PitchSet`.
+    /// Removes all pitches from the `PitchSet`.
     public mutating func removeAll(keepCapacity: Bool = true) {
         contents.removeAll(keepCapacity: keepCapacity)
+    }
+}
+
+// MARK: Printable
+extension PitchSet : Printable {
+    public var description : String {
+        return contents.description
     }
 }
 
@@ -92,19 +102,19 @@ extension PitchSet : SequenceType {
 
 // MARK: CollectionType
 extension PitchSet : CollectionType {
-    /// The position of the first pitch in the collection. (Always zero.)
+    /// The position of the first pitch in the set. (Always zero.)
     public var startIndex: Int {
         return 0
     }
 
-    /// One greater than the position of the last element in the collection. 
+    /// One greater than the position of the last pitch in the set.
     /// Zero when the collection is empty.
     public var endIndex: Int {
         return count
     }
 
     /// Accesses the pitch at index `i`.
-    /// Read-only to ensure sorting - use `insert` to add new elements.
+    /// Read-only to ensure sorting - use `insert` to add new pitches.
     public subscript(i: Int) -> Pitch {
         return contents[i]
     }
@@ -117,46 +127,28 @@ extension PitchSet : ArrayLiteralConvertible {
     }
 }
 
-// MARK: Printable
-extension PitchSet : Printable {
-    public var description : String {
-        return contents.description
-    }
-}
-
-// MARK: Gamut
-extension PitchSet {
-    /// Returns the set of chroma contained in the `PitchSet`
-    public func gamut() -> Set<Chroma> {
-        var set = Set<Chroma>()
-        for pitch in self.contents {
-            pitch.chroma.map { set.insert($0) }
-        }
-        return set
-    }
-}
-
-// MARK: Harmonizer
-extension PitchSet {
-    /// Returns a harmonizer representation of this pitch set
-    public func harmonizer() -> Harmonizer {
-        return MusicKit.IdentityHarmonizer
-    }
-
-    /// Returns a harmonizer representation of this pitch set,
-    /// transposed by the given scale and degree
-    public func harmonizer(scale: Harmonizer, degree: Float) -> Harmonizer {
-        // TODO: implement
-        return MusicKit.IdentityHarmonizer
+// MARK: Sliceable
+extension PitchSet : Sliceable {
+    /// Access the elements in the given range.
+    public subscript(range: Range<Int>) -> PitchSetSlice {
+        return PitchSetSlice(contents[range])
     }
 }
 
 // MARK: Equatable
 public func ==(lhs: PitchSet, rhs: PitchSet) -> Bool {
-    return lhs.contents == rhs.contents
+    if count(lhs) != count(rhs) {
+        return false
+    }
+    for (lhs, rhs) in zip(lhs, rhs) {
+        if lhs != rhs {
+            return false
+        }
+    }
+    return true
 }
 
-// MARK: PitchSet-PitchSet operators
+// MARK: Operators
 public func +(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
     var lhs = lhs
     lhs.insert(rhs)
@@ -181,42 +173,142 @@ public func -=(inout lhs: PitchSet, rhs: PitchSet) {
     }
 }
 
-// MARK: PitchSet-Pitch operators
-public func +(lhs: PitchSet, rhs: Pitch) -> PitchSet {
-    var lhs = lhs
-    lhs.insert(rhs)
-    return lhs
-}
+// MARK: == PitchSetSlice ==
+/// A slice of a `PitchSet`.
+public struct PitchSetSlice : Printable {
+    private var contents: ArraySlice<Pitch> = []
 
-public func +=(inout lhs: PitchSet, rhs: Pitch) {
-    lhs.insert(rhs)
-}
-
-public func -(lhs: PitchSet, rhs: Pitch) -> PitchSet {
-    var lhs = lhs
-    lhs.remove(rhs)
-    return lhs
-}
-
-public func -=(inout lhs: PitchSet, rhs: Pitch) {
-    lhs.remove(rhs)
-}
-
-public func /(lhs: PitchSet, rhs: Chroma) -> PitchSet {
-    if lhs.count == 0 {
-        return lhs
+    /// The number of elements the `PitchSetSlice` contains.
+    public var count: Int {
+        return contents.count
     }
-    var lhs = lhs
-    let firstPitch = lhs[0]
-    if firstPitch.chroma == nil {
-        return lhs
+
+    /// Creates an empty `PitchSetSlice`.
+    public init() { }
+
+    /// Creates a new `PitchSetSlice` with the contents of a given sequence.
+    public init<S : SequenceType where S.Generator.Element == Pitch>(_ sequence: S) {
+        contents = ArraySlice(sorted(sequence))
     }
-    var newFirstPitch = firstPitch
-    while (newFirstPitch.chroma.map { $0 == rhs } != Optional(true)) {
-        newFirstPitch = Pitch(midi: newFirstPitch.midi - 1)
+
+    /// Creates a new `PitchSetSlice` with the given values.
+    public init(values: Pitch...) {
+        contents = ArraySlice(sorted(values))
     }
-    lhs.insert(newFirstPitch)
-    return lhs
+
+    /// Creates a new `PitchSetSlice` from a sorted slice.
+    private init(sortedSlice: ArraySlice<Pitch>) {
+        contents = sortedSlice
+    }
+
+    /// Returns the index of the given `pitch`
+    ///
+    /// :returns: The index of the first instance of `pitch`, or `nil` if `pitch` isn't found.
+    public func indexOf(pitch: Pitch) -> Int? {
+        let index = _insertionIndex(contents, pitch)
+        if index == count {
+            return nil
+        }
+        return contents[index] == pitch ? index : nil
+    }
+
+    /// Returns true iff `pitch` is found in the slice.
+    public func contains(pitch: Pitch) -> Bool {
+        return indexOf(pitch) != nil
+    }
+
+    /// Returns a new `PitchSetSlice` with the combined contents of `self` and the given pitches.
+    public func merge(pitches: Pitch...) -> PitchSetSlice {
+        return merge(pitches)
+    }
+
+    /// Returns a new `PitchSetSlice` with the combined contents of `self` and the given pitches.
+    public func merge<S: SequenceType where S.Generator.Element == Pitch>(pitches: S) -> PitchSetSlice {
+        return PitchSetSlice(contents + pitches)
+    }
+
+    /// Inserts one or more new pitches into the slice in the correct order.
+    public mutating func insert(pitches: Pitch...) {
+        for pitch in pitches {
+            contents.insert(pitch, atIndex: _insertionIndex(contents, pitch))
+        }
+    }
+
+    /// Inserts the contents of a sequence into the `PitchSetSlice`.
+    public mutating func insert<S: SequenceType where S.Generator.Element == Pitch>(pitches: S) {
+        contents = ArraySlice(sorted(contents + pitches))
+    }
+
+    /// Removes `pitch` from the slice if it exists.
+    ///
+    /// :returns: The given value if found, otherwise `nil`.
+    public mutating func remove(pitch: Pitch) -> Pitch? {
+        if let index = indexOf(pitch) {
+            return contents.removeAtIndex(index)
+        }
+        return nil
+    }
+
+    /// Removes and returns the pitch at `index`. Requires count > 0.
+    public mutating func removeAtIndex(index: Int) -> Pitch {
+        return contents.removeAtIndex(index)
+    }
+
+    /// Removes all pitches from the slice.
+    public mutating func removeAll(keepCapacity: Bool = true) {
+        contents.removeAll(keepCapacity: keepCapacity)
+    }
+}
+
+// MARK: Printable
+extension PitchSetSlice : Printable {
+    public var description: String {
+        return contents.description
+    }
+}
+
+// MARK: SequenceType
+extension PitchSetSlice : SequenceType {
+    public func generate() -> GeneratorOf<Pitch> {
+        return GeneratorOf(contents.generate())
+    }
+}
+
+// MARK: CollectionType
+extension PitchSetSlice : CollectionType {
+    typealias Index = Int
+
+    /// The position of the first pitch in the slice. (Always zero.)
+    public var startIndex: Int {
+        return 0
+    }
+
+    /// One greater than the position of the last element in the slice. Zero when the slice is empty.
+    public var endIndex: Int {
+        return count
+    }
+
+    /// Accesses the pitch at index `i`.
+    ///
+    /// Read-only to ensure sorting - use `insert` to add new pitches.
+    public subscript(i: Int) -> Pitch {
+        return contents[i]
+    }
+}
+
+// MARK: ArrayLiteralConvertible
+extension PitchSetSlice : ArrayLiteralConvertible {
+    public init(arrayLiteral elements: Pitch...) {
+        self.contents = ArraySlice(sorted(elements))
+    }
+}
+
+// MARK: Sliceable
+extension PitchSetSlice : Sliceable {
+    /// Access the elements in the given range.
+    public subscript(range: Range<Int>) -> PitchSetSlice {
+        return PitchSetSlice(contents[range])
+    }
 }
 
 // MARK: _insertionIndex
@@ -227,7 +319,9 @@ public func /(lhs: PitchSet, rhs: Chroma) -> PitchSet {
 /// could be inserted, keeping `pitchSet` in order.
 ///
 /// :returns: An index in the range `0...count(pitches)` where `pitch` can be inserted.
-private func _insertionIndex(pitches: [Pitch], pitch: Pitch) -> Int
+//func _insertionIndex(pitches: [Pitch], pitch: Pitch) -> Int
+func _insertionIndex<C: CollectionType where
+    C.Generator.Element == Pitch, C.Index == Int>(pitches: C, pitch: Pitch) -> Int
 {
     if isEmpty(pitches) {
         return 0
@@ -251,5 +345,3 @@ private func _insertionIndex(pitches: [Pitch], pitch: Pitch) -> Int
 
     return pitches.endIndex
 }
-
-
