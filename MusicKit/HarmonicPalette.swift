@@ -2,7 +2,7 @@
 
 import Foundation
 
-/// A `HarmonicPalette` is a mapping from all pitch classes to harmonizers.
+/// A `HarmonicPalette` is a collection of chroma to harmonizer mappings
 public struct HarmonicPalette {
 
 }

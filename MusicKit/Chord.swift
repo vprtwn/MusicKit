@@ -101,7 +101,7 @@ public enum Chord  {
                 midiNum = midiNum + interval
                 var pitch = Pitch(midi: midiNum)
 
-                if let pitchClass = pitch.pitchClass {
+                if let chroma = pitch.chroma {
                     if let previousPitchName = previousPitch.noteNameTuple {
                         var preferredLetterName : LetterName?
                         // maj/min second
@@ -112,7 +112,7 @@ public enum Chord  {
                         else if interval == 3 || interval == 4 {
                             preferredLetterName = previousPitchName.0.next().next()
                         }
-                        let preferredPitchName = pitchClass.names.filter {
+                        let preferredPitchName = chroma.names.filter {
                             n in n.0 == preferredLetterName
                             }.first
                         pitch.preferredName = preferredPitchName

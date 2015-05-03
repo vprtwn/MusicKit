@@ -21,27 +21,27 @@ print(A4.frequency)   // 444.0
 MusicKit.concertA = 440
 ///```
 
-///### PitchClass
-///* A `Pitch` has a `PitchClass` if it has an integral MIDI number.
+///### Chroma
+///* A `Pitch` has a `Chroma` if it has an integral MIDI number.
 
 ///```swift
-print(A4.pitchClass)          // Optional(A)
+print(A4.chroma)          // Optional(A)
 let AHalfSharp = Pitch(midi: 69.5)
-print(AHalfSharp.pitchClass)  // nil
+print(AHalfSharp.chroma)  // nil
 ///```
 
-///* A `PitchClass` and an octave number can be used to create a `Pitch`.
+///* A `Chroma` and an octave number can be used to create a `Pitch`.
 
 ///```swift
-let D5 = Pitch(pitchClass: PitchClass.D, octave: 5)
+let D5 = Pitch(chroma: Chroma.D, octave: 5)
 print(D5)         // D5
 ///```
 
-///* A `PitchClass` can be created with an index or using one of the provided constants.
+///* A `Chroma` can be created with an index or using one of the provided constants.
 ///```swift
-let C = PitchClass(index: 0)
+let C = Chroma(index: 0)
 print(C)          // C
-let CSharp = PitchClass.Cs
+let CSharp = Chroma.Cs
 print(CSharp)     // C♯
 let D = C + 2
 print(D)          // D
@@ -70,9 +70,9 @@ var petrushka = CMajor + FSharpMajor
 print(petrushka)                    // [C2, E2, F♯2, G2, B♭2, C♯3]
 print(CMajor == FSharpMajor)        // false
 print(petrushka.gamut())    // [F♯, G, B♭, C, E, C♯]
-petrushka.remove(Pitch(pitchClass: PitchClass.G, octave: 2))
+petrushka.remove(Pitch(chroma: Chroma.G, octave: 2))
 print(petrushka)                    // [C2, E2, F♯2, B♭2, C♯3]
-let F = PitchClass.F
+let F = Chroma.F
 print(CMajor / F)                   // [F1, C2, E2, G2]
 ///```
 
@@ -119,7 +119,7 @@ print(ch)          // [A4, C♯5, E5, G♯5]
 let C5 = Pitch(midi: 72)
 let neapolitan = Major.bII
 print(neapolitan(C5))  // [C♯5, E♯5, G♯5]
-let G4 = Pitch(pitchClass: PitchClass.G, octave: 4)
+let G4 = Pitch(chroma: Chroma.G, octave: 4)
 let plagalCadence = [Major.IV, Major.I] * G4
 print(plagalCadence)   // [[F5, A5, C6], [C5, E5, G5]]
 ///```

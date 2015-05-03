@@ -20,12 +20,12 @@ public enum Scale {
                 var pitch = Pitch(midi: midiNum)
 
                 // if the scale is diatonic and the current and previous pitch
-                /// have names, set a preferred pitch class name
+                /// have names, set a preferred chroma name
                 if scaleLength == 7 {
-                    if let pitchClass = pitch.pitchClass {
+                    if let chroma = pitch.chroma {
                         if let previousPitchName = previousPitch.noteNameTuple {
                             let preferredLetterName = previousPitchName.0.next()
-                            let preferredPitchName = pitchClass.names.filter {
+                            let preferredPitchName = chroma.names.filter {
                                 n in n.0 == preferredLetterName
                                 }.first
                             pitch.preferredName = preferredPitchName

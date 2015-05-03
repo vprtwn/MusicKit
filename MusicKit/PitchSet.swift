@@ -126,11 +126,11 @@ extension PitchSet : Printable {
 
 // MARK: Gamut
 extension PitchSet {
-    /// Returns the set of pitch classes contained in the `PitchSet`
-    public func gamut() -> Set<PitchClass> {
-        var set = Set<PitchClass>()
+    /// Returns the set of chroma contained in the `PitchSet`
+    public func gamut() -> Set<Chroma> {
+        var set = Set<Chroma>()
         for pitch in self.contents {
-            pitch.pitchClass.map { set.insert($0) }
+            pitch.chroma.map { set.insert($0) }
         }
         return set
     }
@@ -192,17 +192,17 @@ public func -=(inout lhs: PitchSet, rhs: Pitch) -> PitchSet {
     return lhs
 }
 
-public func /(lhs: PitchSet, rhs: PitchClass) -> PitchSet {
+public func /(lhs: PitchSet, rhs: Chroma) -> PitchSet {
     if lhs.count == 0 {
         return lhs
     }
     var lhs = lhs
     let firstPitch = lhs[0]
-    if firstPitch.pitchClass == nil {
+    if firstPitch.chroma == nil {
         return lhs
     }
     var newFirstPitch = firstPitch
-    while (newFirstPitch.pitchClass.map { $0 == rhs } != Optional(true)) {
+    while (newFirstPitch.chroma.map { $0 == rhs } != Optional(true)) {
         newFirstPitch = Pitch(midi: newFirstPitch.midi - 1)
     }
     lhs.insert(newFirstPitch)

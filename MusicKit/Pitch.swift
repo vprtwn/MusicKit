@@ -14,16 +14,16 @@ public struct Pitch : Comparable {
 
     public let midi : Float
 
-    /// The preferred pitch class name. Default is nil.
-    var _preferredName : PitchClassNameTuple?
-    public var preferredName : PitchClassNameTuple? {
+    /// The preferred chroma name. Default is nil.
+    var _preferredName : ChromaNameTuple?
+    public var preferredName : ChromaNameTuple? {
         get {
             return _preferredName
         }
         set(newName) {
-            if let pitchClass = self.pitchClass {
+            if let chroma = self.chroma {
                 if let name = newName {
-                    if pitchClass.validateName(name) {
+                    if chroma.validateName(name) {
                         _preferredName = name
                     }
                 }
@@ -35,8 +35,8 @@ public struct Pitch : Comparable {
         self.midi = midi
     }
 
-    public init(pitchClass: PitchClass, octave: UInt) {
-        self.midi = Float(pitchClass.index + (octave+1)*12)
+    public init(chroma: Chroma, octave: UInt) {
+        self.midi = Float(chroma.index + (octave+1)*12)
     }
 
     /// Frequency in Hz
@@ -44,24 +44,24 @@ public struct Pitch : Comparable {
         return Pitch.mtof(self.midi)
     }
 
-    /// A PitchClass, or nil if the pitch doesn't align with the pitch classes
+    /// A `Chroma`, or nil if the pitch doesn't align with the chromas
     /// in the current tuning system.
-    public var pitchClass : PitchClass? {
+    public var chroma : Chroma? {
         if self.midi - floor(self.midi) == 0 {
-            return PitchClass(index: UInt(self.midi)%12)
+            return Chroma(index: UInt(self.midi)%12)
         }
         return nil
     }
 
     public var noteNameTuple : (LetterName, Accidental, Int)? {
-        if pitchClass == nil {
+        if chroma == nil {
             return nil
         }
         else if let name = preferredName {
-            return noteNameWithOctave(octaveNumber, pitchClassName: name)
+            return noteNameWithOctave(octaveNumber, nameTuple: name)
         }
-        else if let name = pitchClass!.names.first {
-            return noteNameWithOctave(octaveNumber, pitchClassName: name)
+        else if let name = chroma!.names.first {
+            return noteNameWithOctave(octaveNumber, nameTuple: name)
         }
         else {
             return nil
@@ -80,21 +80,21 @@ public struct Pitch : Comparable {
         }
     }
 
-    // Strips naturals for note names
+    /// Strips naturals for note names
     func stringForAccidental(a: Accidental) -> String {
         return a == .Natural ? "" : a.rawValue
     }
 
-    // Unadjusted octave number
+    /// Unadjusted octave number
     var octaveNumber : Int {
         return Int((self.midi - 12.0)/12.0)
     }
 
-    // Combines an octave number with a pitch class name, taking into account
-    // edge cases for enharmonics like B#
-    func noteNameWithOctave(octave: Int, pitchClassName name: PitchClassNameTuple) -> (LetterName, Accidental, Int) {
-        let cFlat : PitchClassNameTuple = (.C, .Flat)
-        let bSharp : PitchClassNameTuple = (.B, .Sharp)
+    /// Combines an octave number with a chroma name, taking into account
+    /// edge cases for enharmonics like B#
+    func noteNameWithOctave(octave: Int, nameTuple name: ChromaNameTuple) -> (LetterName, Accidental, Int) {
+        let cFlat : ChromaNameTuple = (.C, .Flat)
+        let bSharp : ChromaNameTuple = (.B, .Sharp)
         var adjustedOctaveNumber = octave
         if name == cFlat {
             adjustedOctaveNumber++

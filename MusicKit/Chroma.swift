@@ -2,13 +2,13 @@
 
 import Foundation
 
-public struct PitchClass : Comparable {
+public struct Chroma : Comparable {
     public let index : UInt
     public init(index: UInt) {
         self.index = index
     }
 
-    public var names : [PitchClassNameTuple] {
+    public var names : [ChromaNameTuple] {
         switch self.index {
         case 0:
             return [(.C, .Natural), (.B, .Sharp), (.D, .DoubleFlat)]
@@ -40,30 +40,30 @@ public struct PitchClass : Comparable {
     }
 
     /// Returns true if the given name tuple is a valid name
-    public func validateName(name: PitchClassNameTuple) -> Bool {
+    public func validateName(name: ChromaNameTuple) -> Bool {
         return self.names.reduce(false, combine: { (a, r) -> Bool in
             a || (r == name)
         })
     }
 
-    public static let C = PitchClass(index: 0)
-    public static let Cs = PitchClass(index: 1)
-    public static let D = PitchClass(index: 2)
-    public static let Ds = PitchClass(index: 3)
-    public static let E = PitchClass(index: 4)
-    public static let F = PitchClass(index: 5)
-    public static let Fs = PitchClass(index: 6)
-    public static let G = PitchClass(index: 7)
-    public static let Gs = PitchClass(index: 8)
-    public static let A = PitchClass(index: 9)
-    public static let As = PitchClass(index: 10)
-    public static let B = PitchClass(index: 11)
+    public static let C = Chroma(index: 0)
+    public static let Cs = Chroma(index: 1)
+    public static let D = Chroma(index: 2)
+    public static let Ds = Chroma(index: 3)
+    public static let E = Chroma(index: 4)
+    public static let F = Chroma(index: 5)
+    public static let Fs = Chroma(index: 6)
+    public static let G = Chroma(index: 7)
+    public static let Gs = Chroma(index: 8)
+    public static let A = Chroma(index: 9)
+    public static let As = Chroma(index: 10)
+    public static let B = Chroma(index: 11)
 }
 
 // MARK: Printable
-extension PitchClass : Printable {
+extension Chroma : Printable {
     public var description : String {
-        let nameTupleOpt : PitchClassNameTuple? = self.names.first
+        let nameTupleOpt : ChromaNameTuple? = self.names.first
         if let n = nameTupleOpt {
             let accidental = (n.1 != .Natural) ? n.1.rawValue : ""
             return "\(n.0.rawValue)\(accidental)"
@@ -73,7 +73,7 @@ extension PitchClass : Printable {
 }
 
 // MARK: Hashable
-extension PitchClass : Hashable {
+extension Chroma : Hashable {
     public var hashValue : Int {
         return index.hashValue
     }
@@ -81,18 +81,18 @@ extension PitchClass : Hashable {
 
 // MARK: Operators
 
-public func ==(lhs: PitchClass, rhs: PitchClass) -> Bool {
+public func ==(lhs: Chroma, rhs: Chroma) -> Bool {
     return lhs.index == rhs.index
 }
 
-public func <(lhs: PitchClass, rhs: PitchClass) -> Bool {
+public func <(lhs: Chroma, rhs: Chroma) -> Bool {
     return lhs.index < rhs.index
 }
 
-public func -(lhs: PitchClass, rhs: UInt) -> PitchClass {
-    return PitchClass(index: lhs.index - UInt(rhs % 12))
+public func -(lhs: Chroma, rhs: UInt) -> Chroma {
+    return Chroma(index: lhs.index - UInt(rhs % 12))
 }
 
-public func +(lhs: PitchClass, rhs: UInt) -> PitchClass {
-    return PitchClass(index: lhs.index + UInt(rhs % 12))
+public func +(lhs: Chroma, rhs: UInt) -> Chroma {
+    return Chroma(index: lhs.index + UInt(rhs % 12))
 }

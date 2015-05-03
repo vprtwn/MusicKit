@@ -24,7 +24,7 @@ public struct MusicKit {
 
 // MARK: Type Aliases
 public typealias Harmonizer = (Pitch -> PitchSet)
-public typealias PitchClassNameTuple = (LetterName, Accidental)
+public typealias ChromaNameTuple = (LetterName, Accidental)
 
 // MARK: Operators
 public func == (p1:(LetterName, Accidental), p2:(LetterName, Accidental)) -> Bool
