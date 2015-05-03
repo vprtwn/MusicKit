@@ -49,7 +49,7 @@ public struct PitchSet : Equatable {
         return PitchSet(contents + pitches)
     }
 
-    /// Inserts one or more new pitches into the `PItchSet` in the correct order.
+    /// Inserts one or more new pitches into the `PitchSet` in the correct order.
     public mutating func insert(pitches: Pitch...) {
         for pitch in pitches {
             contents.insert(pitch, atIndex: _insertionIndex(contents, pitch))
@@ -156,29 +156,40 @@ public func ==(lhs: PitchSet, rhs: PitchSet) -> Bool {
     return lhs.contents == rhs.contents
 }
 
-// MARK: Operators
-public func -(lhs: PitchSet, rhs: PitchSet) -> PitchSet { return lhs - rhs }
-public func +(lhs: PitchSet, rhs: PitchSet) -> PitchSet { return lhs + rhs }
-
-public func -=(inout lhs: PitchSet, rhs: PitchSet) -> PitchSet {
-    lhs -= rhs
+// MARK: PitchSet-PitchSet operators
+public func +(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
+    var lhs = lhs
+    lhs.insert(rhs)
     return lhs
 }
 
-public func +=(inout lhs: PitchSet, rhs: PitchSet) -> PitchSet {
-    lhs += rhs
+public func +=(inout lhs: PitchSet, rhs: PitchSet) {
+    lhs.insert(rhs)
+}
+
+public func -(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
+    var lhs = lhs
+    for pitch in rhs {
+        lhs.remove(pitch)
+    }
     return lhs
 }
 
+public func -=(inout lhs: PitchSet, rhs: PitchSet) {
+    for pitch in rhs {
+        lhs.remove(pitch)
+    }
+}
+
+// MARK: PitchSet-Pitch operators
 public func +(lhs: PitchSet, rhs: Pitch) -> PitchSet {
     var lhs = lhs
     lhs.insert(rhs)
     return lhs
 }
 
-public func +=(inout lhs: PitchSet, rhs: Pitch) -> PitchSet {
+public func +=(inout lhs: PitchSet, rhs: Pitch) {
     lhs.insert(rhs)
-    return lhs
 }
 
 public func -(lhs: PitchSet, rhs: Pitch) -> PitchSet {
@@ -187,9 +198,8 @@ public func -(lhs: PitchSet, rhs: Pitch) -> PitchSet {
     return lhs
 }
 
-public func -=(inout lhs: PitchSet, rhs: Pitch) -> PitchSet {
+public func -=(inout lhs: PitchSet, rhs: Pitch) {
     lhs.remove(rhs)
-    return lhs
 }
 
 public func /(lhs: PitchSet, rhs: Chroma) -> PitchSet {

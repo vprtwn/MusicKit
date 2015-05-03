@@ -4,13 +4,13 @@ import MusicKit
 final class PitchTests: XCTestCase {
     func testInitWithIntegralMidiNumber() {
         let p = Pitch(midi: 69)
-        XCTAssertTrue(p.midi == 69)
-        XCTAssertTrue(p.chroma == Optional(Chroma.A))
+        XCTAssertEqual(p.midi, 69)
+        XCTAssert(p.chroma == Optional(Chroma.A))
     }
 
     func testInitWithNonIntegralMidiNumber() {
         let p = Pitch(midi: 69.5)
-        XCTAssertTrue(p.midi == 69.5)
-        XCTAssertTrue(p.chroma == nil)
+        XCTAssertEqual(p.midi, 69.5)
+        XCTAssert(p.chroma == nil)
     }
 }

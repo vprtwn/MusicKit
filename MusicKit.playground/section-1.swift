@@ -51,16 +51,12 @@ print(D)          // D
 ///* A `PitchSet` is a collection of unique `Pitch` instances ordered by frequency.
 
 ///```swift
-var CMajor = PitchSet()
-CMajor.insert(Pitch(midi: 36))
-CMajor.insert(Pitch(midi: 40))
-CMajor.insert(Pitch(midi: 43))
+var CMajor = PitchSet(values: Pitch(midi: 36))
+CMajor.insert([Pitch(midi: 40), Pitch(midi: 43)])
 print(CMajor)       // [C2, E2, G2]
 
-var FSharpMajor = PitchSet()
-FSharpMajor.insert(Pitch(midi: 42))
-FSharpMajor.insert(Pitch(midi: 46))
-FSharpMajor.insert(Pitch(midi: 49))
+let pitches = [Pitch(midi: 42), Pitch(midi: 46), Pitch(midi: 49)]
+var FSharpMajor = PitchSet(pitches)
 print(FSharpMajor)  // [F♯2, B♭2, C♯3]
 ///```
 
@@ -69,7 +65,7 @@ print(FSharpMajor)  // [F♯2, B♭2, C♯3]
 var petrushka = CMajor + FSharpMajor
 print(petrushka)                    // [C2, E2, F♯2, G2, B♭2, C♯3]
 print(CMajor == FSharpMajor)        // false
-print(petrushka.gamut())    // [F♯, G, B♭, C, E, C♯]
+print(petrushka.gamut())            // [F♯, G, B♭, C, E, C♯]
 petrushka.remove(Pitch(chroma: Chroma.G, octave: 2))
 print(petrushka)                    // [C2, E2, F♯2, B♭2, C♯3]
 let F = Chroma.F
