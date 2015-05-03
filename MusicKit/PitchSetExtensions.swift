@@ -18,14 +18,14 @@ extension PitchSet {
 extension PitchSet {
     /// Returns a harmonizer representation of this pitch set
     public func harmonizer() -> Harmonizer {
-        return MusicKit.IdentityHarmonizer
+        return Harmony.IdentityHarmonizer
     }
 
     /// Returns a harmonizer representation of this pitch set,
     /// transposed by the given scale and degree
     public func harmonizer(scale: Harmonizer, degree: Float) -> Harmonizer {
         // TODO: implement
-        return MusicKit.IdentityHarmonizer
+        return Harmony.IdentityHarmonizer
     }
 }
 

@@ -34,6 +34,12 @@
 		96BB1B161AF458D7005830DC /* Accidental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BB1B141AF458D7005830DC /* Accidental.swift */; };
 		96DFB62B1AF6B62C005EEBD6 /* PitchSetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DFB62A1AF6B62C005EEBD6 /* PitchSetExtensions.swift */; };
 		96DFB62C1AF6B62C005EEBD6 /* PitchSetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DFB62A1AF6B62C005EEBD6 /* PitchSetExtensions.swift */; };
+		96DFB62E1AF6C0BB005EEBD6 /* ChromaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DFB62D1AF6C0BB005EEBD6 /* ChromaTests.swift */; };
+		96DFB62F1AF6C0BB005EEBD6 /* ChromaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DFB62D1AF6C0BB005EEBD6 /* ChromaTests.swift */; };
+		96DFB6311AF6C26A005EEBD6 /* Harmony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DFB6301AF6C26A005EEBD6 /* Harmony.swift */; };
+		96DFB6321AF6C26A005EEBD6 /* Harmony.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DFB6301AF6C26A005EEBD6 /* Harmony.swift */; };
+		96DFB6341AF6C2F0005EEBD6 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DFB6331AF6C2F0005EEBD6 /* ArrayExtensions.swift */; };
+		96DFB6351AF6C2F0005EEBD6 /* ArrayExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DFB6331AF6C2F0005EEBD6 /* ArrayExtensions.swift */; };
 		96F299281A5663E500D7B006 /* MusicKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 96F299271A5663E500D7B006 /* MusicKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		96F2992E1A5663E500D7B006 /* MusicKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96F299221A5663E500D7B006 /* MusicKit.framework */; };
 		96F2993F1A56654800D7B006 /* MusicKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F2993E1A56654800D7B006 /* MusicKit.swift */; };
@@ -72,6 +78,9 @@
 		96BB1B111AF458A0005830DC /* LetterName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterName.swift; sourceTree = "<group>"; };
 		96BB1B141AF458D7005830DC /* Accidental.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accidental.swift; sourceTree = "<group>"; };
 		96DFB62A1AF6B62C005EEBD6 /* PitchSetExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSetExtensions.swift; sourceTree = "<group>"; };
+		96DFB62D1AF6C0BB005EEBD6 /* ChromaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromaTests.swift; sourceTree = "<group>"; };
+		96DFB6301AF6C26A005EEBD6 /* Harmony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Harmony.swift; sourceTree = "<group>"; };
+		96DFB6331AF6C2F0005EEBD6 /* ArrayExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayExtensions.swift; sourceTree = "<group>"; };
 		96F299221A5663E500D7B006 /* MusicKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F299261A5663E500D7B006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96F299271A5663E500D7B006 /* MusicKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicKit.h; sourceTree = "<group>"; };
@@ -142,6 +151,8 @@
 			children = (
 				96F299271A5663E500D7B006 /* MusicKit.h */,
 				96F2993E1A56654800D7B006 /* MusicKit.swift */,
+				96DFB6331AF6C2F0005EEBD6 /* ArrayExtensions.swift */,
+				96DFB6301AF6C26A005EEBD6 /* Harmony.swift */,
 				96F299401A5665CA00D7B006 /* Pitch.swift */,
 				964A7F591A58A85B000E2D5A /* PitchSet.swift */,
 				96DFB62A1AF6B62C005EEBD6 /* PitchSetExtensions.swift */,
@@ -171,6 +182,7 @@
 			children = (
 				96686DB41A573B7F00350A2D /* PitchTests.swift */,
 				9636C2E91AF6A899005941D4 /* PitchSetTests.swift */,
+				96DFB62D1AF6C0BB005EEBD6 /* ChromaTests.swift */,
 				9636C2E41AF6A432005941D4 /* HarmonicFunctionTests.swift */,
 				96F299321A5663E500D7B006 /* Supporting Files */,
 			);
@@ -359,6 +371,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9636C2E81AF6A450005941D4 /* HarmonicFunctionTests.swift in Sources */,
+				96DFB62F1AF6C0BB005EEBD6 /* ChromaTests.swift in Sources */,
 				9636C2EB1AF6A899005941D4 /* PitchSetTests.swift in Sources */,
 				9691BB301A57C78800421B56 /* PitchTests.swift in Sources */,
 			);
@@ -368,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DFB6351AF6C2F0005EEBD6 /* ArrayExtensions.swift in Sources */,
 				9693F6761A57C44A006270F4 /* MusicKit.swift in Sources */,
 				9610686B1AF3390F00BF9E91 /* Chroma.swift in Sources */,
 				96DFB62C1AF6B62C005EEBD6 /* PitchSetExtensions.swift in Sources */,
@@ -378,6 +392,7 @@
 				965331341AF1C20000EEDA02 /* HarmonicFunction.swift in Sources */,
 				96BB1B161AF458D7005830DC /* Accidental.swift in Sources */,
 				9693F6781A57C44A006270F4 /* Scale.swift in Sources */,
+				96DFB6321AF6C26A005EEBD6 /* Harmony.swift in Sources */,
 				96BB1B131AF458A0005830DC /* LetterName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -386,6 +401,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96DFB6341AF6C2F0005EEBD6 /* ArrayExtensions.swift in Sources */,
 				96F299411A5665CA00D7B006 /* Pitch.swift in Sources */,
 				969A02B21A5C13BA003EB476 /* Chord.swift in Sources */,
 				96DFB62B1AF6B62C005EEBD6 /* PitchSetExtensions.swift in Sources */,
@@ -396,6 +412,7 @@
 				969220C41AF1E75A00560A20 /* Chroma.swift in Sources */,
 				96BB1B151AF458D7005830DC /* Accidental.swift in Sources */,
 				96F2993F1A56654800D7B006 /* MusicKit.swift in Sources */,
+				96DFB6311AF6C26A005EEBD6 /* Harmony.swift in Sources */,
 				96BB1B121AF458A0005830DC /* LetterName.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -405,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9636C2E71AF6A44F005941D4 /* HarmonicFunctionTests.swift in Sources */,
+				96DFB62E1AF6C0BB005EEBD6 /* ChromaTests.swift in Sources */,
 				9636C2EA1AF6A899005941D4 /* PitchSetTests.swift in Sources */,
 				96686DB51A573B7F00350A2D /* PitchTests.swift in Sources */,
 			);

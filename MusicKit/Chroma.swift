@@ -2,14 +2,24 @@
 
 import Foundation
 
-public struct Chroma : Comparable {
-    public let index : UInt
-    public init(index: UInt) {
-        self.index = index
-    }
+public typealias ChromaNameTuple = (LetterName, Accidental)
+
+public enum Chroma : UInt {
+    case C = 0
+    case Cs = 1
+    case D = 2
+    case Ds = 3
+    case E = 4
+    case F = 5
+    case Fs = 6
+    case G = 7
+    case Gs = 8
+    case A = 9
+    case As = 10
+    case B = 11
 
     public var names : [ChromaNameTuple] {
-        switch self.index {
+        switch self.rawValue {
         case 0:
             return [(.C, .Natural), (.B, .Sharp), (.D, .DoubleFlat)]
         case 1:
@@ -45,19 +55,6 @@ public struct Chroma : Comparable {
             a || (r == name)
         })
     }
-
-    public static let C = Chroma(index: 0)
-    public static let Cs = Chroma(index: 1)
-    public static let D = Chroma(index: 2)
-    public static let Ds = Chroma(index: 3)
-    public static let E = Chroma(index: 4)
-    public static let F = Chroma(index: 5)
-    public static let Fs = Chroma(index: 6)
-    public static let G = Chroma(index: 7)
-    public static let Gs = Chroma(index: 8)
-    public static let A = Chroma(index: 9)
-    public static let As = Chroma(index: 10)
-    public static let B = Chroma(index: 11)
 }
 
 // MARK: Printable
@@ -72,27 +69,24 @@ extension Chroma : Printable {
     }
 }
 
-// MARK: Hashable
-extension Chroma : Hashable {
-    public var hashValue : Int {
-        return index.hashValue
-    }
-}
-
 // MARK: Operators
-
-public func ==(lhs: Chroma, rhs: Chroma) -> Bool {
-    return lhs.index == rhs.index
+public func == (p1:(LetterName, Accidental), p2:(LetterName, Accidental)) -> Bool
+{
+    return (p1.0 == p2.0) && (p1.1 == p2.1)
 }
 
-public func <(lhs: Chroma, rhs: Chroma) -> Bool {
-    return lhs.index < rhs.index
+public func -(lhs: Chroma, rhs: Int) -> Chroma {
+    var rhs = rhs
+    while rhs < 0 {
+        rhs = rhs + 12
+    }
+    return Chroma(rawValue: lhs.rawValue - UInt(rhs % 12))!
 }
 
-public func -(lhs: Chroma, rhs: UInt) -> Chroma {
-    return Chroma(index: lhs.index - UInt(rhs % 12))
-}
-
-public func +(lhs: Chroma, rhs: UInt) -> Chroma {
-    return Chroma(index: lhs.index + UInt(rhs % 12))
+public func +(lhs: Chroma, rhs: Int) -> Chroma {
+    var rhs = rhs
+    while rhs < 0 {
+        rhs = rhs + 12
+    }
+    return Chroma(rawValue: lhs.rawValue + UInt(rhs % 12))!
 }

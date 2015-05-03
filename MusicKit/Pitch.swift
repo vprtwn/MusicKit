@@ -36,7 +36,7 @@ public struct Pitch : Comparable {
     }
 
     public init(chroma: Chroma, octave: UInt) {
-        self.midi = Float(chroma.index + (octave+1)*12)
+        self.midi = Float(chroma.rawValue + (octave+1)*12)
     }
 
     /// Frequency in Hz
@@ -48,7 +48,7 @@ public struct Pitch : Comparable {
     /// in the current tuning system.
     public var chroma : Chroma? {
         if self.midi - floor(self.midi) == 0 {
-            return Chroma(index: UInt(self.midi)%12)
+            return Chroma(rawValue: UInt(self.midi)%12)
         }
         return nil
     }

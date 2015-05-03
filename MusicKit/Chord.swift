@@ -58,7 +58,7 @@ public enum Chord  {
 
     public static func create(harmonizer: Harmonizer, indices: [UInt]) -> Harmonizer {
         if indices.count < 2 {
-            return MusicKit.IdentityHarmonizer
+            return Harmony.IdentityHarmonizer
         }
 
         // sort indices

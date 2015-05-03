@@ -33,13 +33,13 @@ print(AHalfSharp.chroma)  // nil
 ///* A `Chroma` and an octave number can be used to create a `Pitch`.
 
 ///```swift
-let D5 = Pitch(chroma: Chroma.D, octave: 5)
+let D5 = Pitch(chroma: .D, octave: 5)
 print(D5)         // D5
 ///```
 
 ///* A `Chroma` can be created with an index or using one of the provided constants.
 ///```swift
-let C = Chroma(index: 0)
+let C = Chroma.C
 print(C)          // C
 let CSharp = Chroma.Cs
 print(CSharp)     // C♯
@@ -51,7 +51,7 @@ print(D)          // D
 ///* A `PitchSet` is a collection of unique `Pitch` instances ordered by frequency.
 
 ///```swift
-var CMajor = PitchSet(values: Pitch(midi: 36))
+var CMajor = PitchSet(pitches: Pitch(midi: 36))
 CMajor.insert([Pitch(midi: 40), Pitch(midi: 43)])
 print(CMajor)       // [C2, E2, G2]
 
