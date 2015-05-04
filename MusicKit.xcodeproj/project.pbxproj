@@ -81,6 +81,7 @@
 		96DFB62D1AF6C0BB005EEBD6 /* ChromaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChromaTests.swift; sourceTree = "<group>"; };
 		96DFB6301AF6C26A005EEBD6 /* Harmony.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Harmony.swift; sourceTree = "<group>"; };
 		96DFB6331AF6C2F0005EEBD6 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		96DFB63A1AF6FB37005EEBD6 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		96F299221A5663E500D7B006 /* MusicKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F299261A5663E500D7B006 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96F299271A5663E500D7B006 /* MusicKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MusicKit.h; sourceTree = "<group>"; };
@@ -204,6 +205,7 @@
 		96F299251A5663E500D7B006 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				96DFB63A1AF6FB37005EEBD6 /* README.md */,
 				96F299261A5663E500D7B006 /* Info.plist */,
 			);
 			name = "Supporting Files";

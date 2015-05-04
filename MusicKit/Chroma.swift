@@ -90,3 +90,7 @@ public func +(lhs: Chroma, rhs: Int) -> Chroma {
     }
     return Chroma(rawValue: lhs.rawValue + UInt(rhs % 12))!
 }
+
+public func *(lhs: Chroma, rhs: Int) -> Pitch {
+    return Pitch(chroma: lhs, octave: UInt(abs(rhs)))
+}

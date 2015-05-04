@@ -6,7 +6,7 @@ MusicKit is a Swift framework for programmatically interacting with musical abst
 let C5 = Pitch(midi: 72)
 let neapolitan = Major.bII
 print(neapolitan(C5))       // [C♯5, E♯5, G♯5]
-let G4 = Pitch(chroma: Chroma.G, octave: 4)
+let G4 = Chroma.G*4
 let plagalCadence = [Major.IV, Major.I]
 print(plagalCadence * G4)   // [[C5, E5, G5], [G4, B4, D5]]
 ```

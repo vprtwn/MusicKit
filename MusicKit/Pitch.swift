@@ -107,7 +107,6 @@ public struct Pitch : Comparable {
 }
 
 // MARK: Printable
-
 extension Pitch : Printable {
     public var description : String {
         return (count(noteName) != 0) ? "\(noteName)" : "\(frequency)Hz"
@@ -115,7 +114,6 @@ extension Pitch : Printable {
 }
 
 // MARK: Hashable
-
 extension Pitch: Hashable {
     public var hashValue : Int {
         return midi.hashValue

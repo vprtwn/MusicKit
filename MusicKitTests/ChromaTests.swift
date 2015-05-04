@@ -10,7 +10,7 @@ final class ChromaTests: XCTestCase {
 
     func testHashable() {
         var d = [Chroma : Int]()
-        d[Chroma.C] = 1
-        XCTAssert(d[Chroma.C] == Optional(1))
+        d[.C] = 1
+        XCTAssert(d[.C] == Optional(1))
     }
 }
