@@ -14,8 +14,10 @@ public enum ChordAddition : Float {
     case Thirteen = 21
 }
 
+/// Phantom type containing functions for creating chord Harmonizers
 public enum Chord  {
     /// Inverts an array of indices
+    // TODO: move this to utilities
     static func invert(indices: [Float], n: UInt) -> [Float] {
         let count = indices.count
         let modN = Int(n) % count
@@ -29,6 +31,7 @@ public enum Chord  {
 
     /// Converts an array of indices to intervals
     /// e.g. [0, 4, 7] -> [4, 3]
+    // TODO: move this to utilities
     static func indices(intervals: [Float]) -> [Float] {
         var indices : [Float] = [0]
         for i in 0..<intervals.count {
@@ -40,6 +43,7 @@ public enum Chord  {
 
     /// Converts an array of intervals to indices
     /// e.g. [4, 3] -> [0, 4, 7]
+    // TODO: move this to utilities
     static func intervals(indices: [Float]) -> [Float] {
         var intervals : [Float] = []
         for i in 1..<indices.count {
@@ -50,6 +54,7 @@ public enum Chord  {
     }
 
     /// Transposes a Harmonizer
+    // TODO: move this to a protocol
     static func transpose(f: Harmonizer, semitones: Float) -> Harmonizer {
         return { pitch in
             f(Pitch(midi: pitch.midi + semitones))

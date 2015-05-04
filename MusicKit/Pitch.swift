@@ -32,15 +32,18 @@ public struct Pitch : Comparable {
         }
     }
 
+    /// Creates a `Pitch` with the given MIDI number.
+    /// Note that non-integral MIDI numbers are allowed.
     public init(midi: Float) {
         self.midi = midi
     }
 
+    /// Creates a `Pitch` with the given chroma (pitch class) and octave.
     public init(chroma: Chroma, octave: UInt) {
         self.midi = Float(chroma.rawValue + (octave+1)*12)
     }
 
-    /// Frequency in Hz
+    /// The frequency of the pitch in Hz
     public var frequency : Float {
         return Pitch.mtof(self.midi)
     }
@@ -54,7 +57,7 @@ public struct Pitch : Comparable {
         return nil
     }
 
-    public var noteNameTuple : (LetterName, Accidental, Int)? {
+    var noteNameTuple : (LetterName, Accidental, Int)? {
         if chroma == nil {
             return nil
         }
