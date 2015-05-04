@@ -28,6 +28,8 @@ final class PitchSetTests: XCTestCase {
     }
 
     func testTransposable() {
-
+        var sut : PitchSet = [Chroma.C*2, Chroma.C*3, Chroma.C*4]
+        sut = sut.transpose(2)
+        XCTAssertEqual(sut, [Chroma.D*2, Chroma.D*3, Chroma.D*4])
     }
 }

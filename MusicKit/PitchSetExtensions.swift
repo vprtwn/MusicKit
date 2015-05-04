@@ -17,7 +17,8 @@ extension PitchSet {
 // MARK: Transposable
 extension PitchSet : Transposable {
     public func transpose(semitones: Float) -> PitchSet {
-        return self
+        // TODO: use PitchSet.map
+        return PitchSet(contents.map { $0.transpose(semitones) })
     }
 }
 
