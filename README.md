@@ -1,6 +1,6 @@
 # MusicKit
 
-MusicKit is a Swift framework for programmatically interacting with musical abstractions.
+MusicKit is a framework and DSL for manipulating musical abstractions in Swift.
 
 ```swift
 let C5 = Pitch(midi: 72)
