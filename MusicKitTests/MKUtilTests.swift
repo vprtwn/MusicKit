@@ -7,4 +7,20 @@ final class MKUtilTests: XCTestCase {
         sut = MKUtil.rotate(sut, 1)
         XCTAssertEqual(sut, [2, 3, 1])
     }
+
+    func testInvert() {
+
+    }
+
+    func testSemitoneIndices() {
+
+    }
+
+    func testIntervals() {
+
+    }
+
+    func testInsertionIndex() {
+
+    }
 }

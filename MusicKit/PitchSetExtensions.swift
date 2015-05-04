@@ -14,6 +14,13 @@ extension PitchSet {
     }
 }
 
+// MARK: Transposable
+extension PitchSet : Transposable {
+    public func transpose(semitones: Float) -> PitchSet {
+        return self
+    }
+}
+
 // MARK: Harmonizer
 extension PitchSet {
     /// Returns a harmonizer representation of this pitch set

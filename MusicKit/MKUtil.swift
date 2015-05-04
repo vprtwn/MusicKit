@@ -10,6 +10,40 @@ public enum MKUtil {
         return Array(array[index..<count] + array[0..<index])
     }
 
+    /// Returns the nth inversion of the given array of semitone indices
+    static func invert(semitoneIndices: [Float], n: UInt) -> [Float] {
+        let count = semitoneIndices.count
+        let modN = Int(n) % count
+        var semitones = semitoneIndices
+        for i in 0..<modN {
+            let next = semitones[0] + 12
+            semitones = Array(semitones[1..<count] + [next])
+        }
+        return semitones
+    }
+
+    /// Converts an array of intervals to semitone indices
+    /// e.g. [4, 3] -> [0, 4, 7]
+    static func semitoneIndices(intervals: [Float]) -> [Float] {
+        var indices : [Float] = [0]
+        for i in 0..<intervals.count {
+            let next = indices[i] + intervals[i]
+            indices.append(next)
+        }
+        return indices
+    }
+
+    /// Converts an array of semitone indices to intervals
+    /// e.g. [0, 4, 7] -> [4, 3]
+    static func intervals(semitoneIndices: [Float]) -> [Float] {
+        var intervals : [Float] = []
+        for i in 1..<semitoneIndices.count {
+            let delta = semitoneIndices[i] - semitoneIndices[i-1]
+            intervals.append(delta)
+        }
+        return intervals
+    }
+
     /// Returns the insertion point for `pitch` in the collection of `pitches`.
     ///
     /// If `pitch` exists at least once in `pitches`, the returned index will point to the
@@ -17,7 +51,6 @@ public enum MKUtil {
     /// could be inserted, keeping `pitchSet` in order.
     ///
     /// :returns: An index in the range `0...count(pitches)` where `pitch` can be inserted.
-    //func _insertionIndex(pitches: [Pitch], pitch: Pitch) -> Int
     public static func insertionIndex<C: CollectionType where
         C.Generator.Element == Pitch, C.Index == Int>(pitches: C,_ pitch: Pitch) -> Int
     {

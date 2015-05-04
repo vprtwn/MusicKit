@@ -9,6 +9,11 @@ public struct Harmony {
         s.insert(pitch)
         return s
     }
+
+    /// Transposes a Harmonizer
+    static func transpose(f: Harmonizer, semitones: Float) -> Harmonizer {
+        return { pitch in f(pitch.transpose(semitones)) }
+    }
 }
 
 // MARK: Type Aliases

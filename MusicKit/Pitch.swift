@@ -107,9 +107,16 @@ extension Pitch : Printable {
 }
 
 // MARK: Hashable
-extension Pitch: Hashable {
+extension Pitch : Hashable {
     public var hashValue : Int {
         return midi.hashValue
+    }
+}
+
+// MARK: Transposable
+extension Pitch : Transposable {
+    public func transpose(semitones: Float) -> Pitch {
+        return Pitch(midi: midi + semitones)
     }
 }
 

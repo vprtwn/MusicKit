@@ -16,51 +16,6 @@ public enum ChordAddition : Float {
 
 /// Phantom type containing functions for creating chord Harmonizers
 public enum Chord  {
-    /// Inverts an array of indices
-    // TODO: move this to utilities
-    static func invert(indices: [Float], n: UInt) -> [Float] {
-        let count = indices.count
-        let modN = Int(n) % count
-        var semitones = indices
-        for i in 0..<modN {
-            let next = semitones[0] + 12
-            semitones = Array(semitones[1..<count] + [next])
-        }
-        return semitones
-    }
-
-    /// Converts an array of indices to intervals
-    /// e.g. [0, 4, 7] -> [4, 3]
-    // TODO: move this to utilities
-    static func indices(intervals: [Float]) -> [Float] {
-        var indices : [Float] = [0]
-        for i in 0..<intervals.count {
-            let next = indices[i] + intervals[i]
-            indices.append(next)
-        }
-        return indices
-    }
-
-    /// Converts an array of intervals to indices
-    /// e.g. [4, 3] -> [0, 4, 7]
-    // TODO: move this to utilities
-    static func intervals(indices: [Float]) -> [Float] {
-        var intervals : [Float] = []
-        for i in 1..<indices.count {
-            let delta = indices[i] - indices[i-1]
-            intervals.append(delta)
-        }
-        return intervals
-    }
-
-    /// Transposes a Harmonizer
-    // TODO: move this to a protocol
-    static func transpose(f: Harmonizer, semitones: Float) -> Harmonizer {
-        return { pitch in
-            f(Pitch(midi: pitch.midi + semitones))
-        }
-    }
-
     public static func create(harmonizer: Harmonizer, indices: [UInt]) -> Harmonizer {
         if indices.count < 2 {
             return Harmony.IdentityHarmonizer
@@ -133,7 +88,7 @@ public enum Chord  {
 
     static func create(intervals: [Float], inversion: UInt, additions: [ChordAddition]) -> Harmonizer {
         // convert to indices
-        let originalIndices = Chord.indices(intervals)
+        let originalIndices = MKUtil.semitoneIndices(intervals)
         var indices = originalIndices
 
         // add additions
@@ -143,12 +98,12 @@ public enum Chord  {
 
         // invert
         let inversion = Int(inversion) % indices.count
-        indices = invert(indices, n: UInt(inversion))
+        indices = MKUtil.invert(indices, n: UInt(inversion))
 
         // convert to intervals
-        let intervals = Chord.intervals(indices)
+        let intervals = MKUtil.intervals(indices)
 
-        return Chord.transpose(create(intervals), semitones: originalIndices[inversion])
+        return Harmony.transpose(create(intervals), semitones: originalIndices[inversion])
     }
 
     static let _Major : ChordTuple = ([4, 3], "Major triad", "")

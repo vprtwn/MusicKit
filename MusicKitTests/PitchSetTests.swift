@@ -27,4 +27,7 @@ final class PitchSetTests: XCTestCase {
             PitchSet([Chroma.C*2, Chroma.C*3]))
     }
 
+    func testTransposable() {
+
+    }
 }

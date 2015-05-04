@@ -31,4 +31,12 @@ final class PitchTests: XCTestCase {
         let description = sut.description
         XCTAssertEqual(description, "C5")
     }
+
+    func testTransposable() {
+        var sut = Chroma.C*5
+        sut = sut.transpose(12)
+        XCTAssertEqual(sut, Chroma.C*6)
+        sut = sut.transpose(-24)
+        XCTAssertEqual(sut, Chroma.C*4)
+    }
 }
