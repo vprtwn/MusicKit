@@ -3,14 +3,36 @@ import MusicKit
 
 final class ChromaTests: XCTestCase {
     func testEquatable() {
-        let c1 = Chroma.C
-        let c2 = Chroma.D
-        XCTAssertNotEqual(c1, c2)
+        let sut1 = Chroma.C
+        let sut2 = Chroma.D
+        XCTAssertNotEqual(sut1, sut2)
     }
 
     func testHashable() {
-        var d = [Chroma : Int]()
-        d[.C] = 1
-        XCTAssert(d[.C] == Optional(1))
+        let sut = Chroma.C
+        let hashValue = sut.hashValue
+        XCTAssertEqual(hashValue, 0.hashValue)
+    }
+
+    func testAddition() {
+        var sut = Chroma.B
+        sut = sut + 1
+        XCTAssertEqual(sut, Chroma.C)
+        sut = sut + 11
+        XCTAssertEqual(sut, Chroma.B)
+    }
+
+    func testSubtraction() {
+        var sut = Chroma.C
+        sut = sut - 1
+        XCTAssertEqual(sut, Chroma.B)
+        sut = sut - 11
+        XCTAssertEqual(sut, Chroma.C)
+    }
+
+    func testDescription() {
+        var sut = Chroma.C
+        let description = sut.description
+        XCTAssertEqual(description, "C")
     }
 }

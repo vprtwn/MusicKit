@@ -75,8 +75,7 @@ extension Chroma : Printable {
     public var description : String {
         let nameTupleOpt : ChromaNameTuple? = self.names.first
         if let n = nameTupleOpt {
-            let accidental = (n.1 != .Natural) ? n.1.rawValue : ""
-            return "\(n.0.rawValue)\(accidental)"
+            return "\(n.0.description)\(n.1.description(true))"
         }
         return ""
     }
@@ -88,20 +87,17 @@ public func == (p1:(LetterName, Accidental), p2:(LetterName, Accidental)) -> Boo
     return (p1.0 == p2.0) && (p1.1 == p2.1)
 }
 
-public func -(lhs: Chroma, rhs: Int) -> Chroma {
-    var rhs = rhs
-    while rhs < 0 {
-        rhs = rhs + 12
-    }
-    return Chroma(rawValue: lhs.rawValue - UInt(rhs % 12))!
-}
-
 public func +(lhs: Chroma, rhs: Int) -> Chroma {
     var rhs = rhs
     while rhs < 0 {
         rhs = rhs + 12
     }
-    return Chroma(rawValue: lhs.rawValue + UInt(rhs % 12))!
+    let newRawValue = (lhs.rawValue + UInt(rhs))%12
+    return Chroma(rawValue: newRawValue)!
+}
+
+public func -(lhs: Chroma, rhs: Int) -> Chroma {
+    return lhs + (-1*rhs)
 }
 
 public func *(lhs: Chroma, rhs: Int) -> Pitch {

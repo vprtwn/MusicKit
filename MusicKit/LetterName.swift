@@ -2,28 +2,30 @@
 
 import Foundation
 
-public enum LetterName : String {
-    case C = "C"
-    case D = "D"
-    case E = "E"
-    case F = "F"
-    case G = "G"
-    case A = "A"
-    case B = "B"
+public enum LetterName : UInt, Printable {
+    case C = 0
+    case D = 1
+    case E = 2
+    case F = 3
+    case G = 4
+    case A = 5
+    case B = 6
 
-    static let letters : [LetterName] = [.C, .D, .E, .F, .G, .A, .B]
-    public func next() -> LetterName {
-        let index : Int = find(LetterName.letters, self)!
-        let newIndex = (index + 1) % LetterName.letters.count
-        return LetterName.letters[newIndex]
-    }
-
-    public func previous() -> LetterName {
-        let index : Int = find(LetterName.letters, self)!
-        let count = LetterName.letters.count
-        let newIndex = (((index - 1)%count) + count)%count
-        return LetterName.letters[newIndex]
+    static let names : [String] = ["C", "D", "E", "F", "G", "A", "B"]
+    public var description : String {
+        return LetterName.names[Int(rawValue)]
     }
 }
 
+public func +(lhs: LetterName, rhs: Int) -> LetterName {
+    var rhs = rhs
+    while rhs < 0 {
+        rhs += 7
+    }
+    let newRawValue = (lhs.rawValue + UInt(rhs))%7
+    return LetterName(rawValue: newRawValue)!
+}
 
+public func -(lhs: LetterName, rhs: Int) -> LetterName {
+    return lhs + (-1*rhs)
+}

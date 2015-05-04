@@ -69,21 +69,10 @@ public struct Pitch : Comparable {
         }
     }
 
-    public var noteName : String {
-        let nameTupleOpt : (LetterName, Accidental, Int)? = noteNameTuple
-
-        if let nameTuple = nameTupleOpt {
-            let accidentalString = stringForAccidental(nameTuple.1)
-            return "\(nameTuple.0.rawValue)\(accidentalString)\(nameTuple.2)"
+    public var noteName : String? {
+        return noteNameTuple.map {
+            "\($0.0.description)\($0.1.description(true))\($0.2)"
         }
-        else {
-            return ""
-        }
-    }
-
-    /// Strips naturals for note names
-    func stringForAccidental(a: Accidental) -> String {
-        return a == .Natural ? "" : a.rawValue
     }
 
     /// Unadjusted octave number
@@ -110,7 +99,7 @@ public struct Pitch : Comparable {
 // MARK: Printable
 extension Pitch : Printable {
     public var description : String {
-        return (count(noteName) != 0) ? "\(noteName)" : "\(frequency)Hz"
+        return (noteName != nil) ? "\(noteName!)" : "\(frequency)Hz"
     }
 }
 

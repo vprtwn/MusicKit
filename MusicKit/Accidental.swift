@@ -2,26 +2,34 @@
 
 import Foundation
 
-public enum Accidental : String {
-    case DoubleFlat = "𝄫"
-    case Flat = "♭"
-    case Natural = "♮"
-    case Sharp = "♯"
-    case DoubleSharp = "𝄪"
+public enum Accidental : Float, Printable {
+    case DoubleFlat = -2
+    case Flat = -1
+    case Natural = 0
+    case Sharp = 1
+    case DoubleSharp = 2
 
-    /// The number of semitones the accidental represents
-    public func semitones() -> Int {
+    public func description(stripNatural: Bool) -> String {
+        switch self {
+        case .Natural:
+            return stripNatural ? "" : description
+        default:
+            return description
+        }
+    }
+
+    public var description : String {
         switch self {
         case .DoubleFlat:
-            return -2
+            return "𝄫"
         case .Flat:
-            return -1
+            return "♭"
         case .Natural:
-            return 0
+            return "♮"
         case .Sharp:
-            return 1
+            return "♯"
         case .DoubleSharp:
-            return 2
+            return "𝄪"
         }
     }
 }

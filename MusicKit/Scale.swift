@@ -24,7 +24,7 @@ public enum Scale {
                 if scaleLength == 7 {
                     if let chroma = pitch.chroma {
                         if let previousPitchName = previousPitch.noteNameTuple {
-                            let preferredLetterName = previousPitchName.0.next()
+                            let preferredLetterName = previousPitchName.0 + 1
                             let preferredPitchName = chroma.names.filter {
                                 n in n.0 == preferredLetterName
                                 }.first
