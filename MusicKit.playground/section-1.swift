@@ -14,7 +14,6 @@ print(A4.frequency)   // 440.0
 
 let DSharp2 = Pitch(chroma: .Ds, octave: 2)
 let C5 = Chroma.C*5
-let G4 = 🎹.G*4
 ///```
 
 ///* Changing the value of MusicKit's concert A changes the computed frequency of all pitches.

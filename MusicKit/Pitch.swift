@@ -2,7 +2,8 @@
 
 import Foundation
 
-/// A type representing `Pitch`
+/// The auditory attribute of sound according to which sounds can be ordered 
+/// on a scale from low to high (ANSI 1994)
 public struct Pitch : Comparable {
     /// midi number to frequency
     /// TODO: move this to a temperament enum
@@ -16,7 +17,7 @@ public struct Pitch : Comparable {
 
     /// The preferred chroma name. Default is nil.
     var _preferredName : ChromaNameTuple?
-    public var preferredName : ChromaNameTuple? {
+    var preferredName : ChromaNameTuple? {
         get {
             return _preferredName
         }

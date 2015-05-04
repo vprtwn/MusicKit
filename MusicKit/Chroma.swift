@@ -2,23 +2,36 @@
 
 import Foundation
 
-public typealias ChromaNameTuple = (LetterName, Accidental)
+typealias ChromaNameTuple = (LetterName, Accidental)
 
+/// Pitch quality; also known as pitch class.
 public enum Chroma : UInt {
+    /// C
     case C = 0
+    /// C Sharp
     case Cs = 1
+    /// D
     case D = 2
+    /// D Sharp
     case Ds = 3
+    /// E
     case E = 4
+    /// F
     case F = 5
+    /// F Sharp
     case Fs = 6
+    /// G
     case G = 7
+    /// G Sharp
     case Gs = 8
+    /// A
     case A = 9
+    /// A Sharp
     case As = 10
+    /// B
     case B = 11
 
-    public var names : [ChromaNameTuple] {
+    var names : [ChromaNameTuple] {
         switch self.rawValue {
         case 0:
             return [(.C, .Natural), (.B, .Sharp), (.D, .DoubleFlat)]
@@ -50,7 +63,7 @@ public enum Chroma : UInt {
     }
 
     /// Returns true if the given name tuple is a valid name
-    public func validateName(name: ChromaNameTuple) -> Bool {
+    func validateName(name: ChromaNameTuple) -> Bool {
         return self.names.reduce(false, combine: { (a, r) -> Bool in
             a || (r == name)
         })

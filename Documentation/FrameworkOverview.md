@@ -2,12 +2,15 @@
 
 ### Pitch
 * `Pitch` is the basic unit of `MusicKit`. 
-* A `Pitch` can be created with a MIDI number.
+* A `Pitch` can be created with a MIDI number, or with a chroma and octave number.
 
 ```swift
 let A4 = Pitch(midi: 69)
 print(A4.noteName)    // A4
 print(A4.frequency)   // 440.0
+
+let DSharp2 = Pitch(chroma: .Ds, octave: 2)
+let C5 = Chroma.C*5
 ```
 
 * Changing the value of MusicKit's concert A changes the computed frequency of all pitches.
@@ -30,13 +33,13 @@ print(AHalfSharp.chroma)  // nil
 * A `Chroma` and an octave number can be used to create a `Pitch`.
 
 ```swift
-let D5 = Pitch(chroma: Chroma.D, octave: 5)
+let D5 = Pitch(chroma: .D, octave: 5)
 print(D5)         // D5
 ```
 
 * A `Chroma` can be created with an index or using one of the provided constants.
 ```swift
-let C = Chroma(index: 0)
+let C = Chroma.C
 print(C)          // C
 let CSharp = Chroma.Cs
 print(CSharp)     // C♯
@@ -48,11 +51,10 @@ print(D)          // D
 * A `PitchSet` is a collection of unique `Pitch` instances ordered by frequency.
 
 ```swift
-var CMajor = PitchSet(values: Pitch(midi: 36))
-CMajor.insert([Pitch(midi: 40), Pitch(midi: 43)])
+var CMajor = PitchSet(pitches: Chroma.C*2, Chroma.E*2, Chroma.G*2)
 print(CMajor)       // [C2, E2, G2]
 
-let pitches = [Pitch(midi: 42), Pitch(midi: 46), Pitch(midi: 49)]
+let pitches = [Chroma.Fs*2, Chroma.As*2, Chroma.Cs*3]
 var FSharpMajor = PitchSet(pitches)
 print(FSharpMajor)  // [F♯2, B♭2, C♯3]
 ```
@@ -109,10 +111,9 @@ print(ch)          // [A4, C♯5, E5, G♯5]
 * `Major` and `Minor` contain harmonizers for creating diatonic functional harmony.
 
 ```swift
-let C5 = Pitch(midi: 72)
 let neapolitan = Major.bII
-print(neapolitan(C5))  // [C♯5, E♯5, G♯5]
-let G4 = Pitch(chroma: Chroma.G, octave: 4)
+print(neapolitan(Chroma.C*5))  // [C♯5, E♯5, G♯5]
+let G4 = Chroma.G*4
 let plagalCadence = [Major.IV, Major.I] * G4
 print(plagalCadence)   // [[F5, A5, C6], [C5, E5, G5]]
 ```
