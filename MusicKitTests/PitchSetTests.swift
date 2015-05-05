@@ -32,4 +32,22 @@ final class PitchSetTests: XCTestCase {
         sut = sut.transpose(2)
         XCTAssertEqual(sut, [Chroma.D*2, Chroma.D*3, Chroma.D*4])
     }
+
+    func testFilter() {
+        var sut : PitchSet = [Chroma.C*2, Chroma.C*3, Chroma.C*5]
+        sut = sut.filter { $0.midi != 72 }
+        XCTAssertEqual(sut, [Chroma.C*2, Chroma.C*3])
+    }
+
+    func testMap() {
+        let sut : PitchSet = [Chroma.C*5, Chroma.Cs*5, Chroma.D*5]
+        let result = sut.map { $0.midi }
+        XCTAssertEqual(result, [72, 73, 74])
+    }
+
+    func testReduce() {
+        let sut : PitchSet = [Chroma.C*5, Chroma.Cs*5, Chroma.D*5]
+        let result = sut.reduce(0, combine: { (a, r) in a + r.midi })
+        XCTAssertEqual(result, 219)
+    }
 }

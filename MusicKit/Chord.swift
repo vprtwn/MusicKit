@@ -60,25 +60,6 @@ public enum Chord  {
                 let interval = intervals[prevDegree]
                 midiNum = midiNum + interval
                 var pitch = Pitch(midi: midiNum)
-
-                if let chroma = pitch.chroma {
-                    if let previousPitchName = previousPitch.noteNameTuple {
-                        var preferredLetterName : LetterName?
-                        // maj/min second
-                        if interval == 1 || interval == 2 {
-                            preferredLetterName = previousPitchName.0 + 1
-                        }
-                        // maj/min third
-                        else if interval == 3 || interval == 4 {
-                            preferredLetterName = previousPitchName.0 + 2
-                        }
-                        let preferredPitchName = chroma.names.filter {
-                            n in n.0 == preferredLetterName
-                            }.first
-                        pitch.preferredName = preferredPitchName
-                    }
-                }
-
                 pitchSet.insert(pitch)
                 previousPitch = pitch
             }

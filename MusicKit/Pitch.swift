@@ -15,23 +15,6 @@ public struct Pitch : Comparable {
 
     public let midi : Float
 
-    /// The preferred chroma name. Default is nil.
-    var _preferredName : ChromaNameTuple?
-    var preferredName : ChromaNameTuple? {
-        get {
-            return _preferredName
-        }
-        set(newName) {
-            if let chroma = self.chroma {
-                if let name = newName {
-                    if chroma.validateName(name) {
-                        _preferredName = name
-                    }
-                }
-            }
-        }
-    }
-
     /// Creates a `Pitch` with the given MIDI number.
     /// Note that non-integral MIDI numbers are allowed.
     public init(midi: Float) {
@@ -58,18 +41,9 @@ public struct Pitch : Comparable {
     }
 
     var noteNameTuple : (LetterName, Accidental, Int)? {
-        if chroma == nil {
-            return nil
-        }
-        else if let name = preferredName {
-            return noteNameWithOctave(octaveNumber, nameTuple: name)
-        }
-        else if let name = chroma!.names.first {
-            return noteNameWithOctave(octaveNumber, nameTuple: name)
-        }
-        else {
-            return nil
-        }
+        return chroma.flatMap {
+            $0.names.first.map {
+                noteNameWithOctave(octaveNumber, nameTuple: $0) } }
     }
 
     public var noteName : String? {

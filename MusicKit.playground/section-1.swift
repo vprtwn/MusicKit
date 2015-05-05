@@ -118,7 +118,7 @@ let neapolitan = Major.bII
 print(neapolitan(Chroma.C*5))  // [C♯5, E♯5, G♯5]
 let G4 = Chroma.G*4
 let plagalCadence = [Major.IV, Major.I] * G4
-print(plagalCadence)   // [[F5, A5, C6], [C5, E5, G5]]
+print(plagalCadence)   // [[C5, E5, G5], [G4, B4, D5]]
 ///```
 
 ///* `Harmony` provides a way to create custom functional harmonizers.

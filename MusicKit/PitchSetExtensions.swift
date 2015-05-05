@@ -37,6 +37,21 @@ extension PitchSet {
     }
 }
 
+// MARK: Higher-order functions
+extension PitchSet {
+    public func map<T>(transform: Pitch -> T) -> [T] {
+        return Swift.map(self, transform)
+    }
+
+    public func reduce<T>(initial: T, combine: (T, Pitch) -> T) -> T {
+        return Swift.reduce(self, initial, combine)
+    }
+
+    public func filter(includeElement: Pitch -> Bool) -> PitchSet {
+        return PitchSet(Swift.filter(self, includeElement))
+    }
+}
+
 // MARK: PitchSet-Pitch operators
 public func +(lhs: PitchSet, rhs: Pitch) -> PitchSet {
     var lhs = lhs

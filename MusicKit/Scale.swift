@@ -19,21 +19,6 @@ public enum Scale {
                 let prevDegree = (i-1)
                 midiNum = midiNum + intervals[prevDegree]
                 var pitch = Pitch(midi: midiNum)
-
-                // if the scale is diatonic and the current and previous pitch
-                /// have names, set a preferred chroma name
-                if scaleLength == 7 {
-                    if let chroma = pitch.chroma {
-                        if let previousPitchName = previousPitch.noteNameTuple {
-                            let preferredLetterName = previousPitchName.0 + 1
-                            let preferredPitchName = chroma.names.filter {
-                                n in n.0 == preferredLetterName
-                                }.first
-                            pitch.preferredName = preferredPitchName
-                        }
-                    }
-                }
-                
                 pitchSet.insert(pitch)
                 previousPitch = pitch
             }
