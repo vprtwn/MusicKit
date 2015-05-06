@@ -102,3 +102,11 @@ public func ==(lhs: Pitch, rhs: Pitch) -> Bool {
 public func <(lhs: Pitch, rhs: Pitch) -> Bool {
     return lhs.midi < rhs.midi
 }
+
+public func +(lhs: Pitch, rhs: Float) -> Pitch {
+    return Pitch(midi: lhs.midi + rhs)
+}
+
+public func -(lhs: Pitch, rhs: Float) -> Pitch {
+    return lhs + (-rhs)
+}
