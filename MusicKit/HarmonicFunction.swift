@@ -35,8 +35,8 @@ public enum HarmonicFunction {
     }
 
     // Augmented sixth chords
-    static let It6 = Chord.create([4, 6])
-    static let Fr6 = Chord.create([4, 2, 4])
+    static let It6 = Harmony.create([4, 6])
+    static let Fr6 = Harmony.create([4, 2, 4])
     static let Ger6 = Chord.DominantSeventh
 }
 

@@ -22,8 +22,7 @@ public enum Chord  {
         }
 
         // sort indices
-        var indices = indices
-        indices.sort { $0 < $1 }
+        var indices = sorted(indices)
         let maxIndex : Int = Int(indices.last!)
 
         // create a scale extending enough octaves to include the max index
@@ -45,27 +44,7 @@ public enum Chord  {
             intervals.append(delta)
         }
 
-        return create(intervals)
-    }
-
-    // TODO: move this to Harmony.create
-    public static func create(intervals: [Float]) -> Harmonizer {
-        return { firstPitch in
-            var pitchSet = PitchSet()
-            pitchSet.insert(firstPitch)
-            var previousPitch = firstPitch
-            let chordLength = intervals.count + 1
-            var midiNum = firstPitch.midi
-            for i in 1..<chordLength {
-                let prevDegree = (i-1)
-                let interval = intervals[prevDegree]
-                midiNum = midiNum + interval
-                var pitch = Pitch(midi: midiNum)
-                pitchSet.insert(pitch)
-                previousPitch = pitch
-            }
-            return pitchSet
-        }
+        return Harmony.create(intervals)
     }
 
     static func create(intervals: [Float], inversion: UInt, additions: [ChordAddition]) -> Harmonizer {
@@ -85,7 +64,7 @@ public enum Chord  {
         // convert to intervals
         let intervals = MKUtil.intervals(indices)
 
-        return Harmony.transpose(create(intervals), semitones: originalIndices[inversion])
+        return Harmony.transpose(Harmony.create(intervals), semitones: originalIndices[inversion])
     }
 
     static let _Major : ChordTuple = ([4, 3], "Major triad", "")
