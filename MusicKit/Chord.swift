@@ -16,46 +16,31 @@ public enum ChordAddition : Float {
 
 /// Phantom type containing functions for creating chord Harmonizers
 public enum Chord  {
+    /// Creates a new `Harmonizer` using the (1-indexed) indices of the given harmonizer
     public static func create(harmonizer: Harmonizer, indices: [UInt]) -> Harmonizer {
-        if indices.count < 2 {
+        if indices.count < 2 || contains(indices, 0) {
             return Harmony.IdentityHarmonizer
         }
 
-        // sort indices
-        var indices = sorted(indices)
-        let maxIndex : Int = Int(indices.last!)
+        // sort and convert to zero-indexed indices
+        let sortedIndices = sorted(indices.map { $0 - 1 })
+        let maxIndex = Int(sortedIndices.last!)
+        var scalePitches = harmonizer(Chroma.C*0)
 
-        // create a scale extending enough octaves to include the max index
-        var scalePitchSet = PitchSet()
-        var firstPitch = Pitch(midi: 69)
-        while (scalePitchSet.count < maxIndex) {
-            let scaleOctave = harmonizer(firstPitch)
-            scalePitchSet += scaleOctave
-            firstPitch = Pitch(midi: firstPitch.midi + 12)
+        // extend scale until it covers the max index
+        while (scalePitches.count < maxIndex + 1) {
+            scalePitches.extendOctaves(1)
         }
 
-        var intervals : [Float] = []
-        for i in 1..<indices.count {
-            let prevIndex = Int(indices[i-1])
-            let curIndex = Int(indices[i])
-            let prevPitch = scalePitchSet[prevIndex]
-            let curPitch = scalePitchSet[curIndex]
-            let delta = curPitch.midi - prevPitch.midi
-            intervals.append(delta)
-        }
-
-        return Harmony.create(intervals)
+        let chosenPitches = PitchSet(sortedIndices.map { scalePitches[Int($0)] })
+        return Harmony.create(MKUtil.intervals(chosenPitches.semitoneIndices()))
     }
 
+    /// Creates a new chord `Harmonizer` from the given intervals, inversion, and additions
     static func create(intervals: [Float], inversion: UInt, additions: [ChordAddition]) -> Harmonizer {
         // convert to indices
         let originalIndices = MKUtil.semitoneIndices(intervals)
-        var indices = originalIndices
-
-        // add additions
-        for addition in additions {
-            indices.append(addition.rawValue)
-        }
+        var indices = originalIndices + additions.map { $0.rawValue }
 
         // invert
         let inversion = Int(inversion) % indices.count

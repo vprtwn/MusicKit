@@ -78,4 +78,17 @@ final class PitchSetTests: XCTestCase {
         let result = h(Chroma.F*4)
         XCTAssertEqual(result, sut)
     }
+
+    func testExtendOctaves() {
+        var sut : PitchSet = [Chroma.C*5, Chroma.E*5, Chroma.G*5]
+        sut.extendOctaves(0)
+        XCTAssertEqual(sut, [Chroma.C*5, Chroma.E*5, Chroma.G*5])
+
+        sut.extendOctaves(1)
+        XCTAssertEqual(sut, [Chroma.C*5, Chroma.E*5, Chroma.G*5, Chroma.C*6, Chroma.E*6, Chroma.G*6])
+
+        sut = [Chroma.C*5, Chroma.E*5, Chroma.G*5]
+        sut.extendOctaves(-1)
+        XCTAssertEqual(sut, [Chroma.C*4, Chroma.E*4, Chroma.G*4, Chroma.C*5, Chroma.E*5, Chroma.G*5])
+    }
 }

@@ -47,7 +47,16 @@ extension PitchSet {
         return map { $0.midi - first }
     }
 
-    /// The first pitch, or `nil` if the set is empty
+    /// Extends the pitch set by repeating with octave displacement.
+    public mutating func extendOctaves(octaves: Int) {
+        if octaves == 0 { return }
+        let start = octaves < 0 ? -1 : 1
+        for i in start...octaves {
+            insert(transpose(Float(12*i)))
+        }
+    }
+
+    /// The first pitch, or `nil` if the set is empty.
     public func first() -> Pitch? {
         return contents.first
     }
