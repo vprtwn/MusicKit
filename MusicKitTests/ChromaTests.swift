@@ -14,7 +14,7 @@ final class ChromaTests: XCTestCase {
         XCTAssertEqual(hashValue, 0.hashValue)
     }
 
-    func testAddition() {
+    func testAddInt() {
         var sut = Chroma.B
         sut = sut + 1
         XCTAssertEqual(sut, Chroma.C)
@@ -22,12 +22,21 @@ final class ChromaTests: XCTestCase {
         XCTAssertEqual(sut, Chroma.B)
     }
 
-    func testSubtraction() {
+    func testSubtractInt() {
         var sut = Chroma.C
         sut = sut - 1
         XCTAssertEqual(sut, Chroma.B)
         sut = sut - 11
         XCTAssertEqual(sut, Chroma.C)
+    }
+
+    func testSubtractChroma() {
+        var d = Chroma.C - Chroma.Cs
+        XCTAssertEqual(d, 1)
+        d = Chroma.Cs - Chroma.C
+        XCTAssertEqual(d, 1)
+        d = Chroma.C - Chroma.Fs
+        XCTAssertEqual(d, 6)
     }
 
     func testDescription() {

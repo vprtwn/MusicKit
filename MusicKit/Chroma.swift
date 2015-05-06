@@ -100,6 +100,13 @@ public func -(lhs: Chroma, rhs: Int) -> Chroma {
     return lhs + (-1*rhs)
 }
 
+/// Returns the minimum distance between two chromas
+public func -(lhs: Chroma, rhs: Chroma) -> UInt {
+    let lminusr = abs(Int(lhs.rawValue) - Int(rhs.rawValue))
+    let rminusl = abs(Int(rhs.rawValue) - Int(lhs.rawValue))
+    return UInt(min(lminusr, rminusl))
+}
+
 public func *(lhs: Chroma, rhs: Int) -> Pitch {
     return Pitch(chroma: lhs, octave: UInt(abs(rhs)))
 }

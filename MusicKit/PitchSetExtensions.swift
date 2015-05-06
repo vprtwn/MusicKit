@@ -26,6 +26,7 @@ extension PitchSet : Transposable {
 extension PitchSet {
     /// Returns a harmonizer representation of this pitch set
     public func harmonizer() -> Harmonizer {
+        // TODO: implement
         return Harmony.IdentityHarmonizer
     }
 
