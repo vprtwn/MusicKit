@@ -48,6 +48,7 @@ public enum Chord  {
         return create(intervals)
     }
 
+    // TODO: move this to Harmony.create
     public static func create(intervals: [Float]) -> Harmonizer {
         return { firstPitch in
             var pitchSet = PitchSet()

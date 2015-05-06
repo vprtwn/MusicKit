@@ -8,6 +8,7 @@ typealias ScaleTuple = ([Float], String)
 /// Phantom type containing functions for creating scale Harmonizers
 public enum Scale {
 
+    // TODO: move this to Harmony.create
     public static func create(intervals: [Float]) -> Harmonizer {
         return { firstPitch in
             var pitchSet = PitchSet()

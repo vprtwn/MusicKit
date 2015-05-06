@@ -24,6 +24,15 @@ extension PitchSet : Transposable {
 
 // MARK: Harmonizer
 extension PitchSet {
+    /// Returns the semitone indices when the lowest pitch is given index 0.
+    public func semitoneIndices() -> [Float] {
+        if self.count < 1 {
+            return [Float(0)]
+        }
+        let first = self[0].midi
+        return map { $0.midi - first }
+    }
+
     /// Returns a harmonizer representation of this pitch set
     public func harmonizer() -> Harmonizer {
         // TODO: implement

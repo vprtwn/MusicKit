@@ -50,4 +50,14 @@ final class PitchSetTests: XCTestCase {
         let result = sut.reduce(0, combine: { (a, r) in a + r.midi })
         XCTAssertEqual(result, 219)
     }
+
+    func testSemitoneIndices() {
+        var sut : PitchSet = [Chroma.C*5, Chroma.Cs*5, Chroma.D*5]
+        var result = sut.semitoneIndices()
+        XCTAssertEqual(result, [0, 1, 2])
+
+        sut = [Pitch(midi: 0), Pitch(midi: 0.5), Pitch(midi: 1.0)]
+        result = sut.semitoneIndices()
+        XCTAssertEqual(result, [0, 0.5, 1])
+    }
 }
