@@ -100,6 +100,16 @@ public func -(lhs: Chroma, rhs: Int) -> Chroma {
     return lhs + (-1*rhs)
 }
 
+postfix func --(inout chroma: Chroma) -> Chroma {
+    chroma = chroma - 1
+    return chroma
+}
+
+postfix func ++(inout chroma: Chroma) -> Chroma {
+    chroma = chroma + 1
+    return chroma
+}
+
 /// Returns the minimum distance between two chromas
 public func -(lhs: Chroma, rhs: Chroma) -> UInt {
     let lminusr = abs(Int(lhs.rawValue) - Int(rhs.rawValue))

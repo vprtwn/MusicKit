@@ -106,7 +106,7 @@ public func /(lhs: PitchSet, rhs: Chroma) -> PitchSet {
     }
     var newFirstPitch = firstPitch
     while (newFirstPitch.chroma.map { $0 == rhs } != Optional(true)) {
-        newFirstPitch = newFirstPitch - 1
+        newFirstPitch--
     }
     lhs.insert(newFirstPitch)
     return lhs

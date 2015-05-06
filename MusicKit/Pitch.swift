@@ -110,3 +110,13 @@ public func +(lhs: Pitch, rhs: Float) -> Pitch {
 public func -(lhs: Pitch, rhs: Float) -> Pitch {
     return lhs + (-rhs)
 }
+
+postfix func --(inout pitch: Pitch) -> Pitch {
+    pitch = pitch - 1
+    return pitch
+}
+
+postfix func ++(inout pitch: Pitch) -> Pitch {
+    pitch = pitch + 1
+    return pitch
+}
