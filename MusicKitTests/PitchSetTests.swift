@@ -56,8 +56,26 @@ final class PitchSetTests: XCTestCase {
         var result = sut.semitoneIndices()
         XCTAssertEqual(result, [0, 1, 2])
 
+        sut = [Chroma.C*5, Chroma.E*5, Chroma.G*5]
+        result = sut.semitoneIndices()
+        XCTAssertEqual(result, [0, 4, 7])
+
         sut = [Pitch(midi: 0), Pitch(midi: 0.5), Pitch(midi: 1.0)]
         result = sut.semitoneIndices()
         XCTAssertEqual(result, [0, 0.5, 1])
+    }
+
+    func testHarmonizer() {
+        let sut : PitchSet = [Chroma.C*5, Chroma.E*5, Chroma.G*5]
+        let h = sut.harmonizer()
+        let result = h(Chroma.C*5)
+        XCTAssertEqual(result, sut)
+    }
+
+    func testHarmonicFunction() {
+        let sut : PitchSet = [Chroma.C*5, Chroma.E*5, Chroma.G*5]
+        let h = sut.harmonicFunction(Scale.Major, 5)
+        let result = h(Chroma.F*4)
+        XCTAssertEqual(result, sut)
     }
 }

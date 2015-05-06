@@ -24,6 +24,20 @@ extension PitchSet : Transposable {
 
 // MARK: Harmonizer
 extension PitchSet {
+    /// Returns a `Harmonizer` representation of this pitch set.
+    public func harmonizer() -> Harmonizer {
+        return Harmony.create(MKUtil.intervals(semitoneIndices()))
+    }
+
+    /// Returns the harmonic function of this pitch set (as a `Harmonizer`),
+    /// in the given scale and degree.
+    public func harmonicFunction(scale: Harmonizer, _ degree: Float) -> Harmonizer {
+        return HarmonicFunction.create(scale, degree: degree, chord: harmonizer())
+    }
+}
+
+// MARK: Misc
+extension PitchSet {
     /// Returns the semitone indices when the lowest pitch is given index 0.
     public func semitoneIndices() -> [Float] {
         if self.count < 1 {
@@ -33,17 +47,14 @@ extension PitchSet {
         return map { $0.midi - first }
     }
 
-    /// Returns a harmonizer representation of this pitch set
-    public func harmonizer() -> Harmonizer {
-        // TODO: implement
-        return Harmony.IdentityHarmonizer
+    /// The first pitch, or `nil` if the set is empty
+    public func first() -> Pitch? {
+        return contents.first
     }
 
-    /// Returns a harmonizer representation of this pitch set,
-    /// transposed by the given scale and degree
-    public func harmonizer(scale: Harmonizer, degree: Float) -> Harmonizer {
-        // TODO: implement
-        return Harmony.IdentityHarmonizer
+    /// The last pitch, or `nil` if the set is empty
+    public func last() -> Pitch? {
+        return contents.last
     }
 }
 
