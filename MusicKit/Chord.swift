@@ -12,6 +12,23 @@ public enum ChordAddition : Float {
     case SharpEleven = 18
     case FlatThirteen = 20
     case Thirteen = 21
+
+    public var description : String {
+        switch self {
+        case .FlatNine:
+            return "♭9"
+        case .Nine:
+            return "9"
+        case .Eleven:
+            return "11"
+        case .SharpEleven:
+            return "♯11"
+        case .FlatThirteen:
+            return "♭13"
+        case .Thirteen:
+            return "13"
+        }
+    }
 }
 
 /// Phantom type containing functions for creating chord Harmonizers
