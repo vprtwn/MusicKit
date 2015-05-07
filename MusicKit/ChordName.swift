@@ -4,22 +4,21 @@ import Foundation
 
 /// defines arrays of (Harmonizer, ChordTuple) tuples
 struct ChordTuples {
-    static let majorMinor = [
+    static let Triads = [
         (Chord.Major, Chord._Major),
-        (Chord.Minor, Chord._Minor)
-    ]
-    static let triads = [
+        (Chord.Minor, Chord._Minor),
         (Chord.Augmented, Chord._Augmented),
         (Chord.Diminished, Chord._Diminished),
         (Chord.Sus2, Chord._Sus2),
         (Chord.Sus4, Chord._Sus4)
     ]
-    static let tetrads = [
+    static let Tetrads = [
         (Chord.DominantSeventh, Chord._DominantSeventh),
         (Chord.MajorSeventh, Chord._MajorSeventh),
         (Chord.MinorMajorSeventh, Chord._MinorMajorSeventh),
         (Chord.MinorSeventh, Chord._MinorSeventh),
         (Chord.AugmentedMajorSeventh, Chord._AugmentedMajorSeventh),
+        (Chord.AugmentedSeventh, Chord._AugmentedSeventh),
         (Chord.HalfDiminishedSeventh, Chord._HalfDiminishedSeventh),
         (Chord.DiminishedSeventh, Chord._DiminishedSeventh),
         (Chord.DominantSeventhFlatFive, Chord._DominantSeventhFlatFive),
@@ -49,37 +48,45 @@ extension Chord {
         // must have at least a triad after normalization
         if count < 3 { return nil }
 
-        let root = pitchSet.first()!
-        let gamut = pitchSet.gamut()
-        let indices = pitchSet.semitoneIndices()
-
         // MARK: Triads
-        if count == 3 {
-            // major/minor triads
-            for tuple in ChordTuples.majorMinor {
-                let shortSuffix = tuple.1.2
-                let _pitchSet = tuple.0(root)
-                var _indices = _pitchSet.semitoneIndices()
-                if _indices == indices {
-                    let rootName = root.chroma?.description
-                    return rootName.map { "\($0)\(shortSuffix)" }
-                }
-                else {
-                    for i in 1..<count {
-                        let inversion = MKUtil.zero(MKUtil.invert(_indices, n: UInt(i)))
-                        if inversion == indices {
-                            let rootName = pitchSet[count - i].chroma?.description
-                            let bottomNameOpt = pitchSet[0].chroma?.description
-                            if let bottomName = bottomNameOpt {
-                                return rootName.map { "\($0)\(shortSuffix)/\(bottomName)" }
-                            }
-                        }
+        if count < 5 {
+            return nameWithoutExtensions(pitchSet)
+        }
+        return nil
+    }
+
+    static func nameWithoutExtensions(pitchSet: PitchSet) -> String? {
+        let count = pitchSet.count
+        let root = pitchSet.first()!
+        let indices = pitchSet.semitoneIndices()
+        let chordTuples = ChordTuples.Triads + ChordTuples.Tetrads
+        // check root position chords
+        for tuple in chordTuples {
+            let shortSuffix = tuple.1.2
+            var _indices = tuple.0(root).semitoneIndices()
+            if _indices == indices {
+                let rootName = root.chroma?.description
+                return rootName.map { "\($0)\(shortSuffix)" }
+            }
+        }
+        // check inversions
+        for tuple in chordTuples {
+            let shortSuffix = tuple.1.2
+            let _pitchSet = tuple.0(root)
+            var _indices = tuple.0(root).semitoneIndices()
+            for i in 1..<count {
+                let inversion = MKUtil.zero(MKUtil.invert(_indices, n: UInt(i)))
+                if inversion == indices {
+                    let rootName = pitchSet[count - i].chroma?.description
+                    let bottomNameOpt = pitchSet[0].chroma?.description
+                    if let bottomName = bottomNameOpt {
+                        return rootName.map { "\($0)\(shortSuffix)/\(bottomName)" }
                     }
                 }
             }
         }
-
-
         return nil
     }
 }
+
+

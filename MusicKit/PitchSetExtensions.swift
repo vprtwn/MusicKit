@@ -60,17 +60,19 @@ extension PitchSet {
     /// Note that pitches without chroma will be ignored.
     public mutating func dedupe() {
         var gamut = Set<Chroma>()
+        var pitchesToRemove = PitchSet()
         for i in 0..<count {
             let p = self[i]
             if let chroma = p.chroma {
                 if gamut.contains(chroma) {
-                    remove(p)
+                    pitchesToRemove.insert(p)
                 }
                 else {
                     gamut.insert(chroma)
                 }
             }
         }
+        pitchesToRemove.map { self.remove($0) }
     }
 
     /// Compresses the pitch set so that the distance between two adjacent
@@ -79,15 +81,15 @@ extension PitchSet {
         if count < 2 {
             return
         }
-        for i in 0..<count-1 {
-            let this = self[i]
-            var next = self[i+1]
-            if next - this > 12 {
-                remove(next)
-                while next - this > 12 {
-                    next = next.transpose(-12)
+        let first = self[0]
+        for i in 1..<count {
+            var pitch = self[i]
+            if pitch - first > 12 {
+                remove(pitch)
+                while pitch - first > 12 {
+                    pitch = pitch.transpose(-12)
                 }
-                insert(next)
+                insert(pitch)
             }
         }
     }
