@@ -32,6 +32,21 @@ final class ChordNameExtendedTests: XCTestCase {
         var name = Chord.name(sut)
         var expected = "CM♯11"
         XCTAssert(name == expected, "\(name) != \(expected)")
+
+        sut = [Chroma.C*0, Chroma.E*1, Chroma.D*2, Chroma.G*3, Chroma.C*4]
+        name = Chord.name(sut)
+        expected = "CM9"
+        XCTAssert(name == expected, "\(name) != \(expected)")
+
+        sut = [Chroma.C*0, Chroma.E*1, Chroma.D*2, Chroma.G*3, Chroma.C*4]
+        name = Chord.name(sut)
+        expected = "CM9"
+        XCTAssert(name == expected, "\(name) != \(expected)")
+
+        sut = [Chroma.C*0, Chroma.E*1, Chroma.Fs*2, Chroma.Gs*3, Chroma.C*4]
+        name = Chord.name(sut)
+        expected = "CM9"
+        XCTAssert(name == expected, "\(name) != \(expected)")
     }
     //*/
 }

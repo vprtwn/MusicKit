@@ -82,6 +82,7 @@ extension Chord {
                 return bassName.map { "\(name)/\($0)" }
             }
             // try with one extension
+            /// TODO: should limit chords that can be extended to common ones (major/minor/dominant)
             let extNameOpt = _name(pitchSet, tuples: ChordTuples.Triads,
                 extensions: ChordExtensions.SingleExtensions, includeSlash: false)
             if let name = extNameOpt {
