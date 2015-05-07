@@ -98,7 +98,7 @@ let equidistantPentatonic = Harmony.create([2.4, 2.4, 2.4, 2.4, 2.4])
 ///* Chords are in root position by default. You may also specify the inversion and any additions.
 
 ///```swift
-let minor = Chord.Minor(inversion: 1, additions: [.Nine])
+let minor = Chord.Minor(inversion: 1, extensions: [.Nine])
 print(minor(A4))   // [C5, E5, A5, B5]
 ///```
 

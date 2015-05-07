@@ -4,12 +4,12 @@ import Foundation
 
 /// defines arrays of (Harmonizer, ChordTuple) tuples
 struct ChordTuples {
-    static let Additions = [
-        ChordAddition.FlatNine,
-        ChordAddition.Nine,
-        ChordAddition.SharpEleven,
-        ChordAddition.FlatThirteen,
-        ChordAddition.Thirteen,
+    static let Extensions = [
+        ChordExtension.FlatNine,
+        ChordExtension.Nine,
+        ChordExtension.SharpEleven,
+        ChordExtension.FlatThirteen,
+        ChordExtension.Thirteen,
     ]
 
     static let Triads = [
