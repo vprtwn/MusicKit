@@ -84,10 +84,10 @@ let major = Scale.Major
 print(major(A4))   // [A4, B4, C♯5, D5, E5, F♯5, G♯5]
 ```
 
-* The `Scale` enum also provides a way to create a custom scale from an array of semitone intervals.
+* The `Harmony` enum provides a way to create custom harmonizers from an array of semitone intervals.
 
 ```swift
-let equidistantPentatonic = Scale.create([2.4, 2.4, 2.4, 2.4, 2.4])
+let equidistantPentatonic = Harmony.create([2.4, 2.4, 2.4, 2.4, 2.4])
 ```
 
 ### Chord
@@ -107,6 +107,13 @@ let ch = chord(Pitch(midi: 69))
 print(ch)          // [A4, C♯5, E5, G♯5]
 ```
 
+* `Chord.name` can be used to derive a chord name from a pitch set
+
+```swift
+let pitchSet : PitchSet = [Chroma.B*0, Chroma.Cs*2, Chroma.F*3, Chroma.G*4]
+print(Chord.name(pitchSet))          // G7♭5/B
+```
+
 ### Functional harmony
 * `Major` and `Minor` contain harmonizers for creating diatonic functional harmony.
 
@@ -115,7 +122,7 @@ let neapolitan = Major.bII
 print(neapolitan(Chroma.C*5))  // [C♯5, E♯5, G♯5]
 let G4 = Chroma.G*4
 let plagalCadence = [Major.IV, Major.I] * G4
-print(plagalCadence)   // [[F5, A5, C6], [C5, E5, G5]]
+print(plagalCadence)   // [[C5, E5, G5], [G4, B4, D5]]
 ```
 
 * `Harmony` provides a way to create custom functional harmonizers.
