@@ -23,5 +23,3 @@ print(Chord.name(pitchSet))         // G7♭5/B
 
 **[Framework Overview](/Documentation/FrameworkOverview.md)**
 
-(work in progress, caveat emptor)
-
