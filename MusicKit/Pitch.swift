@@ -111,6 +111,10 @@ public func -(lhs: Pitch, rhs: Float) -> Pitch {
     return lhs + (-rhs)
 }
 
+public func -(lhs: Pitch, rhs: Pitch) -> Float {
+    return lhs.midi - rhs.midi
+}
+
 postfix func --(inout pitch: Pitch) -> Pitch {
     pitch = pitch - 1
     return pitch

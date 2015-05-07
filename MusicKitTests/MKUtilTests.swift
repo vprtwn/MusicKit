@@ -1,11 +1,10 @@
 import XCTest
 import MusicKit
 
+// TODO: test these once there's a way to expose internal methods in tests
 final class MKUtilTests: XCTestCase {
     func testRotate() {
-        var sut = [1, 2, 3]
-        sut = MKUtil.rotate(sut, 1)
-        XCTAssertEqual(sut, [2, 3, 1])
+
     }
 
     func testInvert() {

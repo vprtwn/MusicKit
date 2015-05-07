@@ -4,13 +4,13 @@ import Foundation
 
 public enum MKUtil {
     /// Rotates the array `n` times to the right
-    public static func rotate<T>(array: [T],_ n: Int) -> [T] {
+    static func rotate<T>(array: [T],_ n: Int) -> [T] {
         let count = array.count
         let index = (n >= 0) ? n % count : count - (abs(n) % count)
         return Array(array[index..<count] + array[0..<index])
     }
 
-    /// Returns the nth inversion of the given array of semitone indices
+    /// Returns the nth inversion of the given sorted array of semitone indices
     static func invert(semitoneIndices: [Float], n: UInt) -> [Float] {
         let count = semitoneIndices.count
         let modN = Int(n) % count
@@ -20,6 +20,12 @@ public enum MKUtil {
             semitones = Array(semitones[1..<count] + [next])
         }
         return semitones
+    }
+
+    /// Transforms an array of semitone indices so that the first index is zero
+    static func zero(semitoneIndices: [Float]) -> [Float] {
+        if semitoneIndices.count < 1 { return semitoneIndices }
+        return semitoneIndices.map { return $0 - semitoneIndices.first! }
     }
 
     /// Converts an array of intervals to semitone indices
@@ -51,7 +57,7 @@ public enum MKUtil {
     /// could be inserted, keeping `pitchSet` in order.
     ///
     /// :returns: An index in the range `0...count(pitches)` where `pitch` can be inserted.
-    public static func insertionIndex<C: CollectionType where
+    static func insertionIndex<C: CollectionType where
         C.Generator.Element == Pitch, C.Index == Int>(pitches: C,_ pitch: Pitch) -> Int
     {
         if isEmpty(pitches) {

@@ -56,6 +56,42 @@ extension PitchSet {
         }
     }
 
+    /// Removes duplicate chroma from the pitch set, starting from the root.
+    /// Note that pitches without chroma will be ignored.
+    public mutating func dedupe() {
+        var gamut = Set<Chroma>()
+        for i in 0..<count {
+            let p = self[i]
+            if let chroma = p.chroma {
+                if gamut.contains(chroma) {
+                    remove(p)
+                }
+                else {
+                    gamut.insert(chroma)
+                }
+            }
+        }
+    }
+
+    /// Compresses the pitch set so that the distance between two adjacent
+    /// pitches is never greater than an octave
+    public mutating func compress() {
+        if count < 2 {
+            return
+        }
+        for i in 0..<count-1 {
+            let this = self[i]
+            var next = self[i+1]
+            if next - this > 12 {
+                remove(next)
+                while next - this > 12 {
+                    next = next.transpose(-12)
+                }
+                insert(next)
+            }
+        }
+    }
+
     /// The first pitch, or `nil` if the set is empty.
     public func first() -> Pitch? {
         return contents.first

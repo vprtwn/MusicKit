@@ -91,4 +91,16 @@ final class PitchSetTests: XCTestCase {
         sut.extendOctaves(-1)
         XCTAssertEqual(sut, [Chroma.C*4, Chroma.E*4, Chroma.G*4, Chroma.C*5, Chroma.E*5, Chroma.G*5])
     }
+
+    func testDedupe() {
+        var sut : PitchSet = [Chroma.C*5, Chroma.C*6, Chroma.G*5]
+        sut.dedupe()
+        XCTAssertEqual(sut, [Chroma.C*5, Chroma.G*5])
+    }
+
+    func testCompress() {
+        var sut : PitchSet = [Chroma.C*5, Chroma.E*6, Chroma.G*6, Chroma.C*8]
+        sut.compress()
+        XCTAssertEqual(sut, [Chroma.C*5, Chroma.E*5, Chroma.G*5, Chroma.C*6])
+    }
 }
