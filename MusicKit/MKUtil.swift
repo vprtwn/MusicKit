@@ -28,6 +28,23 @@ public enum MKUtil {
         return semitoneIndices.map { return $0 - semitoneIndices.first! }
     }
 
+    /// Compresses an array of semitone indices to within an octave while
+    /// maintaining the bass.
+    public static func compress(semitoneIndices: [Float]) -> [Float] {
+        let count = semitoneIndices.count
+        if count < 1 { return semitoneIndices }
+        let first = semitoneIndices[0]
+        var newIndices = [first]
+        for i in 1..<count {
+            var newIndex = semitoneIndices[i]
+            while newIndex - first > 12 {
+                newIndex -= 12
+            }
+            newIndices = newIndices + [newIndex]
+        }
+        return sorted(newIndices)
+    }
+
     /// Converts an array of intervals to semitone indices
     /// e.g. [4, 3] -> [0, 4, 7]
     static func semitoneIndices(intervals: [Float]) -> [Float] {

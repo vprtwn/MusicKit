@@ -2,6 +2,7 @@ import XCTest
 import MusicKit
 
 final class ChordNameBasicTests: XCTestCase {
+    ///*
     func testMajorMinor() {
         var sut : PitchSet = [Chroma.C*0, Chroma.E*2, Chroma.G*3, Chroma.C*4]
         var name = Chord.name(sut)
@@ -119,4 +120,5 @@ final class ChordNameBasicTests: XCTestCase {
         expected = "Gm6"
         XCTAssert(name == expected, "\(name) != \(expected)")
     }
+    //*/
 }

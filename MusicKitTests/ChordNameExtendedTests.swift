@@ -2,6 +2,7 @@ import XCTest
 import MusicKit
 
 final class ChordNameExtendedTests: XCTestCase {
+    ///*
     func testTetradSlashChords() {
         var sut : PitchSet = [Chroma.Cs*0, Chroma.E*2, Chroma.G*3, Chroma.C*4]
         var name = Chord.name(sut)
@@ -25,4 +26,12 @@ final class ChordNameExtendedTests: XCTestCase {
         expected = "Cm7/E"
         XCTAssert(name == expected, "\(name) != \(expected)")
     }
+
+    func testExtendedRootPositionTetrads() {
+        var sut : PitchSet = [Chroma.C*0, Chroma.E*1, Chroma.Fs*2, Chroma.G*3, Chroma.C*4]
+        var name = Chord.name(sut)
+        var expected = "CM♯11"
+        XCTAssert(name == expected, "\(name) != \(expected)")
+    }
+    //*/
 }

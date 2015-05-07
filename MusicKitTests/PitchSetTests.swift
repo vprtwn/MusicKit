@@ -63,6 +63,10 @@ final class PitchSetTests: XCTestCase {
         sut = [Pitch(midi: 0), Pitch(midi: 0.5), Pitch(midi: 1.0)]
         result = sut.semitoneIndices()
         XCTAssertEqual(result, [0, 0.5, 1])
+
+        sut = [Chroma.C*0, Chroma.E*0, Chroma.Fs*0, Chroma.G*0]
+        result = sut.semitoneIndices()
+        XCTAssertEqual(result, [0, 4, 6, 7])
     }
 
     func testHarmonizer() {

@@ -75,8 +75,7 @@ extension PitchSet {
         pitchesToRemove.map { self.remove($0) }
     }
 
-    /// Compresses the pitch set so that the distance between two adjacent
-    /// pitches is never greater than an octave
+    /// Compresses the pitch set to within an octave while maintaining the bass.
     public mutating func compress() {
         if count < 2 {
             return
