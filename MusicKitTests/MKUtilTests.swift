@@ -23,9 +23,7 @@ final class MKUtilTests: XCTestCase {
 
     }
 
-    func testCompress() {
-        let sut : [Float] = [0, 4, 7, 18]
-        let result = MKUtil.compress(sut)
-        XCTAssertEqual(result, [0, 4, 6, 7])
+    func testCollapse() {
+
     }
 }

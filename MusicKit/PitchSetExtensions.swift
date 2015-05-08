@@ -75,8 +75,8 @@ extension PitchSet {
         pitchesToRemove.map { self.remove($0) }
     }
 
-    /// Compresses the pitch set to within an octave while maintaining the bass.
-    public mutating func compress() {
+    /// Collapses the pitch set to within an octave, maintaining the bass.
+    public mutating func collapse() {
         if count < 2 {
             return
         }

@@ -102,9 +102,9 @@ final class PitchSetTests: XCTestCase {
         XCTAssertEqual(sut, [Chroma.C*5, Chroma.G*6])
     }
 
-    func testCompress() {
+    func testCollapse() {
         var sut : PitchSet = [Chroma.C*5, Chroma.G*6, Chroma.E*7, Chroma.C*8]
-        sut.compress()
+        sut.collapse()
         XCTAssertEqual(sut, [Chroma.C*5, Chroma.E*5, Chroma.G*5, Chroma.C*6])
     }
 }

@@ -3,7 +3,7 @@ import MusicKit
 
 final class ChordNameExtendedTests: XCTestCase {
     ///*
-    func testTetradSlashChords() {
+    func testSlashTetrads() {
         var sut : PitchSet = [Chroma.Cs*0, Chroma.E*2, Chroma.G*3, Chroma.C*4]
         var name = Chord.name(sut)
         var expected = "CM/C♯"
@@ -15,7 +15,7 @@ final class ChordNameExtendedTests: XCTestCase {
         XCTAssert(name == expected, "\(name) != \(expected)")
     }
 
-    func testPentadSlashChords() {
+    func testSlashPentads() {
         var sut : PitchSet = [Chroma.Cs*0, Chroma.As*1, Chroma.E*2, Chroma.G*3, Chroma.C*4]
         var name = Chord.name(sut)
         var expected = "C7/C♯"
@@ -24,28 +24,6 @@ final class ChordNameExtendedTests: XCTestCase {
         sut = [Chroma.E*0, Chroma.As*1, Chroma.Ds*2, Chroma.G*3, Chroma.C*4]
         name = Chord.name(sut)
         expected = "Cm7/E"
-        XCTAssert(name == expected, "\(name) != \(expected)")
-    }
-
-    func testExtendedRootPositionTetrads() {
-        var sut : PitchSet = [Chroma.C*0, Chroma.E*1, Chroma.Fs*2, Chroma.G*3, Chroma.C*4]
-        var name = Chord.name(sut)
-        var expected = "CM♯11"
-        XCTAssert(name == expected, "\(name) != \(expected)")
-
-        sut = [Chroma.C*0, Chroma.E*1, Chroma.D*2, Chroma.G*3, Chroma.C*4]
-        name = Chord.name(sut)
-        expected = "CM9"
-        XCTAssert(name == expected, "\(name) != \(expected)")
-
-        sut = [Chroma.C*0, Chroma.E*1, Chroma.D*2, Chroma.G*3, Chroma.C*4]
-        name = Chord.name(sut)
-        expected = "CM9"
-        XCTAssert(name == expected, "\(name) != \(expected)")
-
-        sut = [Chroma.C*0, Chroma.E*1, Chroma.Fs*2, Chroma.Gs*3, Chroma.C*4]
-        name = Chord.name(sut)
-        expected = "CM9"
         XCTAssert(name == expected, "\(name) != \(expected)")
     }
     //*/

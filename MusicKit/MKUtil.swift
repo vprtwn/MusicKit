@@ -28,9 +28,8 @@ public enum MKUtil {
         return semitoneIndices.map { return $0 - semitoneIndices.first! }
     }
 
-    /// Compresses an array of semitone indices to within an octave while
-    /// maintaining the bass.
-    public static func compress(semitoneIndices: [Float]) -> [Float] {
+    /// Collapses an array of semitone indices to within an octave
+    static func collapse(semitoneIndices: [Float]) -> [Float] {
         let count = semitoneIndices.count
         if count < 1 { return semitoneIndices }
         let first = semitoneIndices[0]
