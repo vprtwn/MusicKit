@@ -61,7 +61,7 @@ extension Chord {
         // - one or more pitch is chroma-less
         if count < 3 || count != gamutCount { return nil }
 
-        let bass = pitchSet.first()!
+        let bass = pitchSet[0]
         let bassName = bass.chroma?.description
         var removedBass = pitchSet
         removedBass.remove(bass)

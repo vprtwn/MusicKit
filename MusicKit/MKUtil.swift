@@ -25,7 +25,7 @@ public enum MKUtil {
     /// Transforms an array of semitone indices so that the first index is zero
     static func zero(semitoneIndices: [Float]) -> [Float] {
         if semitoneIndices.count < 1 { return semitoneIndices }
-        return semitoneIndices.map { return $0 - semitoneIndices.first! }
+        return semitoneIndices.map { return $0 - semitoneIndices[0] }
     }
 
     /// Collapses an array of semitone indices to within an octave

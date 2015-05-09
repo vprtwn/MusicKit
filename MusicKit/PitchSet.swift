@@ -42,6 +42,11 @@ public struct PitchSet : Equatable {
         return indexOf(pitch) != nil
     }
 
+    /// Returns true iff there are no pitches in the collection
+    public func isEmpty() -> Bool {
+        return count == 0
+    }
+
     /// Returns a new `PitchSet` with the combined contents of `self` and the given pitches.
     public func merge(pitches: Pitch...) -> PitchSet {
         return merge(pitches)
