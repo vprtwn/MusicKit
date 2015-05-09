@@ -1,10 +1,14 @@
-Pod::Spec.new do |spec|
-  spec.name         = 'MusicKit'
-  spec.version      = '0.1.0'
-  spec.license      = { :type => 'MIT' }
-  spec.homepage     = 'https://github.com/benzguo/MusicKit'
-  spec.authors      = { 'Ben Guo' => 'benzguo@gmail.com' }
-  spec.summary      = 'A framework for composing and transforming music in Swift'
-  spec.source       = { :git => 'https://github.com/benzguo/MusicKit.git', :tag => '0.1.0' }
-  spec.source_files = 'MusicKit/*.{h, m, swift}'
+Pod::Spec.new do |s|
+  s.name         = 'MusicKit'
+  s.version      = '0.1.0'
+  s.license      = { :type => 'MIT' }
+  s.homepage     = 'https://github.com/benzguo/MusicKit'
+  s.authors      = { 'Ben Guo' => 'benzguo@gmail.com' }
+  s.summary      = 'Swift music framework'
+  s.description  = <<-DESC
+                   A framework for composing and transforming musical abstractions in Swift.
+                   DESC
+  s.source       = { :git => 'https://github.com/benzguo/MusicKit.git', 
+  				     :tag => "v#{s.version}" }
+  s.source_files = 'MusicKit/*.{h, m, swift}'
 end
