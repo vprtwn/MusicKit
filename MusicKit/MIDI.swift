@@ -6,14 +6,18 @@ import CoreMIDI
 public class MIDI {
     var sources : [MIDIEndpointRef] = []
     var destinations : [MIDIEndpointRef] = []
+
     lazy var client : MIDIClientRef = {
         var _client = MIDIClientRef()
         let s = MIDIClientCreate("MusicKit",
             MKMIDIProc.notifyProc(),
             nil,
             &_client)
-        MKMIDIProc.setNotifyCallback { notification in
-            print(notification)
+        MKMIDIProc.setNotifyCallback { messageId in
+            if messageId == MKMIDINotification.SetupChanged {
+                self.scanSources()
+                self.scanDestinations()
+            }
         }
         return _client
     }()
@@ -28,28 +32,51 @@ public class MIDI {
         MKMIDIProc.setReadCallback { packetList in
             var messages = [MIDIMessage]()
             for packet in packetList {
-                let channel = packet[0] as! UInt8
-                let message = packet[1] as! UInt8
-                let noteOn = MKMIDIMessage.NoteOn.rawValue
-                let noteOff = MKMIDIMessage.NoteOff.rawValue
+                let channel = packet[0] as! UInt
+                let message = packet[1] as! UInt
+                let noteOn = UInt(MKMIDIMessage.NoteOn.rawValue)
+                let noteOff = UInt(MKMIDIMessage.NoteOff.rawValue)
                 let noteMessages = [noteOn, noteOff]
                 if contains(noteMessages, message) {
-                    let noteNumber = packet[2] as! UInt8
-                    let velocity = packet[3] as! UInt8
+                    let noteNumber = packet[2] as! UInt
+                    let velocity = packet[3] as! UInt
                     let m = MIDINoteMessage(on: message == noteOn,
                         channel: UInt(channel),
                         noteNumber: UInt(velocity),
                         velocity: UInt(velocity))
                     messages.append(m)
+                    updateInputChannelToPitchSet(m)
                 }
             }
-            print(packetList)
+            self.messageHandler(messages)
         }
         return _inputPort
     }()
 
-    public init() {
+    /// Handler for incoming MIDI messages
+    public var messageHandler : [MIDIMessage] -> Void = { messages in }
 
+    /// The current pitch set in each input channel
+    public var inputChannelToPitchSet = [UInt: PitchSet]()
+
+    func updateInputChannelToPitchSet(message: MIDINoteMessage) {
+        let pitch = Pitch(midi: message.noteNumber)
+        if let pitchSet = inputChannelToPitchSet[message.channel] {
+            if message.on {
+                pitchSet.insert(pitch)
+            }
+            else {
+
+            }
+        }
+        else {
+            inputChannelToPitchSet[message.channel] = PitchSet(pitches: pitch)
+        }
+    }
+
+    public init() {
+        scanSources()
+        scanDestinations()
     }
 
     public func scanSources() {

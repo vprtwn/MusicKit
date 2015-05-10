@@ -20,12 +20,23 @@ typedef NS_ENUM(unsigned char, MKMIDIMessage) {
     MKMIDIMessagePitchWheel = 0xE0,
 };
 
+/// redefinition of MIDINotificationMessageID for Swift interop
+typedef NS_ENUM(NSUInteger, MKMIDINotification) {
+    MKMIDINotificationSetupChanged              = 1,
+    MKMIDINotificationObjectAdded				= 2,
+    MKMIDINotificationObjectRemoved			    = 3,
+    MKMIDINotificationPropertyChanged			= 4,
+    MKMIDINotificationThruConnectionsChanged	= 5,
+    MKMIDINotificationSerialPortOwnerChanged	= 6,
+    MKMIDINotificationIOError					= 7
+};
+
 /** 
  A callback receiving an array of MIDI packets of the form:
  [channel #, message type, data,...]
  */
 typedef void (^MKMIDIReadCallback)(NSArray *packets);
-typedef void (^MKMIDINotifyCallback)(const MIDINotification *notification);
+typedef void (^MKMIDINotifyCallback)(MKMIDINotification messageID);
 
 @interface MKMIDIProc : NSObject
 

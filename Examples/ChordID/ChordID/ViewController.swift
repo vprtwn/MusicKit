@@ -14,7 +14,9 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let midi = MIDI()
-        midi.scanSources()
+        midi.messageHandler = { messages in
+            print("\(messages)\n")
+        }
     }
 
     override func viewDidAppear() {
