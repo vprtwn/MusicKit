@@ -15,5 +15,5 @@ FOUNDATION_EXPORT double MusicKitVersionNumber;
 FOUNDATION_EXPORT const unsigned char MusicKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <MusicKit/PublicHeader.h>
-
+#import "MIDIProc.h"
 
