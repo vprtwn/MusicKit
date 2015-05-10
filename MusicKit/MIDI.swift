@@ -40,12 +40,12 @@ public class MIDI {
                 if contains(noteMessages, message) {
                     let noteNumber = packet[2] as! UInt
                     let velocity = packet[3] as! UInt
-                    let m = MIDINoteMessage(on: message == noteOn,
+                    let m = MIDINoteMessage(on: message == noteOn || velocity == 0,
                         channel: UInt(channel),
-                        noteNumber: UInt(velocity),
+                        noteNumber: UInt(noteNumber),
                         velocity: UInt(velocity))
                     messages.append(m)
-                    updateInputChannelToPitchSet(m)
+                    self.updateInputChannelToPitchSet(m)
                 }
             }
             self.messageHandler(messages)
@@ -60,16 +60,18 @@ public class MIDI {
     public var inputChannelToPitchSet = [UInt: PitchSet]()
 
     func updateInputChannelToPitchSet(message: MIDINoteMessage) {
-        let pitch = Pitch(midi: message.noteNumber)
+        let pitch = Pitch(midi: Float(message.noteNumber))
         if let pitchSet = inputChannelToPitchSet[message.channel] {
+            var pitchSet = pitchSet
             if message.on {
                 pitchSet.insert(pitch)
             }
             else {
-
+                pitchSet.remove(pitch)
             }
+            inputChannelToPitchSet[message.channel] = pitchSet
         }
-        else {
+        else if message.on {
             inputChannelToPitchSet[message.channel] = PitchSet(pitches: pitch)
         }
     }

@@ -11,11 +11,18 @@ import MusicKit
 
 class ViewController: NSViewController {
 
+    @IBOutlet weak var textField: NSTextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let midi = MIDI()
         midi.messageHandler = { messages in
-            print("\(messages)\n")
+            var text = ""
+            for key in midi.inputChannelToPitchSet.keys {
+                let pitchSet = midi.inputChannelToPitchSet[key] ?? PitchSet()
+                Chord.name(pitchSet).map { text = text + "\($0)\n" }
+            }
+            self.textField.stringValue = text
         }
     }
 
