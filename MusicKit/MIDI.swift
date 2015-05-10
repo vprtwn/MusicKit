@@ -1,10 +1,4 @@
-//
-//  MIDI.swift
-//  MIDI
-//
-//  Created by Ben Guo on 5/9/15.
-//  Copyright (c) 2015 Net Sadness. All rights reserved.
-//
+//  Copyright (c) 2015 Ben Guo. All rights reserved.
 
 import Foundation
 import CoreMIDI
@@ -15,12 +9,12 @@ public class MIDI {
     lazy var client : MIDIClientRef = {
         var _client = MIDIClientRef()
         let s = MIDIClientCreate("MusicKit",
-            MIDIProc.notifyProc(),
+            MKMIDIProc.notifyProc(),
             nil,
             &_client)
-        MIDIProc.setNotifyProc({ (notification) -> Void in
+        MKMIDIProc.setNotifyCallback { notification in
             print(notification)
-        })
+        }
         return _client
     }()
 
@@ -28,12 +22,29 @@ public class MIDI {
         var _inputPort = MIDIPortRef()
         let s = MIDIInputPortCreate(self.client,
             "MusicKit",
-            MIDIProc.readProc(),
+            MKMIDIProc.readProc(),
             nil,
             &_inputPort);
-        MIDIProc.setReadProc({ (packetList) -> Void in
+        MKMIDIProc.setReadCallback { packetList in
+            var messages = [MIDIMessage]()
+            for packet in packetList {
+                let channel = packet[0] as! UInt8
+                let message = packet[1] as! UInt8
+                let noteOn = MKMIDIMessage.NoteOn.rawValue
+                let noteOff = MKMIDIMessage.NoteOff.rawValue
+                let noteMessages = [noteOn, noteOff]
+                if contains(noteMessages, message) {
+                    let noteNumber = packet[2] as! UInt8
+                    let velocity = packet[3] as! UInt8
+                    let m = MIDINoteMessage(on: message == noteOn,
+                        channel: UInt(channel),
+                        noteNumber: UInt(velocity),
+                        velocity: UInt(velocity))
+                    messages.append(m)
+                }
+            }
             print(packetList)
-        })
+        }
         return _inputPort
     }()
 

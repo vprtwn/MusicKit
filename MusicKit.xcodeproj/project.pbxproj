@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		960F015E1AFFA6AA006974AE /* MIDIMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960F015D1AFFA6AA006974AE /* MIDIMessage.swift */; };
+		960F015F1AFFA6AA006974AE /* MIDIMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960F015D1AFFA6AA006974AE /* MIDIMessage.swift */; };
 		9610685F1AF3390500BF9E91 /* HarmonicPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9610685E1AF3390500BF9E91 /* HarmonicPalette.swift */; };
 		961068601AF3390500BF9E91 /* HarmonicPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9610685E1AF3390500BF9E91 /* HarmonicPalette.swift */; };
 		9610686B1AF3390F00BF9E91 /* Chroma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969220C31AF1E75A00560A20 /* Chroma.swift */; };
@@ -32,10 +34,10 @@
 		969A02B31A5C13BA003EB476 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969A02B11A5C13BA003EB476 /* Chord.swift */; };
 		96A06D501AFF281400029013 /* MIDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A06D4D1AFF281400029013 /* MIDI.swift */; };
 		96A06D511AFF281400029013 /* MIDI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A06D4D1AFF281400029013 /* MIDI.swift */; };
-		96A06D521AFF281400029013 /* MIDIProc.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A06D4E1AFF281400029013 /* MIDIProc.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96A06D531AFF281400029013 /* MIDIProc.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A06D4E1AFF281400029013 /* MIDIProc.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96A06D541AFF281400029013 /* MIDIProc.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A06D4F1AFF281400029013 /* MIDIProc.m */; };
-		96A06D551AFF281400029013 /* MIDIProc.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A06D4F1AFF281400029013 /* MIDIProc.m */; };
+		96A06D521AFF281400029013 /* MKMIDIProc.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A06D4E1AFF281400029013 /* MKMIDIProc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96A06D531AFF281400029013 /* MKMIDIProc.h in Headers */ = {isa = PBXBuildFile; fileRef = 96A06D4E1AFF281400029013 /* MKMIDIProc.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		96A06D541AFF281400029013 /* MKMIDIProc.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A06D4F1AFF281400029013 /* MKMIDIProc.m */; };
+		96A06D551AFF281400029013 /* MKMIDIProc.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A06D4F1AFF281400029013 /* MKMIDIProc.m */; };
 		96BB1B121AF458A0005830DC /* LetterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BB1B111AF458A0005830DC /* LetterName.swift */; };
 		96BB1B131AF458A0005830DC /* LetterName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BB1B111AF458A0005830DC /* LetterName.swift */; };
 		96BB1B151AF458D7005830DC /* Accidental.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96BB1B141AF458D7005830DC /* Accidental.swift */; };
@@ -89,6 +91,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		960F015D1AFFA6AA006974AE /* MIDIMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIMessage.swift; sourceTree = "<group>"; };
 		9610685E1AF3390500BF9E91 /* HarmonicPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarmonicPalette.swift; sourceTree = "<group>"; };
 		9636C2E41AF6A432005941D4 /* HarmonicFunctionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarmonicFunctionTests.swift; sourceTree = "<group>"; };
 		9636C2E91AF6A899005941D4 /* PitchSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSetTests.swift; sourceTree = "<group>"; };
@@ -102,8 +105,8 @@
 		9693F6531A57C403006270F4 /* MusicKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		969A02B11A5C13BA003EB476 /* Chord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		96A06D4D1AFF281400029013 /* MIDI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDI.swift; sourceTree = "<group>"; };
-		96A06D4E1AFF281400029013 /* MIDIProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIDIProc.h; sourceTree = "<group>"; };
-		96A06D4F1AFF281400029013 /* MIDIProc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIDIProc.m; sourceTree = "<group>"; };
+		96A06D4E1AFF281400029013 /* MKMIDIProc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MKMIDIProc.h; sourceTree = "<group>"; };
+		96A06D4F1AFF281400029013 /* MKMIDIProc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MKMIDIProc.m; sourceTree = "<group>"; };
 		96BB1B111AF458A0005830DC /* LetterName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LetterName.swift; sourceTree = "<group>"; };
 		96BB1B141AF458D7005830DC /* Accidental.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Accidental.swift; sourceTree = "<group>"; };
 		96DFB62A1AF6B62C005EEBD6 /* PitchSetExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSetExtensions.swift; sourceTree = "<group>"; };
@@ -168,8 +171,9 @@
 			isa = PBXGroup;
 			children = (
 				96A06D4D1AFF281400029013 /* MIDI.swift */,
-				96A06D4E1AFF281400029013 /* MIDIProc.h */,
-				96A06D4F1AFF281400029013 /* MIDIProc.m */,
+				960F015D1AFFA6AA006974AE /* MIDIMessage.swift */,
+				96A06D4E1AFF281400029013 /* MKMIDIProc.h */,
+				96A06D4F1AFF281400029013 /* MKMIDIProc.m */,
 			);
 			name = MIDI;
 			sourceTree = "<group>";
@@ -337,7 +341,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9693F6791A57C49E006270F4 /* MusicKit.h in Headers */,
-				96A06D531AFF281400029013 /* MIDIProc.h in Headers */,
+				96A06D531AFF281400029013 /* MKMIDIProc.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96F299281A5663E500D7B006 /* MusicKit.h in Headers */,
-				96A06D521AFF281400029013 /* MIDIProc.h in Headers */,
+				96A06D521AFF281400029013 /* MKMIDIProc.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -522,7 +526,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96A06D551AFF281400029013 /* MIDIProc.m in Sources */,
+				96A06D551AFF281400029013 /* MKMIDIProc.m in Sources */,
 				96DFB6351AF6C2F0005EEBD6 /* MKUtil.swift in Sources */,
 				9693F6761A57C44A006270F4 /* MusicKit.swift in Sources */,
 				9610686B1AF3390F00BF9E91 /* Chroma.swift in Sources */,
@@ -536,6 +540,7 @@
 				9693F6771A57C44A006270F4 /* Pitch.swift in Sources */,
 				965331341AF1C20000EEDA02 /* HarmonicFunction.swift in Sources */,
 				96BB1B161AF458D7005830DC /* Accidental.swift in Sources */,
+				960F015F1AFFA6AA006974AE /* MIDIMessage.swift in Sources */,
 				9693F6781A57C44A006270F4 /* Scale.swift in Sources */,
 				96DFB6321AF6C26A005EEBD6 /* Harmony.swift in Sources */,
 				96BB1B131AF458A0005830DC /* LetterName.swift in Sources */,
@@ -546,7 +551,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96A06D541AFF281400029013 /* MIDIProc.m in Sources */,
+				96A06D541AFF281400029013 /* MKMIDIProc.m in Sources */,
 				96DFB6341AF6C2F0005EEBD6 /* MKUtil.swift in Sources */,
 				96F299411A5665CA00D7B006 /* Pitch.swift in Sources */,
 				969A02B21A5C13BA003EB476 /* Chord.swift in Sources */,
@@ -560,6 +565,7 @@
 				965331331AF1C20000EEDA02 /* HarmonicFunction.swift in Sources */,
 				969220C41AF1E75A00560A20 /* Chroma.swift in Sources */,
 				96BB1B151AF458D7005830DC /* Accidental.swift in Sources */,
+				960F015E1AFFA6AA006974AE /* MIDIMessage.swift in Sources */,
 				96F2993F1A56654800D7B006 /* MusicKit.swift in Sources */,
 				96DFB6311AF6C26A005EEBD6 /* Harmony.swift in Sources */,
 				96BB1B121AF458A0005830DC /* LetterName.swift in Sources */,
