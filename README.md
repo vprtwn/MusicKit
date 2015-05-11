@@ -21,13 +21,5 @@ let pitchSet : PitchSet = [Chroma.B*0, Chroma.Cs*2, Chroma.F*3, Chroma.G*4]
 print(Chord.name(pitchSet))         // G7♭5/B
 ```
 
-```swift
-let chordNames = sorted(midi.inputChannelToPitchSet.keys).map {
-    Chord.name(midi.inputChannelToPitchSet[$0] ?? PitchSet())
-}.reduce("", combine: { (a, r) -> String in
-    return a + "\n\(r ?? String())"
-})
-```
-
 **[Framework Overview](/Documentation/FrameworkOverview.md)**
 
