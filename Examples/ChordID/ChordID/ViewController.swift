@@ -16,13 +16,12 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let midi = MIDI()
-        midi.messageHandler = { messages in
-            var text = ""
-            for key in midi.inputChannelToPitchSet.keys {
-                let pitchSet = midi.inputChannelToPitchSet[key] ?? PitchSet()
-                Chord.name(pitchSet).map { text = text + "\($0)\n" }
-            }
-            self.textField.stringValue = text
+        midi.messageHandler = { _ in
+            self.textField.stringValue = sorted(midi.inputChannelToPitchSet.keys).map {
+                Chord.name(midi.inputChannelToPitchSet[$0] ?? PitchSet())
+            }.reduce("", combine: { (a, r) -> String in
+                return a + "\n\(r ?? String())"
+            })
         }
     }
 
