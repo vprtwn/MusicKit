@@ -50,7 +50,7 @@ public class MIDI {
         var success = false
         var packet = UnsafeMutablePointer<MIDIPacket>.alloc(sizeof(MIDIPacket))
         var packetList = UnsafeMutablePointer<MIDIPacketList>.alloc(sizeof(MIDIPacketList))
-
+        // TODO: make sure message is on the right channel
         packet = MIDIPacketListInit(packetList)
         packet = MIDIPacketListAdd(packetList, 1024, packet, 0, 3, message.data())
         if packet != nil {
