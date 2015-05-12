@@ -13,14 +13,15 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-    }
-
-    override var representedObject: AnyObject? {
-        didSet {
+        let midi = MIDI(name: "ChordExpander")
+        midi.noteMessageHandler = { messages in
+            if let first = messages.first {
+                let m = first
+                let m2 = first.transpose(2)
+                let m3 = first.transpose(4)
+                print(midi.send(m))
+            }
         }
     }
-
-
 }
 
