@@ -19,7 +19,7 @@ class ViewController: NSViewController {
                 let m = first
                 let m2 = first.transpose(2)
                 let m3 = first.transpose(4)
-                midi.send(m)
+                midi.send([m, m2, m3])
             }
         }
     }

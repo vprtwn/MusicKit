@@ -4,10 +4,13 @@ import Foundation
 
 public protocol MIDIMessage {
     /// The message's channel
-     var channel : UInt { get }
+    var channel : UInt { get }
 
     /// Returns the MIDI packet data representation of this message
     func data() -> [UInt8]
+
+    /// Returns a copy of this message on the given channel
+    func copyOnChannel(channel: UInt) -> Self
 }
 
 public struct MIDINoteMessage : MIDIMessage {
@@ -28,6 +31,10 @@ public struct MIDINoteMessage : MIDIMessage {
         let messageType = self.on ? MKMIDIMessage.NoteOn.rawValue : MKMIDIMessage.NoteOff.rawValue
         let status = UInt8(messageType + UInt8(self.channel))
         return [UInt8(status), UInt8(self.noteNumber), UInt8(self.velocity)]
+    }
+
+    public func copyOnChannel(channel: UInt) -> MIDINoteMessage {
+        return MIDINoteMessage(on: on, channel: channel, noteNumber: noteNumber, velocity: velocity)
     }
 }
 

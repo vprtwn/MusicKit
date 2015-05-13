@@ -4,15 +4,20 @@ import Foundation
 import CoreMIDI
 
 public class MIDI {
-    /// Messages sent to the virtual source will be delivered on this channel.
+    /// Messages sent to the virtual MIDI source will be delivered on this channel.
     /// Default is 3.
-    public var virtualSourceChannel : UInt = 3
+    public var sourceChannel : UInt = 3
 
     /// Handler for incoming MIDI note on or off messages
     public var noteMessageHandler : [MIDINoteMessage] -> Void = { messages in }
 
     /// The current pitch set in each input channel
     public var inputChannelToPitchSet = [UInt: PitchSet]()
+
+    /// The current pitch set in the source channel
+    public var sourcePitchSet : PitchSet {
+        return self.inputChannelToPitchSet[sourceChannel] ?? Pitchset()
+    }
 
     var _sources : [MIDIEndpointRef] = []
     var _destinations : [MIDIEndpointRef] = []
@@ -40,19 +45,21 @@ public class MIDI {
         return outPort
     }()
 
-    /// Sends a message to the virtual MIDI source.
+    /// Sends messages to the virtual MIDI source.
     ///
-    /// Note that the message's channel will be ignored – messages
-    /// are always sent on `virtualSourceChannel`.
+    /// Note that messages are always sent on `sourceChannel`.
     ///
     /// :returns: `true` if the message was successfully sent
-    public func send(message: MIDIMessage) -> Bool {
+    public func send(messages: [MIDIMessage]) -> Bool {
         var success = false
         var packet = UnsafeMutablePointer<MIDIPacket>.alloc(sizeof(MIDIPacket))
         var packetList = UnsafeMutablePointer<MIDIPacketList>.alloc(sizeof(MIDIPacketList))
-        // TODO: make sure message is on the right channel
         packet = MIDIPacketListInit(packetList)
-        packet = MIDIPacketListAdd(packetList, 1024, packet, 0, 3, message.data())
+
+        for message in messages {
+            let data = message.copyOnChannel(sourceChannel).data()
+            packet = MIDIPacketListAdd(packetList, 1024, packet, 0, 3, data)
+        }
         if packet != nil {
             let s = MIDIReceived(_virtualSource, packetList)
             success = s == 0
@@ -62,18 +69,6 @@ public class MIDI {
         packet.destroy()
         packetList.destroy()
         return success
-    }
-
-    /// Sends a list of messages to the virtual MIDI source.
-    ///
-    /// Note that the message's channel will be ignored – messages
-    /// are always sent on `virtualSourceChannel`.
-    ///
-    /// :returns: `true` if all the messages were successfully sent
-    public func send(messages: [MIDIMessage]) -> Bool {
-        return messages.map { self.send($0) }.reduce(true, combine: { (a, r) -> Bool in
-            a && r
-        })
     }
 
     func _updateInputChannelToPitchSet(message: MIDINoteMessage) {
@@ -119,7 +114,7 @@ public class MIDI {
                         noteNumber: UInt(noteNumber),
                         velocity: UInt(velocity))
                     // filter messages from our virtual source
-                    if channel != self.virtualSourceChannel {
+                    if channel != self.sourceChannel {
                         noteMessages.append(m)
                     }
                     self._updateInputChannelToPitchSet(m)
