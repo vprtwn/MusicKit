@@ -52,12 +52,13 @@ extension Chord {
     /// Returns the name of the chord or nil
     public static func name(pitchSet: PitchSet) -> String? {
         if let tuple = parse(pitchSet) {
-            let rootNameOpt = tuple.1.chroma?.description
+            let rootName = tuple.1.description
             if tuple.1 == tuple.2 {
-                return rootNameOpt.map { "\($0)\(tuple.0.symbol)" }
+                return "\(rootName)\(tuple.0.symbol)"
             }
-            if let bassName = tuple.2.chroma?.description {
-                return rootNameOpt.map { "\($0)\(tuple.0.symbol)/\(bassName)" }
+            else {
+                let bassName = tuple.2.description
+                return "\(rootName)\(tuple.0.symbol)/\(bassName)"
             }
         }
         return nil
@@ -65,7 +66,7 @@ extension Chord {
 
     /// If a ChordQuality matching this chord is found, returns a tuple with 
     /// the chord's (quality, root, bass). Otherwise, returns nil.
-    public static func parse(pitchSet: PitchSet) -> (ChordQuality, Pitch, Pitch)? {
+    public static func parse(pitchSet: PitchSet) -> (ChordQuality, Chroma, Chroma)? {
         var pitchSet = pitchSet
         pitchSet.normalize()
         let count = pitchSet.count
@@ -77,31 +78,32 @@ extension Chord {
         if count < 3 || count != gamutCount { return nil }
 
         let bass = pitchSet[0]
+        let bassChromaOpt = bass.chroma
         var removedBass = pitchSet
         removedBass.remove(bass)
 
         // Triads
         if count == 3 {
-            return _parse(pitchSet, qualities: ChordGroup.Triads, includeSlash: true)
+            return _parse(pitchSet, qualities: ChordGroup.Triads)
         }
         // Tetrads
         else if count == 4 {
-            let fullOpt = _parse(pitchSet, qualities: ChordGroup.Tetrads, includeSlash: true)
+            let fullOpt = _parse(pitchSet, qualities: ChordGroup.Tetrads)
             if let full = fullOpt {
                 return full
             }
             // remove bass note and attempt to form slash chord
-            let topOpt = _parse(removedBass, qualities: ChordGroup.Triads, includeSlash: false)
+            let topOpt = _parse(removedBass, qualities: ChordGroup.Triads)
             if let top = topOpt {
-                return (top.0, top.1, bass)
+                return bassChromaOpt.map { (top.0, top.1, $0) }
             }
         }
         // Pentads
         else if count == 5 {
             // remove bass note and attempt to form slash chord
-            let topOpt = _parse(removedBass, qualities: ChordGroup.Tetrads, includeSlash: false)
+            let topOpt = _parse(removedBass, qualities: ChordGroup.Tetrads)
             if let top = topOpt {
-                return (top.0, top.1, bass)
+                return bassChromaOpt.map { (top.0, top.1, $0) }
             }
         }
         return nil
@@ -109,18 +111,19 @@ extension Chord {
 
     /// Returns an optional (quality, root, bass)
     static func _parse(pitchSet: PitchSet,
-        qualities: [ChordQuality],
-        includeSlash: Bool) -> (ChordQuality, Pitch, Pitch)?
+        qualities: [ChordQuality]) -> (ChordQuality, Chroma, Chroma)?
     {
         let count = pitchSet.count
+        if count < 1 { return nil }
         let bass = pitchSet.first()!
+        let bassChromaOpt = bass.chroma
+
         let indices = pitchSet.semitoneIndices()
         // check root position chords
         for quality in qualities {
             var _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
             if _indices == indices {
-                let rootName = bass.chroma?.description
-                return (quality, bass, bass)
+                return bassChromaOpt.map { (quality, $0, $0) }
             }
         }
         // check inversions
@@ -129,8 +132,9 @@ extension Chord {
             for i in 1..<count {
                 let inversion = MKUtil.zero(MKUtil.invert(_indices, n: UInt(i)))
                 if inversion == indices {
-                    let root = pitchSet[count - i]
-                    return (quality, root, bass)
+                    if let rootChroma = pitchSet[count - i].chroma {
+                        return bassChromaOpt.map { (quality, rootChroma, $0) }
+                    }
                 }
             }
         }

@@ -16,10 +16,7 @@ class ViewController: NSViewController {
         let midi = MIDI(name: "ChordExpander")
         midi.noteMessageHandler = { messages in
             if let first = messages.first {
-                let m = first
-                let m2 = first.transpose(2)
-                let m3 = first.transpose(4)
-                midi.send([m, m2, m3])
+                midi.send([first, first.transpose(2), first.transpose(3)])
             }
         }
     }
