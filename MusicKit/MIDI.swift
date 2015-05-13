@@ -16,7 +16,7 @@ public class MIDI {
 
     /// The current pitch set in the source channel
     public var sourcePitchSet : PitchSet {
-        return self.inputChannelToPitchSet[sourceChannel] ?? Pitchset()
+        return self.inputChannelToPitchSet[sourceChannel] ?? PitchSet()
     }
 
     var _sources : [MIDIEndpointRef] = []

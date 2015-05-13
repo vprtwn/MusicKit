@@ -12,31 +12,31 @@ struct ChordExtensions {
     ]
 }
 
-/// defines arrays of (Harmonizer, ChordTuple) tuples
-struct ChordTuples {
+/// defines arrays of ChordQuality
+struct ChordGroup {
     static let Triads = [
-        (Chord._Major),
-        (Chord._Minor),
-        (Chord._Augmented),
-        (Chord._Diminished),
-        (Chord._Sus2),
-        (Chord._Sus4)
+        ChordQuality.Major,
+        ChordQuality.Minor,
+        ChordQuality.Augmented,
+        ChordQuality.Diminished,
+        ChordQuality.Sus2,
+        ChordQuality.Sus4
     ]
     static let Tetrads = [
-        (Chord._DominantSeventh),
-        (Chord._MajorSeventh),
-        (Chord._MinorMajorSeventh),
-        (Chord._MinorSeventh),
-        (Chord._AugmentedMajorSeventh),
-        (Chord._AugmentedSeventh),
-        (Chord._HalfDiminishedSeventh),
-        (Chord._DiminishedSeventh),
-        (Chord._DominantSeventhFlatFive),
-        (Chord._MajorSeventhFlatFive),
-        (Chord._DominantSeventhSusFour),
-        (Chord._MajorSeventhSusFour),
-        (Chord._MajorSixth),
-        (Chord._MinorSixth),
+        ChordQuality.DominantSeventh,
+        ChordQuality.MajorSeventh,
+        ChordQuality.MinorMajorSeventh,
+        ChordQuality.MinorSeventh,
+        ChordQuality.AugmentedMajorSeventh,
+        ChordQuality.AugmentedSeventh,
+        ChordQuality.HalfDiminishedSeventh,
+        ChordQuality.DiminishedSeventh,
+        ChordQuality.DominantSeventhFlatFive,
+        ChordQuality.MajorSeventhFlatFive,
+        ChordQuality.DominantSeventhSusFour,
+        ChordQuality.MajorSeventhSusFour,
+        ChordQuality.MajorSixth,
+        ChordQuality.MinorSixth,
     ]
 }
 
@@ -68,16 +68,16 @@ extension Chord {
 
         // Triads
         if count == 3 {
-            return _name(pitchSet, tuples: ChordTuples.Triads, includeSlash: true)
+            return _name(pitchSet, qualities: ChordGroup.Triads, includeSlash: true)
         }
         // Tetrads
         else if count == 4 {
-            let nameOpt = _name(pitchSet, tuples: ChordTuples.Tetrads, includeSlash: true)
+            let nameOpt = _name(pitchSet, qualities: ChordGroup.Tetrads, includeSlash: true)
             if let name = nameOpt {
                 return name
             }
             // remove bass note and attempt to form slash chord
-            let topNameOpt = _name(removedBass, tuples: ChordTuples.Triads, includeSlash: false)
+            let topNameOpt = _name(removedBass, qualities: ChordGroup.Triads, includeSlash: false)
             if let name = topNameOpt {
                 return bassName.map { "\(name)/\($0)" }
             }
@@ -85,7 +85,7 @@ extension Chord {
         // Pentads
         else if count == 5 {
             // remove bass note and attempt to form slash chord
-            let topNameOpt = _name(removedBass, tuples: ChordTuples.Tetrads, includeSlash: false)
+            let topNameOpt = _name(removedBass, qualities: ChordGroup.Tetrads, includeSlash: false)
             if let name = topNameOpt {
                 return bassName.map { "\(name)/\($0)" }
             }
@@ -94,35 +94,35 @@ extension Chord {
     }
 
     static func _name(pitchSet: PitchSet,
-        tuples: [ChordTuple],    // the tuples to check
+        qualities: [ChordQuality],    // the chord qualities to check
         includeSlash: Bool) -> String?
     {
         let count = pitchSet.count
         let bass = pitchSet.first()!
         let indices = pitchSet.semitoneIndices()
         // check root position chords
-        for tuple in tuples {
-            let suffix = tuple.2
-            var _indices = MKUtil.collapse(MKUtil.semitoneIndices(tuple.0))
+        for quality in qualities {
+            let symbol = quality.symbol
+            var _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
             if _indices == indices {
                 let rootName = bass.chroma?.description
-                return rootName.map { "\($0)\(suffix)" }
+                return rootName.map { "\($0)\(symbol)" }
             }
         }
         // check inversions
-        for tuple in tuples {
-            let suffix = tuple.2
-            var _indices = MKUtil.collapse(MKUtil.semitoneIndices(tuple.0))
+        for quality in qualities {
+            let symbol = quality.symbol
+            var _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
             for i in 1..<count {
                 let inversion = MKUtil.zero(MKUtil.invert(_indices, n: UInt(i)))
                 if inversion == indices {
                     let rootName = pitchSet[count - i].chroma?.description
                     let baseNameOpt = includeSlash ? pitchSet[0].chroma?.description : nil
                     if let baseName = baseNameOpt {
-                        return rootName.map { "\($0)\(suffix)/\(baseName)" }
+                        return rootName.map { "\($0)\(symbol)/\(baseName)" }
                     }
                     else {
-                        return rootName.map { "\($0)\(suffix)" }
+                        return rootName.map { "\($0)\(symbol)" }
                     }
                 }
             }

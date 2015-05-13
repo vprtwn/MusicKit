@@ -3,13 +3,6 @@
 import Foundation
 
 public enum MKUtil {
-    /// Rotates the array `n` times to the right
-    static func rotate<T>(array: [T],_ n: Int) -> [T] {
-        let count = array.count
-        let index = (n >= 0) ? n % count : count - (abs(n) % count)
-        return Array(array[index..<count] + array[0..<index])
-    }
-
     /// Returns the nth inversion of the given sorted array of semitone indices
     static func invert(semitoneIndices: [Float], n: UInt) -> [Float] {
         let count = semitoneIndices.count

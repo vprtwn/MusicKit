@@ -12,6 +12,8 @@
 		9610685F1AF3390500BF9E91 /* HarmonicPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9610685E1AF3390500BF9E91 /* HarmonicPalette.swift */; };
 		961068601AF3390500BF9E91 /* HarmonicPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9610685E1AF3390500BF9E91 /* HarmonicPalette.swift */; };
 		9610686B1AF3390F00BF9E91 /* Chroma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969220C31AF1E75A00560A20 /* Chroma.swift */; };
+		9625D8091B03702100C4142E /* ChordQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625D8081B03702100C4142E /* ChordQuality.swift */; };
+		9625D80A1B03702100C4142E /* ChordQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625D8081B03702100C4142E /* ChordQuality.swift */; };
 		9636C2E71AF6A44F005941D4 /* HarmonicFunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9636C2E41AF6A432005941D4 /* HarmonicFunctionTests.swift */; };
 		9636C2E81AF6A450005941D4 /* HarmonicFunctionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9636C2E41AF6A432005941D4 /* HarmonicFunctionTests.swift */; };
 		9636C2EA1AF6A899005941D4 /* PitchSetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9636C2E91AF6A899005941D4 /* PitchSetTests.swift */; };
@@ -93,6 +95,7 @@
 /* Begin PBXFileReference section */
 		960F015D1AFFA6AA006974AE /* MIDIMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIMessage.swift; sourceTree = "<group>"; };
 		9610685E1AF3390500BF9E91 /* HarmonicPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarmonicPalette.swift; sourceTree = "<group>"; };
+		9625D8081B03702100C4142E /* ChordQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordQuality.swift; sourceTree = "<group>"; };
 		9636C2E41AF6A432005941D4 /* HarmonicFunctionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarmonicFunctionTests.swift; sourceTree = "<group>"; };
 		9636C2E91AF6A899005941D4 /* PitchSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSetTests.swift; sourceTree = "<group>"; };
 		963EF9671AFB1C3600008573 /* FrameworkOverview.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = FrameworkOverview.md; path = Documentation/FrameworkOverview.md; sourceTree = SOURCE_ROOT; };
@@ -204,6 +207,7 @@
 				96DFB6301AF6C26A005EEBD6 /* Harmony.swift */,
 				96F299421A56661300D7B006 /* Scale.swift */,
 				969A02B11A5C13BA003EB476 /* Chord.swift */,
+				9625D8081B03702100C4142E /* ChordQuality.swift */,
 				96EC063D1AFADF130061CC42 /* ChordName.swift */,
 				965331321AF1C20000EEDA02 /* HarmonicFunction.swift */,
 			);
@@ -535,6 +539,7 @@
 				96EC063F1AFADF130061CC42 /* ChordName.swift in Sources */,
 				969A02B31A5C13BA003EB476 /* Chord.swift in Sources */,
 				961068601AF3390500BF9E91 /* HarmonicPalette.swift in Sources */,
+				9625D80A1B03702100C4142E /* ChordQuality.swift in Sources */,
 				96A06D511AFF281400029013 /* MIDI.swift in Sources */,
 				964A7F5B1A58A85B000E2D5A /* PitchSet.swift in Sources */,
 				9693F6771A57C44A006270F4 /* Pitch.swift in Sources */,
@@ -560,6 +565,7 @@
 				96EC063E1AFADF130061CC42 /* ChordName.swift in Sources */,
 				964A7F5A1A58A85B000E2D5A /* PitchSet.swift in Sources */,
 				96F299431A56661300D7B006 /* Scale.swift in Sources */,
+				9625D8091B03702100C4142E /* ChordQuality.swift in Sources */,
 				96A06D501AFF281400029013 /* MIDI.swift in Sources */,
 				9610685F1AF3390500BF9E91 /* HarmonicPalette.swift in Sources */,
 				965331331AF1C20000EEDA02 /* HarmonicFunction.swift in Sources */,
