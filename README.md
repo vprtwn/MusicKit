@@ -2,7 +2,7 @@
 
 MusicKit is a framework and DSL for creating, analyzing, and transforming music in Swift.
 
-In addition to providing flexible abstractions for basic musical concepts like pitch, chords, and scales, MusicKit also includes tools for MIDI I/O, (basic) music information retrieval, and music generation.
+In addition to providing flexible abstractions for basic musical concepts like pitch, chords, and scales, MusicKit also includes tools for MIDI I/O, music information retrieval, and music generation.
 
 A few examples:
 
@@ -22,7 +22,6 @@ print(V7ofV(C5))                    // [D6, F♯6, A6, C7]
 ```swift
 let pitchSet : PitchSet = [Chroma.B*0, Chroma.Cs*2, Chroma.F*3, Chroma.G*4]
 print(Chord.name(pitchSet))         // G7♭5/B
-// Chord.parse returns a tuple of (chord quality, root chroma, bass chroma)
 print(Chord.parse(pitchSet))        // (dominant seventh flat five, G, B)
 ```
 
@@ -36,5 +35,5 @@ midi.noteMessageHandler = { messages in
 }
 ```
 
-**[Framework Overview](/Documentation/FrameworkOverview.md)**
+####[Framework Overview](/Documentation/FrameworkOverview.md)
 
