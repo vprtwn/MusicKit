@@ -4,7 +4,7 @@ MusicKit is a framework and DSL for manipulating musical abstractions in Swift.
 
 A few examples:
 
-**_Functional Harmony_**
+**Functional Harmony**
 ```swift
 let C5 = Pitch(midi: 72)
 let neapolitan = Major.bII
@@ -16,7 +16,7 @@ let V7ofV = HarmonicFunction.create(Scale.Major, degree: 5, chord: Major.V7)
 print(V7ofV(C5))                    // [D6, F♯6, A6, C7]
 ```
 
-**_Chord Identification_**
+**Chord Identification**
 ```swift
 let pitchSet : PitchSet = [Chroma.B*0, Chroma.Cs*2, Chroma.F*3, Chroma.G*4]
 print(Chord.name(pitchSet))         // G7♭5/B
@@ -24,7 +24,7 @@ print(Chord.name(pitchSet))         // G7♭5/B
 print(Chord.parse(pitchSet))        // (dominant seventh flat five, G, B)
 ```
 
-**_MIDI manipulation_**
+**MIDI transformation**
 ```swift
 let midi = MIDI(name: "WholetoneClusters")
 midi.noteMessageHandler = { messages in
