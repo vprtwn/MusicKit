@@ -4,7 +4,7 @@ MusicKit is a framework and DSL for creating, analyzing, and transforming music 
 
 In addition to providing flexible abstractions for basic musical concepts like pitch, chords, and scales, MusicKit also includes tools for MIDI I/O, (basic) music information retrieval, and music generation.
 
-Here are a few examples:
+A few examples:
 
 **Functional Harmony**
 ```swift
