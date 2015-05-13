@@ -53,7 +53,7 @@ public enum Chord  {
         return Harmony.create(MKUtil.intervals(chosenPitches.semitoneIndices()))
     }
 
-    /// Creates a new chord `Harmonizer` from the given intervals, inversion, and additions
+    /// Creates a new chord `Harmonizer` from the given intervals, inversion, and extensions
     static func create(intervals: [Float], inversion: UInt, extensions: [ChordExtension]) -> Harmonizer {
         // convert to indices
         let originalIndices = MKUtil.semitoneIndices(intervals)

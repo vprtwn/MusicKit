@@ -49,8 +49,23 @@ extension PitchSet {
 }
 
 extension Chord {
-    /// Returns the name of the chord, or nil if no name can be determined.
+    /// Returns the name of the chord or nil
     public static func name(pitchSet: PitchSet) -> String? {
+        if let tuple = parse(pitchSet) {
+            let rootNameOpt = tuple.1.chroma?.description
+            if tuple.1 == tuple.2 {
+                return rootNameOpt.map { "\($0)\(tuple.0.symbol)" }
+            }
+            if let bassName = tuple.2.chroma?.description {
+                return rootNameOpt.map { "\($0)\(tuple.0.symbol)/\(bassName)" }
+            }
+        }
+        return nil
+    }
+
+    /// If a ChordQuality matching this chord is found, returns a tuple with 
+    /// the chord's (quality, root, bass). Otherwise, returns nil.
+    public static func parse(pitchSet: PitchSet) -> (ChordQuality, Pitch, Pitch)? {
         var pitchSet = pitchSet
         pitchSet.normalize()
         let count = pitchSet.count
@@ -62,68 +77,60 @@ extension Chord {
         if count < 3 || count != gamutCount { return nil }
 
         let bass = pitchSet[0]
-        let bassName = bass.chroma?.description
         var removedBass = pitchSet
         removedBass.remove(bass)
 
         // Triads
         if count == 3 {
-            return _name(pitchSet, qualities: ChordGroup.Triads, includeSlash: true)
+            return _parse(pitchSet, qualities: ChordGroup.Triads, includeSlash: true)
         }
         // Tetrads
         else if count == 4 {
-            let nameOpt = _name(pitchSet, qualities: ChordGroup.Tetrads, includeSlash: true)
-            if let name = nameOpt {
-                return name
+            let fullOpt = _parse(pitchSet, qualities: ChordGroup.Tetrads, includeSlash: true)
+            if let full = fullOpt {
+                return full
             }
             // remove bass note and attempt to form slash chord
-            let topNameOpt = _name(removedBass, qualities: ChordGroup.Triads, includeSlash: false)
-            if let name = topNameOpt {
-                return bassName.map { "\(name)/\($0)" }
+            let topOpt = _parse(removedBass, qualities: ChordGroup.Triads, includeSlash: false)
+            if let top = topOpt {
+                return (top.0, top.1, bass)
             }
         }
         // Pentads
         else if count == 5 {
             // remove bass note and attempt to form slash chord
-            let topNameOpt = _name(removedBass, qualities: ChordGroup.Tetrads, includeSlash: false)
-            if let name = topNameOpt {
-                return bassName.map { "\(name)/\($0)" }
+            let topOpt = _parse(removedBass, qualities: ChordGroup.Tetrads, includeSlash: false)
+            if let top = topOpt {
+                return (top.0, top.1, bass)
             }
         }
         return nil
     }
 
-    static func _name(pitchSet: PitchSet,
-        qualities: [ChordQuality],    // the chord qualities to check
-        includeSlash: Bool) -> String?
+    /// Returns an optional (quality, root, bass)
+    static func _parse(pitchSet: PitchSet,
+        qualities: [ChordQuality],
+        includeSlash: Bool) -> (ChordQuality, Pitch, Pitch)?
     {
         let count = pitchSet.count
         let bass = pitchSet.first()!
         let indices = pitchSet.semitoneIndices()
         // check root position chords
         for quality in qualities {
-            let symbol = quality.symbol
             var _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
             if _indices == indices {
                 let rootName = bass.chroma?.description
-                return rootName.map { "\($0)\(symbol)" }
+                return (quality, bass, bass)
             }
         }
         // check inversions
         for quality in qualities {
-            let symbol = quality.symbol
             var _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
             for i in 1..<count {
                 let inversion = MKUtil.zero(MKUtil.invert(_indices, n: UInt(i)))
                 if inversion == indices {
-                    let rootName = pitchSet[count - i].chroma?.description
-                    let baseNameOpt = includeSlash ? pitchSet[0].chroma?.description : nil
-                    if let baseName = baseNameOpt {
-                        return rootName.map { "\($0)\(symbol)/\(baseName)" }
-                    }
-                    else {
-                        return rootName.map { "\($0)\(symbol)" }
-                    }
+                    let root = pitchSet[count - i]
+                    return (quality, root, bass)
                 }
             }
         }
