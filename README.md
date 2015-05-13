@@ -1,8 +1,14 @@
 # MusicKit
 
-MusicKit is a framework and DSL for manipulating musical abstractions in Swift.
+MusicKit is a framework and DSL for creating, analyzing, and transforming music in Swift.
 
-A few examples:
+The primary goal of MusicKit is to provide flexible abstractions for core musical concepts.
+
+Secondary goals include:
+- MIDI I/O
+- MIR tools
+
+Here are a few examples:
 
 **Functional Harmony**
 ```swift
