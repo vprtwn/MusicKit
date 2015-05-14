@@ -4,7 +4,7 @@ MusicKit is a framework and DSL for creating, analyzing, and transforming music 
 
 In addition to providing flexible abstractions for basic musical concepts like pitch, chords, and scales, MusicKit also includes tools for MIDI I/O, music information retrieval, and music generation.
 
-A few examples:
+### Examples
 
 **Functional Harmony**
 ```swift
@@ -25,7 +25,7 @@ print(Chord.name(pitchSet))         // G7♭5/B
 print(Chord.parse(pitchSet))        // (dominant seventh flat five, G, B)
 ```
 
-**MIDI transformation**
+**MIDI I/O**
 ```swift
 let midi = MIDI(name: "WholetoneClusters")
 midi.noteMessageHandler = { messages in
