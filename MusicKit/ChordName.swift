@@ -2,16 +2,6 @@
 
 import Foundation
 
-struct ChordExtensions {
-    static let SingleExtensions = [
-        [ChordExtension.FlatNine],
-        [ChordExtension.Nine],
-        [ChordExtension.SharpEleven],
-        [ChordExtension.FlatThirteen],
-        [ChordExtension.Thirteen],
-    ]
-}
-
 /// defines arrays of ChordQuality
 struct ChordGroup {
     static let Triads = [
@@ -44,29 +34,30 @@ extension PitchSet {
     /// Normalizes the pitch set by deduping and collapsing to within an octave
     /// while maintaining the root.
     mutating func normalize() {
-        dedupe(); collapse()
+        dedupe()
+        collapse()
     }
 }
 
 extension Chord {
-    /// Returns the name of the chord or nil
+    /// Returns the name of the chord if found.
     public static func name(pitchSet: PitchSet) -> String? {
-        if let tuple = parse(pitchSet) {
-            let rootName = tuple.1.description
-            if tuple.1 == tuple.2 {
-                return "\(rootName)\(tuple.0.symbol)"
+        if let desc = descriptor(pitchSet) {
+            let rootName = desc.root.description
+            let symbol = desc.quality.symbol
+            if desc.root == desc.bass {
+                return "\(rootName)\(symbol)"
             }
             else {
-                let bassName = tuple.2.description
-                return "\(rootName)\(tuple.0.symbol)/\(bassName)"
+                let bassName = desc.bass.description
+                return "\(rootName)\(symbol)/\(bassName)"
             }
         }
         return nil
     }
 
-    /// If a ChordQuality matching this chord is found, returns a tuple with 
-    /// the chord's (quality, root, bass). Otherwise, returns nil.
-    public static func parse(pitchSet: PitchSet) -> (ChordQuality, Chroma, Chroma)? {
+    /// Returns an optional `ChordDescriptor`.
+    public static func descriptor(pitchSet: PitchSet) -> ChordDescriptor? {
         var pitchSet = pitchSet
         pitchSet.normalize()
         let count = pitchSet.count
@@ -84,37 +75,44 @@ extension Chord {
 
         // Triads
         if count == 3 {
-            return _parse(pitchSet, qualities: ChordGroup.Triads)
+            return _descriptor(pitchSet, qualities: ChordGroup.Triads)
         }
         // Tetrads
         else if count == 4 {
-            let fullOpt = _parse(pitchSet, qualities: ChordGroup.Tetrads)
-            if let full = fullOpt {
-                return full
+            let fullDescOpt = _descriptor(pitchSet, qualities: ChordGroup.Tetrads)
+            if let fullDesc = fullDescOpt {
+                return fullDesc
             }
             // remove bass note and attempt to form slash chord
-            let topOpt = _parse(removedBass, qualities: ChordGroup.Triads)
-            if let top = topOpt {
-                return bassChromaOpt.map { (top.0, top.1, $0) }
+            let topDescOpt = _descriptor(removedBass, qualities: ChordGroup.Triads)
+            if let topDesc = topDescOpt {
+                return bassChromaOpt.map {
+                    ChordDescriptor(root: topDesc.root, quality: topDesc.quality, bass: $0)
+                }
             }
         }
         // Pentads
         else if count == 5 {
             // remove bass note and attempt to form slash chord
-            let topOpt = _parse(removedBass, qualities: ChordGroup.Tetrads)
-            if let top = topOpt {
-                return bassChromaOpt.map { (top.0, top.1, $0) }
+            let topDescOpt = _descriptor(removedBass, qualities: ChordGroup.Tetrads)
+            if let topDesc = topDescOpt {
+                return bassChromaOpt.map {
+                    ChordDescriptor(root: topDesc.root, quality: topDesc.quality, bass: $0)
+                }
             }
         }
         return nil
     }
 
-    /// Returns an optional (quality, root, bass)
-    static func _parse(pitchSet: PitchSet,
-        qualities: [ChordQuality]) -> (ChordQuality, Chroma, Chroma)?
+    /// Returns an optional `ChordDescriptor`.
+    static func _descriptor(pitchSet: PitchSet,
+        qualities: [ChordQuality]) -> ChordDescriptor?
     {
         let count = pitchSet.count
-        if count < 1 { return nil }
+        if count < 1 {
+            return nil
+        }
+
         let bass = pitchSet.first()!
         let bassChromaOpt = bass.chroma
 
@@ -123,7 +121,9 @@ extension Chord {
         for quality in qualities {
             var _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
             if _indices == indices {
-                return bassChromaOpt.map { (quality, $0, $0) }
+                return bassChromaOpt.map {
+                    ChordDescriptor(root: $0, quality: quality, bass: $0)
+                }
             }
         }
         // check inversions
@@ -133,7 +133,9 @@ extension Chord {
                 let inversion = MKUtil.zero(MKUtil.invert(_indices, n: UInt(i)))
                 if inversion == indices {
                     if let rootChroma = pitchSet[count - i].chroma {
-                        return bassChromaOpt.map { (quality, rootChroma, $0) }
+                        return bassChromaOpt.map {
+                            ChordDescriptor(root: rootChroma, quality: quality, bass: $0)
+                        }
                     }
                 }
             }

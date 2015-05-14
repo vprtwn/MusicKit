@@ -19,8 +19,9 @@ print(V7ofV(C5))                    // [D6, F♯6, A6, C7]
 **Chord Identification**
 ```swift
 let pitchSet : PitchSet = [Chroma.B*0, Chroma.Cs*2, Chroma.F*3, Chroma.G*4]
-print(Chord.name(pitchSet))         // G7♭5/B
-print(Chord.parse(pitchSet))        // (dominant seventh flat five, G, B)
+print(Chord.name(pitchSet))        // G7♭5/B
+let descriptor = Chord.descriptor(pitchSet)
+print(descriptor)  // root: G, quality: dominant seventh flat five, bass: B
 ```
 
 **MIDI I/O**

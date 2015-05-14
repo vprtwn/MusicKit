@@ -114,8 +114,9 @@ print(ch)          // [A4, C♯5, E5, G♯5]
 
 ///```swift
 let pitchSet : PitchSet = [Chroma.B*0, Chroma.Cs*2, Chroma.F*3, Chroma.G*4]
-print(Chord.name(pitchSet))          // G7♭5/B
-print(Chord.parse(pitchSet))         // (dominant seventh flat five, G, B)
+print(Chord.name(pitchSet)!)          // G7♭5/B
+let descriptor = Chord.descriptor(pitchSet)
+print(descriptor!)    // root: G, quality: dominant seventh flat five, bass: B
 ///```
 
 ///### Functional harmony
