@@ -44,13 +44,13 @@ extension Chord {
     public static func name(pitchSet: PitchSet) -> String? {
         if let desc = descriptor(pitchSet) {
             let rootName = desc.root.description
-            let symbol = desc.quality.symbol
+            let shortName = desc.quality.shortName
             if desc.root == desc.bass {
-                return "\(rootName)\(symbol)"
+                return "\(rootName)\(shortName)"
             }
             else {
                 let bassName = desc.bass.description
-                return "\(rootName)\(symbol)/\(bassName)"
+                return "\(rootName)\(shortName)/\(bassName)"
             }
         }
         return nil

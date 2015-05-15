@@ -30,8 +30,19 @@ public enum ChordQuality : Printable {
     // pentads
     case DominantNinth
     case DominantMinorNinth
+    case DominantSeventhSharpNine
     case MajorNinth
+    case MinorNinth
+    case MinorMajorNinth
+    case AugmentedNinth
+    case AugmentedMajorNinth
+    case HalfDiminishedNinth
+    case HalfDiminishedMinorNinth
+    case DiminishedNinth
+    case DiminishedMinorNinth
     case SixNine
+    case Dominant9Sus4
+    // hexads
 
     public var description : String {
         switch self {
@@ -59,15 +70,26 @@ public enum ChordQuality : Printable {
         case MinorSixth: return "minor sixth"
         case AddNine: return "add nine"
         case MinorAddNine: return "minor add nine"
-        case SixNine: return "six nine"
         // pentads
         case DominantNinth: return "dominant ninth"
         case DominantMinorNinth: return "dominant minor ninth"
+        case DominantSeventhSharpNine: return "dominant seventh sharp nine"
         case MajorNinth: return "major ninth"
+        case MinorNinth: return "minor ninth"
+        case MinorMajorNinth: return "minor major ninth"
+        case AugmentedNinth: return "augmented ninth"
+        case AugmentedMajorNinth: return "augmented major ninth"
+        case HalfDiminishedNinth: return "half diminished ninth"
+        case HalfDiminishedMinorNinth: return "half diminished minor ninth"
+        case DiminishedNinth: return "diminished ninth"
+        case DiminishedMinorNinth: return "diminished minor ninth"
+        case SixNine: return "six nine"
+        case Dominant9Sus4: return "domininant ninth sus four"
+        // hexads
         }
     }
 
-    public var symbol: String {
+    public var shortName: String {
         switch self {
         // triads
         case Major: return "M"
@@ -96,8 +118,18 @@ public enum ChordQuality : Printable {
         // pentads
         case DominantNinth: return "9"
         case DominantMinorNinth: return "7♭9"
+        case DominantSeventhSharpNine: return "7♯9"
         case MajorNinth: return "Δ9"
+        case MinorNinth: return "m9"
+        case MinorMajorNinth: return "mΔ9"
+        case AugmentedNinth: return "+9"
+        case AugmentedMajorNinth: return "+Δ9"
+        case HalfDiminishedNinth: return "ø9"
+        case HalfDiminishedMinorNinth: return "ø♭9"
+        case DiminishedNinth: return "°9"
+        case DiminishedMinorNinth: return "°♭9"
         case SixNine: return "6/9"
+        case Dominant9Sus4: return "9sus4"
         }
     }
 
@@ -130,8 +162,19 @@ public enum ChordQuality : Printable {
         // pentads
         case DominantNinth: return [4, 3, 3, 4]
         case DominantMinorNinth: return [4, 3, 3, 3]
+        case DominantSeventhSharpNine: return [4, 3, 3, 5]
         case MajorNinth: return [4, 3, 4, 3]
+        case MinorNinth: return [3, 4, 3, 4]
+        case MinorMajorNinth: return [3, 4, 4, 3]
+        case AugmentedNinth: return [4, 4, 2, 4]
+        case AugmentedMajorNinth: return [4, 4, 3, 3]
+        case HalfDiminishedNinth: return [3, 3, 4, 4]
+        case HalfDiminishedMinorNinth: return [3, 3, 4, 3]
+        case DiminishedNinth: return [3, 3, 3, 5]
+        case DiminishedMinorNinth: return [3, 3, 3, 4]
         case SixNine: return [4, 3, 1, 5]
+        case Dominant9Sus4: return [5, 2, 3, 4]
+        // hexads
         }
     }
 }
