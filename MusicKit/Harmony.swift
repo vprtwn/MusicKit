@@ -5,9 +5,7 @@ import Foundation
 public struct Harmony {
     /// The identity Harmonizer function
     public static let IdentityHarmonizer : Harmonizer = { pitch in
-        var s = PitchSet()
-        s.insert(pitch)
-        return s
+        return PitchSet(pitches: pitch)
     }
 
     /// Transposes a Harmonizer

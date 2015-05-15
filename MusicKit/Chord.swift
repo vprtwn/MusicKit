@@ -2,35 +2,6 @@
 
 import Foundation
 
-/// (intervals, full name, abbreviated name)
-public typealias ChordTuple = ([Float], String, String)
-
-public enum ChordExtension : Float {
-    case FlatNine = 13
-    case Nine = 14
-    case Eleven = 17
-    case SharpEleven = 18
-    case FlatThirteen = 20
-    case Thirteen = 21
-
-    public var description : String {
-        switch self {
-        case .FlatNine:
-            return "♭9"
-        case .Nine:
-            return "9"
-        case .Eleven:
-            return "11"
-        case .SharpEleven:
-            return "♯11"
-        case .FlatThirteen:
-            return "♭13"
-        case .Thirteen:
-            return "13"
-        }
-    }
-}
-
 /// Phantom type containing functions for creating chord Harmonizers
 public enum Chord  {
     /// Creates a new `Harmonizer` using the (1-indexed) indices of the given harmonizer
@@ -54,10 +25,10 @@ public enum Chord  {
     }
 
     /// Creates a new chord `Harmonizer` from the given intervals, inversion, and extensions
-    static func create(intervals: [Float], inversion: UInt, extensions: [ChordExtension]) -> Harmonizer {
+    static func create(intervals: [Float], inversion: UInt) -> Harmonizer {
         // convert to indices
         let originalIndices = MKUtil.semitoneIndices(intervals)
-        var indices = originalIndices + extensions.map { $0.rawValue }
+        var indices = originalIndices
 
         // invert
         let inversion = Int(inversion) % indices.count
@@ -70,85 +41,88 @@ public enum Chord  {
     }
 
     /// TODO: autogenerate the code below using ChordQuality
-    public static let Major : Harmonizer = Chord.Major(inversion: 0, extensions: [])
-    public static func Major(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.Major.intervals, inversion: inversion, extensions: extensions)
+    //MARK: Triads
+    public static let Major : Harmonizer = Chord.Major(inversion: 0)
+    public static func Major(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.Major.intervals, inversion: inversion)
     }
-    public static let Minor : Harmonizer = Chord.Minor(inversion: 0, extensions: [])
-    public static func Minor(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.Minor.intervals, inversion: inversion, extensions: extensions)
+    public static let Minor : Harmonizer = Chord.Minor(inversion: 0)
+    public static func Minor(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.Minor.intervals, inversion: inversion)
     }
-    public static let Augmented : Harmonizer = Chord.Augmented(inversion: 0, extensions: [])
-    public static func Augmented(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.Augmented.intervals, inversion: inversion, extensions: extensions)
+    public static let Augmented : Harmonizer = Chord.Augmented(inversion: 0)
+    public static func Augmented(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.Augmented.intervals, inversion: inversion)
     }
-    public static let Diminished : Harmonizer = Chord.Diminished(inversion: 0, extensions: [])
-    public static func Diminished(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.Diminished.intervals, inversion: inversion, extensions: extensions)
+    public static let Diminished : Harmonizer = Chord.Diminished(inversion: 0)
+    public static func Diminished(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.Diminished.intervals, inversion: inversion)
     }
-    public static let Sus2 : Harmonizer = Chord.Sus2(inversion: 0, extensions: [])
-    public static func Sus2(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.Sus2.intervals, inversion: inversion, extensions: extensions)
+    public static let Sus2 : Harmonizer = Chord.Sus2(inversion: 0)
+    public static func Sus2(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.Sus2.intervals, inversion: inversion)
     }
-    public static let Sus4 : Harmonizer = Chord.Sus4(inversion: 0, extensions: [])
-    public static func Sus4(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.Sus4.intervals, inversion: inversion, extensions: extensions)
+    public static let Sus4 : Harmonizer = Chord.Sus4(inversion: 0)
+    public static func Sus4(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.Sus4.intervals, inversion: inversion)
     }
-    public static let DominantSeventh : Harmonizer = Chord.DominantSeventh(inversion: 0, extensions: [])
-    public static func DominantSeventh(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.DominantSeventh.intervals, inversion: inversion, extensions: extensions)
+    //MARK: Tetrads
+    public static let DominantSeventh : Harmonizer = Chord.DominantSeventh(inversion: 0)
+    public static func DominantSeventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.DominantSeventh.intervals, inversion: inversion)
     }
-    public static let MajorSeventh : Harmonizer = Chord.MajorSeventh(inversion: 0, extensions: [])
-    public static func MajorSeventh(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.MajorSeventh.intervals, inversion: inversion, extensions: extensions)
+    public static let MajorSeventh : Harmonizer = Chord.MajorSeventh(inversion: 0)
+    public static func MajorSeventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MajorSeventh.intervals, inversion: inversion)
     }
-    public static let MinorMajorSeventh : Harmonizer = Chord.MinorMajorSeventh(inversion: 0, extensions: [])
-    public static func MinorMajorSeventh(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.MinorMajorSeventh.intervals, inversion: inversion, extensions: extensions)
+    public static let MinorMajorSeventh : Harmonizer = Chord.MinorMajorSeventh(inversion: 0)
+    public static func MinorMajorSeventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MinorMajorSeventh.intervals, inversion: inversion)
     }
-    public static let MinorSeventh : Harmonizer = Chord.MinorSeventh(inversion: 0, extensions: [])
-    public static func MinorSeventh(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.MinorSeventh.intervals, inversion: inversion, extensions: extensions)
+    public static let MinorSeventh : Harmonizer = Chord.MinorSeventh(inversion: 0)
+    public static func MinorSeventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MinorSeventh.intervals, inversion: inversion)
     }
-    public static let AugmentedMajorSeventh : Harmonizer = Chord.AugmentedMajorSeventh(inversion: 0, extensions: [])
-    public static func AugmentedMajorSeventh(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.AugmentedMajorSeventh.intervals, inversion: inversion, extensions: extensions)
+    public static let AugmentedMajorSeventh : Harmonizer = Chord.AugmentedMajorSeventh(inversion: 0)
+    public static func AugmentedMajorSeventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.AugmentedMajorSeventh.intervals, inversion: inversion)
     }
-    public static let AugmentedSeventh : Harmonizer = Chord.AugmentedSeventh(inversion: 0, extensions: [])
-    public static func AugmentedSeventh(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.AugmentedSeventh.intervals, inversion: inversion, extensions: extensions)
+    public static let AugmentedSeventh : Harmonizer = Chord.AugmentedSeventh(inversion: 0)
+    public static func AugmentedSeventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.AugmentedSeventh.intervals, inversion: inversion)
     }
-    public static let HalfDiminishedSeventh : Harmonizer = Chord.HalfDiminishedSeventh(inversion: 0, extensions: [])
-    public static func HalfDiminishedSeventh(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.HalfDiminishedSeventh.intervals, inversion: inversion, extensions: extensions)
+    public static let HalfDiminishedSeventh : Harmonizer = Chord.HalfDiminishedSeventh(inversion: 0)
+    public static func HalfDiminishedSeventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.HalfDiminishedSeventh.intervals, inversion: inversion)
     }
-    public static let DiminishedSeventh : Harmonizer = Chord.DiminishedSeventh(inversion: 0, extensions: [])
-    public static func DiminishedSeventh(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.DiminishedSeventh.intervals, inversion: inversion, extensions: extensions)
+    public static let DiminishedSeventh : Harmonizer = Chord.DiminishedSeventh(inversion: 0)
+    public static func DiminishedSeventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.DiminishedSeventh.intervals, inversion: inversion)
     }
-    public static let DominantSeventhFlatFive : Harmonizer = Chord.DominantSeventhFlatFive(inversion: 0, extensions: [])
-    public static func DominantSeventhFlatFive(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.DominantSeventhFlatFive.intervals, inversion: inversion, extensions: extensions)
+    public static let DominantSeventhFlatFive : Harmonizer = Chord.DominantSeventhFlatFive(inversion: 0)
+    public static func DominantSeventhFlatFive(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.DominantSeventhFlatFive.intervals, inversion: inversion)
     }
-    public static let MajorSeventhFlatFive : Harmonizer = Chord.MajorSeventhFlatFive(inversion: 0, extensions: [])
-    public static func MajorSeventhFlatFive(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.MajorSeventhFlatFive.intervals, inversion: inversion, extensions: extensions)
+    public static let MajorSeventhFlatFive : Harmonizer = Chord.MajorSeventhFlatFive(inversion: 0)
+    public static func MajorSeventhFlatFive(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MajorSeventhFlatFive.intervals, inversion: inversion)
     }
-    public static let DominantSeventhSusFour : Harmonizer = Chord.DominantSeventhSusFour(inversion: 0, extensions: [])
-    public static func DominantSeventhSusFour(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.DominantSeventhSusFour.intervals, inversion: inversion, extensions: extensions)
+    public static let DominantSeventhSusFour : Harmonizer = Chord.DominantSeventhSusFour(inversion: 0)
+    public static func DominantSeventhSusFour(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.DominantSeventhSusFour.intervals, inversion: inversion)
     }
-    public static let MajorSeventhSusFour : Harmonizer = Chord.MajorSeventhSusFour(inversion: 0, extensions: [])
-    public static func MajorSeventhSusFour(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.MajorSeventhSusFour.intervals, inversion: inversion, extensions: extensions)
+    public static let MajorSeventhSusFour : Harmonizer = Chord.MajorSeventhSusFour(inversion: 0)
+    public static func MajorSeventhSusFour(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MajorSeventhSusFour.intervals, inversion: inversion)
     }
-    public static let MajorSixth : Harmonizer = Chord.MajorSixth(inversion: 0, extensions: [])
-    public static func MajorSixth(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.MajorSixth.intervals, inversion: inversion, extensions: extensions)
+    public static let MajorSixth : Harmonizer = Chord.MajorSixth(inversion: 0)
+    public static func MajorSixth(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MajorSixth.intervals, inversion: inversion)
     }
-    public static let MinorSixth : Harmonizer = Chord.MinorSixth(inversion: 0, extensions: [])
-    public static func MinorSixth(inversion: UInt = 0, extensions: [ChordExtension] = []) -> Harmonizer {
-        return create(ChordQuality.MinorSixth.intervals, inversion: inversion, extensions: extensions)
+    public static let MinorSixth : Harmonizer = Chord.MinorSixth(inversion: 0)
+    public static func MinorSixth(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MinorSixth.intervals, inversion: inversion)
     }
+    //MARK: Pentads
 
 }

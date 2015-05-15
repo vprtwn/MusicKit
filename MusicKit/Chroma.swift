@@ -74,8 +74,8 @@ public enum Chroma : UInt {
 extension Chroma : Printable {
     public var description : String {
         let nameTupleOpt : ChromaNameTuple? = self.names.first
-        if let n = nameTupleOpt {
-            return "\(n.0.description)\(n.1.description(true))"
+        if let (letterName, accidental) = nameTupleOpt {
+            return "\(letterName.description)\(accidental.description(true))"
         }
         return ""
     }

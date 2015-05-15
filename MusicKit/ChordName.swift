@@ -119,7 +119,7 @@ extension Chord {
         let indices = pitchSet.semitoneIndices()
         // check root position chords
         for quality in qualities {
-            var _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
+            let _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
             if _indices == indices {
                 return bassChromaOpt.map {
                     ChordDescriptor(root: $0, quality: quality, bass: $0)
@@ -128,7 +128,7 @@ extension Chord {
         }
         // check inversions
         for quality in qualities {
-            var _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
+            let _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
             for i in 1..<count {
                 let inversion = MKUtil.zero(MKUtil.invert(_indices, n: UInt(i)))
                 if inversion == indices {

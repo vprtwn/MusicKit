@@ -3,12 +3,14 @@
 import Foundation
 
 public enum ChordQuality : Printable {
+    // triads
     case Major
     case Minor
     case Augmented
     case Diminished
     case Sus2
     case Sus4
+    // tetrads
     case DominantSeventh
     case MajorSeventh
     case MinorMajorSeventh
@@ -26,13 +28,14 @@ public enum ChordQuality : Printable {
 
     public var description : String {
         switch self {
+        // triads
         case Major: return "major triad"
         case Minor: return "minor triad"
         case Augmented: return "augmented triad"
         case Diminished: return "diminished triad"
         case Sus2: return "suspended second"
         case Sus4: return "suspended fourth"
-
+        // tetrads
         case DominantSeventh: return "dominant seventh"
         case MajorSeventh: return "major seventh"
         case MinorMajorSeventh: return "minor-major seventh"
@@ -52,13 +55,14 @@ public enum ChordQuality : Printable {
 
     public var symbol: String {
         switch self {
+        // triads
         case Major: return "M"
         case Minor: return "m"
         case Augmented: return "+"
         case Diminished: return "°"
         case Sus2: return "sus2"
         case Sus4: return "sus4"
-
+        // tetrads
         case DominantSeventh: return "7"
         case MajorSeventh: return "Δ7"
         case MinorMajorSeventh: return "mΔ7"
@@ -78,13 +82,14 @@ public enum ChordQuality : Printable {
 
     public var intervals: [Float] {
         switch self {
+        // triads
         case Major: return [4, 3]
         case Minor: return [3, 4]
         case Augmented: return [4, 4]
         case Diminished: return [3, 3]
         case Sus2: return [2, 5]
         case Sus4: return [5, 2]
-
+        // tetrads
         case DominantSeventh: return [4, 3, 3]
         case MajorSeventh: return [4, 3, 4]
         case MinorMajorSeventh: return [3, 4, 4]
