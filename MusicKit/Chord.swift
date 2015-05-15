@@ -189,4 +189,41 @@ public enum Chord  {
         return create(ChordQuality.Dominant9Sus4.intervals, inversion: inversion)
     }
     //MARK: Hexads
+    public static let DominantEleventh : Harmonizer = Chord.DominantEleventh(inversion: 0)
+    public static func DominantEleventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.DominantEleventh.intervals, inversion: inversion)
+    }
+    public static let MajorEleventh : Harmonizer = Chord.MajorEleventh(inversion: 0)
+    public static func MajorEleventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MajorEleventh.intervals, inversion: inversion)
+    }
+    public static let MinorMajorEleventh : Harmonizer = Chord.MinorMajorEleventh(inversion: 0)
+    public static func MinorMajorEleventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MinorMajorEleventh.intervals, inversion: inversion)
+    }
+    public static let MinorEleventh : Harmonizer = Chord.MinorEleventh(inversion: 0)
+    public static func MinorEleventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MinorEleventh.intervals, inversion: inversion)
+    }
+    public static let AugmentedMajorEleventh : Harmonizer = Chord.AugmentedMajorEleventh(inversion: 0)
+    public static func AugmentedMajorEleventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.AugmentedMajorEleventh.intervals, inversion: inversion)
+    }
+    public static let AugmentedEleventh : Harmonizer = Chord.AugmentedEleventh(inversion: 0)
+    public static func AugmentedEleventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.AugmentedEleventh.intervals, inversion: inversion)
+    }
+    public static let HalfDiminishedEleventh : Harmonizer = Chord.HalfDiminishedEleventh(inversion: 0)
+    public static func HalfDiminishedEleventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.HalfDiminishedEleventh.intervals, inversion: inversion)
+    }
+    public static let DiminishedEleventh : Harmonizer = Chord.DiminishedEleventh(inversion: 0)
+    public static func DiminishedEleventh(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.DiminishedEleventh.intervals, inversion: inversion)
+    }
+    public static let DominantNinthSharpEleven : Harmonizer = Chord.DominantNinthSharpEleven(inversion: 0)
+    public static func DominantNinthSharpEleven(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.DominantNinthSharpEleven.intervals, inversion: inversion)
+    }
+    //MARK: Heptads
 }

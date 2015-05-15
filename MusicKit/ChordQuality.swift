@@ -43,6 +43,16 @@ public enum ChordQuality : Printable {
     case SixNine
     case Dominant9Sus4
     // hexads
+    case DominantEleventh
+    case MajorEleventh
+    case MinorMajorEleventh
+    case MinorEleventh
+    case AugmentedMajorEleventh
+    case AugmentedEleventh
+    case HalfDiminishedEleventh
+    case DiminishedEleventh
+    case DominantNinthSharpEleven
+    // heptads
 
     public var description : String {
         switch self {
@@ -86,6 +96,16 @@ public enum ChordQuality : Printable {
         case SixNine: return "six nine"
         case Dominant9Sus4: return "domininant ninth sus four"
         // hexads
+        case DominantEleventh: return "dominant eleventh"
+        case MajorEleventh: return "major eleventh"
+        case MinorMajorEleventh: return "minor major eleventh"
+        case MinorEleventh: return "minor eleventh"
+        case AugmentedMajorEleventh: return "augmented major eleventh"
+        case AugmentedEleventh: return "augmented eleventh"
+        case HalfDiminishedEleventh: return "half diminished eleventh"
+        case DiminishedEleventh: return "diminished eleventh"
+        case DominantNinthSharpEleven: return "dominant ninth sharp eleven"
+        // heptads
         }
     }
 
@@ -130,7 +150,18 @@ public enum ChordQuality : Printable {
         case DiminishedMinorNinth: return "°♭9"
         case SixNine: return "6/9"
         case Dominant9Sus4: return "9sus4"
+        // hexads
+        case DominantEleventh: return "11"
+        case MajorEleventh: return "Δ11"
+        case MinorMajorEleventh: return "mΔ11"
+        case MinorEleventh: return "m11"
+        case AugmentedMajorEleventh: return "+Δ11"
+        case AugmentedEleventh: return "+11"
+        case HalfDiminishedEleventh: return "ø11"
+        case DiminishedEleventh: return "°11"
+        case DominantNinthSharpEleven: return "9♯11"
         }
+        // heptads
     }
 
     public var intervals: [Float] {
@@ -175,6 +206,16 @@ public enum ChordQuality : Printable {
         case SixNine: return [4, 3, 1, 5]
         case Dominant9Sus4: return [5, 2, 3, 4]
         // hexads
+        case DominantEleventh: return [4, 3, 3, 4, 3]
+        case MajorEleventh: return [4, 3, 4, 3, 3]
+        case MinorMajorEleventh: return [3, 4, 4, 3, 3]
+        case MinorEleventh: return [3, 4, 3, 4, 3]
+        case AugmentedMajorEleventh: return [4, 4, 3, 3, 3]
+        case AugmentedEleventh: return [4, 4, 2, 4, 3]
+        case HalfDiminishedEleventh: return [3, 3, 4, 4, 3]
+        case DiminishedEleventh: return [3, 3, 3, 5, 3]
+        case DominantNinthSharpEleven: return [4, 3, 3, 4, 4]
         }
+        // heptads
     }
 }
