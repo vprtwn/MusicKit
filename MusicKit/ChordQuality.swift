@@ -25,6 +25,13 @@ public enum ChordQuality : Printable {
     case MajorSeventhSusFour
     case MajorSixth
     case MinorSixth
+    case AddNine
+    case MinorAddNine
+    // pentads
+    case DominantNinth
+    case DominantMinorNinth
+    case MajorNinth
+    case SixNine
 
     public var description : String {
         switch self {
@@ -50,6 +57,13 @@ public enum ChordQuality : Printable {
         case MajorSeventhSusFour: return "major seventh sus four"
         case MajorSixth: return "major sixth"
         case MinorSixth: return "minor sixth"
+        case AddNine: return "add nine"
+        case MinorAddNine: return "minor add nine"
+        case SixNine: return "six nine"
+        // pentads
+        case DominantNinth: return "dominant ninth"
+        case DominantMinorNinth: return "dominant minor ninth"
+        case MajorNinth: return "major ninth"
         }
     }
 
@@ -77,6 +91,13 @@ public enum ChordQuality : Printable {
         case MajorSeventhSusFour: return "Δ7sus4"
         case MajorSixth: return "6"
         case MinorSixth: return "m6"
+        case AddNine: return "add9"
+        case MinorAddNine: return "madd9"
+        // pentads
+        case DominantNinth: return "9"
+        case DominantMinorNinth: return "7♭9"
+        case MajorNinth: return "Δ9"
+        case SixNine: return "6/9"
         }
     }
 
@@ -104,6 +125,13 @@ public enum ChordQuality : Printable {
         case MajorSeventhSusFour: return [5, 2, 4]
         case MajorSixth: return [4, 3, 2]
         case MinorSixth: return [3, 4, 2]
+        case AddNine: return [2, 2, 3]
+        case MinorAddNine: return [2, 1, 4]
+        // pentads
+        case DominantNinth: return [4, 3, 3, 4]
+        case DominantMinorNinth: return [4, 3, 3, 3]
+        case MajorNinth: return [4, 3, 4, 3]
+        case SixNine: return [4, 3, 1, 5]
         }
     }
 }

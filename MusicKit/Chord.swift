@@ -123,6 +123,29 @@ public enum Chord  {
     public static func MinorSixth(inversion: UInt = 0) -> Harmonizer {
         return create(ChordQuality.MinorSixth.intervals, inversion: inversion)
     }
+    public static let AddNine : Harmonizer = Chord.AddNine(inversion: 0)
+    public static func AddNine(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.AddNine.intervals, inversion: inversion)
+    }
+    public static let MinorAddNine : Harmonizer = Chord.MinorAddNine(inversion: 0)
+    public static func MinorAddNine(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MinorAddNine.intervals, inversion: inversion)
+    }
     //MARK: Pentads
-
+    public static let DominantNinth : Harmonizer = Chord.DominantNinth(inversion: 0)
+    public static func DominantNinth(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.DominantNinth.intervals, inversion: inversion)
+    }
+    public static let DominantMinorNinth : Harmonizer = Chord.DominantMinorNinth(inversion: 0)
+    public static func DominantMinorNinth(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.DominantMinorNinth.intervals, inversion: inversion)
+    }
+    public static let MajorNinth : Harmonizer = Chord.MajorNinth(inversion: 0)
+    public static func MajorNinth(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.MajorNinth.intervals, inversion: inversion)
+    }
+    public static let SixNine : Harmonizer = Chord.SixNine(inversion: 0)
+    public static func SixNine(inversion: UInt = 0) -> Harmonizer {
+        return create(ChordQuality.SixNine.intervals, inversion: inversion)
+    }
 }
