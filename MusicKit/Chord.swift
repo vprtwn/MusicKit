@@ -1,41 +1,11 @@
 //  Copyright (c) 2015 Ben Guo. All rights reserved.
-
 import Foundation
 
+// TODO: auto-generate this file
 /// Phantom type containing functions for creating chord Harmonizers
 public enum Chord  {
-    /// Creates a new `Harmonizer` using the (1-indexed) indices of the given harmonizer
-    public static func create(harmonizer: Harmonizer, indices: [UInt]) -> Harmonizer {
-        if indices.count < 2 || contains(indices, 0) {
-            return Harmony.IdentityHarmonizer
-        }
-
-        // sort and convert to zero-indexed indices
-        let sortedIndices = sorted(indices.map { $0 - 1 })
-        let maxIndex = Int(sortedIndices.last!)
-        var scalePitches = harmonizer(Chroma.C*0)
-
-        // extend scale until it covers the max index
-        while (scalePitches.count < maxIndex + 1) {
-            scalePitches.extendOctaves(1)
-        }
-
-        let chosenPitches = PitchSet(sortedIndices.map { scalePitches[Int($0)] })
-        return Harmony.create(MKUtil.intervals(chosenPitches.semitoneIndices()))
-    }
-
-    /// Creates a new chord `Harmonizer` from the given intervals
-    static func create(intervals: [Float]) -> Harmonizer {
-        // convert to indices
-        let originalIndices = MKUtil.semitoneIndices(intervals)
-        var indices = originalIndices
-
-        // convert to intervals
-        let intervals = MKUtil.intervals(indices)
-
-        return Harmony.create(intervals)
-    }
-
+    // dyads
+    public static let PowerChord = Harmony.create(ChordQuality.PowerChord.intervals)
     // triads
     public static let Major = Harmony.create(ChordQuality.Major.intervals)
     public static let Minor = Harmony.create(ChordQuality.Minor.intervals)
@@ -62,8 +32,9 @@ public enum Chord  {
     public static let MinorAddNine = Harmony.create(ChordQuality.MinorAddNine.intervals)
     // pentads
     public static let DominantNinth = Harmony.create(ChordQuality.DominantNinth.intervals)
-    public static let DominantMinorNinth = Harmony.create(ChordQuality.DominantMinorNinth.intervals)
+    public static let DominantSeventhFlatNine = Harmony.create(ChordQuality.DominantSeventhFlatNine.intervals)
     public static let DominantSeventhSharpNine = Harmony.create(ChordQuality.DominantSeventhSharpNine.intervals)
+    public static let MajorSeventhSharpNine = Harmony.create(ChordQuality.MajorSeventhSharpNine.intervals)
     public static let MajorNinth = Harmony.create(ChordQuality.MajorNinth.intervals)
     public static let MinorNinth = Harmony.create(ChordQuality.MinorNinth.intervals)
     public static let MinorMajorNinth = Harmony.create(ChordQuality.MinorMajorNinth.intervals)
@@ -85,6 +56,8 @@ public enum Chord  {
     public static let HalfDiminishedEleventh = Harmony.create(ChordQuality.HalfDiminishedEleventh.intervals)
     public static let DiminishedEleventh = Harmony.create(ChordQuality.DiminishedEleventh.intervals)
     public static let DominantNinthSharpEleven = Harmony.create(ChordQuality.DominantNinthSharpEleven.intervals)
+    public static let MajorNinthSharpEleven = Harmony.create(ChordQuality.MajorNinthSharpEleven.intervals)
+    public static let MinorNinthSharpEleven = Harmony.create(ChordQuality.MinorNinthSharpEleven.intervals)
     // heptads
     public static let DominantThirteenth = Harmony.create(ChordQuality.DominantThirteenth.intervals)
     public static let MajorThirteenth = Harmony.create(ChordQuality.MajorThirteenth.intervals)

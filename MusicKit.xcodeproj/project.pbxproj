@@ -27,6 +27,10 @@
 		9662BFF11B058568008A053A /* IntervalQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9662BFF01B058568008A053A /* IntervalQuality.swift */; };
 		9662BFF21B058568008A053A /* IntervalQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9662BFF01B058568008A053A /* IntervalQuality.swift */; };
 		96686DB51A573B7F00350A2D /* PitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96686DB41A573B7F00350A2D /* PitchTests.swift */; };
+		967070E91B0850AC00CB367E /* ChordExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967070E81B0850AC00CB367E /* ChordExtension.swift */; };
+		967070EA1B0850AC00CB367E /* ChordExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967070E81B0850AC00CB367E /* ChordExtension.swift */; };
+		967070EC1B08512A00CB367E /* ChordQualities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967070EB1B08512A00CB367E /* ChordQualities.swift */; };
+		967070ED1B08512A00CB367E /* ChordQualities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967070EB1B08512A00CB367E /* ChordQualities.swift */; };
 		9691BB2A1A57C75500421B56 /* MusicKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9693F6531A57C403006270F4 /* MusicKit.framework */; };
 		9691BB301A57C78800421B56 /* PitchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96686DB41A573B7F00350A2D /* PitchTests.swift */; };
 		969220C41AF1E75A00560A20 /* Chroma.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969220C31AF1E75A00560A20 /* Chroma.swift */; };
@@ -114,6 +118,8 @@
 		965AF8C11AF7A1DA00D31E83 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		9662BFF01B058568008A053A /* IntervalQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalQuality.swift; sourceTree = "<group>"; };
 		96686DB41A573B7F00350A2D /* PitchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchTests.swift; sourceTree = "<group>"; };
+		967070E81B0850AC00CB367E /* ChordExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordExtension.swift; sourceTree = "<group>"; };
+		967070EB1B08512A00CB367E /* ChordQualities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordQualities.swift; sourceTree = "<group>"; };
 		9691BB241A57C75500421B56 /* MusicKit_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicKit_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		969220C31AF1E75A00560A20 /* Chroma.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chroma.swift; sourceTree = "<group>"; };
 		9693F6531A57C403006270F4 /* MusicKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,7 +231,9 @@
 				96F299421A56661300D7B006 /* Scale.swift */,
 				96CC5A811B056BFC00727C00 /* ScaleQuality.swift */,
 				969A02B11A5C13BA003EB476 /* Chord.swift */,
+				967070E81B0850AC00CB367E /* ChordExtension.swift */,
 				9625D8081B03702100C4142E /* ChordQuality.swift */,
+				967070EB1B08512A00CB367E /* ChordQualities.swift */,
 				96EC063D1AFADF130061CC42 /* ChordName.swift */,
 				96CC5A7E1B0565C900727C00 /* ChordDescriptor.swift */,
 				965331321AF1C20000EEDA02 /* HarmonicFunction.swift */,
@@ -555,6 +563,7 @@
 				96DFB6351AF6C2F0005EEBD6 /* MKUtil.swift in Sources */,
 				9693F6761A57C44A006270F4 /* MusicKit.swift in Sources */,
 				9610686B1AF3390F00BF9E91 /* Chroma.swift in Sources */,
+				967070ED1B08512A00CB367E /* ChordQualities.swift in Sources */,
 				965AF8C31AF7A1DA00D31E83 /* Protocols.swift in Sources */,
 				96DFB62C1AF6B62C005EEBD6 /* PitchSetExtensions.swift in Sources */,
 				96EC063F1AFADF130061CC42 /* ChordName.swift in Sources */,
@@ -571,6 +580,7 @@
 				96CC5A801B0565C900727C00 /* ChordDescriptor.swift in Sources */,
 				960F015F1AFFA6AA006974AE /* MIDIMessage.swift in Sources */,
 				9693F6781A57C44A006270F4 /* Scale.swift in Sources */,
+				967070EA1B0850AC00CB367E /* ChordExtension.swift in Sources */,
 				96DFB6321AF6C26A005EEBD6 /* Harmony.swift in Sources */,
 				96D804B91B06A00700BEC15F /* Interval.swift in Sources */,
 				96BB1B131AF458A0005830DC /* LetterName.swift in Sources */,
@@ -585,6 +595,7 @@
 				96DFB6341AF6C2F0005EEBD6 /* MKUtil.swift in Sources */,
 				96F299411A5665CA00D7B006 /* Pitch.swift in Sources */,
 				969A02B21A5C13BA003EB476 /* Chord.swift in Sources */,
+				967070EC1B08512A00CB367E /* ChordQualities.swift in Sources */,
 				965AF8C21AF7A1DA00D31E83 /* Protocols.swift in Sources */,
 				96DFB62B1AF6B62C005EEBD6 /* PitchSetExtensions.swift in Sources */,
 				96EC063E1AFADF130061CC42 /* ChordName.swift in Sources */,
@@ -601,6 +612,7 @@
 				96CC5A7F1B0565C900727C00 /* ChordDescriptor.swift in Sources */,
 				960F015E1AFFA6AA006974AE /* MIDIMessage.swift in Sources */,
 				96F2993F1A56654800D7B006 /* MusicKit.swift in Sources */,
+				967070E91B0850AC00CB367E /* ChordExtension.swift in Sources */,
 				96DFB6311AF6C26A005EEBD6 /* Harmony.swift in Sources */,
 				96D804B81B06A00700BEC15F /* Interval.swift in Sources */,
 				96BB1B121AF458A0005830DC /* LetterName.swift in Sources */,

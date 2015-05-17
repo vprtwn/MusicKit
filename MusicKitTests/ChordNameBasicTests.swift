@@ -3,6 +3,13 @@ import MusicKit
 
 final class ChordNameBasicTests: XCTestCase {
     ///*
+    func testPowerChord() {
+        var sut : PitchSet = [Chroma.C*0, Chroma.G*0, Chroma.C*2]
+        var name = Chord.name(sut)
+        var expected = "C5"
+        XCTAssert(name == expected, "\(name) != \(expected)")
+    }
+
     func testMajorMinor() {
         var sut : PitchSet = [Chroma.C*0, Chroma.E*2, Chroma.G*3, Chroma.C*4]
         var name = Chord.name(sut)

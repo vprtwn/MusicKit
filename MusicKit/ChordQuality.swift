@@ -2,191 +2,90 @@
 
 import Foundation
 
-public enum ChordQuality : Printable {
+public enum ChordQuality : String {
+    // dyads
+    case PowerChord = "5"
     // triads
-    case Major
-    case Minor
-    case Augmented
-    case Diminished
-    case Sus2
-    case Sus4
+    case Major = "M"
+    case Minor = "m"
+    case Augmented = "+"
+    case Diminished = "°"
+    case Sus2 = "sus2"
+    case Sus4 = "sus4"
     // tetrads
-    case DominantSeventh
-    case MajorSeventh
-    case MinorMajorSeventh
-    case MinorSeventh
-    case AugmentedMajorSeventh
-    case AugmentedSeventh
-    case HalfDiminishedSeventh
-    case DiminishedSeventh
-    case DominantSeventhFlatFive
-    case MajorSeventhFlatFive
-    case DominantSeventhSusFour
-    case MajorSeventhSusFour
-    case MajorSixth
-    case MinorSixth
-    case AddNine
-    case MinorAddNine
+    case DominantSeventh = "7"
+    case MajorSeventh = "Δ7"
+    case MinorMajorSeventh = "mΔ7"
+    case MinorSeventh = "m7"
+    case AugmentedMajorSeventh = "+Δ7"
+    case AugmentedSeventh = "+7"
+    case HalfDiminishedSeventh = "ø7"
+    case DiminishedSeventh = "°7"
+    case DominantSeventhFlatFive = "7♭5"
+    case MajorSeventhFlatFive = "Δ7♭5"
+    case DominantSeventhSusFour = "7sus4"
+    case MajorSeventhSusFour = "Δ7sus4"
+    case MajorSixth = "6"
+    case MinorSixth = "m6"
+    case AddNine = "add9"
+    case MinorAddNine = "madd9"
     // pentads
-    case DominantNinth
-    case DominantMinorNinth
-    case DominantSeventhSharpNine
-    case MajorNinth
-    case MinorNinth
-    case MinorMajorNinth
-    case AugmentedNinth
-    case AugmentedMajorNinth
-    case HalfDiminishedNinth
-    case HalfDiminishedMinorNinth
-    case DiminishedNinth
-    case DiminishedMinorNinth
-    case SixNine
-    case Dominant9Sus4
+    case DominantNinth = "9"
+    case MajorNinth = "Δ9"
+    case MinorNinth = "m9"
+    case MinorMajorNinth = "mΔ9"
+    case AugmentedNinth = "+9"
+    case AugmentedMajorNinth = "+Δ9"
+    case HalfDiminishedNinth = "ø9"
+    case HalfDiminishedMinorNinth = "ø♭9"
+    case DiminishedNinth = "°9"
+    case DiminishedMinorNinth = "°♭9"
+    case SixNine = "6/9"
+    case Dominant9Sus4 = "9sus4"
+    case DominantSeventhSharpNine = "7♯9"
+    case MajorSeventhSharpNine = "Δ7♯9"
+    case AugmentedSeventhSharpNine = "+7♯9"
+    case AugmentedMajorSeventhSharpNine = "+Δ7♯9"
+    case DominantSeventhFlatNine = "7♭9"
+    case MinorSeventhFlatNine = "m7♭9"
+    case MajorSeventhFlatNine = "Δ7♭9"
+    case MinorMajorSeventhFlatNine = "mΔ7♭9"
+    case AugmentedSeventhFlatNine = "+7♭9"
+    case AugmentedMajorSeventhFlatNine = "+Δ7♭9"
+    case DominantSeventhSharpEleven = "7♯11"
+    case MinorSeventhSharpEleven = "m7♯11"
+    case MajorSeventhSharpEleven = "Δ7♯11"
+    case MinorMajorSeventhSharpEleven = "mΔ7♯11"
+    case AugmentedSeventhSharpEleven = "+7♯11"
+    case AugmentedMajorSeventhSharpEleven = "+Δ7♯11"
     // hexads
-    case DominantEleventh
-    case MajorEleventh
-    case MinorMajorEleventh
-    case MinorEleventh
-    case AugmentedMajorEleventh
-    case AugmentedEleventh
-    case HalfDiminishedEleventh
-    case DiminishedEleventh
-    case DominantNinthSharpEleven
+    case DominantEleventh = "11"
+    case MajorEleventh = "Δ11"
+    case MinorMajorEleventh = "mΔ11"
+    case MinorEleventh = "m11"
+    case AugmentedMajorEleventh = "+Δ11"
+    case AugmentedEleventh = "+11"
+    case HalfDiminishedEleventh = "ø11"
+    case DiminishedEleventh = "°11"
+    case DominantEleventhFlatNine = "11♭9"
+    case MajorEleventhFlatNine = "Δ11♭9"
+    case MinorEleventhFlatNine = "m11♭9"
+    case DominantNinthSharpEleven = "9♯11"
+    case MajorNinthSharpEleven = "Δ9♯11"
+    case MinorNinthSharpEleven = "m9♯11"
     // heptads
-    case DominantThirteenth
-    case MajorThirteenth
-    case MinorMajorThirteenth
-    case MinorThirteenth
-    case AugmentedMajorThirteenth
-    case AugmentedThirteenth
-    case HalfDiminishedThirteenth
-
-    public var description : String {
-        switch self {
-        // triads
-        case Major: return "major triad"
-        case Minor: return "minor triad"
-        case Augmented: return "augmented triad"
-        case Diminished: return "diminished triad"
-        case Sus2: return "suspended second"
-        case Sus4: return "suspended fourth"
-        // tetrads
-        case DominantSeventh: return "dominant seventh"
-        case MajorSeventh: return "major seventh"
-        case MinorMajorSeventh: return "minor-major seventh"
-        case MinorSeventh: return "minor seventh"
-        case AugmentedMajorSeventh: return "augmented-major seventh"
-        case AugmentedSeventh: return "augmented seventh"
-        case HalfDiminishedSeventh: return "half-diminished seventh"
-        case DiminishedSeventh: return "diminished seventh"
-        case DominantSeventhFlatFive: return "dominant seventh flat five"
-        case MajorSeventhFlatFive: return "major seventh flat five"
-        case DominantSeventhSusFour: return "dominant seventh sus four"
-        case MajorSeventhSusFour: return "major seventh sus four"
-        case MajorSixth: return "major sixth"
-        case MinorSixth: return "minor sixth"
-        case AddNine: return "add nine"
-        case MinorAddNine: return "minor add nine"
-        // pentads
-        case DominantNinth: return "dominant ninth"
-        case DominantMinorNinth: return "dominant minor ninth"
-        case DominantSeventhSharpNine: return "dominant seventh sharp nine"
-        case MajorNinth: return "major ninth"
-        case MinorNinth: return "minor ninth"
-        case MinorMajorNinth: return "minor major ninth"
-        case AugmentedNinth: return "augmented ninth"
-        case AugmentedMajorNinth: return "augmented major ninth"
-        case HalfDiminishedNinth: return "half diminished ninth"
-        case HalfDiminishedMinorNinth: return "half diminished minor ninth"
-        case DiminishedNinth: return "diminished ninth"
-        case DiminishedMinorNinth: return "diminished minor ninth"
-        case SixNine: return "six nine"
-        case Dominant9Sus4: return "domininant ninth sus four"
-        // hexads
-        case DominantEleventh: return "dominant eleventh"
-        case MajorEleventh: return "major eleventh"
-        case MinorMajorEleventh: return "minor major eleventh"
-        case MinorEleventh: return "minor eleventh"
-        case AugmentedMajorEleventh: return "augmented major eleventh"
-        case AugmentedEleventh: return "augmented eleventh"
-        case HalfDiminishedEleventh: return "half diminished eleventh"
-        case DiminishedEleventh: return "diminished eleventh"
-        case DominantNinthSharpEleven: return "dominant ninth sharp eleven"
-        // heptads
-        case DominantThirteenth: return "dominant thirteenth"
-        case MajorThirteenth: return "major thirteenth"
-        case MinorMajorThirteenth: return "minor major thirteenth"
-        case MinorThirteenth: return "minor thirteenth"
-        case AugmentedMajorThirteenth: return "augmented major thirteenth"
-        case AugmentedThirteenth: return "augmented thirteenth"
-        case HalfDiminishedThirteenth: return "half diminished thirteenth"
-        }
-    }
-
-    public var shortName: String {
-        switch self {
-        // triads
-        case Major: return "M"
-        case Minor: return "m"
-        case Augmented: return "+"
-        case Diminished: return "°"
-        case Sus2: return "sus2"
-        case Sus4: return "sus4"
-        // tetrads
-        case DominantSeventh: return "7"
-        case MajorSeventh: return "Δ7"
-        case MinorMajorSeventh: return "mΔ7"
-        case MinorSeventh: return "m7"
-        case AugmentedMajorSeventh: return "+Δ7"
-        case AugmentedSeventh: return "+7"
-        case HalfDiminishedSeventh: return "ø7"
-        case DiminishedSeventh: return "°7"
-        case DominantSeventhFlatFive: return "7♭5"
-        case MajorSeventhFlatFive: return "Δ7♭5"
-        case DominantSeventhSusFour: return "7sus4"
-        case MajorSeventhSusFour: return "Δ7sus4"
-        case MajorSixth: return "6"
-        case MinorSixth: return "m6"
-        case AddNine: return "add9"
-        case MinorAddNine: return "madd9"
-        // pentads
-        case DominantNinth: return "9"
-        case DominantMinorNinth: return "7♭9"
-        case DominantSeventhSharpNine: return "7♯9"
-        case MajorNinth: return "Δ9"
-        case MinorNinth: return "m9"
-        case MinorMajorNinth: return "mΔ9"
-        case AugmentedNinth: return "+9"
-        case AugmentedMajorNinth: return "+Δ9"
-        case HalfDiminishedNinth: return "ø9"
-        case HalfDiminishedMinorNinth: return "ø♭9"
-        case DiminishedNinth: return "°9"
-        case DiminishedMinorNinth: return "°♭9"
-        case SixNine: return "6/9"
-        case Dominant9Sus4: return "9sus4"
-        // hexads
-        case DominantEleventh: return "11"
-        case MajorEleventh: return "Δ11"
-        case MinorMajorEleventh: return "mΔ11"
-        case MinorEleventh: return "m11"
-        case AugmentedMajorEleventh: return "+Δ11"
-        case AugmentedEleventh: return "+11"
-        case HalfDiminishedEleventh: return "ø11"
-        case DiminishedEleventh: return "°11"
-        case DominantNinthSharpEleven: return "9♯11"
-        // heptads
-        case DominantThirteenth: return "13"
-        case MajorThirteenth: return "Δ13"
-        case MinorMajorThirteenth: return "mΔ13"
-        case MinorThirteenth: return "m13"
-        case AugmentedMajorThirteenth: return "+Δ13"
-        case AugmentedThirteenth: return "+13"
-        case HalfDiminishedThirteenth: return "ø11"
-        }
-    }
+    case DominantThirteenth = "13"
+    case MajorThirteenth = "Δ13"
+    case MinorMajorThirteenth = "mΔ13"
+    case MinorThirteenth = "m13"
+    case AugmentedMajorThirteenth = "+Δ13"
+    case AugmentedThirteenth = "+13"
+    case HalfDiminishedThirteenth = "ø13"
 
     public var intervals: [Float] {
         switch self {
+        // dyads
+        case PowerChord: return [7]
         // triads
         case Major: return [4, 3]
         case Minor: return [3, 4]
@@ -213,8 +112,6 @@ public enum ChordQuality : Printable {
         case MinorAddNine: return [2, 1, 4]
         // pentads
         case DominantNinth: return [4, 3, 3, 4]
-        case DominantMinorNinth: return [4, 3, 3, 3]
-        case DominantSeventhSharpNine: return [4, 3, 3, 5]
         case MajorNinth: return [4, 3, 4, 3]
         case MinorNinth: return [3, 4, 3, 4]
         case MinorMajorNinth: return [3, 4, 4, 3]
@@ -226,6 +123,22 @@ public enum ChordQuality : Printable {
         case DiminishedMinorNinth: return [3, 3, 3, 4]
         case SixNine: return [4, 3, 1, 5]
         case Dominant9Sus4: return [5, 2, 3, 4]
+        case DominantSeventhSharpNine: return [4, 3, 3, 5]
+        case MajorSeventhSharpNine: return [4, 3, 4, 4]
+        case AugmentedSeventhSharpNine: return [4, 4, 2, 5]
+        case AugmentedMajorSeventhSharpNine: return [4, 4, 3, 4]
+        case DominantSeventhFlatNine: return [4, 3, 3, 3]
+        case MinorSeventhFlatNine: return [3, 4, 3, 3]
+        case MajorSeventhFlatNine: return [4, 3, 4, 2]
+        case MinorMajorSeventhFlatNine: return [3, 4, 4, 2]
+        case AugmentedSeventhFlatNine: return [4, 4, 2, 3]
+        case AugmentedMajorSeventhFlatNine: return [4, 4, 3, 2]
+        case DominantSeventhSharpEleven: return [4, 3, 3, 8]
+        case MinorSeventhSharpEleven: return [3, 4, 3, 8]
+        case MajorSeventhSharpEleven: return [4, 3, 4, 7]
+        case MinorMajorSeventhSharpEleven: return [3, 4, 4, 7]
+        case AugmentedSeventhSharpEleven: return [4, 4, 2, 8]
+        case AugmentedMajorSeventhSharpEleven: return [4, 4, 3, 7]
         // hexads
         case DominantEleventh: return [4, 3, 3, 4, 3]
         case MajorEleventh: return [4, 3, 4, 3, 3]
@@ -235,7 +148,12 @@ public enum ChordQuality : Printable {
         case AugmentedEleventh: return [4, 4, 2, 4, 3]
         case HalfDiminishedEleventh: return [3, 3, 4, 4, 3]
         case DiminishedEleventh: return [3, 3, 3, 5, 3]
+        case DominantEleventhFlatNine: return [4, 3, 3, 3, 4]
+        case MajorEleventhFlatNine: return [4, 3, 4, 2, 4]
+        case MinorEleventhFlatNine: return [3, 4, 3, 3, 4]
         case DominantNinthSharpEleven: return [4, 3, 3, 4, 4]
+        case MajorNinthSharpEleven: return [4, 3, 4, 3, 4]
+        case MinorNinthSharpEleven: return [3, 4, 3, 4, 4]
         // heptads
         case DominantThirteenth: return [4, 3, 3, 4, 3, 4]
         case MajorThirteenth: return [4, 3, 4, 3, 3, 4]
@@ -245,5 +163,11 @@ public enum ChordQuality : Printable {
         case AugmentedThirteenth: return [3, 3, 4, 4, 3, 4]
         case HalfDiminishedThirteenth: return [3, 3, 4, 4, 3, 4]
         }
+    }
+}
+
+extension ChordQuality : Printable {
+    public var description : String {
+        return rawValue
     }
 }

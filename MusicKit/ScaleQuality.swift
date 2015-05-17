@@ -2,34 +2,18 @@
 
 import Foundation
 
-public enum ScaleQuality : Printable {
-    case Chromatic
-    case Wholetone
-    case Octatonic1
-    case Octatonic2
-    case Major
-    case Dorian
-    case Phrygian
-    case Lydian
-    case Mixolydian
-    case Minor
-    case Locrian
-
-    public var description : String {
-        switch self {
-        case Chromatic: return "Chromatic"
-        case Wholetone: return "Wholetone"
-        case Octatonic1: return "Octatonic mode 1"
-        case Octatonic2: return "Octatonic mode 2"
-        case Major: return "Major"
-        case Dorian: return "Dorian"
-        case Phrygian: return "Phrygian"
-        case Lydian: return "Lydian"
-        case Mixolydian: return "Mixolydian"
-        case Minor: return "Minor"
-        case Locrian: return "Locrian"
-        }
-    }
+public enum ScaleQuality : String {
+    case Chromatic = "Chromatic"
+    case Wholetone = "Wholetone"
+    case Octatonic1 = "Octatonic mode 1"
+    case Octatonic2 = "Octatonic mode 2"
+    case Major = "Major"
+    case Dorian = "Dorian"
+    case Phrygian = "Phrygian"
+    case Lydian = "Lydian"
+    case Mixolydian = "Mixolydian"
+    case Minor = "Minor"
+    case Locrian = "Locrian"
 
     public var intervals : [Float] {
         switch self {
@@ -45,5 +29,11 @@ public enum ScaleQuality : Printable {
         case Minor: return [2, 1, 2, 2, 1, 2]
         case Locrian: return [1, 2, 2, 1, 2, 2]
         }
+    }
+}
+
+extension ScaleQuality : Printable {
+    public var description : String {
+        return rawValue
     }
 }
