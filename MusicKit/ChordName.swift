@@ -42,8 +42,9 @@ extension Chord {
 
         let bass = pitchSet[0]
         let bassChromaOpt = bass.chroma
-        var removedBass = pitchSet
-        removedBass.remove(bass)
+        // pitch set with bass removed
+        var bassRemoved = pitchSet
+        bassRemoved.remove(bass)
 
         // dyads
         if count == 2 {
@@ -56,28 +57,28 @@ extension Chord {
         // Tetrads
         else if count == 4 {
             // no-slash chord
-            let fullDescOpt = _descriptor(pitchSet, qualities: ChordQuality.Tetrads)
-            // slash chord
-            let topDescOpt = _descriptor(removedBass, qualities: ChordQuality.Triads)
-            var slashDescOpt : ChordDescriptor? = nil
-            if let topDesc = topDescOpt {
-                slashDescOpt = bassChromaOpt.map {
-                    ChordDescriptor(root: topDesc.root, quality: topDesc.quality, bass: $0)
+            let fullOpt = _descriptor(pitchSet, qualities: ChordQuality.Tetrads)
+            // slash chord without bass in upper chord
+            let noBassOpt = _descriptor(bassRemoved, qualities: ChordQuality.Triads)
+            var slashNoBassOpt : ChordDescriptor? = nil
+            if let noBass = noBassOpt {
+                slashNoBassOpt = bassChromaOpt.map {
+                    ChordDescriptor(root: noBass.root, quality: noBass.quality, bass: $0)
                 }
             }
             // unaltered no-slash chord
-            if let fullDesc = fullDescOpt {
-                if contains(ChordQuality.UnalteredTetrads, fullDesc.quality) {
-                    return fullDesc
+            if let full = fullOpt {
+                if contains(ChordQuality.UnalteredTetrads, full.quality) {
+                    return full
                 }
             }
             // slash chord > altered no-slash chord
-            return slashDescOpt != nil ? slashDescOpt : fullDescOpt
+            return slashNoBassOpt ?? fullOpt
         }
         // pentads
         else if count == 5 {
             // remove bass note and attempt to form slash chord
-            let topDescOpt = _descriptor(removedBass, qualities: ChordQuality.Tetrads)
+            let topDescOpt = _descriptor(bassRemoved, qualities: ChordQuality.Tetrads)
             if let topDesc = topDescOpt {
                 return bassChromaOpt.map {
                     ChordDescriptor(root: topDesc.root, quality: topDesc.quality, bass: $0)

@@ -2,18 +2,16 @@ import MusicKit
 
 let unalteredTetrads = ChordQuality.UnalteredTetrads
 
-var unalteredPentadSymbols = [String]()
-var unalteredPentadIntervals = [String]()
-var unalteredHexadSymbols = [String]()
-var unalteredHexadIntervals = [String]()
-var unalteredHeptadSymbols = [String]()
-var unalteredHeptadIntervals = [String]()
+// (symbols, intervals)
+var unalteredPentads = ([String](), [String]())
+var unalteredHexads = ([String](), [String]())
+var unalteredHeptads = ([String](), [String]())
 for q in unalteredTetrads {
     // pentad symbols
     var name = q.name.stringByReplacingOccurrencesOfString("Seventh", withString: "Ninth")
     var symbol = q.description.stringByReplacingOccurrencesOfString("7", withString: "9")
     var symbolLine = "case \(name) = \"\(symbol)\""
-    unalteredPentadSymbols.append(symbolLine)
+    unalteredPentads.0.append(symbolLine)
 
     // pentad intervals
     var intervals = MKUtil.intervals(
@@ -22,13 +20,13 @@ for q in unalteredTetrads {
     var intIntervals = [Int]()
     for i in intervals { intIntervals.append(Int(i)) }
     var intervalLine = "case \(name): return \(intIntervals)"
-    unalteredPentadIntervals.append(intervalLine)
+    unalteredPentads.1.append(intervalLine)
 
     // hexad symbols
     name = q.name.stringByReplacingOccurrencesOfString("Seventh", withString: "Eleventh")
     symbol = q.description.stringByReplacingOccurrencesOfString("7", withString: "11")
     symbolLine = "case \(name) = \"\(symbol)\""
-    unalteredHexadSymbols.append(symbolLine)
+    unalteredHexads.0.append(symbolLine)
 
     // hexad intervals
     intervals = MKUtil.intervals(
@@ -38,13 +36,13 @@ for q in unalteredTetrads {
     intIntervals.removeAll()
     for i in intervals { intIntervals.append(Int(i)) }
     intervalLine = "case \(name): return \(intIntervals)"
-    unalteredHexadIntervals.append(intervalLine)
+    unalteredHexads.1.append(intervalLine)
 
     // heptad symbols
     name = q.name.stringByReplacingOccurrencesOfString("Seventh", withString: "Thirteenth")
     symbol = q.description.stringByReplacingOccurrencesOfString("7", withString: "13")
     symbolLine = "case \(name) = \"\(symbol)\""
-    unalteredHeptadSymbols.append(symbolLine)
+    unalteredHeptads.0.append(symbolLine)
 
     // heptad intervals
     intervals = MKUtil.intervals(
@@ -55,7 +53,7 @@ for q in unalteredTetrads {
     intIntervals.removeAll()
     for i in intervals { intIntervals.append(Int(i)) }
     intervalLine = "case \(name): return \(intIntervals)"
-    unalteredHeptadIntervals.append(intervalLine)
+    unalteredHeptads.1.append(intervalLine)
 }
 
 func printCode(groupName: String, symbols: [String], intervals: [String]) {
@@ -67,6 +65,6 @@ func printCode(groupName: String, symbols: [String], intervals: [String]) {
     print("\n")
 }
 
-printCode("unaltered pentads", unalteredPentadSymbols, unalteredPentadIntervals)
-printCode("unaltered hexads", unalteredHexadSymbols, unalteredHexadIntervals)
-printCode("unaltered heptads", unalteredHeptadSymbols, unalteredHeptadIntervals)
+printCode("unaltered pentads", unalteredPentads.0, unalteredPentads.1)
+printCode("unaltered hexads", unalteredHexads.0, unalteredHexads.1)
+printCode("unaltered heptads", unalteredHeptads.0, unalteredHeptads.1)

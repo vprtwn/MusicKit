@@ -33,8 +33,11 @@ ChordQuality.AddNine,
 ChordQuality.MinorAddNine,
 ChordQuality.AddEleven,
 ChordQuality.MinorAddEleven,
+ChordQuality.AugmentedAddEleven,
+ChordQuality.DiminishedAddEleven,
 ChordQuality.AddSharpEleven,
 ChordQuality.MinorAddSharpEleven,
+ChordQuality.AugmentedAddSharpEleven,
 ]
 public static let Pentads = [
 ChordQuality.DominantNinth,
@@ -45,24 +48,26 @@ ChordQuality.AugmentedMajorNinth,
 ChordQuality.AugmentedNinth,
 ChordQuality.HalfDiminishedNinth,
 ChordQuality.DiminishedNinth,
-ChordQuality.HalfDiminishedMinorNinth,
-ChordQuality.DiminishedMinorNinth,
-ChordQuality.DominantSeventhSharpNine,
-ChordQuality.MajorSeventhSharpNine,
-ChordQuality.AugmentedSeventhSharpNine,
-ChordQuality.AugmentedMajorSeventhSharpNine,
 ChordQuality.DominantSeventhFlatNine,
-ChordQuality.MinorSeventhFlatNine,
 ChordQuality.MajorSeventhFlatNine,
 ChordQuality.MinorMajorSeventhFlatNine,
-ChordQuality.AugmentedSeventhFlatNine,
+ChordQuality.MinorSeventhFlatNine,
 ChordQuality.AugmentedMajorSeventhFlatNine,
+ChordQuality.AugmentedSeventhFlatNine,
+ChordQuality.HalfDiminishedSeventhFlatNine,
+ChordQuality.DiminishedSeventhFlatNine,
 ChordQuality.DominantSeventhSharpEleven,
-ChordQuality.MinorSeventhSharpEleven,
 ChordQuality.MajorSeventhSharpEleven,
 ChordQuality.MinorMajorSeventhSharpEleven,
-ChordQuality.AugmentedSeventhSharpEleven,
+ChordQuality.MinorSeventhSharpEleven,
 ChordQuality.AugmentedMajorSeventhSharpEleven,
+ChordQuality.AugmentedSeventhSharpEleven,
+ChordQuality.DominantSeventhFlatThirteen,
+ChordQuality.MajorSeventhFlatThirteen,
+ChordQuality.MinorMajorSeventhFlatThirteen,
+ChordQuality.MinorSeventhFlatThirteen,
+ChordQuality.HalfDiminishedSeventhFlatThirteen,
+ChordQuality.DiminishedSeventhFlatThirteen,
 ChordQuality.Dominant9Sus4,
 ChordQuality.SixNine,
 ]
@@ -119,8 +124,11 @@ ChordQuality.AddNine,
 ChordQuality.MinorAddNine,
 ChordQuality.AddEleven,
 ChordQuality.MinorAddEleven,
+ChordQuality.AugmentedAddEleven,
+ChordQuality.DiminishedAddEleven,
 ChordQuality.AddSharpEleven,
 ChordQuality.MinorAddSharpEleven,
+ChordQuality.AugmentedAddSharpEleven,
 ChordQuality.DominantNinth,
 ChordQuality.MajorNinth,
 ChordQuality.MinorMajorNinth,
@@ -129,24 +137,26 @@ ChordQuality.AugmentedMajorNinth,
 ChordQuality.AugmentedNinth,
 ChordQuality.HalfDiminishedNinth,
 ChordQuality.DiminishedNinth,
-ChordQuality.HalfDiminishedMinorNinth,
-ChordQuality.DiminishedMinorNinth,
-ChordQuality.DominantSeventhSharpNine,
-ChordQuality.MajorSeventhSharpNine,
-ChordQuality.AugmentedSeventhSharpNine,
-ChordQuality.AugmentedMajorSeventhSharpNine,
 ChordQuality.DominantSeventhFlatNine,
-ChordQuality.MinorSeventhFlatNine,
 ChordQuality.MajorSeventhFlatNine,
 ChordQuality.MinorMajorSeventhFlatNine,
-ChordQuality.AugmentedSeventhFlatNine,
+ChordQuality.MinorSeventhFlatNine,
 ChordQuality.AugmentedMajorSeventhFlatNine,
+ChordQuality.AugmentedSeventhFlatNine,
+ChordQuality.HalfDiminishedSeventhFlatNine,
+ChordQuality.DiminishedSeventhFlatNine,
 ChordQuality.DominantSeventhSharpEleven,
-ChordQuality.MinorSeventhSharpEleven,
 ChordQuality.MajorSeventhSharpEleven,
 ChordQuality.MinorMajorSeventhSharpEleven,
-ChordQuality.AugmentedSeventhSharpEleven,
+ChordQuality.MinorSeventhSharpEleven,
 ChordQuality.AugmentedMajorSeventhSharpEleven,
+ChordQuality.AugmentedSeventhSharpEleven,
+ChordQuality.DominantSeventhFlatThirteen,
+ChordQuality.MajorSeventhFlatThirteen,
+ChordQuality.MinorMajorSeventhFlatThirteen,
+ChordQuality.MinorSeventhFlatThirteen,
+ChordQuality.HalfDiminishedSeventhFlatThirteen,
+ChordQuality.DiminishedSeventhFlatThirteen,
 ChordQuality.Dominant9Sus4,
 ChordQuality.SixNine,
 ChordQuality.DominantEleventh,
@@ -199,8 +209,11 @@ case AddNine: return "AddNine"
 case MinorAddNine: return "MinorAddNine"
 case AddEleven: return "AddEleven"
 case MinorAddEleven: return "MinorAddEleven"
+case AugmentedAddEleven: return "AugmentedAddEleven"
+case DiminishedAddEleven: return "DiminishedAddEleven"
 case AddSharpEleven: return "AddSharpEleven"
 case MinorAddSharpEleven: return "MinorAddSharpEleven"
+case AugmentedAddSharpEleven: return "AugmentedAddSharpEleven"
 case DominantNinth: return "DominantNinth"
 case MajorNinth: return "MajorNinth"
 case MinorMajorNinth: return "MinorMajorNinth"
@@ -209,24 +222,26 @@ case AugmentedMajorNinth: return "AugmentedMajorNinth"
 case AugmentedNinth: return "AugmentedNinth"
 case HalfDiminishedNinth: return "HalfDiminishedNinth"
 case DiminishedNinth: return "DiminishedNinth"
-case HalfDiminishedMinorNinth: return "HalfDiminishedMinorNinth"
-case DiminishedMinorNinth: return "DiminishedMinorNinth"
-case DominantSeventhSharpNine: return "DominantSeventhSharpNine"
-case MajorSeventhSharpNine: return "MajorSeventhSharpNine"
-case AugmentedSeventhSharpNine: return "AugmentedSeventhSharpNine"
-case AugmentedMajorSeventhSharpNine: return "AugmentedMajorSeventhSharpNine"
 case DominantSeventhFlatNine: return "DominantSeventhFlatNine"
-case MinorSeventhFlatNine: return "MinorSeventhFlatNine"
 case MajorSeventhFlatNine: return "MajorSeventhFlatNine"
 case MinorMajorSeventhFlatNine: return "MinorMajorSeventhFlatNine"
-case AugmentedSeventhFlatNine: return "AugmentedSeventhFlatNine"
+case MinorSeventhFlatNine: return "MinorSeventhFlatNine"
 case AugmentedMajorSeventhFlatNine: return "AugmentedMajorSeventhFlatNine"
+case AugmentedSeventhFlatNine: return "AugmentedSeventhFlatNine"
+case HalfDiminishedSeventhFlatNine: return "HalfDiminishedSeventhFlatNine"
+case DiminishedSeventhFlatNine: return "DiminishedSeventhFlatNine"
 case DominantSeventhSharpEleven: return "DominantSeventhSharpEleven"
-case MinorSeventhSharpEleven: return "MinorSeventhSharpEleven"
 case MajorSeventhSharpEleven: return "MajorSeventhSharpEleven"
 case MinorMajorSeventhSharpEleven: return "MinorMajorSeventhSharpEleven"
-case AugmentedSeventhSharpEleven: return "AugmentedSeventhSharpEleven"
+case MinorSeventhSharpEleven: return "MinorSeventhSharpEleven"
 case AugmentedMajorSeventhSharpEleven: return "AugmentedMajorSeventhSharpEleven"
+case AugmentedSeventhSharpEleven: return "AugmentedSeventhSharpEleven"
+case DominantSeventhFlatThirteen: return "DominantSeventhFlatThirteen"
+case MajorSeventhFlatThirteen: return "MajorSeventhFlatThirteen"
+case MinorMajorSeventhFlatThirteen: return "MinorMajorSeventhFlatThirteen"
+case MinorSeventhFlatThirteen: return "MinorSeventhFlatThirteen"
+case HalfDiminishedSeventhFlatThirteen: return "HalfDiminishedSeventhFlatThirteen"
+case DiminishedSeventhFlatThirteen: return "DiminishedSeventhFlatThirteen"
 case Dominant9Sus4: return "Dominant9Sus4"
 case SixNine: return "SixNine"
 case DominantEleventh: return "DominantEleventh"

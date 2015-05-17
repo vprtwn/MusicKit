@@ -124,6 +124,7 @@
 		965AF8C11AF7A1DA00D31E83 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		9662BFF01B058568008A053A /* IntervalQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalQuality.swift; sourceTree = "<group>"; };
 		96686DB41A573B7F00350A2D /* PitchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchTests.swift; sourceTree = "<group>"; };
+		966E60FA1B0930E9005EE226 /* AlteredPentads.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = AlteredPentads.playground; path = ../Playgrounds/AlteredPentads.playground; sourceTree = "<group>"; };
 		967070E81B0850AC00CB367E /* ChordExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordExtensions.swift; sourceTree = "<group>"; };
 		967070EB1B08512A00CB367E /* ChordQualities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordQualities.swift; sourceTree = "<group>"; };
 		967070EE1B08649200CB367E /* ChordQualityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordQualityTests.swift; sourceTree = "<group>"; };
@@ -150,6 +151,7 @@
 		96DFB6461AF7151C005EEBD6 /* ScaleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScaleTests.swift; sourceTree = "<group>"; };
 		96DFB6491AF71540005EEBD6 /* ChordTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordTests.swift; sourceTree = "<group>"; };
 		96DFB64E1AF716F7005EEBD6 /* MKUtilTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKUtilTests.swift; sourceTree = "<group>"; };
+		96E009AA1B093D3E00ECE16C /* AlteredHexads.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = AlteredHexads.playground; path = ../Playgrounds/AlteredHexads.playground; sourceTree = "<group>"; };
 		96EC063D1AFADF130061CC42 /* ChordName.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordName.swift; sourceTree = "<group>"; };
 		96EC06401AFAF9F20061CC42 /* ChordNameBasicTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordNameBasicTests.swift; sourceTree = "<group>"; };
 		96EC06431AFB0EA20061CC42 /* ChordNameExtendedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordNameExtendedTests.swift; sourceTree = "<group>"; };
@@ -203,6 +205,8 @@
 			children = (
 				96F299441A5666D100D7B006 /* FrameworkOverview.playground */,
 				960F21F61B08FEC70088C194 /* UnalteredExtendedChords.playground */,
+				966E60FA1B0930E9005EE226 /* AlteredPentads.playground */,
+				96E009AA1B093D3E00ECE16C /* AlteredHexads.playground */,
 			);
 			name = Playgrounds;
 			sourceTree = "<group>";

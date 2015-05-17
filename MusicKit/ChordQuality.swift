@@ -32,8 +32,11 @@ public enum ChordQuality : String {
     case MinorAddNine = "madd9"
     case AddEleven = "add11"
     case MinorAddEleven = "madd11"
+    case AugmentedAddEleven = "+add11"
+    case DiminishedAddEleven = "°add11"
     case AddSharpEleven = "add♯11"
     case MinorAddSharpEleven = "madd♯11"
+    case AugmentedAddSharpEleven = "+add♯11"
     //> Pentads
     // unaltered pentads
     case DominantNinth = "9"
@@ -44,25 +47,29 @@ public enum ChordQuality : String {
     case AugmentedNinth = "+9"
     case HalfDiminishedNinth = "ø9"
     case DiminishedNinth = "°9"
-    // altered pentads
-    case HalfDiminishedMinorNinth = "ø♭9"
-    case DiminishedMinorNinth = "°♭9"
-    case DominantSeventhSharpNine = "7♯9"
-    case MajorSeventhSharpNine = "Δ7♯9"
-    case AugmentedSeventhSharpNine = "+7♯9"
-    case AugmentedMajorSeventhSharpNine = "+Δ7♯9"
+    // flat nine pentads
     case DominantSeventhFlatNine = "7♭9"
-    case MinorSeventhFlatNine = "m7♭9"
     case MajorSeventhFlatNine = "Δ7♭9"
     case MinorMajorSeventhFlatNine = "mΔ7♭9"
-    case AugmentedSeventhFlatNine = "+7♭9"
+    case MinorSeventhFlatNine = "m7♭9"
     case AugmentedMajorSeventhFlatNine = "+Δ7♭9"
+    case AugmentedSeventhFlatNine = "+7♭9"
+    case HalfDiminishedSeventhFlatNine = "ø7♭9"
+    case DiminishedSeventhFlatNine = "°7♭9"
+    // sharp eleven pentads
     case DominantSeventhSharpEleven = "7♯11"
-    case MinorSeventhSharpEleven = "m7♯11"
     case MajorSeventhSharpEleven = "Δ7♯11"
     case MinorMajorSeventhSharpEleven = "mΔ7♯11"
-    case AugmentedSeventhSharpEleven = "+7♯11"
+    case MinorSeventhSharpEleven = "m7♯11"
     case AugmentedMajorSeventhSharpEleven = "+Δ7♯11"
+    case AugmentedSeventhSharpEleven = "+7♯11"
+    // flat thirteen pentads
+    case DominantSeventhFlatThirteen = "7♭13"
+    case MajorSeventhFlatThirteen = "Δ7♭13"
+    case MinorMajorSeventhFlatThirteen = "mΔ7♭13"
+    case MinorSeventhFlatThirteen = "m7♭13"
+    case HalfDiminishedSeventhFlatThirteen = "ø7♭13"
+    case DiminishedSeventhFlatThirteen = "°7♭13"
     // other pentads
     case Dominant9Sus4 = "9sus4"
     case SixNine = "6/9"
@@ -126,8 +133,11 @@ public enum ChordQuality : String {
         case MinorAddNine: return [2, 1, 4]
         case AddEleven: return [4, 1, 2]
         case MinorAddEleven: return [3, 2, 2]
+        case AugmentedAddEleven: return [4, 1, 3]
+        case DiminishedAddEleven: return [3, 2, 1]
         case AddSharpEleven: return [4, 2, 1]
         case MinorAddSharpEleven: return [3, 3, 1]
+        case AugmentedAddSharpEleven: return [4, 2, 2]
         // pentads
         // unaltered pentads
         case DominantNinth: return [4, 3, 3, 4]
@@ -138,25 +148,29 @@ public enum ChordQuality : String {
         case AugmentedNinth: return [4, 4, 2, 4]
         case HalfDiminishedNinth: return [3, 3, 4, 4]
         case DiminishedNinth: return [3, 3, 3, 5]
-        // altered pentads
-        case HalfDiminishedMinorNinth: return [3, 3, 4, 3]
-        case DiminishedMinorNinth: return [3, 3, 3, 4]
-        case DominantSeventhSharpNine: return [4, 3, 3, 5]
-        case MajorSeventhSharpNine: return [4, 3, 4, 4]
-        case AugmentedSeventhSharpNine: return [4, 4, 2, 5]
-        case AugmentedMajorSeventhSharpNine: return [4, 4, 3, 4]
+        // flat nine pentads
         case DominantSeventhFlatNine: return [4, 3, 3, 3]
-        case MinorSeventhFlatNine: return [3, 4, 3, 3]
         case MajorSeventhFlatNine: return [4, 3, 4, 2]
         case MinorMajorSeventhFlatNine: return [3, 4, 4, 2]
-        case AugmentedSeventhFlatNine: return [4, 4, 2, 3]
+        case MinorSeventhFlatNine: return [3, 4, 3, 3]
         case AugmentedMajorSeventhFlatNine: return [4, 4, 3, 2]
+        case AugmentedSeventhFlatNine: return [4, 4, 2, 3]
+        case HalfDiminishedSeventhFlatNine: return [3, 3, 4, 3]
+        case DiminishedSeventhFlatNine: return [3, 3, 3, 4]
+        // sharp eleven pentads
         case DominantSeventhSharpEleven: return [4, 3, 3, 8]
-        case MinorSeventhSharpEleven: return [3, 4, 3, 8]
         case MajorSeventhSharpEleven: return [4, 3, 4, 7]
         case MinorMajorSeventhSharpEleven: return [3, 4, 4, 7]
-        case AugmentedSeventhSharpEleven: return [4, 4, 2, 8]
+        case MinorSeventhSharpEleven: return [3, 4, 3, 8]
         case AugmentedMajorSeventhSharpEleven: return [4, 4, 3, 7]
+        case AugmentedSeventhSharpEleven: return [4, 4, 2, 8]
+        // flat thirteen pentads
+        case DominantSeventhFlatThirteen: return [4, 3, 3, 10]
+        case MajorSeventhFlatThirteen: return [4, 3, 4, 9]
+        case MinorMajorSeventhFlatThirteen: return [3, 4, 4, 9]
+        case MinorSeventhFlatThirteen: return [3, 4, 3, 10]
+        case HalfDiminishedSeventhFlatThirteen: return [3, 3, 4, 10]
+        case DiminishedSeventhFlatThirteen: return [3, 3, 3, 11]
         // other pentads
         case SixNine: return [4, 3, 1, 5]
         case Dominant9Sus4: return [5, 2, 3, 4]
