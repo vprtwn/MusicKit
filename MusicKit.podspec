@@ -13,6 +13,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
   s.osx.deployment_target = '10.9'
   s.source_files = 'MusicKit/**/*.{h,m,swift}'
+  # note: compilation fails for MIDI.swift, likely due to mixed Obj-C/Swift. excluding for now.
+  s.exclude_files = "MusicKit/**/MIDI.swift"
   s.requires_arc = true
-  spec.frameworks = 'CoreMIDI'
+  s.frameworks = 'CoreMIDI'
 end
