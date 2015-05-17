@@ -3,16 +3,16 @@
 import Foundation
 
 public enum ChordQuality : String {
-    // dyads
+    //: dyads
     case PowerChord = "5"
-    // triads
+    //> triads
     case Major = "M"
     case Minor = "m"
     case Augmented = "+"
     case Diminished = "°"
     case Sus2 = "sus2"
     case Sus4 = "sus4"
-    // tetrads
+    //> tetrads
     case DominantSeventh = "7"
     case MajorSeventh = "Δ7"
     case MinorMajorSeventh = "mΔ7"
@@ -29,7 +29,7 @@ public enum ChordQuality : String {
     case MinorSixth = "m6"
     case AddNine = "add9"
     case MinorAddNine = "madd9"
-    // pentads
+    //> pentads
     case DominantNinth = "9"
     case MajorNinth = "Δ9"
     case MinorNinth = "m9"
@@ -58,7 +58,7 @@ public enum ChordQuality : String {
     case MinorMajorSeventhSharpEleven = "mΔ7♯11"
     case AugmentedSeventhSharpEleven = "+7♯11"
     case AugmentedMajorSeventhSharpEleven = "+Δ7♯11"
-    // hexads
+    //> hexads
     case DominantEleventh = "11"
     case MajorEleventh = "Δ11"
     case MinorMajorEleventh = "mΔ11"
@@ -73,7 +73,7 @@ public enum ChordQuality : String {
     case DominantNinthSharpEleven = "9♯11"
     case MajorNinthSharpEleven = "Δ9♯11"
     case MinorNinthSharpEleven = "m9♯11"
-    // heptads
+    //> heptads
     case DominantThirteenth = "13"
     case MajorThirteenth = "Δ13"
     case MinorMajorThirteenth = "mΔ13"
@@ -81,6 +81,7 @@ public enum ChordQuality : String {
     case AugmentedMajorThirteenth = "+Δ13"
     case AugmentedThirteenth = "+13"
     case HalfDiminishedThirteenth = "ø13"
+    //.
 
     public var intervals: [Float] {
         switch self {

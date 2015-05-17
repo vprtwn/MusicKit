@@ -95,11 +95,10 @@ let equidistantPentatonic = Harmony.create([2.4, 2.4, 2.4, 2.4, 2.4])
 
 ///### Chord
 ///* `Chord` contains common chord harmonizers.
-///* Chords are in root position by default. You may also specify the inversion and any additions.
 
 ///```swift
-let minor = Chord.Minor(inversion: 1, extensions: [.Nine])
-print(minor(A4))   // [C5, E5, A5, B5]
+let minor = Chord.Minor
+print(minor(A4))   // [A4, C5, E5]
 ///```
 
 ///* `Chord` also provides a function to create a chord based on a `Harmonizer` (typically a scale).
