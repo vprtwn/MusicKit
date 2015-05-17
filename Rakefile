@@ -95,7 +95,7 @@ task :gen_chord do
 end
 
 task :gen_frameworkoverview do
-	infile = "MusicKit.playground/section-1.swift"
+	infile = "Playgrounds/FrameworkOverview.playground/section-1.swift"
 	outfile = "Documentation/FrameworkOverview.md"
 	lines = File.readlines(infile).drop(3).join("").gsub("///", "")
 	File.open(outfile, "w").puts lines

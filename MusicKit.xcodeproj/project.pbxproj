@@ -112,7 +112,7 @@
 
 /* Begin PBXFileReference section */
 		960F015D1AFFA6AA006974AE /* MIDIMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIMessage.swift; sourceTree = "<group>"; };
-		960F21F61B08FEC70088C194 /* UnalteredExtendedChords.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = UnalteredExtendedChords.playground; path = ../UnalteredExtendedChords.playground; sourceTree = "<group>"; };
+		960F21F61B08FEC70088C194 /* UnalteredExtendedChords.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = UnalteredExtendedChords.playground; path = ../Playgrounds/UnalteredExtendedChords.playground; sourceTree = "<group>"; };
 		960F21F71B08FF320088C194 /* ChordExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordExtension.swift; sourceTree = "<group>"; };
 		9610685E1AF3390500BF9E91 /* HarmonicPalette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarmonicPalette.swift; sourceTree = "<group>"; };
 		9625D8081B03702100C4142E /* ChordQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordQuality.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 		96F2993E1A56654800D7B006 /* MusicKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicKit.swift; sourceTree = "<group>"; };
 		96F299401A5665CA00D7B006 /* Pitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pitch.swift; sourceTree = "<group>"; };
 		96F299421A56661300D7B006 /* Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
-		96F299441A5666D100D7B006 /* MusicKit.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MusicKit.playground; sourceTree = SOURCE_ROOT; };
+		96F299441A5666D100D7B006 /* FrameworkOverview.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = FrameworkOverview.playground; path = Playgrounds/FrameworkOverview.playground; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +198,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		966E60F91B092E83005EE226 /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				96F299441A5666D100D7B006 /* FrameworkOverview.playground */,
+				960F21F61B08FEC70088C194 /* UnalteredExtendedChords.playground */,
+			);
+			name = Playgrounds;
+			sourceTree = "<group>";
+		};
 		96A06D4C1AFF27F400029013 /* MIDI */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,8 +347,7 @@
 				96DFB6381AF6C476005EEBD6 /* Harmony */,
 				96A06D4C1AFF27F400029013 /* MIDI */,
 				96DFB6391AF6C4D6005EEBD6 /* Experimental */,
-				96F299441A5666D100D7B006 /* MusicKit.playground */,
-				960F21F61B08FEC70088C194 /* UnalteredExtendedChords.playground */,
+				966E60F91B092E83005EE226 /* Playgrounds */,
 				96F299251A5663E500D7B006 /* Supporting Files */,
 			);
 			path = MusicKit;
