@@ -145,8 +145,8 @@ public enum ChordQuality : String {
         case MajorEleventh: return [4, 3, 4, 3, 3]
         case MinorMajorEleventh: return [3, 4, 4, 3, 3]
         case MinorEleventh: return [3, 4, 3, 4, 3]
-        case AugmentedMajorEleventh: return [4, 4, 3, 3, 3]
         case AugmentedEleventh: return [4, 4, 2, 4, 3]
+        case AugmentedMajorEleventh: return [4, 4, 3, 3, 3]
         case HalfDiminishedEleventh: return [3, 3, 4, 4, 3]
         case DiminishedEleventh: return [3, 3, 3, 5, 3]
         case DominantEleventhFlatNine: return [4, 3, 3, 3, 4]
@@ -160,8 +160,8 @@ public enum ChordQuality : String {
         case MajorThirteenth: return [4, 3, 4, 3, 3, 4]
         case MinorMajorThirteenth: return [3, 4, 4, 3, 3, 4]
         case MinorThirteenth: return [3, 4, 3, 4, 3, 4]
+        case AugmentedThirteenth: return [4, 4, 2, 4, 3, 4]
         case AugmentedMajorThirteenth: return [4, 4, 3, 3, 3, 4]
-        case AugmentedThirteenth: return [3, 3, 4, 4, 3, 4]
         case HalfDiminishedThirteenth: return [3, 3, 4, 4, 3, 4]
         }
     }

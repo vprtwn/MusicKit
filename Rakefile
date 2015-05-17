@@ -15,31 +15,37 @@ task :gen_chordqualities do
 
 	newlines = [
 		"import Foundation", "\n",
-		"struct ChordQualities {",
+		"public struct ChordQualities {",
 	]
 
 	starts = "//:"
 	continues = "//>"
 	ends = "//."
 
+	all_qualities = []
 	for line in lines
 		if line.include? starts
 			group = line.sub(starts, "").strip.capitalize
-			newlines.push "static let #{group} = ["
+			newlines.push "public static let #{group} = ["
 		end
 		if line.include? continues
 			group = line.sub(continues, "").strip.capitalize
 			newlines.push "]"
-			newlines.push "static let #{group} = ["
+			newlines.push "public static let #{group} = ["
 		end 
 		if line.include? ends
+			newlines.push "]"
+			newlines.push "public static let All = ["
+			newlines.concat all_qualities
 			newlines.push "]"
 			newlines.push "}"
 			break
 		end 
 		if line.include? "case"
 			quality = line.rpartition('=')[0].sub("case", "").strip
-			newlines.push "ChordQuality.#{quality},"
+			qline = "ChordQuality.#{quality},"
+			all_qualities.push qline
+			newlines.push qline
 		end
 	end
 
