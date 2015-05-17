@@ -14,7 +14,7 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let midi = MIDI(name: "ChordExpander")
-        midi.noteMessageHandler = { messages in
+        midi.noteHandler = { messages in
             if let first = messages.first {
                 midi.send([first, first.transpose(2), first.transpose(3)])
             }

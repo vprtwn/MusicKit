@@ -15,8 +15,8 @@ class ViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let midi = MIDI()
-        midi.messageHandler = { _ in
+        let midi = MIDI(name: "Chord Recognition")
+        midi.noteHandler = { _ in
             self.textField.stringValue = sorted(midi.inputChannelToPitchSet.keys).map {
                 Chord.name(midi.inputChannelToPitchSet[$0] ?? PitchSet())
             }.reduce("", combine: { (a, r) -> String in

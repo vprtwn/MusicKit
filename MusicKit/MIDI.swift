@@ -9,7 +9,7 @@ public class MIDI {
     public var sourceChannel : UInt = 3
 
     /// Handler for incoming MIDI note on or off messages
-    public var noteMessageHandler : [MIDINoteMessage] -> Void = { messages in }
+    public var noteHandler : [MIDINoteMessage] -> Void = { messages in }
 
     /// The current pitch set in each input channel
     public var inputChannelToPitchSet = [UInt: PitchSet]()
@@ -123,7 +123,7 @@ public class MIDI {
                 }
             }
             if noteMessages.count > 0 {
-                self.noteMessageHandler(noteMessages)
+                self.noteHandler(noteMessages)
             }
         }
     }

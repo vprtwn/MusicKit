@@ -54,13 +54,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		96F746201AFF30660094C66C /* ChordID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChordID.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		96F746201AFF30660094C66C /* ChordRecognition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChordRecognition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F746241AFF30670094C66C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96F746251AFF30670094C66C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		96F746271AFF30670094C66C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		96F746291AFF30670094C66C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		96F7462C1AFF30670094C66C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		96F746321AFF30670094C66C /* ChordIDTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChordIDTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96F746321AFF30670094C66C /* ChordRecognitionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChordRecognitionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96F746371AFF30670094C66C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96F746381AFF30670094C66C /* ChordIDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordIDTests.swift; sourceTree = "<group>"; };
 		96F746421AFF30B30094C66C /* MusicKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MusicKit.xcodeproj; path = ../../MusicKit.xcodeproj; sourceTree = "<group>"; };
@@ -98,8 +98,8 @@
 		96F746211AFF30660094C66C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				96F746201AFF30660094C66C /* ChordID.app */,
-				96F746321AFF30670094C66C /* ChordIDTests.xctest */,
+				96F746201AFF30660094C66C /* ChordRecognition.app */,
+				96F746321AFF30670094C66C /* ChordRecognitionTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -155,9 +155,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		96F7461F1AFF30660094C66C /* ChordID */ = {
+		96F7461F1AFF30660094C66C /* ChordRecognition */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96F7463C1AFF30670094C66C /* Build configuration list for PBXNativeTarget "ChordID" */;
+			buildConfigurationList = 96F7463C1AFF30670094C66C /* Build configuration list for PBXNativeTarget "ChordRecognition" */;
 			buildPhases = (
 				96F7461C1AFF30660094C66C /* Sources */,
 				96F7461D1AFF30660094C66C /* Frameworks */,
@@ -167,14 +167,14 @@
 			);
 			dependencies = (
 			);
-			name = ChordID;
+			name = ChordRecognition;
 			productName = ChordID;
-			productReference = 96F746201AFF30660094C66C /* ChordID.app */;
+			productReference = 96F746201AFF30660094C66C /* ChordRecognition.app */;
 			productType = "com.apple.product-type.application";
 		};
-		96F746311AFF30670094C66C /* ChordIDTests */ = {
+		96F746311AFF30670094C66C /* ChordRecognitionTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 96F7463F1AFF30670094C66C /* Build configuration list for PBXNativeTarget "ChordIDTests" */;
+			buildConfigurationList = 96F7463F1AFF30670094C66C /* Build configuration list for PBXNativeTarget "ChordRecognitionTests" */;
 			buildPhases = (
 				96F7462E1AFF30670094C66C /* Sources */,
 				96F7462F1AFF30670094C66C /* Frameworks */,
@@ -185,9 +185,9 @@
 			dependencies = (
 				96F746341AFF30670094C66C /* PBXTargetDependency */,
 			);
-			name = ChordIDTests;
+			name = ChordRecognitionTests;
 			productName = ChordIDTests;
-			productReference = 96F746321AFF30670094C66C /* ChordIDTests.xctest */;
+			productReference = 96F746321AFF30670094C66C /* ChordRecognitionTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -208,7 +208,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 96F7461B1AFF30660094C66C /* Build configuration list for PBXProject "ChordID" */;
+			buildConfigurationList = 96F7461B1AFF30660094C66C /* Build configuration list for PBXProject "ChordRecognition" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -227,8 +227,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				96F7461F1AFF30660094C66C /* ChordID */,
-				96F746311AFF30670094C66C /* ChordIDTests */,
+				96F7461F1AFF30660094C66C /* ChordRecognition */,
+				96F746311AFF30670094C66C /* ChordRecognitionTests */,
 			);
 		};
 /* End PBXProject section */
@@ -306,7 +306,7 @@
 /* Begin PBXTargetDependency section */
 		96F746341AFF30670094C66C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 96F7461F1AFF30660094C66C /* ChordID */;
+			target = 96F7461F1AFF30660094C66C /* ChordRecognition */;
 			targetProxy = 96F746331AFF30670094C66C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -410,7 +410,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = ChordID/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ChordRecognition;
 			};
 			name = Debug;
 		};
@@ -421,7 +421,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = ChordID/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ChordRecognition;
 			};
 			name = Release;
 		};
@@ -440,7 +440,7 @@
 				);
 				INFOPLIST_FILE = ChordIDTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ChordRecognitionTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChordID.app/Contents/MacOS/ChordID";
 			};
 			name = Debug;
@@ -456,7 +456,7 @@
 				);
 				INFOPLIST_FILE = ChordIDTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ChordRecognitionTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ChordID.app/Contents/MacOS/ChordID";
 			};
 			name = Release;
@@ -464,7 +464,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		96F7461B1AFF30660094C66C /* Build configuration list for PBXProject "ChordID" */ = {
+		96F7461B1AFF30660094C66C /* Build configuration list for PBXProject "ChordRecognition" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96F7463A1AFF30670094C66C /* Debug */,
@@ -473,7 +473,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96F7463C1AFF30670094C66C /* Build configuration list for PBXNativeTarget "ChordID" */ = {
+		96F7463C1AFF30670094C66C /* Build configuration list for PBXNativeTarget "ChordRecognition" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96F7463D1AFF30670094C66C /* Debug */,
@@ -482,7 +482,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		96F7463F1AFF30670094C66C /* Build configuration list for PBXNativeTarget "ChordIDTests" */ = {
+		96F7463F1AFF30670094C66C /* Build configuration list for PBXNativeTarget "ChordRecognitionTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				96F746401AFF30670094C66C /* Debug */,
