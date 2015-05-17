@@ -4,7 +4,7 @@ import MusicKit
 final class ChordQualityTests: XCTestCase {
     func testUniqueIntervals() {
         var seen = [String: String]()
-        for quality in ChordQualities.All {
+        for quality in ChordQuality.All {
             var key = quality.intervals.reduce("", combine: { (s, i) -> String in
                 s + "\(i)"
             })

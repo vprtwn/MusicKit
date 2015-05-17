@@ -47,30 +47,30 @@ extension Chord {
 
         // dyads
         if count == 2 {
-            return _descriptor(pitchSet, qualities: ChordQualities.Dyads)
+            return _descriptor(pitchSet, qualities: ChordQuality.Dyads)
         }
         // triads
         else if count == 3 {
-            return _descriptor(pitchSet, qualities: ChordQualities.Triads)
+            return _descriptor(pitchSet, qualities: ChordQuality.Triads)
         }
         // Tetrads
         else if count == 4 {
-            let fullDescOpt = _descriptor(pitchSet, qualities: ChordQualities.Tetrads)
-            if let fullDesc = fullDescOpt {
-                return fullDesc
-            }
-            // remove bass note and attempt to form slash chord
-            let topDescOpt = _descriptor(removedBass, qualities: ChordQualities.Triads)
+            // non-slash chord
+            let fullDescOpt = _descriptor(pitchSet, qualities: ChordQuality.Tetrads)
+            // slash chord
+            var topDescOpt = _descriptor(removedBass, qualities: ChordQuality.Triads)
             if let topDesc = topDescOpt {
-                return bassChromaOpt.map {
+                topDescOpt = bassChromaOpt.map {
                     ChordDescriptor(root: topDesc.root, quality: topDesc.quality, bass: $0)
                 }
             }
+            // prefer the slash chord
+            return topDescOpt != nil ? topDescOpt : fullDescOpt
         }
         // pentads
         else if count == 5 {
             // remove bass note and attempt to form slash chord
-            let topDescOpt = _descriptor(removedBass, qualities: ChordQualities.Tetrads)
+            let topDescOpt = _descriptor(removedBass, qualities: ChordQuality.Tetrads)
             if let topDesc = topDescOpt {
                 return bassChromaOpt.map {
                     ChordDescriptor(root: topDesc.root, quality: topDesc.quality, bass: $0)

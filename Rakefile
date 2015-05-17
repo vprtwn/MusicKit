@@ -15,7 +15,7 @@ task :gen_chordqualities do
 
 	newlines = [
 		"import Foundation", "\n",
-		"public struct ChordQualities {",
+		"public extension ChordQuality {",
 	]
 
 	starts = "//:"
@@ -23,6 +23,7 @@ task :gen_chordqualities do
 	ends = "//."
 
 	all_qualities = []
+	quality_names = []
 	for line in lines
 		if line.include? starts
 			group = line.sub(starts, "").strip.capitalize
@@ -38,6 +39,11 @@ task :gen_chordqualities do
 			newlines.push "public static let All = ["
 			newlines.concat all_qualities
 			newlines.push "]"
+			newlines.push "public var name : String {"
+			newlines.push "switch self {"
+			newlines.concat quality_names
+			newlines.push "}"
+			newlines.push "}"
 			newlines.push "}"
 			break
 		end 
@@ -45,6 +51,7 @@ task :gen_chordqualities do
 			quality = line.rpartition('=')[0].sub("case", "").strip
 			qline = "ChordQuality.#{quality},"
 			all_qualities.push qline
+			quality_names.push "case #{quality}: return \"#{quality}\""
 			newlines.push qline
 		end
 	end

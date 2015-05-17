@@ -29,6 +29,10 @@ public enum ChordQuality : String {
     case MinorSixth = "m6"
     case AddNine = "add9"
     case MinorAddNine = "madd9"
+    case AddEleven = "add11"
+    case MinorAddEleven = "madd11"
+    case AddSharpEleven = "add♯11"
+    case MinorAddSharpEleven = "madd♯11"
     //> pentads
     case DominantNinth = "9"
     case MajorNinth = "Δ9"
@@ -37,11 +41,13 @@ public enum ChordQuality : String {
     case AugmentedNinth = "+9"
     case AugmentedMajorNinth = "+Δ9"
     case HalfDiminishedNinth = "ø9"
-    case HalfDiminishedMinorNinth = "ø♭9"
     case DiminishedNinth = "°9"
-    case DiminishedMinorNinth = "°♭9"
-    case SixNine = "6/9"
     case Dominant9Sus4 = "9sus4"
+    // special
+    case SixNine = "6/9"
+    // altered
+    case HalfDiminishedMinorNinth = "ø♭9"
+    case DiminishedMinorNinth = "°♭9"
     case DominantSeventhSharpNine = "7♯9"
     case MajorSeventhSharpNine = "Δ7♯9"
     case AugmentedSeventhSharpNine = "+7♯9"
@@ -111,6 +117,10 @@ public enum ChordQuality : String {
         case MinorSixth: return [3, 4, 2]
         case AddNine: return [2, 2, 3]
         case MinorAddNine: return [2, 1, 4]
+        case AddEleven: return [4, 1, 2]
+        case MinorAddEleven: return [3, 2, 2]
+        case AddSharpEleven: return [4, 2, 1]
+        case MinorAddSharpEleven: return [3, 3, 1]
         // pentads
         case DominantNinth: return [4, 3, 3, 4]
         case MajorNinth: return [4, 3, 4, 3]

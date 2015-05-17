@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:AlteredChords.playground">
+   </FileRef>
+   <FileRef
       location = "group:MusicKit.xcodeproj">
    </FileRef>
    <FileRef
