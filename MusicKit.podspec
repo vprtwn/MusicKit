@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'MusicKit'
-  s.version      = '0.1.0'
+  s.version      = '0.1.1'
   s.license      = { :type => 'MIT' }
   s.homepage     = 'https://github.com/benzguo/MusicKit'
   s.authors      = { 'Ben Guo' => 'benzguo@gmail.com' }
