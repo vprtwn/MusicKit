@@ -4,7 +4,4 @@
    <FileRef
       location = "group:MusicKit.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:MusicKit.playground">
-   </FileRef>
 </Workspace>

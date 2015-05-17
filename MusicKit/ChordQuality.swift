@@ -83,13 +83,29 @@ public enum ChordQuality : String {
     case AugmentedEleventh = "+11"
     case HalfDiminishedEleventh = "ø11"
     case DiminishedEleventh = "°11"
-    // altered hexads
+    // flat nine hexads
     case DominantEleventhFlatNine = "11♭9"
     case MajorEleventhFlatNine = "Δ11♭9"
+    case MinorMajorEleventhFlatNine = "mΔ11♭9"
     case MinorEleventhFlatNine = "m11♭9"
+    case AugmentedMajorEleventhFlatNine = "+Δ11♭9"
+    case AugmentedEleventhFlatNine = "+11♭9"
+    case HalfDiminishedEleventhFlatNine = "ø11♭9"
+    case DiminishedEleventhFlatNine = "°11♭9"
+    // sharp eleven hexads
     case DominantNinthSharpEleven = "9♯11"
     case MajorNinthSharpEleven = "Δ9♯11"
+    case MinorMajorNinthSharpEleven = "mΔ9♯11"
     case MinorNinthSharpEleven = "m9♯11"
+    case AugmentedMajorNinthSharpEleven = "+Δ9♯11"
+    case AugmentedNinthSharpEleven = "+9♯11"
+    // flat thirteen hexads
+    case DominantNinthFlatThirteen = "9♭13"
+    case MajorNinthFlatThirteen = "Δ9♭13"
+    case MinorMajorNinthFlatThirteen = "mΔ9♭13"
+    case MinorNinthFlatThirteen = "m9♭13"
+    case HalfDiminishedNinthFlatThirteen = "ø9♭13"
+    case DiminishedNinthFlatThirteen = "°9♭13"
     //> Heptads
     // unaltered heptads
     case DominantThirteenth = "13"
@@ -184,13 +200,29 @@ public enum ChordQuality : String {
         case AugmentedEleventh: return [4, 4, 2, 4, 3]
         case HalfDiminishedEleventh: return [3, 3, 4, 4, 3]
         case DiminishedEleventh: return [3, 3, 3, 5, 3]
-        // altered
+        // flat nine hexads
         case DominantEleventhFlatNine: return [4, 3, 3, 3, 4]
         case MajorEleventhFlatNine: return [4, 3, 4, 2, 4]
+        case MinorMajorEleventhFlatNine: return [3, 4, 4, 2, 4]
         case MinorEleventhFlatNine: return [3, 4, 3, 3, 4]
+        case AugmentedMajorEleventhFlatNine: return [4, 4, 3, 2, 4]
+        case AugmentedEleventhFlatNine: return [4, 4, 2, 3, 4]
+        case HalfDiminishedEleventhFlatNine: return [3, 3, 4, 3, 4]
+        case DiminishedEleventhFlatNine: return [3, 3, 3, 4, 4]
+        // sharp eleven hexads
         case DominantNinthSharpEleven: return [4, 3, 3, 4, 4]
         case MajorNinthSharpEleven: return [4, 3, 4, 3, 4]
+        case MinorMajorNinthSharpEleven: return [3, 4, 4, 3, 4]
         case MinorNinthSharpEleven: return [3, 4, 3, 4, 4]
+        case AugmentedMajorNinthSharpEleven: return [4, 4, 3, 3, 4]
+        case AugmentedNinthSharpEleven: return [4, 4, 2, 4, 4]
+        // flat thirteen hexads
+        case DominantNinthFlatThirteen: return [4, 3, 3, 4, 6]
+        case MajorNinthFlatThirteen: return [4, 3, 4, 3, 6]
+        case MinorMajorNinthFlatThirteen: return [3, 4, 4, 3, 6]
+        case MinorNinthFlatThirteen: return [3, 4, 3, 4, 6]
+        case HalfDiminishedNinthFlatThirteen: return [3, 3, 4, 4, 6]
+        case DiminishedNinthFlatThirteen: return [3, 3, 3, 5, 6]
         // heptads
         // unaltered heptads
         case DominantThirteenth: return [4, 3, 3, 4, 3, 4]
