@@ -26,16 +26,17 @@ task :gen_chordqualities do
 	quality_names = []
 	for line in lines
 		if line.include? starts
-			group = line.sub(starts, "").strip.capitalize
+			group = line.sub(starts, "").strip
 			newlines.push "public static let #{group} = ["
 		end
 		if line.include? continues
-			group = line.sub(continues, "").strip.capitalize
+			group = line.sub(continues, "").strip
 			newlines.push "]"
 			newlines.push "public static let #{group} = ["
 		end 
 		if line.include? ends
 			newlines.push "]"
+			newlines.push "public static let Tetrads = ChordQuality.UnalteredTetrads + ChordQuality.AlteredTetrads"
 			newlines.push "public static let All = ["
 			newlines.concat all_qualities
 			newlines.push "]"

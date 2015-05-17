@@ -3,16 +3,16 @@
 import Foundation
 
 public enum ChordQuality : String {
-    //: dyads
+    //: Dyads
     case PowerChord = "5"
-    //> triads
+    //> Triads
     case Major = "M"
     case Minor = "m"
     case Augmented = "+"
     case Diminished = "°"
     case Sus2 = "sus2"
     case Sus4 = "sus4"
-    //> tetrads
+    //> UnalteredTetrads
     case DominantSeventh = "7"
     case MajorSeventh = "Δ7"
     case MinorMajorSeventh = "mΔ7"
@@ -21,6 +21,7 @@ public enum ChordQuality : String {
     case AugmentedSeventh = "+7"
     case HalfDiminishedSeventh = "ø7"
     case DiminishedSeventh = "°7"
+    //> AlteredTetrads
     case DominantSeventhFlatFive = "7♭5"
     case MajorSeventhFlatFive = "Δ7♭5"
     case DominantSeventhSusFour = "7sus4"
@@ -33,7 +34,7 @@ public enum ChordQuality : String {
     case MinorAddEleven = "madd11"
     case AddSharpEleven = "add♯11"
     case MinorAddSharpEleven = "madd♯11"
-    //> pentads
+    //> Pentads
     case DominantNinth = "9"
     case MajorNinth = "Δ9"
     case MinorNinth = "m9"
@@ -64,7 +65,7 @@ public enum ChordQuality : String {
     case MinorMajorSeventhSharpEleven = "mΔ7♯11"
     case AugmentedSeventhSharpEleven = "+7♯11"
     case AugmentedMajorSeventhSharpEleven = "+Δ7♯11"
-    //> hexads
+    //> Hexads
     case DominantEleventh = "11"
     case MajorEleventh = "Δ11"
     case MinorMajorEleventh = "mΔ11"
@@ -79,7 +80,7 @@ public enum ChordQuality : String {
     case DominantNinthSharpEleven = "9♯11"
     case MajorNinthSharpEleven = "Δ9♯11"
     case MinorNinthSharpEleven = "m9♯11"
-    //> heptads
+    //> Heptads
     case DominantThirteenth = "13"
     case MajorThirteenth = "Δ13"
     case MinorMajorThirteenth = "mΔ13"

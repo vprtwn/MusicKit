@@ -12,7 +12,7 @@ ChordQuality.Diminished,
 ChordQuality.Sus2,
 ChordQuality.Sus4,
 ]
-public static let Tetrads = [
+public static let UnalteredTetrads = [
 ChordQuality.DominantSeventh,
 ChordQuality.MajorSeventh,
 ChordQuality.MinorMajorSeventh,
@@ -21,6 +21,8 @@ ChordQuality.AugmentedMajorSeventh,
 ChordQuality.AugmentedSeventh,
 ChordQuality.HalfDiminishedSeventh,
 ChordQuality.DiminishedSeventh,
+]
+public static let AlteredTetrads = [
 ChordQuality.DominantSeventhFlatFive,
 ChordQuality.MajorSeventhFlatFive,
 ChordQuality.DominantSeventhSusFour,
@@ -89,6 +91,7 @@ ChordQuality.AugmentedMajorThirteenth,
 ChordQuality.AugmentedThirteenth,
 ChordQuality.HalfDiminishedThirteenth,
 ]
+public static let Tetrads = ChordQuality.UnalteredTetrads + ChordQuality.AlteredTetrads
 public static let All = [
 ChordQuality.PowerChord,
 ChordQuality.Major,

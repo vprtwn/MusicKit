@@ -104,7 +104,7 @@ final class ChordNameBasicTests: XCTestCase {
 
         sut = [Chroma.C*0, Chroma.E*2, Chroma.Fs*3, Chroma.B*4, Chroma.C*3]
         name = Chord.name(sut)
-        expected = "CΔ7♭5"
+        expected = "Esus2/C"
         XCTAssert(name == expected, "\(name) != \(expected)")
 
         sut = [Chroma.C*0, Chroma.G*2, Chroma.F*3, Chroma.As*4, Chroma.C*3]

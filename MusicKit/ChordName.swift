@@ -55,17 +55,24 @@ extension Chord {
         }
         // Tetrads
         else if count == 4 {
-            // non-slash chord
+            // no-slash chord
             let fullDescOpt = _descriptor(pitchSet, qualities: ChordQuality.Tetrads)
             // slash chord
-            var topDescOpt = _descriptor(removedBass, qualities: ChordQuality.Triads)
+            let topDescOpt = _descriptor(removedBass, qualities: ChordQuality.Triads)
+            var slashDescOpt : ChordDescriptor? = nil
             if let topDesc = topDescOpt {
-                topDescOpt = bassChromaOpt.map {
+                slashDescOpt = bassChromaOpt.map {
                     ChordDescriptor(root: topDesc.root, quality: topDesc.quality, bass: $0)
                 }
             }
-            // prefer the slash chord
-            return topDescOpt != nil ? topDescOpt : fullDescOpt
+            // unaltered no-slash chord
+            if let fullDesc = fullDescOpt {
+                if contains(ChordQuality.UnalteredTetrads, fullDesc.quality) {
+                    return fullDesc
+                }
+            }
+            // slash chord > altered no-slash chord
+            return slashDescOpt != nil ? slashDescOpt : fullDescOpt
         }
         // pentads
         else if count == 5 {
