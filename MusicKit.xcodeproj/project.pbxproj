@@ -128,6 +128,7 @@
 		967070E81B0850AC00CB367E /* ChordExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordExtensions.swift; sourceTree = "<group>"; };
 		967070EB1B08512A00CB367E /* ChordQualities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordQualities.swift; sourceTree = "<group>"; };
 		967070EE1B08649200CB367E /* ChordQualityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordQualityTests.swift; sourceTree = "<group>"; };
+		9683CF421B09438F004DB465 /* AlteredHexadsMulti.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = AlteredHexadsMulti.playground; path = Playgrounds/AlteredHexadsMulti.playground; sourceTree = SOURCE_ROOT; };
 		9691BB241A57C75500421B56 /* MusicKit_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicKit_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		969220C31AF1E75A00560A20 /* Chroma.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chroma.swift; sourceTree = "<group>"; };
 		9693F6531A57C403006270F4 /* MusicKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,6 +208,7 @@
 				960F21F61B08FEC70088C194 /* UnalteredExtendedChords.playground */,
 				966E60FA1B0930E9005EE226 /* AlteredPentads.playground */,
 				96E009AA1B093D3E00ECE16C /* AlteredHexadsSingle.playground */,
+				9683CF421B09438F004DB465 /* AlteredHexadsMulti.playground */,
 			);
 			name = Playgrounds;
 			sourceTree = "<group>";

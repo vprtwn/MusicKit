@@ -106,6 +106,25 @@ public enum ChordQuality : String {
     case MinorNinthFlatThirteen = "m9♭13"
     case HalfDiminishedNinthFlatThirteen = "ø9♭13"
     case DiminishedNinthFlatThirteen = "°9♭13"
+    // flat nine sharp eleven hexads
+    case DominantSeventhFlatNineSharpEleven = "7♭9♯11"
+    case MajorSeventhFlatNineSharpEleven = "Δ7♭9♯11"
+    case MinorMajorSeventhFlatNineSharpEleven = "mΔ7♭9♯11"
+    case MinorSeventhFlatNineSharpEleven = "m7♭9♯11"
+    case AugmentedMajorSeventhFlatNineSharpEleven = "+Δ7♭9♯11"
+    case AugmentedSeventhFlatNineSharpEleven = "+7♭9♯11"
+    // flat nine flat thirteen hexads
+    case DominantSeventhFlatNineFlatThirteen = "7♭9♭13"
+    case MajorSeventhFlatNineFlatThirteen = "Δ7♭9♭13"
+    case MinorMajorSeventhFlatNineFlatThirteen = "mΔ7♭9♭13"
+    case MinorSeventhFlatNineFlatThirteen = "m7♭9♭13"
+    case HalfDiminishedSeventhFlatNineFlatThirteen = "ø7♭9♭13"
+    case DiminishedSeventhFlatNineFlatThirteen = "°7♭9♭13"
+    // sharp eleven flat thirteen hexads
+    case DominantSeventhSharpElevenFlatThirteen = "7♯11♭13"
+    case MajorSeventhSharpElevenFlatThirteen = "Δ7♯11♭13"
+    case MinorMajorSeventhSharpElevenFlatThirteen = "mΔ7♯11♭13"
+    case MinorSeventhSharpElevenFlatThirteen = "m7♯11♭13"
     //> Heptads
     // unaltered heptads
     case DominantThirteenth = "13"
@@ -223,6 +242,25 @@ public enum ChordQuality : String {
         case MinorNinthFlatThirteen: return [3, 4, 3, 4, 6]
         case HalfDiminishedNinthFlatThirteen: return [3, 3, 4, 4, 6]
         case DiminishedNinthFlatThirteen: return [3, 3, 3, 5, 6]
+        // flat nine sharp eleven hexads
+        case DominantSeventhFlatNineSharpEleven: return [4, 3, 3, 3, 5]
+        case MajorSeventhFlatNineSharpEleven: return [4, 3, 4, 2, 5]
+        case MinorMajorSeventhFlatNineSharpEleven: return [3, 4, 4, 2, 5]
+        case MinorSeventhFlatNineSharpEleven: return [3, 4, 3, 3, 5]
+        case AugmentedMajorSeventhFlatNineSharpEleven: return [4, 4, 3, 2, 5]
+        case AugmentedSeventhFlatNineSharpEleven: return [4, 4, 2, 3, 5]
+        // flat nine flat thirteen hexads
+        case DominantSeventhFlatNineFlatThirteen: return [4, 3, 3, 3, 7]
+        case MajorSeventhFlatNineFlatThirteen: return [4, 3, 4, 2, 7]
+        case MinorMajorSeventhFlatNineFlatThirteen: return [3, 4, 4, 2, 7]
+        case MinorSeventhFlatNineFlatThirteen: return [3, 4, 3, 3, 7]
+        case HalfDiminishedSeventhFlatNineFlatThirteen: return [3, 3, 4, 3, 7]
+        case DiminishedSeventhFlatNineFlatThirteen: return [3, 3, 3, 4, 7]
+        // sharp eleven flat thirteen hexads
+        case DominantSeventhSharpElevenFlatThirteen: return [4, 3, 3, 8, 2]
+        case MajorSeventhSharpElevenFlatThirteen: return [4, 3, 4, 7, 2]
+        case MinorMajorSeventhSharpElevenFlatThirteen: return [3, 4, 4, 7, 2]
+        case MinorSeventhSharpElevenFlatThirteen: return [3, 4, 3, 8, 2]
         // heptads
         // unaltered heptads
         case DominantThirteenth: return [4, 3, 3, 4, 3, 4]
