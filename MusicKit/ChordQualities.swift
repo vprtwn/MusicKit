@@ -39,14 +39,12 @@ ChordQuality.MinorAddSharpEleven,
 public static let Pentads = [
 ChordQuality.DominantNinth,
 ChordQuality.MajorNinth,
-ChordQuality.MinorNinth,
 ChordQuality.MinorMajorNinth,
-ChordQuality.AugmentedNinth,
+ChordQuality.MinorNinth,
 ChordQuality.AugmentedMajorNinth,
+ChordQuality.AugmentedNinth,
 ChordQuality.HalfDiminishedNinth,
 ChordQuality.DiminishedNinth,
-ChordQuality.Dominant9Sus4,
-ChordQuality.SixNine,
 ChordQuality.HalfDiminishedMinorNinth,
 ChordQuality.DiminishedMinorNinth,
 ChordQuality.DominantSeventhSharpNine,
@@ -65,6 +63,8 @@ ChordQuality.MajorSeventhSharpEleven,
 ChordQuality.MinorMajorSeventhSharpEleven,
 ChordQuality.AugmentedSeventhSharpEleven,
 ChordQuality.AugmentedMajorSeventhSharpEleven,
+ChordQuality.Dominant9Sus4,
+ChordQuality.SixNine,
 ]
 public static let Hexads = [
 ChordQuality.DominantEleventh,
@@ -90,6 +90,7 @@ ChordQuality.MinorThirteenth,
 ChordQuality.AugmentedMajorThirteenth,
 ChordQuality.AugmentedThirteenth,
 ChordQuality.HalfDiminishedThirteenth,
+ChordQuality.DiminishedThirteenth,
 ]
 public static let Tetrads = ChordQuality.UnalteredTetrads + ChordQuality.AlteredTetrads
 public static let All = [
@@ -122,14 +123,12 @@ ChordQuality.AddSharpEleven,
 ChordQuality.MinorAddSharpEleven,
 ChordQuality.DominantNinth,
 ChordQuality.MajorNinth,
-ChordQuality.MinorNinth,
 ChordQuality.MinorMajorNinth,
-ChordQuality.AugmentedNinth,
+ChordQuality.MinorNinth,
 ChordQuality.AugmentedMajorNinth,
+ChordQuality.AugmentedNinth,
 ChordQuality.HalfDiminishedNinth,
 ChordQuality.DiminishedNinth,
-ChordQuality.Dominant9Sus4,
-ChordQuality.SixNine,
 ChordQuality.HalfDiminishedMinorNinth,
 ChordQuality.DiminishedMinorNinth,
 ChordQuality.DominantSeventhSharpNine,
@@ -148,6 +147,8 @@ ChordQuality.MajorSeventhSharpEleven,
 ChordQuality.MinorMajorSeventhSharpEleven,
 ChordQuality.AugmentedSeventhSharpEleven,
 ChordQuality.AugmentedMajorSeventhSharpEleven,
+ChordQuality.Dominant9Sus4,
+ChordQuality.SixNine,
 ChordQuality.DominantEleventh,
 ChordQuality.MajorEleventh,
 ChordQuality.MinorMajorEleventh,
@@ -169,6 +170,7 @@ ChordQuality.MinorThirteenth,
 ChordQuality.AugmentedMajorThirteenth,
 ChordQuality.AugmentedThirteenth,
 ChordQuality.HalfDiminishedThirteenth,
+ChordQuality.DiminishedThirteenth,
 ]
 public var name : String {
 switch self {
@@ -201,14 +203,12 @@ case AddSharpEleven: return "AddSharpEleven"
 case MinorAddSharpEleven: return "MinorAddSharpEleven"
 case DominantNinth: return "DominantNinth"
 case MajorNinth: return "MajorNinth"
-case MinorNinth: return "MinorNinth"
 case MinorMajorNinth: return "MinorMajorNinth"
-case AugmentedNinth: return "AugmentedNinth"
+case MinorNinth: return "MinorNinth"
 case AugmentedMajorNinth: return "AugmentedMajorNinth"
+case AugmentedNinth: return "AugmentedNinth"
 case HalfDiminishedNinth: return "HalfDiminishedNinth"
 case DiminishedNinth: return "DiminishedNinth"
-case Dominant9Sus4: return "Dominant9Sus4"
-case SixNine: return "SixNine"
 case HalfDiminishedMinorNinth: return "HalfDiminishedMinorNinth"
 case DiminishedMinorNinth: return "DiminishedMinorNinth"
 case DominantSeventhSharpNine: return "DominantSeventhSharpNine"
@@ -227,6 +227,8 @@ case MajorSeventhSharpEleven: return "MajorSeventhSharpEleven"
 case MinorMajorSeventhSharpEleven: return "MinorMajorSeventhSharpEleven"
 case AugmentedSeventhSharpEleven: return "AugmentedSeventhSharpEleven"
 case AugmentedMajorSeventhSharpEleven: return "AugmentedMajorSeventhSharpEleven"
+case Dominant9Sus4: return "Dominant9Sus4"
+case SixNine: return "SixNine"
 case DominantEleventh: return "DominantEleventh"
 case MajorEleventh: return "MajorEleventh"
 case MinorMajorEleventh: return "MinorMajorEleventh"
@@ -248,6 +250,7 @@ case MinorThirteenth: return "MinorThirteenth"
 case AugmentedMajorThirteenth: return "AugmentedMajorThirteenth"
 case AugmentedThirteenth: return "AugmentedThirteenth"
 case HalfDiminishedThirteenth: return "HalfDiminishedThirteenth"
+case DiminishedThirteenth: return "DiminishedThirteenth"
 }
 }
 }

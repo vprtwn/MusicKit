@@ -35,14 +35,12 @@ public static let MinorAddSharpEleven = Harmony.create(ChordQuality.MinorAddShar
 //> Pentads
 public static let DominantNinth = Harmony.create(ChordQuality.DominantNinth.intervals)
 public static let MajorNinth = Harmony.create(ChordQuality.MajorNinth.intervals)
-public static let MinorNinth = Harmony.create(ChordQuality.MinorNinth.intervals)
 public static let MinorMajorNinth = Harmony.create(ChordQuality.MinorMajorNinth.intervals)
-public static let AugmentedNinth = Harmony.create(ChordQuality.AugmentedNinth.intervals)
+public static let MinorNinth = Harmony.create(ChordQuality.MinorNinth.intervals)
 public static let AugmentedMajorNinth = Harmony.create(ChordQuality.AugmentedMajorNinth.intervals)
+public static let AugmentedNinth = Harmony.create(ChordQuality.AugmentedNinth.intervals)
 public static let HalfDiminishedNinth = Harmony.create(ChordQuality.HalfDiminishedNinth.intervals)
 public static let DiminishedNinth = Harmony.create(ChordQuality.DiminishedNinth.intervals)
-public static let Dominant9Sus4 = Harmony.create(ChordQuality.Dominant9Sus4.intervals)
-public static let SixNine = Harmony.create(ChordQuality.SixNine.intervals)
 public static let HalfDiminishedMinorNinth = Harmony.create(ChordQuality.HalfDiminishedMinorNinth.intervals)
 public static let DiminishedMinorNinth = Harmony.create(ChordQuality.DiminishedMinorNinth.intervals)
 public static let DominantSeventhSharpNine = Harmony.create(ChordQuality.DominantSeventhSharpNine.intervals)
@@ -61,6 +59,8 @@ public static let MajorSeventhSharpEleven = Harmony.create(ChordQuality.MajorSev
 public static let MinorMajorSeventhSharpEleven = Harmony.create(ChordQuality.MinorMajorSeventhSharpEleven.intervals)
 public static let AugmentedSeventhSharpEleven = Harmony.create(ChordQuality.AugmentedSeventhSharpEleven.intervals)
 public static let AugmentedMajorSeventhSharpEleven = Harmony.create(ChordQuality.AugmentedMajorSeventhSharpEleven.intervals)
+public static let Dominant9Sus4 = Harmony.create(ChordQuality.Dominant9Sus4.intervals)
+public static let SixNine = Harmony.create(ChordQuality.SixNine.intervals)
 //> Hexads
 public static let DominantEleventh = Harmony.create(ChordQuality.DominantEleventh.intervals)
 public static let MajorEleventh = Harmony.create(ChordQuality.MajorEleventh.intervals)
@@ -84,4 +84,5 @@ public static let MinorThirteenth = Harmony.create(ChordQuality.MinorThirteenth.
 public static let AugmentedMajorThirteenth = Harmony.create(ChordQuality.AugmentedMajorThirteenth.intervals)
 public static let AugmentedThirteenth = Harmony.create(ChordQuality.AugmentedThirteenth.intervals)
 public static let HalfDiminishedThirteenth = Harmony.create(ChordQuality.HalfDiminishedThirteenth.intervals)
+public static let DiminishedThirteenth = Harmony.create(ChordQuality.DiminishedThirteenth.intervals)
 }

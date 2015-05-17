@@ -35,18 +35,16 @@ public enum ChordQuality : String {
     case AddSharpEleven = "add♯11"
     case MinorAddSharpEleven = "madd♯11"
     //> Pentads
+    // unaltered pentads
     case DominantNinth = "9"
     case MajorNinth = "Δ9"
-    case MinorNinth = "m9"
     case MinorMajorNinth = "mΔ9"
-    case AugmentedNinth = "+9"
+    case MinorNinth = "m9"
     case AugmentedMajorNinth = "+Δ9"
+    case AugmentedNinth = "+9"
     case HalfDiminishedNinth = "ø9"
     case DiminishedNinth = "°9"
-    case Dominant9Sus4 = "9sus4"
-    // special
-    case SixNine = "6/9"
-    // altered
+    // altered pentads
     case HalfDiminishedMinorNinth = "ø♭9"
     case DiminishedMinorNinth = "°♭9"
     case DominantSeventhSharpNine = "7♯9"
@@ -65,7 +63,11 @@ public enum ChordQuality : String {
     case MinorMajorSeventhSharpEleven = "mΔ7♯11"
     case AugmentedSeventhSharpEleven = "+7♯11"
     case AugmentedMajorSeventhSharpEleven = "+Δ7♯11"
+    // other pentads
+    case Dominant9Sus4 = "9sus4"
+    case SixNine = "6/9"
     //> Hexads
+    // unaltered hexads
     case DominantEleventh = "11"
     case MajorEleventh = "Δ11"
     case MinorMajorEleventh = "mΔ11"
@@ -74,6 +76,7 @@ public enum ChordQuality : String {
     case AugmentedEleventh = "+11"
     case HalfDiminishedEleventh = "ø11"
     case DiminishedEleventh = "°11"
+    // altered hexads
     case DominantEleventhFlatNine = "11♭9"
     case MajorEleventhFlatNine = "Δ11♭9"
     case MinorEleventhFlatNine = "m11♭9"
@@ -81,6 +84,7 @@ public enum ChordQuality : String {
     case MajorNinthSharpEleven = "Δ9♯11"
     case MinorNinthSharpEleven = "m9♯11"
     //> Heptads
+    // unaltered heptads
     case DominantThirteenth = "13"
     case MajorThirteenth = "Δ13"
     case MinorMajorThirteenth = "mΔ13"
@@ -88,6 +92,8 @@ public enum ChordQuality : String {
     case AugmentedMajorThirteenth = "+Δ13"
     case AugmentedThirteenth = "+13"
     case HalfDiminishedThirteenth = "ø13"
+    case DiminishedThirteenth = "°13"
+    // altered heptads
     //.
 
     public var intervals: [Float] {
@@ -123,18 +129,18 @@ public enum ChordQuality : String {
         case AddSharpEleven: return [4, 2, 1]
         case MinorAddSharpEleven: return [3, 3, 1]
         // pentads
+        // unaltered pentads
         case DominantNinth: return [4, 3, 3, 4]
         case MajorNinth: return [4, 3, 4, 3]
-        case MinorNinth: return [3, 4, 3, 4]
         case MinorMajorNinth: return [3, 4, 4, 3]
-        case AugmentedNinth: return [4, 4, 2, 4]
+        case MinorNinth: return [3, 4, 3, 4]
         case AugmentedMajorNinth: return [4, 4, 3, 3]
+        case AugmentedNinth: return [4, 4, 2, 4]
         case HalfDiminishedNinth: return [3, 3, 4, 4]
-        case HalfDiminishedMinorNinth: return [3, 3, 4, 3]
         case DiminishedNinth: return [3, 3, 3, 5]
+        // altered pentads
+        case HalfDiminishedMinorNinth: return [3, 3, 4, 3]
         case DiminishedMinorNinth: return [3, 3, 3, 4]
-        case SixNine: return [4, 3, 1, 5]
-        case Dominant9Sus4: return [5, 2, 3, 4]
         case DominantSeventhSharpNine: return [4, 3, 3, 5]
         case MajorSeventhSharpNine: return [4, 3, 4, 4]
         case AugmentedSeventhSharpNine: return [4, 4, 2, 5]
@@ -151,15 +157,20 @@ public enum ChordQuality : String {
         case MinorMajorSeventhSharpEleven: return [3, 4, 4, 7]
         case AugmentedSeventhSharpEleven: return [4, 4, 2, 8]
         case AugmentedMajorSeventhSharpEleven: return [4, 4, 3, 7]
+        // other pentads
+        case SixNine: return [4, 3, 1, 5]
+        case Dominant9Sus4: return [5, 2, 3, 4]
         // hexads
+        // unaltered hexads
         case DominantEleventh: return [4, 3, 3, 4, 3]
         case MajorEleventh: return [4, 3, 4, 3, 3]
         case MinorMajorEleventh: return [3, 4, 4, 3, 3]
         case MinorEleventh: return [3, 4, 3, 4, 3]
-        case AugmentedEleventh: return [4, 4, 2, 4, 3]
         case AugmentedMajorEleventh: return [4, 4, 3, 3, 3]
+        case AugmentedEleventh: return [4, 4, 2, 4, 3]
         case HalfDiminishedEleventh: return [3, 3, 4, 4, 3]
         case DiminishedEleventh: return [3, 3, 3, 5, 3]
+        // altered
         case DominantEleventhFlatNine: return [4, 3, 3, 3, 4]
         case MajorEleventhFlatNine: return [4, 3, 4, 2, 4]
         case MinorEleventhFlatNine: return [3, 4, 3, 3, 4]
@@ -167,13 +178,15 @@ public enum ChordQuality : String {
         case MajorNinthSharpEleven: return [4, 3, 4, 3, 4]
         case MinorNinthSharpEleven: return [3, 4, 3, 4, 4]
         // heptads
+        // unaltered heptads
         case DominantThirteenth: return [4, 3, 3, 4, 3, 4]
         case MajorThirteenth: return [4, 3, 4, 3, 3, 4]
         case MinorMajorThirteenth: return [3, 4, 4, 3, 3, 4]
         case MinorThirteenth: return [3, 4, 3, 4, 3, 4]
-        case AugmentedThirteenth: return [4, 4, 2, 4, 3, 4]
         case AugmentedMajorThirteenth: return [4, 4, 3, 3, 3, 4]
+        case AugmentedThirteenth: return [4, 4, 2, 4, 3, 4]
         case HalfDiminishedThirteenth: return [3, 3, 4, 4, 3, 4]
+        case DiminishedThirteenth: return [3, 3, 3, 5, 3, 4]
         }
     }
 }

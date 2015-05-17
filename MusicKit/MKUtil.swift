@@ -39,7 +39,7 @@ public enum MKUtil {
 
     /// Converts an array of intervals to semitone indices
     /// e.g. [4, 3] -> [0, 4, 7]
-    static func semitoneIndices(intervals: [Float]) -> [Float] {
+    public static func semitoneIndices(intervals: [Float]) -> [Float] {
         var indices : [Float] = [0]
         for i in 0..<intervals.count {
             let next = indices[i] + intervals[i]
@@ -50,7 +50,7 @@ public enum MKUtil {
 
     /// Converts an array of semitone indices to intervals
     /// e.g. [0, 4, 7] -> [4, 3]
-    static func intervals(semitoneIndices: [Float]) -> [Float] {
+    public static func intervals(semitoneIndices: [Float]) -> [Float] {
         var intervals : [Float] = []
         for i in 1..<semitoneIndices.count {
             let delta = semitoneIndices[i] - semitoneIndices[i-1]
