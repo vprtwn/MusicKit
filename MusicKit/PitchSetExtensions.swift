@@ -47,6 +47,27 @@ extension PitchSet {
         return map { $0.midi - first }
     }
 
+    /// Inverts the `PitchSet` the given number of times. 
+    /// A single inversion moves the bottom pitch to the top.
+    public mutating func invert(n: UInt = 1) {
+        for _ in 0..<n {
+            _invert()
+        }
+    }
+
+    mutating func _invert() {
+        if self.count < 1 {
+            return
+        }
+        var bass = self[0]
+        remove(bass)
+        let last = self[count - 1]
+        while bass < last {
+            bass = bass + 12
+        }
+        insert(bass)
+    }
+
     /// Extends the pitch set by repeating with octave displacement.
     public mutating func extendOctaves(octaves: Int) {
         if octaves == 0 { return }

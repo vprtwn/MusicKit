@@ -107,4 +107,14 @@ final class PitchSetTests: XCTestCase {
         sut.collapse()
         XCTAssertEqual(sut, [Chroma.C*5, Chroma.E*5, Chroma.G*5, Chroma.C*6])
     }
+
+    func testInvert() {
+        var sut : PitchSet = [Chroma.C*5, Chroma.E*5, Chroma.G*5]
+        sut.invert(n: 0)
+        XCTAssertEqual(sut, [Chroma.C*5, Chroma.E*5, Chroma.G*5])
+        sut.invert()
+        XCTAssertEqual(sut, [Chroma.E*5, Chroma.G*5, Chroma.C*6])
+        sut.invert(n: 2)
+        XCTAssertEqual(sut, [Chroma.C*6, Chroma.E*6, Chroma.G*6])
+    }
 }
