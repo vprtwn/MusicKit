@@ -82,10 +82,24 @@ ChordQuality.HalfDiminishedEleventh,
 ChordQuality.DiminishedEleventh,
 ChordQuality.DominantEleventhFlatNine,
 ChordQuality.MajorEleventhFlatNine,
+ChordQuality.MinorMajorEleventhFlatNine,
 ChordQuality.MinorEleventhFlatNine,
+ChordQuality.AugmentedMajorEleventhFlatNine,
+ChordQuality.AugmentedEleventhFlatNine,
+ChordQuality.HalfDiminishedEleventhFlatNine,
+ChordQuality.DiminishedEleventhFlatNine,
 ChordQuality.DominantNinthSharpEleven,
 ChordQuality.MajorNinthSharpEleven,
+ChordQuality.MinorMajorNinthSharpEleven,
 ChordQuality.MinorNinthSharpEleven,
+ChordQuality.AugmentedMajorNinthSharpEleven,
+ChordQuality.AugmentedNinthSharpEleven,
+ChordQuality.DominantNinthFlatThirteen,
+ChordQuality.MajorNinthFlatThirteen,
+ChordQuality.MinorMajorNinthFlatThirteen,
+ChordQuality.MinorNinthFlatThirteen,
+ChordQuality.HalfDiminishedNinthFlatThirteen,
+ChordQuality.DiminishedNinthFlatThirteen,
 ]
 public static let Heptads = [
 ChordQuality.DominantThirteenth,
@@ -169,10 +183,24 @@ ChordQuality.HalfDiminishedEleventh,
 ChordQuality.DiminishedEleventh,
 ChordQuality.DominantEleventhFlatNine,
 ChordQuality.MajorEleventhFlatNine,
+ChordQuality.MinorMajorEleventhFlatNine,
 ChordQuality.MinorEleventhFlatNine,
+ChordQuality.AugmentedMajorEleventhFlatNine,
+ChordQuality.AugmentedEleventhFlatNine,
+ChordQuality.HalfDiminishedEleventhFlatNine,
+ChordQuality.DiminishedEleventhFlatNine,
 ChordQuality.DominantNinthSharpEleven,
 ChordQuality.MajorNinthSharpEleven,
+ChordQuality.MinorMajorNinthSharpEleven,
 ChordQuality.MinorNinthSharpEleven,
+ChordQuality.AugmentedMajorNinthSharpEleven,
+ChordQuality.AugmentedNinthSharpEleven,
+ChordQuality.DominantNinthFlatThirteen,
+ChordQuality.MajorNinthFlatThirteen,
+ChordQuality.MinorMajorNinthFlatThirteen,
+ChordQuality.MinorNinthFlatThirteen,
+ChordQuality.HalfDiminishedNinthFlatThirteen,
+ChordQuality.DiminishedNinthFlatThirteen,
 ChordQuality.DominantThirteenth,
 ChordQuality.MajorThirteenth,
 ChordQuality.MinorMajorThirteenth,
@@ -254,10 +282,24 @@ case HalfDiminishedEleventh: return "HalfDiminishedEleventh"
 case DiminishedEleventh: return "DiminishedEleventh"
 case DominantEleventhFlatNine: return "DominantEleventhFlatNine"
 case MajorEleventhFlatNine: return "MajorEleventhFlatNine"
+case MinorMajorEleventhFlatNine: return "MinorMajorEleventhFlatNine"
 case MinorEleventhFlatNine: return "MinorEleventhFlatNine"
+case AugmentedMajorEleventhFlatNine: return "AugmentedMajorEleventhFlatNine"
+case AugmentedEleventhFlatNine: return "AugmentedEleventhFlatNine"
+case HalfDiminishedEleventhFlatNine: return "HalfDiminishedEleventhFlatNine"
+case DiminishedEleventhFlatNine: return "DiminishedEleventhFlatNine"
 case DominantNinthSharpEleven: return "DominantNinthSharpEleven"
 case MajorNinthSharpEleven: return "MajorNinthSharpEleven"
+case MinorMajorNinthSharpEleven: return "MinorMajorNinthSharpEleven"
 case MinorNinthSharpEleven: return "MinorNinthSharpEleven"
+case AugmentedMajorNinthSharpEleven: return "AugmentedMajorNinthSharpEleven"
+case AugmentedNinthSharpEleven: return "AugmentedNinthSharpEleven"
+case DominantNinthFlatThirteen: return "DominantNinthFlatThirteen"
+case MajorNinthFlatThirteen: return "MajorNinthFlatThirteen"
+case MinorMajorNinthFlatThirteen: return "MinorMajorNinthFlatThirteen"
+case MinorNinthFlatThirteen: return "MinorNinthFlatThirteen"
+case HalfDiminishedNinthFlatThirteen: return "HalfDiminishedNinthFlatThirteen"
+case DiminishedNinthFlatThirteen: return "DiminishedNinthFlatThirteen"
 case DominantThirteenth: return "DominantThirteenth"
 case MajorThirteenth: return "MajorThirteenth"
 case MinorMajorThirteenth: return "MinorMajorThirteenth"
