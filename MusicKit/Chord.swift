@@ -85,4 +85,12 @@ public enum Chord  {
     public static let HalfDiminishedEleventh = Harmony.create(ChordQuality.HalfDiminishedEleventh.intervals)
     public static let DiminishedEleventh = Harmony.create(ChordQuality.DiminishedEleventh.intervals)
     public static let DominantNinthSharpEleven = Harmony.create(ChordQuality.DominantNinthSharpEleven.intervals)
+    // heptads
+    public static let DominantThirteenth = Harmony.create(ChordQuality.DominantThirteenth.intervals)
+    public static let MajorThirteenth = Harmony.create(ChordQuality.MajorThirteenth.intervals)
+    public static let MinorMajorThirteenth = Harmony.create(ChordQuality.MinorMajorThirteenth.intervals)
+    public static let MinorThirteenth = Harmony.create(ChordQuality.MinorThirteenth.intervals)
+    public static let AugmentedMajorThirteenth = Harmony.create(ChordQuality.AugmentedMajorThirteenth.intervals)
+    public static let AugmentedThirteenth = Harmony.create(ChordQuality.AugmentedThirteenth.intervals)
+    public static let HalfDiminishedThirteenth = Harmony.create(ChordQuality.HalfDiminishedThirteenth.intervals)
 }

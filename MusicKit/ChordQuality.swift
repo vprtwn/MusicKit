@@ -53,6 +53,13 @@ public enum ChordQuality : Printable {
     case DiminishedEleventh
     case DominantNinthSharpEleven
     // heptads
+    case DominantThirteenth
+    case MajorThirteenth
+    case MinorMajorThirteenth
+    case MinorThirteenth
+    case AugmentedMajorThirteenth
+    case AugmentedThirteenth
+    case HalfDiminishedThirteenth
 
     public var description : String {
         switch self {
@@ -106,6 +113,13 @@ public enum ChordQuality : Printable {
         case DiminishedEleventh: return "diminished eleventh"
         case DominantNinthSharpEleven: return "dominant ninth sharp eleven"
         // heptads
+        case DominantThirteenth: return "dominant thirteenth"
+        case MajorThirteenth: return "major thirteenth"
+        case MinorMajorThirteenth: return "minor major thirteenth"
+        case MinorThirteenth: return "minor thirteenth"
+        case AugmentedMajorThirteenth: return "augmented major thirteenth"
+        case AugmentedThirteenth: return "augmented thirteenth"
+        case HalfDiminishedThirteenth: return "half diminished thirteenth"
         }
     }
 
@@ -160,8 +174,15 @@ public enum ChordQuality : Printable {
         case HalfDiminishedEleventh: return "ø11"
         case DiminishedEleventh: return "°11"
         case DominantNinthSharpEleven: return "9♯11"
-        }
         // heptads
+        case DominantThirteenth: return "13"
+        case MajorThirteenth: return "Δ13"
+        case MinorMajorThirteenth: return "mΔ13"
+        case MinorThirteenth: return "m13"
+        case AugmentedMajorThirteenth: return "+Δ13"
+        case AugmentedThirteenth: return "+13"
+        case HalfDiminishedThirteenth: return "ø11"
+        }
     }
 
     public var intervals: [Float] {
@@ -215,7 +236,14 @@ public enum ChordQuality : Printable {
         case HalfDiminishedEleventh: return [3, 3, 4, 4, 3]
         case DiminishedEleventh: return [3, 3, 3, 5, 3]
         case DominantNinthSharpEleven: return [4, 3, 3, 4, 4]
-        }
         // heptads
+        case DominantThirteenth: return [4, 3, 3, 4, 3, 4]
+        case MajorThirteenth: return [4, 3, 4, 3, 3, 4]
+        case MinorMajorThirteenth: return [3, 4, 4, 3, 3, 4]
+        case MinorThirteenth: return [3, 4, 3, 4, 3, 4]
+        case AugmentedMajorThirteenth: return [4, 4, 3, 3, 3, 4]
+        case AugmentedThirteenth: return [3, 3, 4, 4, 3, 4]
+        case HalfDiminishedThirteenth: return [3, 3, 4, 4, 3, 4]
+        }
     }
 }
