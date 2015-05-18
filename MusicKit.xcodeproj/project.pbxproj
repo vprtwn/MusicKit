@@ -119,6 +119,7 @@
 		9636C2E41AF6A432005941D4 /* HarmonicFunctionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarmonicFunctionTests.swift; sourceTree = "<group>"; };
 		9636C2E91AF6A899005941D4 /* PitchSetTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSetTests.swift; sourceTree = "<group>"; };
 		963EF9671AFB1C3600008573 /* FrameworkOverview.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = FrameworkOverview.md; path = Documentation/FrameworkOverview.md; sourceTree = SOURCE_ROOT; };
+		96471C201B0961E6002C0EC8 /* AlteredHeptadsMulti.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = AlteredHeptadsMulti.playground; path = Playgrounds/AlteredHeptadsMulti.playground; sourceTree = SOURCE_ROOT; };
 		964A7F591A58A85B000E2D5A /* PitchSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchSet.swift; sourceTree = "<group>"; };
 		965331321AF1C20000EEDA02 /* HarmonicFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HarmonicFunction.swift; sourceTree = "<group>"; };
 		965AF8C11AF7A1DA00D31E83 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -129,6 +130,7 @@
 		967070EB1B08512A00CB367E /* ChordQualities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordQualities.swift; sourceTree = "<group>"; };
 		967070EE1B08649200CB367E /* ChordQualityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordQualityTests.swift; sourceTree = "<group>"; };
 		9683CF421B09438F004DB465 /* AlteredHexadsMulti.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = AlteredHexadsMulti.playground; path = Playgrounds/AlteredHexadsMulti.playground; sourceTree = SOURCE_ROOT; };
+		9683CF431B095DF1004DB465 /* AlteredHeptadsSingle.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = AlteredHeptadsSingle.playground; path = Playgrounds/AlteredHeptadsSingle.playground; sourceTree = SOURCE_ROOT; };
 		9691BB241A57C75500421B56 /* MusicKit_iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MusicKit_iOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		969220C31AF1E75A00560A20 /* Chroma.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chroma.swift; sourceTree = "<group>"; };
 		9693F6531A57C403006270F4 /* MusicKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MusicKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -209,6 +211,8 @@
 				966E60FA1B0930E9005EE226 /* AlteredPentads.playground */,
 				96E009AA1B093D3E00ECE16C /* AlteredHexadsSingle.playground */,
 				9683CF421B09438F004DB465 /* AlteredHexadsMulti.playground */,
+				9683CF431B095DF1004DB465 /* AlteredHeptadsSingle.playground */,
+				96471C201B0961E6002C0EC8 /* AlteredHeptadsMulti.playground */,
 			);
 			name = Playgrounds;
 			sourceTree = "<group>";

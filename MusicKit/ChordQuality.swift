@@ -135,7 +135,53 @@ public enum ChordQuality : String {
     case AugmentedThirteenth = "+13"
     case HalfDiminishedThirteenth = "ø13"
     case DiminishedThirteenth = "°13"
-    // altered heptads
+    // flat nine heptads
+    case DominantThirteenthFlatNine = "13♭9"
+    case MajorThirteenthFlatNine = "Δ13♭9"
+    case MinorMajorThirteenthFlatNine = "mΔ13♭9"
+    case MinorThirteenthFlatNine = "m13♭9"
+    case AugmentedMajorThirteenthFlatNine = "+Δ13♭9"
+    case AugmentedThirteenthFlatNine = "+13♭9"
+    case HalfDiminishedThirteenthFlatNine = "ø13♭9"
+    case DiminishedThirteenthFlatNine = "°13♭9"
+    // sharp eleven heptads
+    case DominantThirteenthSharpEleven = "13♯11"
+    case MajorThirteenthSharpEleven = "Δ13♯11"
+    case MinorMajorThirteenthSharpEleven = "mΔ13♯11"
+    case MinorThirteenthSharpEleven = "m13♯11"
+    case AugmentedMajorThirteenthSharpEleven = "+Δ13♯11"
+    case AugmentedThirteenthSharpEleven = "+13♯11"
+    // flat thirteen heptads
+    case DominantEleventhFlatThirteen = "11♭13"
+    case MajorEleventhFlatThirteen = "Δ11♭13"
+    case MinorMajorEleventhFlatThirteen = "mΔ11♭13"
+    case MinorEleventhFlatThirteen = "m11♭13"
+    case HalfDiminishedEleventhFlatThirteen = "ø11♭13"
+    case DiminishedEleventhFlatThirteen = "°11♭13"
+    // flat nine sharp eleven heptads
+    case DominantThirteenthFlatNineSharpEleven = "13♭9♯11"
+    case MajorThirteenthFlatNineSharpEleven = "Δ13♭9♯11"
+    case MinorMajorThirteenthFlatNineSharpEleven = "mΔ13♭9♯11"
+    case MinorThirteenthFlatNineSharpEleven = "m13♭9♯11"
+    case AugmentedMajorThirteenthFlatNineSharpEleven = "+Δ13♭9♯11"
+    case AugmentedThirteenthFlatNineSharpEleven = "+13♭9♯11"
+    // flat nine flat thirteen heptads
+    case DominantEleventhFlatNineFlatThirteen = "11♭9♭13"
+    case MajorEleventhFlatNineFlatThirteen = "Δ11♭9♭13"
+    case MinorMajorEleventhFlatNineFlatThirteen = "mΔ11♭9♭13"
+    case MinorEleventhFlatNineFlatThirteen = "m11♭9♭13"
+    case HalfDiminishedEleventhFlatNineFlatThirteen = "ø11♭9♭13"
+    case DiminishedEleventhFlatNineFlatThirteen = "°11♭9♭13"
+    // sharp eleven flat thirteen heptads
+    case DominantNinthSharpElevenFlatThirteen = "9♯11♭13"
+    case MajorNinthSharpElevenFlatThirteen = "Δ9♯11♭13"
+    case MinorMajorNinthSharpElevenFlatThirteen = "mΔ9♯11♭13"
+    case MinorNinthSharpElevenFlatThirteen = "m9♯11♭13"
+    // flat nine sharp eleven flat thirteen heptads
+    case DominantSeventhFlatNineSharpElevenFlatThirteen = "7♭9♯11♭13"
+    case MajorSeventhFlatNineSharpElevenFlatThirteen = "Δ7♭9♯11♭13"
+    case MinorMajorSeventhFlatNineSharpElevenFlatThirteen = "mΔ7♭9♯11♭13"
+    case MinorSeventhFlatNineSharpElevenFlatThirteen = "m7♭9♯11♭13"
     //.
 
     public var intervals: [Float] {
@@ -271,6 +317,53 @@ public enum ChordQuality : String {
         case AugmentedThirteenth: return [4, 4, 2, 4, 3, 4]
         case HalfDiminishedThirteenth: return [3, 3, 4, 4, 3, 4]
         case DiminishedThirteenth: return [3, 3, 3, 5, 3, 4]
+        // flat nine heptads
+        case DominantThirteenthFlatNine: return [4, 3, 3, 3, 4, 4]
+        case MajorThirteenthFlatNine: return [4, 3, 4, 2, 4, 4]
+        case MinorMajorThirteenthFlatNine: return [3, 4, 4, 2, 4, 4]
+        case MinorThirteenthFlatNine: return [3, 4, 3, 3, 4, 4]
+        case AugmentedMajorThirteenthFlatNine: return [4, 4, 3, 2, 4, 4]
+        case AugmentedThirteenthFlatNine: return [4, 4, 2, 3, 4, 4]
+        case HalfDiminishedThirteenthFlatNine: return [3, 3, 4, 3, 4, 4]
+        case DiminishedThirteenthFlatNine: return [3, 3, 3, 4, 4, 4]
+        // sharp eleven heptads
+        case DominantThirteenthSharpEleven: return [4, 3, 3, 4, 4, 3]
+        case MajorThirteenthSharpEleven: return [4, 3, 4, 3, 4, 3]
+        case MinorMajorThirteenthSharpEleven: return [3, 4, 4, 3, 4, 3]
+        case MinorThirteenthSharpEleven: return [3, 4, 3, 4, 4, 3]
+        case AugmentedMajorThirteenthSharpEleven: return [4, 4, 3, 3, 4, 3]
+        case AugmentedThirteenthSharpEleven: return [4, 4, 2, 4, 4, 3]
+        // flat thirteen heptads
+        case DominantEleventhFlatThirteen: return [4, 3, 3, 4, 3, 3]
+        case MajorEleventhFlatThirteen: return [4, 3, 4, 3, 3, 3]
+        case MinorMajorEleventhFlatThirteen: return [3, 4, 4, 3, 3, 3]
+        case MinorEleventhFlatThirteen: return [3, 4, 3, 4, 3, 3]
+        case HalfDiminishedEleventhFlatThirteen: return [3, 3, 4, 4, 3, 3]
+        case DiminishedEleventhFlatThirteen: return [3, 3, 3, 5, 3, 3]
+        // flat nine sharp eleven heptads
+        case DominantThirteenthFlatNineSharpEleven: return [4, 3, 3, 3, 5, 3]
+        case MajorThirteenthFlatNineSharpEleven: return [4, 3, 4, 2, 5, 3]
+        case MinorMajorThirteenthFlatNineSharpEleven: return [3, 4, 4, 2, 5, 3]
+        case MinorThirteenthFlatNineSharpEleven: return [3, 4, 3, 3, 5, 3]
+        case AugmentedMajorThirteenthFlatNineSharpEleven: return [4, 4, 3, 2, 5, 3]
+        case AugmentedThirteenthFlatNineSharpEleven: return [4, 4, 2, 3, 5, 3]
+        // flat nine flat thirteen heptads
+        case DominantEleventhFlatNineFlatThirteen: return [4, 3, 3, 3, 4, 3]
+        case MajorEleventhFlatNineFlatThirteen: return [4, 3, 4, 2, 4, 3]
+        case MinorMajorEleventhFlatNineFlatThirteen: return [3, 4, 4, 2, 4, 3]
+        case MinorEleventhFlatNineFlatThirteen: return [3, 4, 3, 3, 4, 3]
+        case HalfDiminishedEleventhFlatNineFlatThirteen: return [3, 3, 4, 3, 4, 3]
+        case DiminishedEleventhFlatNineFlatThirteen: return [3, 3, 3, 4, 4, 3]
+        // sharp eleven flat thirteen heptads
+        case DominantNinthSharpElevenFlatThirteen: return [4, 3, 3, 4, 4, 2]
+        case MajorNinthSharpElevenFlatThirteen: return [4, 3, 4, 3, 4, 2]
+        case MinorMajorNinthSharpElevenFlatThirteen: return [3, 4, 4, 3, 4, 2]
+        case MinorNinthSharpElevenFlatThirteen: return [3, 4, 3, 4, 4, 2]
+        // flat nine sharp eleven flat thirteen heptads
+        case DominantSeventhFlatNineSharpElevenFlatThirteen: return [4, 3, 3, 3, 5, 2]
+        case MajorSeventhFlatNineSharpElevenFlatThirteen: return [4, 3, 4, 2, 5, 2]
+        case MinorMajorSeventhFlatNineSharpElevenFlatThirteen: return [3, 4, 4, 2, 5, 2]
+        case MinorSeventhFlatNineSharpElevenFlatThirteen: return [3, 4, 3, 3, 5, 2]
         }
     }
 }
