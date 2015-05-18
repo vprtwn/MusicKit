@@ -15,16 +15,21 @@ class ViewController: NSViewController {
             if let first = messages.first {
                 if first.on {
                     let possibleChords = [
-                        ChordQuality.Major,
-                        ChordQuality.Sus2,
-                        ChordQuality.Sus4,
-                        ChordQuality.Minor,
-                    ]
+//                        ChordQuality.Major,
+//                        ChordQuality.Minor,
+//                        ChordQuality.Sus2,
+//                        ChordQuality.Sus4,
+//                        ChordQuality.DominantSeventh,
+//                        ChordQuality.DominantEleventhFlatNineFlatThirteen,
+//                        ChordQuality.DominantEleventhFlatNineFlatThirteen,
+//                        ChordQuality.DominantNinthSharpElevenFlatThirteen,
+//                        ChordQuality.DominantThirteenthSharpEleven,
+                    ] + ChordQuality.Heptads
                     let index = arc4random_uniform(UInt32(possibleChords.count))
                     let quality = possibleChords[Int(index)]
                     let intervals = quality.intervals
                     let indices = MKUtil.semitoneIndices(intervals)
-                    let transposition = indices[indices.count - 1]*(-2)
+                    let transposition = indices[indices.count - 1]*(-1)
                     let harmonizer = Harmony.transpose(Harmony.create(intervals), semitones: transposition)
                     let pitch = Pitch(midi: Float(first.noteNumber))
                     var pitchSet = harmonizer(pitch)
