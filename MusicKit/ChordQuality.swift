@@ -37,8 +37,7 @@ public enum ChordQuality : String {
     case AddSharpEleven = "add♯11"
     case MinorAddSharpEleven = "madd♯11"
     case AugmentedAddSharpEleven = "+add♯11"
-    //> Pentads
-    // unaltered pentads
+    //> UnalteredPentads
     case DominantNinth = "9"
     case MajorNinth = "Δ9"
     case MinorMajorNinth = "mΔ9"
@@ -47,6 +46,7 @@ public enum ChordQuality : String {
     case AugmentedNinth = "+9"
     case HalfDiminishedNinth = "ø9"
     case DiminishedNinth = "°9"
+    //> AlteredPentads
     // flat nine pentads
     case DominantSeventhFlatNine = "7♭9"
     case MajorSeventhFlatNine = "Δ7♭9"
@@ -73,8 +73,7 @@ public enum ChordQuality : String {
     // other pentads
     case Dominant9Sus4 = "9sus4"
     case SixNine = "6/9"
-    //> Hexads
-    // unaltered hexads
+    //> UnalteredHexads
     case DominantEleventh = "11"
     case MajorEleventh = "Δ11"
     case MinorMajorEleventh = "mΔ11"
@@ -83,6 +82,7 @@ public enum ChordQuality : String {
     case AugmentedEleventh = "+11"
     case HalfDiminishedEleventh = "ø11"
     case DiminishedEleventh = "°11"
+    //> AlteredHexads
     // flat nine hexads
     case DominantEleventhFlatNine = "11♭9"
     case MajorEleventhFlatNine = "Δ11♭9"
@@ -125,8 +125,7 @@ public enum ChordQuality : String {
     case MajorSeventhSharpElevenFlatThirteen = "Δ7♯11♭13"
     case MinorMajorSeventhSharpElevenFlatThirteen = "mΔ7♯11♭13"
     case MinorSeventhSharpElevenFlatThirteen = "m7♯11♭13"
-    //> Heptads
-    // unaltered heptads
+    //> UnalteredHeptads
     case DominantThirteenth = "13"
     case MajorThirteenth = "Δ13"
     case MinorMajorThirteenth = "mΔ13"
@@ -135,6 +134,7 @@ public enum ChordQuality : String {
     case AugmentedThirteenth = "+13"
     case HalfDiminishedThirteenth = "ø13"
     case DiminishedThirteenth = "°13"
+    //> AlteredHeptads
     // flat nine heptads
     case DominantThirteenthFlatNine = "13♭9"
     case MajorThirteenthFlatNine = "Δ13♭9"

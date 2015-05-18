@@ -37,6 +37,9 @@ task :gen_chordqualities do
 		if line.include? ends
 			newlines.push "]"
 			newlines.push "public static let Tetrads = ChordQuality.UnalteredTetrads + ChordQuality.AlteredTetrads"
+			newlines.push "public static let Pentads = ChordQuality.UnalteredPentads + ChordQuality.AlteredPentads"
+			newlines.push "public static let Hexads = ChordQuality.UnalteredHexads + ChordQuality.AlteredHexads"
+			newlines.push "public static let Heptads = ChordQuality.UnalteredHeptads + ChordQuality.AlteredHeptads"
 			newlines.push "public static let All = ["
 			newlines.concat all_qualities
 			newlines.push "]"
@@ -58,6 +61,7 @@ task :gen_chordqualities do
 	end
 
 	File.open(outfile, "w").puts newlines
+	print("Generated ChordQualities.swift with #{all_qualities.length} chord qualities\n")
 end
 
 task :gen_chord do
@@ -92,6 +96,7 @@ task :gen_chord do
 	end
 
 	File.open(outfile, "w").puts newlines
+	print("Generated Chord.swift\n")
 end
 
 task :gen_frameworkoverview do
@@ -99,4 +104,5 @@ task :gen_frameworkoverview do
 	outfile = "Documentation/FrameworkOverview.md"
 	lines = File.readlines(infile).drop(3).join("").gsub("///", "")
 	File.open(outfile, "w").puts lines
+	print("Generated FrameworkOverview.md\n")
 end

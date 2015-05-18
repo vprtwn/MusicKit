@@ -35,7 +35,7 @@ public static let DiminishedAddEleven = Harmony.create(ChordQuality.DiminishedAd
 public static let AddSharpEleven = Harmony.create(ChordQuality.AddSharpEleven.intervals)
 public static let MinorAddSharpEleven = Harmony.create(ChordQuality.MinorAddSharpEleven.intervals)
 public static let AugmentedAddSharpEleven = Harmony.create(ChordQuality.AugmentedAddSharpEleven.intervals)
-//> Pentads
+//> UnalteredPentads
 public static let DominantNinth = Harmony.create(ChordQuality.DominantNinth.intervals)
 public static let MajorNinth = Harmony.create(ChordQuality.MajorNinth.intervals)
 public static let MinorMajorNinth = Harmony.create(ChordQuality.MinorMajorNinth.intervals)
@@ -44,6 +44,7 @@ public static let AugmentedMajorNinth = Harmony.create(ChordQuality.AugmentedMaj
 public static let AugmentedNinth = Harmony.create(ChordQuality.AugmentedNinth.intervals)
 public static let HalfDiminishedNinth = Harmony.create(ChordQuality.HalfDiminishedNinth.intervals)
 public static let DiminishedNinth = Harmony.create(ChordQuality.DiminishedNinth.intervals)
+//> AlteredPentads
 public static let DominantSeventhFlatNine = Harmony.create(ChordQuality.DominantSeventhFlatNine.intervals)
 public static let MajorSeventhFlatNine = Harmony.create(ChordQuality.MajorSeventhFlatNine.intervals)
 public static let MinorMajorSeventhFlatNine = Harmony.create(ChordQuality.MinorMajorSeventhFlatNine.intervals)
@@ -66,7 +67,7 @@ public static let HalfDiminishedSeventhFlatThirteen = Harmony.create(ChordQualit
 public static let DiminishedSeventhFlatThirteen = Harmony.create(ChordQuality.DiminishedSeventhFlatThirteen.intervals)
 public static let Dominant9Sus4 = Harmony.create(ChordQuality.Dominant9Sus4.intervals)
 public static let SixNine = Harmony.create(ChordQuality.SixNine.intervals)
-//> Hexads
+//> UnalteredHexads
 public static let DominantEleventh = Harmony.create(ChordQuality.DominantEleventh.intervals)
 public static let MajorEleventh = Harmony.create(ChordQuality.MajorEleventh.intervals)
 public static let MinorMajorEleventh = Harmony.create(ChordQuality.MinorMajorEleventh.intervals)
@@ -75,6 +76,7 @@ public static let AugmentedMajorEleventh = Harmony.create(ChordQuality.Augmented
 public static let AugmentedEleventh = Harmony.create(ChordQuality.AugmentedEleventh.intervals)
 public static let HalfDiminishedEleventh = Harmony.create(ChordQuality.HalfDiminishedEleventh.intervals)
 public static let DiminishedEleventh = Harmony.create(ChordQuality.DiminishedEleventh.intervals)
+//> AlteredHexads
 public static let DominantEleventhFlatNine = Harmony.create(ChordQuality.DominantEleventhFlatNine.intervals)
 public static let MajorEleventhFlatNine = Harmony.create(ChordQuality.MajorEleventhFlatNine.intervals)
 public static let MinorMajorEleventhFlatNine = Harmony.create(ChordQuality.MinorMajorEleventhFlatNine.intervals)
@@ -111,7 +113,7 @@ public static let DominantSeventhSharpElevenFlatThirteen = Harmony.create(ChordQ
 public static let MajorSeventhSharpElevenFlatThirteen = Harmony.create(ChordQuality.MajorSeventhSharpElevenFlatThirteen.intervals)
 public static let MinorMajorSeventhSharpElevenFlatThirteen = Harmony.create(ChordQuality.MinorMajorSeventhSharpElevenFlatThirteen.intervals)
 public static let MinorSeventhSharpElevenFlatThirteen = Harmony.create(ChordQuality.MinorSeventhSharpElevenFlatThirteen.intervals)
-//> Heptads
+//> UnalteredHeptads
 public static let DominantThirteenth = Harmony.create(ChordQuality.DominantThirteenth.intervals)
 public static let MajorThirteenth = Harmony.create(ChordQuality.MajorThirteenth.intervals)
 public static let MinorMajorThirteenth = Harmony.create(ChordQuality.MinorMajorThirteenth.intervals)
@@ -120,6 +122,7 @@ public static let AugmentedMajorThirteenth = Harmony.create(ChordQuality.Augment
 public static let AugmentedThirteenth = Harmony.create(ChordQuality.AugmentedThirteenth.intervals)
 public static let HalfDiminishedThirteenth = Harmony.create(ChordQuality.HalfDiminishedThirteenth.intervals)
 public static let DiminishedThirteenth = Harmony.create(ChordQuality.DiminishedThirteenth.intervals)
+//> AlteredHeptads
 public static let DominantThirteenthFlatNine = Harmony.create(ChordQuality.DominantThirteenthFlatNine.intervals)
 public static let MajorThirteenthFlatNine = Harmony.create(ChordQuality.MajorThirteenthFlatNine.intervals)
 public static let MinorMajorThirteenthFlatNine = Harmony.create(ChordQuality.MinorMajorThirteenthFlatNine.intervals)
