@@ -67,7 +67,8 @@ public class MIDI {
             success = false
         }
         packet.destroy()
-        packet.dealloc(sizeof(MIDIPacket))
+        // this dealloc is superfluous; not sure why.
+//        packet.dealloc(sizeof(MIDIPacket))
         packetList.destroy()
         packetList.dealloc(sizeof(MIDIPacketList))
         return success

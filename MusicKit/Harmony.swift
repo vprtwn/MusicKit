@@ -9,7 +9,7 @@ public struct Harmony {
     }
 
     /// Transposes a Harmonizer
-    static func transpose(f: Harmonizer, semitones: Float) -> Harmonizer {
+    public static func transpose(f: Harmonizer, semitones: Float) -> Harmonizer {
         return { pitch in f(pitch.transpose(semitones)) }
     }
 
