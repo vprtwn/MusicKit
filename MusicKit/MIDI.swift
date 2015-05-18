@@ -50,7 +50,7 @@ public class MIDI {
     /// Note that messages are always sent on `sourceChannel`.
     ///
     /// :returns: `true` if the message was successfully sent
-    public func send(messages: [MIDIMessage]) -> Bool {
+    public func send<T: MIDIMessage>(messages: [T]) -> Bool {
         var success = false
         var packet = UnsafeMutablePointer<MIDIPacket>.alloc(sizeof(MIDIPacket))
         var packetList = UnsafeMutablePointer<MIDIPacketList>.alloc(sizeof(MIDIPacketList))

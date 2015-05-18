@@ -36,6 +36,23 @@ public struct MIDINoteMessage : MIDIMessage {
     public func copyOnChannel(channel: UInt) -> MIDINoteMessage {
         return MIDINoteMessage(on: on, channel: channel, noteNumber: noteNumber, velocity: velocity)
     }
+
+    /// The message's pitch
+    public var pitch : Pitch {
+        return Pitch(midi: Float(noteNumber))
+    }
+
+    /// Applies the given `Harmonizer` to the message.
+    public func harmonize(harmonizer: Harmonizer) -> [MIDINoteMessage] {
+        let ps = harmonizer(pitch)
+        var messages = [MIDINoteMessage]()
+        // TODO: add a PitchSet -> Array method so this can be mapped
+        for p in ps {
+            messages.append(MIDINoteMessage(on: self.on, channel: self.channel,
+                noteNumber: UInt(p.midi), velocity: self.velocity))
+        }
+        return messages
+    }
 }
 
 extension MIDINoteMessage : Printable {
