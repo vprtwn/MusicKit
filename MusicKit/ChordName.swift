@@ -54,36 +54,46 @@ extension Chord {
         else if count == 3 {
             return _descriptor(pitchSet, qualities: ChordQuality.Triads)
         }
-        // Tetrads
-        else if count == 4 {
-            // no-slash chord
-            let fullOpt = _descriptor(pitchSet, qualities: ChordQuality.Tetrads)
-            // slash chord without bass in upper chord
-            let noBassOpt = _descriptor(bassRemoved, qualities: ChordQuality.Triads)
+        // Tetrads, Pentads, Hexads, Heptads
+        else if count > 3 && count < 8 {
+            var fullQs = [ChordQuality]()
+            var fullUnalteredQs = [ChordQuality]()
+            var slashQs = [ChordQuality]()
+            if count == 4 {
+                fullQs = ChordQuality.Tetrads
+                fullUnalteredQs = ChordQuality.UnalteredTetrads
+                slashQs = ChordQuality.Triads
+            } else if count == 5 {
+                fullQs = ChordQuality.Pentads
+                fullUnalteredQs = ChordQuality.UnalteredPentads
+                slashQs = ChordQuality.Tetrads
+            } else if count == 6 {
+                fullQs = ChordQuality.Hexads
+                fullUnalteredQs = ChordQuality.UnalteredHexads
+                slashQs = ChordQuality.Pentads
+            } else if count == 7 {
+                fullQs = ChordQuality.Heptads
+                fullUnalteredQs = ChordQuality.UnalteredHeptads
+                slashQs = ChordQuality.Hexads
+            }
+            // no-slash
+            let fullOpt = _descriptor(pitchSet, qualities: fullQs)
+            // unaltered, no-slash, root position -> return
+            if let full = fullOpt {
+                if contains(fullUnalteredQs, full.quality) &&
+                    full.bass == full.root {
+                    return full
+                }
+            }
+            // try to simplify chord by slashing
+            let noBassOpt = _descriptor(bassRemoved, qualities: slashQs)
             var slashNoBassOpt : ChordDescriptor? = nil
             if let noBass = noBassOpt {
                 slashNoBassOpt = bassChromaOpt.map {
                     ChordDescriptor(root: noBass.root, quality: noBass.quality, bass: $0)
                 }
             }
-            // unaltered no-slash chord
-            if let full = fullOpt {
-                if contains(ChordQuality.UnalteredTetrads, full.quality) {
-                    return full
-                }
-            }
-            // slash chord > altered no-slash chord
             return slashNoBassOpt ?? fullOpt
-        }
-        // pentads
-        else if count == 5 {
-            // remove bass note and attempt to form slash chord
-            let topDescOpt = _descriptor(bassRemoved, qualities: ChordQuality.Tetrads)
-            if let topDesc = topDescOpt {
-                return bassChromaOpt.map {
-                    ChordDescriptor(root: topDesc.root, quality: topDesc.quality, bass: $0)
-                }
-            }
         }
         return nil
     }
