@@ -15,16 +15,12 @@ class ViewController: NSViewController {
             if let first = messages.first {
                 if first.on {
                     let possibleChords = [
-//                        ChordQuality.Major,
-//                        ChordQuality.Minor,
-//                        ChordQuality.Sus2,
-//                        ChordQuality.Sus4,
-//                        ChordQuality.DominantSeventh,
-//                        ChordQuality.DominantEleventhFlatNineFlatThirteen,
-//                        ChordQuality.DominantEleventhFlatNineFlatThirteen,
-//                        ChordQuality.DominantNinthSharpElevenFlatThirteen,
-//                        ChordQuality.DominantThirteenthSharpEleven,
-                    ] + ChordQuality.Heptads
+                        ChordQuality.Major,
+                        ChordQuality.Minor,
+                        ChordQuality.Sus2,
+                        ChordQuality.Sus4,
+                    ]
+//                    + ChordQuality.Pentads
                     let index = arc4random_uniform(UInt32(possibleChords.count))
                     let quality = possibleChords[Int(index)]
                     let intervals = quality.intervals
