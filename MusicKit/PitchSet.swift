@@ -30,7 +30,7 @@ public struct PitchSet: Equatable {
     ///
     /// :returns: The index of the first instance of `pitch`, or `nil` if `pitch` isn't found.
     public func indexOf(pitch: Pitch) -> Int? {
-        let index = MKUtil.insertionIndex(contents, pitch)
+        let index = contents.insertionIndex(pitch)
         if index == count {
             return nil
         }
@@ -61,7 +61,7 @@ public struct PitchSet: Equatable {
     public mutating func insert(pitches: Pitch...) {
         for pitch in pitches {
             if !contains(pitch) {
-                contents.insert(pitch, atIndex: MKUtil.insertionIndex(contents, pitch))
+                contents.insert(pitch, atIndex: contents.insertionIndex(pitch))
             }
         }
     }
@@ -201,7 +201,7 @@ public struct PitchSetSlice {
     ///
     /// :returns: The index of the first instance of `pitch`, or `nil` if `pitch` isn't found.
     public func indexOf(pitch: Pitch) -> Int? {
-        let index = MKUtil.insertionIndex(contents, pitch)
+        let index = contents.insertionIndex(pitch)
         if index == count {
             return nil
         }
@@ -227,7 +227,7 @@ public struct PitchSetSlice {
     public mutating func insert(pitches: Pitch...) {
         for pitch in pitches {
             if !contains(pitch) {
-                contents.insert(pitch, atIndex: MKUtil.insertionIndex(contents, pitch))
+                contents.insert(pitch, atIndex: contents.insertionIndex(pitch))
             }
         }
     }

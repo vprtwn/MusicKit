@@ -58,6 +58,9 @@ public enum MKUtil {
         }
         return intervals
     }
+}
+
+extension CollectionType where Generator.Element == Pitch, Index == Int {
 
     /// Returns the insertion point for `pitch` in the collection of `pitches`.
     ///
@@ -66,30 +69,29 @@ public enum MKUtil {
     /// could be inserted, keeping `pitchSet` in order.
     ///
     /// :returns: An index in the range `0...count(pitches)` where `pitch` can be inserted.
-    static func insertionIndex<C: CollectionType where
-        C.Generator.Element == Pitch, C.Index == Int>(pitches: C,_ pitch: Pitch) -> Int
+    func insertionIndex(pitch: Pitch) -> Int
     {
-        if pitches.isEmpty {
+        if self.isEmpty {
             return 0
         }
 
-        var (low, high) = (0, pitches.endIndex - 1)
+        var (low, high) = (0, self.endIndex - 1)
         var mid = 0
 
         while low < high {
             mid = (high - low) / 2 + low
-            if pitches[mid] < pitch {
+            if self[mid] < pitch {
                 low = mid + 1
             } else {
                 high = mid
             }
         }
         
-        if pitches[low] >= pitch {
+        if self[low] >= pitch {
             return low
         }
         
-        return pitches.endIndex
+        return self.endIndex
     }
 }
 
