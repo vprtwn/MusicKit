@@ -12,8 +12,8 @@ public enum ChordExtension: UInt, CustomStringConvertible {
 
     public var description: String {
         switch self {
-        case FlatNine: return "9"
-        case Nine: return "♭9"
+        case FlatNine: return "♭9"
+        case Nine: return "9"
         case Eleven: return "11"
         case SharpEleven: return "♯11"
         case FlatThirteen: return "♭13"
