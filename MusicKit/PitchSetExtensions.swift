@@ -8,14 +8,16 @@ extension PitchSet {
     public func gamut() -> Set<Chroma> {
         var set = Set<Chroma>()
         for pitch in self.contents {
-            pitch.chroma.map { set.insert($0) }
+            if let chroma = pitch.chroma {
+                set.insert(chroma)
+            }
         }
         return set
     }
 }
 
 // MARK: Transposable
-extension PitchSet : Transposable {
+extension PitchSet: Transposable {
     public func transpose(semitones: Float) -> PitchSet {
         // TODO: use PitchSet.map
         return PitchSet(contents.map { $0.transpose(semitones) })
@@ -93,7 +95,9 @@ extension PitchSet {
                 }
             }
         }
-        pitchesToRemove.map { self.remove($0) }
+        for pitch in pitchesToRemove {
+            self.remove(pitch)
+        }
     }
 
     /// Collapses the pitch set to within an octave, maintaining the bass.
@@ -122,21 +126,6 @@ extension PitchSet {
     /// The last pitch, or `nil` if the set is empty
     public func last() -> Pitch? {
         return contents.last
-    }
-}
-
-// MARK: Higher-order functions
-extension PitchSet {
-    public func map<T>(transform: Pitch -> T) -> [T] {
-        return Swift.map(self, transform)
-    }
-
-    public func reduce<T>(initial: T, combine: (T, Pitch) -> T) -> T {
-        return Swift.reduce(self, initial, combine)
-    }
-
-    public func filter(includeElement: Pitch -> Bool) -> PitchSet {
-        return PitchSet(Swift.filter(self, includeElement))
     }
 }
 

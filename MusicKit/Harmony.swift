@@ -4,7 +4,7 @@ import Foundation
 
 public struct Harmony {
     /// The identity Harmonizer function
-    public static let IdentityHarmonizer : Harmonizer = { pitch in
+    public static let IdentityHarmonizer: Harmonizer = { pitch in
         return PitchSet(pitches: pitch)
     }
 

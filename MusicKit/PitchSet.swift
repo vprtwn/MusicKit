@@ -4,9 +4,9 @@ import Foundation
 
 // MARK: == PitchSet ==
 /// A collection of unique `Pitch` instances ordered by frequency.
-public struct PitchSet : Equatable {
+public struct PitchSet: Equatable {
 
-    var contents : [Pitch] = []
+    var contents: [Pitch] = []
 
     /// The number of pitches the `PitchSet` contains.
     public var count: Int {
@@ -18,12 +18,12 @@ public struct PitchSet : Equatable {
 
     /// Creates a new `PitchSet` with the contents of a given sequence of pitches.
     public init<S : SequenceType where S.Generator.Element == Pitch>(_ sequence: S) {
-        contents = sorted(Array(Set(sequence)))
+        contents = Array(Set(sequence)).sort()
     }
 
     /// Creates a new `PitchSet` with the given pitches.
     public init(pitches: Pitch...) {
-        contents = sorted(Array(Set(pitches)))
+        contents = Array(Set(pitches)).sort()
     }
 
     /// Returns the index of the given `pitch`
@@ -68,7 +68,7 @@ public struct PitchSet : Equatable {
 
     /// Inserts the contents of a sequence of pitches into the `PitchSet`.
     public mutating func insert<S: SequenceType where S.Generator.Element == Pitch>(pitches: S) {
-        contents = sorted(Array(Set(contents + pitches)))
+        contents = Array(Set(contents + pitches)).sort()
     }
 
     /// Removes `pitch` from the `PitchSet` if it exists.
@@ -93,22 +93,14 @@ public struct PitchSet : Equatable {
 }
 
 // MARK: Printable
-extension PitchSet : Printable {
-    public var description : String {
+extension PitchSet: CustomStringConvertible {
+    public var description: String {
         return contents.description
     }
 }
 
-// MARK: SequenceType
-extension PitchSet : SequenceType {
-    /// Returns a generator of the elements of the collection.
-    public func generate() -> GeneratorOf<Pitch> {
-        return GeneratorOf(contents.generate())
-    }
-}
-
 // MARK: CollectionType
-extension PitchSet : CollectionType {
+extension PitchSet: CollectionType {
     /// The position of the first pitch in the set. (Always zero.)
     public var startIndex: Int {
         return 0
@@ -125,26 +117,23 @@ extension PitchSet : CollectionType {
     public subscript(i: Int) -> Pitch {
         return contents[i]
     }
-}
 
-// MARK: ArrayLiteralConvertible
-extension PitchSet : ArrayLiteralConvertible {
-    public init(arrayLiteral elements: Pitch...) {
-        self.contents = sorted(Array(Set(elements)))
-    }
-}
-
-// MARK: Sliceable
-extension PitchSet : Sliceable {
     /// Access the elements in the given range.
     public subscript(range: Range<Int>) -> PitchSetSlice {
         return PitchSetSlice(contents[range])
     }
 }
 
+// MARK: ArrayLiteralConvertible
+extension PitchSet: ArrayLiteralConvertible {
+    public init(arrayLiteral elements: Pitch...) {
+        self.contents = Array(Set(elements)).sort()
+    }
+}
+
 // MARK: Equatable
 public func ==(lhs: PitchSet, rhs: PitchSet) -> Bool {
-    if count(lhs) != count(rhs) {
+    if lhs.count != rhs.count {
         return false
     }
     for (lhs, rhs) in zip(lhs, rhs) {
@@ -182,7 +171,7 @@ public func -=(inout lhs: PitchSet, rhs: PitchSet) {
 
 // MARK: == PitchSetSlice ==
 /// A slice of a `PitchSet`.
-public struct PitchSetSlice : Printable {
+public struct PitchSetSlice {
     private var contents: ArraySlice<Pitch> = []
 
     /// The number of elements the `PitchSetSlice` contains.
@@ -195,12 +184,12 @@ public struct PitchSetSlice : Printable {
 
     /// Creates a new `PitchSetSlice` with the contents of a given sequence.
     public init<S : SequenceType where S.Generator.Element == Pitch>(_ sequence: S) {
-        contents = ArraySlice(sorted(Array(Set(sequence))))
+        contents = ArraySlice(Array(Set(sequence)).sort())
     }
 
     /// Creates a new `PitchSetSlice` with the given values.
     public init(values: Pitch...) {
-        contents = ArraySlice(sorted(Array(Set(values))))
+        contents = ArraySlice(Array(Set(values)).sort())
     }
 
     /// Creates a new `PitchSetSlice` from a sorted slice.
@@ -245,7 +234,7 @@ public struct PitchSetSlice : Printable {
 
     /// Inserts the contents of a sequence into the `PitchSetSlice`.
     public mutating func insert<S: SequenceType where S.Generator.Element == Pitch>(pitches: S) {
-        contents = ArraySlice(sorted(Array(Set(contents + pitches))))
+        contents = ArraySlice(Array(Set(contents + pitches)).sort())
     }
 
     /// Removes `pitch` from the slice if it exists.
@@ -270,22 +259,15 @@ public struct PitchSetSlice : Printable {
 }
 
 // MARK: Printable
-extension PitchSetSlice : Printable {
+extension PitchSetSlice: CustomStringConvertible {
     public var description: String {
         return contents.description
     }
 }
 
-// MARK: SequenceType
-extension PitchSetSlice : SequenceType {
-    public func generate() -> GeneratorOf<Pitch> {
-        return GeneratorOf(contents.generate())
-    }
-}
-
 // MARK: CollectionType
-extension PitchSetSlice : CollectionType {
-    typealias Index = Int
+extension PitchSetSlice: CollectionType {
+    public typealias Index = Int
 
     /// The position of the first pitch in the slice. (Always zero.)
     public var startIndex: Int {
@@ -303,19 +285,16 @@ extension PitchSetSlice : CollectionType {
     public subscript(i: Int) -> Pitch {
         return contents[i]
     }
-}
 
-// MARK: ArrayLiteralConvertible
-extension PitchSetSlice : ArrayLiteralConvertible {
-    public init(arrayLiteral elements: Pitch...) {
-        self.contents = ArraySlice(sorted(Array(Set(elements))))
-    }
-}
-
-// MARK: Sliceable
-extension PitchSetSlice : Sliceable {
     /// Access the elements in the given range.
     public subscript(range: Range<Int>) -> PitchSetSlice {
         return PitchSetSlice(contents[range])
+    }
+}
+
+// MARK: ArrayLiteralConvertible
+extension PitchSetSlice: ArrayLiteralConvertible {
+    public init(arrayLiteral elements: Pitch...) {
+        self.contents = ArraySlice(Array(Set(elements)).sort())
     }
 }

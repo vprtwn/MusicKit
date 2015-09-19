@@ -2,7 +2,7 @@
 
 import Foundation
 
-public enum ScaleQuality : String {
+public enum ScaleQuality: String {
     case Chromatic = "Chromatic"
     case Wholetone = "Wholetone"
     case Octatonic1 = "Octatonic mode 1"
@@ -15,7 +15,7 @@ public enum ScaleQuality : String {
     case Minor = "Minor"
     case Locrian = "Locrian"
 
-    public var intervals : [Float] {
+    public var intervals: [Float] {
         switch self {
         case Chromatic: return [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
         case Wholetone: return [2, 2, 2, 2, 2, 2]
@@ -32,8 +32,8 @@ public enum ScaleQuality : String {
     }
 }
 
-extension ScaleQuality : Printable {
-    public var description : String {
+extension ScaleQuality: CustomStringConvertible {
+    public var description: String {
         return rawValue
     }
 }

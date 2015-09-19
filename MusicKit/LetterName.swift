@@ -2,7 +2,7 @@
 
 import Foundation
 
-public enum LetterName : UInt, Printable {
+public enum LetterName: UInt, CustomStringConvertible {
     case C = 0
     case D = 1
     case E = 2
@@ -11,8 +11,8 @@ public enum LetterName : UInt, Printable {
     case A = 5
     case B = 6
 
-    static let names : [String] = ["C", "D", "E", "F", "G", "A", "B"]
-    public var description : String {
+    static let names: [String] = ["C", "D", "E", "F", "G", "A", "B"]
+    public var description: String {
         return LetterName.names[Int(rawValue)]
     }
 }

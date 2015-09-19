@@ -2,15 +2,15 @@
 
 import Foundation
 
-public struct ChordDescriptor : Printable {
+public struct ChordDescriptor: CustomStringConvertible {
     /// The root of the chord.
-    public let root : Chroma
+    public let root: Chroma
 
     /// The quality of the chord.
-    public let quality : ChordQuality
+    public let quality: ChordQuality
 
     /// The lowest note of the chord.
-    public let bass : Chroma
+    public let bass: Chroma
 
     public init(root: Chroma, quality: ChordQuality, bass: Chroma) {
         self.root = root
@@ -18,7 +18,7 @@ public struct ChordDescriptor : Printable {
         self.bass = bass
     }
 
-    public var description : String {
+    public var description: String {
         return "root: \(root), quality: \(quality), bass: \(bass)"
     }
 }

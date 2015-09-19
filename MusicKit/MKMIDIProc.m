@@ -65,7 +65,7 @@ static void notifyProc(const MIDINotification *notification, void *refCon) {
     if (!_notifyCallback) {
         return;
     }
-    MKMIDINotification messageID = notification->messageID;
+    MKMIDINotification messageID = (MKMIDINotification)notification->messageID;
     /// For now, just return the message id.
     /// TODO: parse the object corresponding to the message id.
     _notifyCallback(messageID);

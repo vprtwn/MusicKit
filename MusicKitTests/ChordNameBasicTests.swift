@@ -2,16 +2,15 @@ import XCTest
 import MusicKit
 
 final class ChordNameBasicTests: XCTestCase {
-    ///*
     func testPowerChord() {
-        var sut : PitchSet = [Chroma.C*0, Chroma.G*0, Chroma.C*2]
-        var name = Chord.name(sut)
-        var expected = "C5"
+        let sut: PitchSet = [Chroma.C*0, Chroma.G*0, Chroma.C*2]
+        let name = Chord.name(sut)
+        let expected = "C5"
         XCTAssert(name == expected, "\(name) != \(expected)")
     }
 
     func testMajorMinor() {
-        var sut : PitchSet = [Chroma.C*0, Chroma.E*2, Chroma.G*3, Chroma.C*4]
+        var sut: PitchSet = [Chroma.C*0, Chroma.E*2, Chroma.G*3, Chroma.C*4]
         var name = Chord.name(sut)
         var expected = "CM"
         XCTAssert(name == expected, "\(name) != \(expected)")
@@ -28,7 +27,7 @@ final class ChordNameBasicTests: XCTestCase {
     }
 
     func testOtherTriads() {
-        var sut : PitchSet = [Chroma.C*0, Chroma.E*2, Chroma.Gs*3, Chroma.C*4]
+        var sut: PitchSet = [Chroma.C*0, Chroma.E*2, Chroma.Gs*3, Chroma.C*4]
         var name = Chord.name(sut)
         var expected = "C+"
         XCTAssert(name == expected, "\(name) != \(expected)")
@@ -55,7 +54,7 @@ final class ChordNameBasicTests: XCTestCase {
     }
 
     func testCommonTetrads() {
-        var sut : PitchSet = [Chroma.C*0, Chroma.E*2, Chroma.G*3, Chroma.As*4, Chroma.G*3]
+        var sut: PitchSet = [Chroma.C*0, Chroma.E*2, Chroma.G*3, Chroma.As*4, Chroma.G*3]
         var name = Chord.name(sut)
         var expected = "C7"
         XCTAssert(name == expected, "\(name) != \(expected)")
@@ -77,7 +76,7 @@ final class ChordNameBasicTests: XCTestCase {
     }
 
     func testOtherTetrads() {
-        var sut : PitchSet = [Chroma.C*0, Chroma.Ds*2, Chroma.G*3, Chroma.B*4, Chroma.G*3]
+        var sut: PitchSet = [Chroma.C*0, Chroma.Ds*2, Chroma.G*3, Chroma.B*4, Chroma.G*3]
         var name = Chord.name(sut)
         var expected = "CmΔ7"
         XCTAssert(name == expected, "\(name) != \(expected)")
@@ -127,5 +126,4 @@ final class ChordNameBasicTests: XCTestCase {
         expected = "Gm6"
         XCTAssert(name == expected, "\(name) != \(expected)")
     }
-    //*/
 }

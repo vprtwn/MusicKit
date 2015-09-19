@@ -5,12 +5,12 @@ import Foundation
 extension Chord {
     /// Creates a new `Harmonizer` using the (1-indexed) indices of the given harmonizer
     public static func create(harmonizer: Harmonizer, indices: [UInt]) -> Harmonizer {
-        if indices.count < 2 || contains(indices, 0) {
+        if indices.count < 2 || indices.contains(0) {
             return Harmony.IdentityHarmonizer
         }
 
         // sort and convert to zero-indexed indices
-        let sortedIndices = sorted(indices.map { $0 - 1 })
+        let sortedIndices = (indices.map { $0 - 1 }).sort()
         let maxIndex = Int(sortedIndices.last!)
         var scalePitches = harmonizer(Chroma.C*0)
 

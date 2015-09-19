@@ -5,7 +5,7 @@ import Foundation
 typealias ChromaNameTuple = (LetterName, Accidental)
 
 /// Pitch quality; also known as pitch class.
-public enum Chroma : UInt {
+public enum Chroma: UInt {
     /// C
     case C = 0
     /// C Sharp
@@ -31,7 +31,7 @@ public enum Chroma : UInt {
     /// B
     case B = 11
 
-    var names : [ChromaNameTuple] {
+    var names: [ChromaNameTuple] {
         switch self.rawValue {
         case 0:
             return [(.C, .Natural), (.B, .Sharp), (.D, .DoubleFlat)]
@@ -71,9 +71,9 @@ public enum Chroma : UInt {
 }
 
 // MARK: Printable
-extension Chroma : Printable {
-    public var description : String {
-        let nameTupleOpt : ChromaNameTuple? = self.names.first
+extension Chroma: CustomStringConvertible {
+    public var description: String {
+        let nameTupleOpt: ChromaNameTuple? = self.names.first
         if let (letterName, accidental) = nameTupleOpt {
             return "\(letterName.description)\(accidental.description(true))"
         }

@@ -6,32 +6,32 @@ import CoreMIDI
 public class MIDI {
     /// Messages sent to the virtual MIDI source will be delivered on this channel.
     /// Default is 3.
-    public var sourceChannel : UInt = 3
+    public var sourceChannel: UInt = 3
 
     /// Handler for incoming MIDI note on or off messages
-    public var noteHandler : [MIDINoteMessage] -> Void = { messages in }
+    public var noteHandler: [MIDINoteMessage] -> Void = { messages in }
 
     /// The current pitch set in each input channel
     public var inputChannelToPitchSet = [UInt: PitchSet]()
 
     /// The current pitch set in the source channel
-    public var sourcePitchSet : PitchSet {
+    public var sourcePitchSet: PitchSet {
         return self.inputChannelToPitchSet[sourceChannel] ?? PitchSet()
     }
 
-    var _sources : [MIDIEndpointRef] = []
-    var _destinations : [MIDIEndpointRef] = []
+    var _sources: [MIDIEndpointRef] = []
+    var _destinations: [MIDIEndpointRef] = []
     var _name = "MusicKit"
 
     /// The virtual source
-    lazy var _virtualSource : MIDIEndpointRef = {
+    lazy var _virtualSource: MIDIEndpointRef = {
         var outSrc = MIDIEndpointRef()
         let s = MIDISourceCreate(self._client, self._name, &outSrc)
         return outSrc
     }()
 
     /// The MIDI client
-    lazy var _client : MIDIClientRef = {
+    lazy var _client: MIDIClientRef = {
         var outClient = MIDIClientRef()
         let s = MIDIClientCreate(self._name, MKMIDIProc.notifyProc(), nil, &outClient)
 
@@ -39,7 +39,7 @@ public class MIDI {
     }()
 
     /// The MIDI input port
-    lazy var _inputPort : MIDIPortRef = {
+    lazy var _inputPort: MIDIPortRef = {
         var outPort = MIDIPortRef()
         let s = MIDIInputPortCreate(self._client, self._name, MKMIDIProc.readProc(), nil, &outPort)
         return outPort
@@ -53,7 +53,7 @@ public class MIDI {
     public func send<T: MIDIMessage>(messages: [T]) -> Bool {
         var success = false
         var packet = UnsafeMutablePointer<MIDIPacket>.alloc(sizeof(MIDIPacket))
-        var packetList = UnsafeMutablePointer<MIDIPacketList>.alloc(sizeof(MIDIPacketList))
+        let packetList = UnsafeMutablePointer<MIDIPacketList>.alloc(sizeof(MIDIPacketList))
         packet = MIDIPacketListInit(packetList)
 
         for message in messages {
@@ -109,7 +109,7 @@ public class MIDI {
                 let noteOn = UInt(MKMIDIMessage.NoteOn.rawValue)
                 let noteOff = UInt(MKMIDIMessage.NoteOff.rawValue)
                 let noteMessageTypes = [noteOn, noteOff]
-                if contains(noteMessageTypes, messageType) {
+                if noteMessageTypes.contains(messageType) {
                     let noteNumber = packet[2] as! UInt
                     let velocity = packet[3] as! UInt
                     let m = MIDINoteMessage(on: messageType == noteOn || velocity == 0,
@@ -139,7 +139,7 @@ public class MIDI {
         var newSources = [MIDIEndpointRef]()
         for i in 0..<sourceCount {
             let endpointRef = MIDIGetSource(i)
-            let s = MIDIPortConnectSource(_inputPort, endpointRef, nil)
+            let _ = MIDIPortConnectSource(_inputPort, endpointRef, nil)
             newSources.append(endpointRef)
         }
         _sources = newSources

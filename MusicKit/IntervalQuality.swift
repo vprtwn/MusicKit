@@ -2,7 +2,7 @@
 
 import Foundation
 
-public enum IntervalQuality : UInt, Printable {
+public enum IntervalQuality: UInt, CustomStringConvertible {
     case Unison = 0
     case MinorSecond = 1
     case MajorSecond = 2
@@ -28,7 +28,7 @@ public enum IntervalQuality : UInt, Printable {
     case MinorFourteenth = 22
     case MajorFourteenth = 23
 
-    public var description : String {
+    public var description: String {
         switch self {
         case Unison: return "unison"
         case MinorSecond: return "minor second"
@@ -57,7 +57,7 @@ public enum IntervalQuality : UInt, Printable {
         }
     }
 
-    public var shortName : String {
+    public var shortName: String {
         switch self {
         case Unison: return "P1"
         case MinorSecond: return "m2"

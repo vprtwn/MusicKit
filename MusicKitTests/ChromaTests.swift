@@ -40,7 +40,7 @@ final class ChromaTests: XCTestCase {
     }
 
     func testDescription() {
-        var sut = Chroma.C
+        let sut = Chroma.C
         let description = sut.description
         XCTAssertEqual(description, "C")
     }

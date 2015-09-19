@@ -80,14 +80,14 @@ extension Chord {
             let fullOpt = _descriptor(pitchSet, qualities: fullQs)
             // unaltered, no-slash, root position -> return
             if let full = fullOpt {
-                if contains(fullUnalteredQs, full.quality) &&
+                if fullUnalteredQs.contains(full.quality) &&
                     full.bass == full.root {
                     return full
                 }
             }
             // try to simplify chord by slashing
             let noBassOpt = _descriptor(bassRemoved, qualities: slashQs)
-            var slashNoBassOpt : ChordDescriptor? = nil
+            var slashNoBassOpt: ChordDescriptor? = nil
             if let noBass = noBassOpt {
                 slashNoBassOpt = bassChromaOpt.map {
                     ChordDescriptor(root: noBass.root, quality: noBass.quality, bass: $0)

@@ -38,7 +38,7 @@ typedef NS_ENUM(NSUInteger, MKMIDINotification) {
 typedef void (^MKMIDIReadCallback)(NSArray *packets);
 typedef void (^MKMIDINotifyCallback)(MKMIDINotification messageID);
 
-@interface MKMIDIProc : NSObject
+@interface MKMIDIProc: NSObject
 
 + (void (*)(const MIDIPacketList *pktlist, void *procRef, void *srcRef))readProc;
 + (void)setReadCallback:(MKMIDIReadCallback)callback;

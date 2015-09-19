@@ -4,7 +4,7 @@ import Foundation
 
 /// The auditory attribute of sound according to which sounds can be ordered 
 /// on a scale from low to high (ANSI 1994)
-public struct Pitch : Comparable {
+public struct Pitch: Comparable {
     /// midi number to frequency
     /// TODO: move this to a temperament enum
     public static func mtof(midi: Float) -> Float {
@@ -13,7 +13,7 @@ public struct Pitch : Comparable {
         return Float(freq)
     }
 
-    public let midi : Float
+    public let midi: Float
 
     /// Creates a `Pitch` with the given MIDI number.
     /// Note that non-integral MIDI numbers are allowed.
@@ -27,41 +27,41 @@ public struct Pitch : Comparable {
     }
 
     /// The frequency of the pitch in Hz
-    public var frequency : Float {
+    public var frequency: Float {
         return Pitch.mtof(self.midi)
     }
 
     /// A `Chroma`, or nil if the pitch doesn't align with the chromas
     /// in the current tuning system.
-    public var chroma : Chroma? {
+    public var chroma: Chroma? {
         if self.midi - floor(self.midi) == 0 {
             return Chroma(rawValue: UInt(self.midi)%12)
         }
         return nil
     }
 
-    var noteNameTuple : (LetterName, Accidental, Int)? {
+    var noteNameTuple: (LetterName, Accidental, Int)? {
         return chroma.flatMap {
             $0.names.first.map {
                 noteNameWithOctave(octaveNumber, nameTuple: $0) } }
     }
 
-    public var noteName : String? {
+    public var noteName: String? {
         return noteNameTuple.map {
             "\($0.0.description)\($0.1.description(true))\($0.2)"
         }
     }
 
     /// Unadjusted octave number
-    var octaveNumber : Int {
+    var octaveNumber: Int {
         return Int((self.midi - 12.0)/12.0)
     }
 
     /// Combines an octave number with a chroma name, taking into account
     /// edge cases for enharmonics like B#
     func noteNameWithOctave(octave: Int, nameTuple name: ChromaNameTuple) -> (LetterName, Accidental, Int) {
-        let cFlat : ChromaNameTuple = (.C, .Flat)
-        let bSharp : ChromaNameTuple = (.B, .Sharp)
+        let cFlat: ChromaNameTuple = (.C, .Flat)
+        let bSharp: ChromaNameTuple = (.B, .Sharp)
         var adjustedOctaveNumber = octave
         if name == cFlat {
             adjustedOctaveNumber++
@@ -74,21 +74,21 @@ public struct Pitch : Comparable {
 }
 
 // MARK: Printable
-extension Pitch : Printable {
-    public var description : String {
+extension Pitch: CustomStringConvertible {
+    public var description: String {
         return (noteName != nil) ? "\(noteName!)" : "\(frequency)Hz"
     }
 }
 
 // MARK: Hashable
-extension Pitch : Hashable {
-    public var hashValue : Int {
+extension Pitch: Hashable {
+    public var hashValue: Int {
         return midi.hashValue
     }
 }
 
 // MARK: Transposable
-extension Pitch : Transposable {
+extension Pitch: Transposable {
     public func transpose(semitones: Float) -> Pitch {
         return Pitch(midi: midi + semitones)
     }

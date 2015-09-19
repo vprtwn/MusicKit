@@ -2,7 +2,7 @@
 
 import Foundation
 
-public enum ChordQuality : String {
+public enum ChordQuality: String {
     //: Dyads
     case PowerChord = "5"
     //> Triads
@@ -368,8 +368,8 @@ public enum ChordQuality : String {
     }
 }
 
-extension ChordQuality : Printable {
-    public var description : String {
+extension ChordQuality: CustomStringConvertible {
+    public var description: String {
         return rawValue
     }
 }

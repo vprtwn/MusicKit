@@ -4,7 +4,7 @@ import Foundation
 
 public protocol MIDIMessage {
     /// The message's channel
-    var channel : UInt { get }
+    var channel: UInt { get }
 
     /// Returns the MIDI packet data representation of this message
     func data() -> [UInt8]
@@ -13,12 +13,12 @@ public protocol MIDIMessage {
     func copyOnChannel(channel: UInt) -> Self
 }
 
-public struct MIDINoteMessage : MIDIMessage {
+public struct MIDINoteMessage: MIDIMessage {
     /// Note on: true, Note off: false
-    public let on : Bool
-    public let channel : UInt
-    public let noteNumber : UInt
-    public let velocity : UInt
+    public let on: Bool
+    public let channel: UInt
+    public let noteNumber: UInt
+    public let velocity: UInt
 
     public init(on: Bool, channel: UInt = 0, noteNumber: UInt, velocity: UInt) {
         self.on = on
@@ -38,7 +38,7 @@ public struct MIDINoteMessage : MIDIMessage {
     }
 
     /// The message's pitch
-    public var pitch : Pitch {
+    public var pitch: Pitch {
         return Pitch(midi: Float(noteNumber))
     }
 
@@ -55,14 +55,14 @@ public struct MIDINoteMessage : MIDIMessage {
     }
 }
 
-extension MIDINoteMessage : Printable {
-    public var description : String {
+extension MIDINoteMessage: CustomStringConvertible {
+    public var description: String {
         let onString = on ? "On" : "Off"
         return "\(channel): Note \(onString): \(noteNumber) \(velocity)"
     }
 }
 
-extension MIDINoteMessage : Transposable {
+extension MIDINoteMessage: Transposable {
     public func transpose(semitones: Float) -> MIDINoteMessage {
         return MIDINoteMessage(on: self.on,
             channel: self.channel,

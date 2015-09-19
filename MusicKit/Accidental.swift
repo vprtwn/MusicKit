@@ -2,7 +2,7 @@
 
 import Foundation
 
-public enum Accidental : Float, Printable {
+public enum Accidental: Float, CustomStringConvertible {
     case DoubleFlat = -2
     case Flat = -1
     case Natural = 0
@@ -18,7 +18,7 @@ public enum Accidental : Float, Printable {
         }
     }
 
-    public var description : String {
+    public var description: String {
         switch self {
         case .DoubleFlat:
             return "𝄫"

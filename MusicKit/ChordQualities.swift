@@ -331,7 +331,7 @@ ChordQuality.MajorSeventhFlatNineSharpElevenFlatThirteen,
 ChordQuality.MinorMajorSeventhFlatNineSharpElevenFlatThirteen,
 ChordQuality.MinorSeventhFlatNineSharpElevenFlatThirteen,
 ]
-public var name : String {
+public var name: String {
 switch self {
 case PowerChord: return "PowerChord"
 case Major: return "Major"
