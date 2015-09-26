@@ -93,6 +93,7 @@
 		96F299431A56661300D7B006 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F299421A56661300D7B006 /* Scale.swift */; };
 		C170D7721BB64BF800CAD976 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7701BB64BF800CAD976 /* KeyboardView.swift */; settings = {ASSET_TAGS = (); }; };
 		C170D7731BB64BF800CAD976 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7711BB64BF800CAD976 /* KeyView.swift */; settings = {ASSET_TAGS = (); }; };
+		C1FA8B181BB72D4800FE8D15 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA8B171BB72D4800FE8D15 /* DeviceType.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +172,7 @@
 		96F299441A5666D100D7B006 /* FrameworkOverview.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = FrameworkOverview.playground; path = Playgrounds/FrameworkOverview.playground; sourceTree = SOURCE_ROOT; };
 		C170D7701BB64BF800CAD976 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		C170D7711BB64BF800CAD976 /* KeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
+		C1FA8B171BB72D4800FE8D15 /* DeviceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -403,6 +405,7 @@
 			children = (
 				C170D7701BB64BF800CAD976 /* KeyboardView.swift */,
 				C170D7711BB64BF800CAD976 /* KeyView.swift */,
+				C1FA8B171BB72D4800FE8D15 /* DeviceType.swift */,
 			);
 			name = Keyboard;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				965331341AF1C20000EEDA02 /* HarmonicFunction.swift in Sources */,
 				96BB1B161AF458D7005830DC /* Accidental.swift in Sources */,
 				96CC5A801B0565C900727C00 /* ChordDescriptor.swift in Sources */,
+				C1FA8B181BB72D4800FE8D15 /* DeviceType.swift in Sources */,
 				960F015F1AFFA6AA006974AE /* MIDIMessage.swift in Sources */,
 				9693F6781A57C44A006270F4 /* Scale.swift in Sources */,
 				967070EA1B0850AC00CB367E /* ChordExtensions.swift in Sources */,

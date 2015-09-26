@@ -10,13 +10,11 @@ import UIKit
 
 public class KeyboardView: UIView, UIScrollViewDelegate {
 
+    // TODO: make this a PitchSet
     var keyCount: UInt = 10
 
-    /// Width of 1 pixel (mm)
-    private let mmPerPixel: CGFloat = 0.15785*UIScreen.mainScreen().scale
     /// White key width (px)
-    // TODO: adjust based on device type
-    private lazy var whiteKeyWidth: CGFloat = 23.5/self.mmPerPixel
+    private lazy var whiteKeyWidth: CGFloat = 20/UIDevice.mmPerPixel
     /// avg black key width / avg white key width
     private lazy var blackKeyRelativeWidth: CGFloat = 13.7/23.5
 
