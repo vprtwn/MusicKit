@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "96F299211A5663E500D7B006"
-               BuildableName = "MusicKit.framework"
-               BlueprintName = "MusicKit_OSX"
-               ReferencedContainer = "container:MusicKit.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "96F2992C1A5663E500D7B006"
-               BuildableName = "MusicKit_OSXTests.xctest"
-               BlueprintName = "MusicKit_OSXTests"
-               ReferencedContainer = "container:MusicKit.xcodeproj">
+               BlueprintIdentifier = "96BC418C1B09774E0032A169"
+               BuildableName = "ChaosHarmonizer.app"
+               BlueprintName = "ChaosHarmonizer"
+               ReferencedContainer = "container:ChaosHarmonizer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,24 +28,14 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "96F2992C1A5663E500D7B006"
-               BuildableName = "MusicKit_OSXTests.xctest"
-               BlueprintName = "MusicKit_OSXTests"
-               ReferencedContainer = "container:MusicKit.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "96F299211A5663E500D7B006"
-            BuildableName = "MusicKit.framework"
-            BlueprintName = "MusicKit_OSX"
-            ReferencedContainer = "container:MusicKit.xcodeproj">
+            BlueprintIdentifier = "96BC418C1B09774E0032A169"
+            BuildableName = "ChaosHarmonizer.app"
+            BlueprintName = "ChaosHarmonizer"
+            ReferencedContainer = "container:ChaosHarmonizer.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -75,15 +51,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "96F299211A5663E500D7B006"
-            BuildableName = "MusicKit.framework"
-            BlueprintName = "MusicKit_OSX"
-            ReferencedContainer = "container:MusicKit.xcodeproj">
+            BlueprintIdentifier = "96BC418C1B09774E0032A169"
+            BuildableName = "ChaosHarmonizer.app"
+            BlueprintName = "ChaosHarmonizer"
+            ReferencedContainer = "container:ChaosHarmonizer.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -93,15 +70,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "96F299211A5663E500D7B006"
-            BuildableName = "MusicKit.framework"
-            BlueprintName = "MusicKit_OSX"
-            ReferencedContainer = "container:MusicKit.xcodeproj">
+            BlueprintIdentifier = "96BC418C1B09774E0032A169"
+            BuildableName = "ChaosHarmonizer.app"
+            BlueprintName = "ChaosHarmonizer"
+            ReferencedContainer = "container:ChaosHarmonizer.xcodeproj">
          </BuildableReference>
-      </MacroExpansion>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

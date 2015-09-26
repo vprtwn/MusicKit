@@ -28,7 +28,7 @@ class ViewController: NSViewController {
                     let transposition = indices[indices.count - 1]*(-1)
                     let harmonizer = Harmony.transpose(Harmony.create(intervals), semitones: transposition)
                     let pitch = Pitch(midi: Float(first.noteNumber))
-                    var pitchSet = harmonizer(pitch)
+                    let pitchSet = harmonizer(pitch)
                     self.noteNumberToPitchSet[first.noteNumber] = pitchSet
                     var messages = first.harmonize(harmonizer)
                     messages.append(first)
