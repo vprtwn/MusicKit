@@ -23,6 +23,18 @@ class KeyView: UIView {
         }
     }
 
+    /// The key's pitch
+    var pitch: Pitch = Chroma.C*4 {
+        didSet {
+            debugLabel.text = pitch.description
+            debugLabel.sizeToFit()
+            setNeedsLayout()
+        }
+    }
+
+    // TODO: remove
+    private var debugLabel = UILabel()
+
     private lazy var foregroundView = UIView()
 
     override init(frame: CGRect) {
@@ -37,6 +49,7 @@ class KeyView: UIView {
 
     func load() {
         self.addSubview(foregroundView)
+        self.addSubview(debugLabel)
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.blackColor().CGColor
         self.backgroundColor = UIColor.clearColor()
@@ -45,5 +58,7 @@ class KeyView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         foregroundView.frame = bounds
+        debugLabel.center = CGPointMake(CGRectGetMidX(bounds),
+            CGRectGetMidY(bounds))
     }
 }

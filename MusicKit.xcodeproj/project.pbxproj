@@ -94,6 +94,7 @@
 		C12E906D1BB8270C00CE3256 /* KeyboardView+Force.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E906C1BB8270C00CE3256 /* KeyboardView+Force.swift */; settings = {ASSET_TAGS = (); }; };
 		C170D7721BB64BF800CAD976 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7701BB64BF800CAD976 /* KeyboardView.swift */; settings = {ASSET_TAGS = (); }; };
 		C170D7731BB64BF800CAD976 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7711BB64BF800CAD976 /* KeyView.swift */; settings = {ASSET_TAGS = (); }; };
+		C1A8D2431BB86C22002695E2 /* KeyboardTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A8D2421BB86C22002695E2 /* KeyboardTouch.swift */; settings = {ASSET_TAGS = (); }; };
 		C1FA8B181BB72D4800FE8D15 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA8B171BB72D4800FE8D15 /* DeviceType.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -174,6 +175,7 @@
 		C12E906C1BB8270C00CE3256 /* KeyboardView+Force.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyboardView+Force.swift"; sourceTree = "<group>"; };
 		C170D7701BB64BF800CAD976 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		C170D7711BB64BF800CAD976 /* KeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
+		C1A8D2421BB86C22002695E2 /* KeyboardTouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTouch.swift; sourceTree = "<group>"; };
 		C1FA8B171BB72D4800FE8D15 /* DeviceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -406,6 +408,7 @@
 			isa = PBXGroup;
 			children = (
 				C170D7701BB64BF800CAD976 /* KeyboardView.swift */,
+				C1A8D2421BB86C22002695E2 /* KeyboardTouch.swift */,
 				C12E906C1BB8270C00CE3256 /* KeyboardView+Force.swift */,
 				C170D7711BB64BF800CAD976 /* KeyView.swift */,
 				C1FA8B171BB72D4800FE8D15 /* DeviceType.swift */,
@@ -610,6 +613,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				960F21F91B08FF320088C194 /* ChordExtension.swift in Sources */,
+				C1A8D2431BB86C22002695E2 /* KeyboardTouch.swift in Sources */,
 				96A06D551AFF281400029013 /* MKMIDIProc.m in Sources */,
 				96DFB6351AF6C2F0005EEBD6 /* MKUtil.swift in Sources */,
 				9693F6761A57C44A006270F4 /* MusicKit.swift in Sources */,

@@ -12,11 +12,11 @@ extension Chord {
         // sort and convert to zero-indexed indices
         let sortedIndices = (indices.map { $0 - 1 }).sort()
         let maxIndex = Int(sortedIndices.last!)
-        var scalePitches = harmonizer(Chroma.C*0)
+        let scalePitches = harmonizer(Chroma.C*0)
 
         // extend scale until it covers the max index
         while (scalePitches.count < maxIndex + 1) {
-            scalePitches.extendOctaves(1)
+            scalePitches.extend(1)
         }
 
         let chosenPitches = PitchSet(sortedIndices.map { scalePitches[Int($0)] })

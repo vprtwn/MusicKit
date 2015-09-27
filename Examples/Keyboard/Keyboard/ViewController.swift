@@ -9,21 +9,41 @@
 import UIKit
 import MusicKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, KeyboardViewDelegate {
 
-    lazy var keyboardView: KeyboardView = KeyboardView()
+    lazy var debugLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        return label
+    }()
+    lazy var addedTouches = Set<KeyboardTouch>()
+    lazy var changedTouches = Set<KeyboardTouch>()
+    lazy var removedTouches = Set<KeyboardTouch>()
+
+    lazy var keyboardView: KeyboardView = {
+        let view = KeyboardView()
+        view.delegate = self
+        return view
+    }()
     let instrument = AKInstrument()
 
     override func loadView() {
         let view = UIView()
         view.backgroundColor = UIColor.whiteColor()
+        
+        debugLabel.text = "FOOo"
+        view.addSubview(debugLabel)
         view.addSubview(keyboardView)
         self.view = view
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        keyboardView.frame = view.bounds
+        debugLabel.frame = CGRectMake(0, 0, view.bounds.width, 100)
+        keyboardView.frame = CGRectMake(0,
+            CGRectGetMaxY(debugLabel.frame),
+            view.bounds.width,
+            view.bounds.height - CGRectGetMaxY(debugLabel.frame))
     }
 
     override func viewDidLoad() {
@@ -35,6 +55,42 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    // debug:
+    func debugString(touches: Set<KeyboardTouch>) -> String {
+        return touches.reduce("") { (a, r) in
+            if a == "" {
+                return "\(r.pitch) (\(r.force))"
+            }
+            return "\(a), \(r.pitch) (\(r.force))"
+        }
+    }
+
+    func updateLabel() {
+        guard keyboardView.activeTouches.count > 0 else {
+            debugLabel.text = ""
+            addedTouches.removeAll()
+            changedTouches.removeAll()
+            removedTouches.removeAll()
+            return
+        }
+        debugLabel.text = "added: \(debugString(addedTouches))\nchanged: \(debugString(changedTouches))\nremoved: \(debugString(removedTouches))"
+    }
+
+    // MARK: KeyboardViewDelegate
+    func keyboardView(keyboard: KeyboardView, addedTouches: Set<KeyboardTouch>) {
+        self.addedTouches = addedTouches
+        updateLabel()
+    }
+
+    func keyboardView(keyboard: KeyboardView, changedTouches: Set<KeyboardTouch>) {
+        self.changedTouches = changedTouches
+        updateLabel()
+    }
+
+    func keyboardView(keyboard: KeyboardView, removedTouches: Set<KeyboardTouch>) {
+        self.removedTouches = removedTouches
+        updateLabel()
+    }
 
 }
 

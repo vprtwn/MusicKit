@@ -70,13 +70,15 @@ extension PitchSet {
         insert(bass)
     }
 
-    /// Extends the pitch set by repeating with octave displacement.
-    public mutating func extendOctaves(octaves: Int) {
-        if octaves == 0 { return }
+    /// Extends the pitch set by repeating for the given number of octaves
+    public func extend(octaves: Int) -> PitchSet {
+        var pitchSet = self
+        if octaves == 0 { return pitchSet }
         let start = octaves < 0 ? -1 : 1
         for i in start...octaves {
-            insert(transpose(Float(12*i)))
+            pitchSet.insert(transpose(Float(12*i)))
         }
+        return pitchSet
     }
 
     /// Removes duplicate chroma from the pitch set, starting from the root.

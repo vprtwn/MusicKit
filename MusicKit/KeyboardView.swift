@@ -8,11 +8,31 @@
 
 import UIKit
 
+public protocol KeyboardViewDelegate {
+    func keyboardView(keyboard: KeyboardView, addedTouches: Set<KeyboardTouch>)
+
+    func keyboardView(keyboard: KeyboardView, changedTouches: Set<KeyboardTouch>)
+
+    func keyboardView(keyboard: KeyboardView, removedTouches: Set<KeyboardTouch>)
+}
+
 public class KeyboardView: UIView, UIScrollViewDelegate {
+    /// The keyboard's delegate
+    public var delegate: KeyboardViewDelegate?
+
+    /// The default force of the keyboard, used on devices without force
     public var defaultForce: CGFloat = 0.5
 
-    // TODO: make this a PitchSet
-    var keyCount: UInt = 10
+    /// The keyboard's pitches
+    public var pitchSet: PitchSet = Scale.Chromatic(Chroma.C*3).extend(3) {
+        didSet {
+            updateWithPitches(pitchSet)
+            setNeedsLayout()
+        }
+    }
+
+    /// The keyboard's current active touches
+    public var activeTouches = Set<KeyboardTouch>()
 
     /// White key width (px)
     private lazy var whiteKeyWidth: CGFloat = 20/UIDevice.mmPerPixel
@@ -46,13 +66,9 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     }
 
     func load() {
+        updateWithPitches(pitchSet)
         addSubview(keyViewContainer)
         addSubview(scrollPad)
-        for _ in 0..<keyCount {
-            let keyView = KeyView()
-            keyViewContainer.addSubview(keyView)
-            keyViews.append(keyView)
-        }
     }
 
     override public func layoutSubviews() {
@@ -74,14 +90,28 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         scrollPad.contentSize = CGSizeMake(lastMaxX, scrollPad.bounds.height)
     }
 
+    func updateWithPitches(pitches: PitchSet) {
+        for keyView in keyViews {
+            keyView.removeFromSuperview()
+        }
+        keyViews.removeAll()
+        for pitch in pitchSet {
+            let keyView = KeyView()
+            keyView.pitch = pitch
+            keyViewContainer.addSubview(keyView)
+            keyViews.append(keyView)
+        }
+    }
+
     // MARK: Touches
-    private func updateWithTouches(touches: Set<UITouch>) {
+    private func updateKeyViewsWithNewOrChangedTouches(touches: Set<UITouch>) {
         for key in keyViews {
             var keyTouched = false
             for touch in touches {
                 if CGRectContainsPoint(key.frame, touch.locationInView(touch.view)) {
                     keyTouched = true
-                    key.force = self.forceWithTouch(touch)
+                    let force = self.forceWithTouch(touch)
+                    key.force = force
                     touchToKeyView[touch] = key
                 }
             }
@@ -91,7 +121,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         }
     }
 
-    private func removeTouches(touches: Set<UITouch>) {
+    private func updateKeyViewsWithRemovedTouches(touches: Set<UITouch>) {
         for touch in touches {
             if let key = touchToKeyView[touch] {
                 key.force = 0
@@ -100,21 +130,111 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         }
     }
 
+    private func registerNewTouches(touches: Set<UITouch>) {
+        var newTouches = Set<KeyboardTouch>()
+        for key in keyViews {
+            for touch in touches {
+                if CGRectContainsPoint(key.frame, touch.locationInView(touch.view)) {
+                    let kbTouch = KeyboardTouch(pitch: key.pitch,
+                        force: self.forceWithTouch(touch),
+                        initialLocation: touch.locationInView(self))
+                    newTouches.insert(kbTouch)
+                    activeTouches.insert(kbTouch)
+                }
+            }
+        }
+        if newTouches.count > 0 {
+            delegate?.keyboardView(self, addedTouches: newTouches)
+        }
+    }
+
+    private func registerChangedTouches(touches: Set<UITouch>) {
+        var newTouches = Set<KeyboardTouch>()
+        var changedTouches = Set<KeyboardTouch>()
+        var removedTouches = activeTouches
+        for key in keyViews {
+            for touch in touches {
+                if CGRectContainsPoint(key.frame, touch.locationInView(touch.view)) {
+                    let force = self.forceWithTouch(touch)
+                    let location = touch.locationInView(self)
+
+                    var matchedExistingTouch = false
+                    for kbTouch in activeTouches {
+                        // moved within key
+                        if kbTouch.pitch == key.pitch {
+                            matchedExistingTouch = true
+
+                            var newTouch = kbTouch
+                            newTouch.force = force
+                            newTouch.xOffset = location.x - newTouch.initialLocation.x
+                            newTouch.yOffset = location.y - newTouch.initialLocation.y
+                            activeTouches.remove(kbTouch)
+                            activeTouches.insert(newTouch)
+
+                            removedTouches.remove(kbTouch)
+                            changedTouches.insert(newTouch)
+                        }
+                    }
+                    // moved to new key
+                    if !matchedExistingTouch {
+                        let kbTouch = KeyboardTouch(pitch: key.pitch,
+                            force: self.forceWithTouch(touch),
+                            initialLocation: touch.locationInView(self))
+                        newTouches.insert(kbTouch)
+                        activeTouches.insert(kbTouch)
+                    }
+                }
+            }
+
+        }
+        if newTouches.count > 0 {
+            delegate?.keyboardView(self, addedTouches: newTouches)
+        }
+        if changedTouches.count > 0 {
+            delegate?.keyboardView(self, changedTouches: changedTouches)
+        }
+        if removedTouches.count > 0 {
+            delegate?.keyboardView(self, removedTouches: removedTouches)
+            activeTouches = activeTouches.subtract(removedTouches)
+        }
+    }
+
+    private func registerRemovedTouches(touches: Set<UITouch>) {
+        var removedTouches = Set<KeyboardTouch>()
+        for touch in touches {
+            if let key = touchToKeyView[touch] {
+                for kbTouch in activeTouches {
+                    if kbTouch.pitch == key.pitch {
+                        activeTouches.remove(kbTouch)
+                        removedTouches.insert(kbTouch)
+                    }
+                }
+            }
+        }
+        if removedTouches.count > 0 {
+            delegate?.keyboardView(self, removedTouches: removedTouches)
+        }
+    }
+
     public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        updateWithTouches(touches)
+        registerNewTouches(touches)
+        updateKeyViewsWithNewOrChangedTouches(touches)
     }
 
     public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        updateWithTouches(touches)
+        registerChangedTouches(touches)
+        updateKeyViewsWithNewOrChangedTouches(touches)
     }
 
     public override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
         guard let touches = touches else { return }
-        removeTouches(touches)
+        registerRemovedTouches(touches)
+        updateKeyViewsWithRemovedTouches(touches)
     }
 
     public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        removeTouches(touches)
+        registerRemovedTouches(touches)
+        updateKeyViewsWithRemovedTouches(touches)
     }
 
     // MARK: UIScrollViewDelegate
