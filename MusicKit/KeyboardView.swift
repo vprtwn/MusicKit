@@ -65,6 +65,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     }
 
     func load() {
+        multipleTouchEnabled = true
         updateWithPitches(pitchSet)
         addSubview(keyViewContainer)
         addSubview(scrollPad)
@@ -119,6 +120,8 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         return (keyTouches, untouchedKeys)
     }
 
+    // TODO: distinguish between added and changed
+    // TODO: get edge changes (when key goes to no touch)
     private func updateKeyViewsWithTouches(keyTouches: [(KeyView, UITouch)],
         untouchedKeys: [KeyView])
     {

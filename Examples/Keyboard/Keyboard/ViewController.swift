@@ -58,10 +58,12 @@ class ViewController: UIViewController, KeyboardViewDelegate {
     // debug:
     func debugString(touches: Set<KeyboardTouch>) -> String {
         return touches.reduce("") { (a, r) in
+            let suffix = String(format: "(%.1f, (%.1f, %.1f))",
+                r.force, r.xOffset, r.yOffset)
             if a == "" {
-                return "\(r.pitch) (\(r.force), (\(r.xOffset), \(r.yOffset)))"
+                return "\(r.pitch) \(suffix))"
             }
-            return "\(a), \(r.pitch) (\(r.force), (\(r.xOffset), \(r.yOffset)))"
+            return "\(a), \(r.pitch) \(suffix)"
         }
     }
 
