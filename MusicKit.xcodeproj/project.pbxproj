@@ -91,6 +91,7 @@
 		96F2993F1A56654800D7B006 /* MusicKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F2993E1A56654800D7B006 /* MusicKit.swift */; };
 		96F299411A5665CA00D7B006 /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F299401A5665CA00D7B006 /* Pitch.swift */; };
 		96F299431A56661300D7B006 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F299421A56661300D7B006 /* Scale.swift */; };
+		C12E906D1BB8270C00CE3256 /* Force.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E906C1BB8270C00CE3256 /* Force.swift */; settings = {ASSET_TAGS = (); }; };
 		C170D7721BB64BF800CAD976 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7701BB64BF800CAD976 /* KeyboardView.swift */; settings = {ASSET_TAGS = (); }; };
 		C170D7731BB64BF800CAD976 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7711BB64BF800CAD976 /* KeyView.swift */; settings = {ASSET_TAGS = (); }; };
 		C1FA8B181BB72D4800FE8D15 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA8B171BB72D4800FE8D15 /* DeviceType.swift */; settings = {ASSET_TAGS = (); }; };
@@ -170,6 +171,7 @@
 		96F299401A5665CA00D7B006 /* Pitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pitch.swift; sourceTree = "<group>"; };
 		96F299421A56661300D7B006 /* Scale.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scale.swift; sourceTree = "<group>"; };
 		96F299441A5666D100D7B006 /* FrameworkOverview.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = FrameworkOverview.playground; path = Playgrounds/FrameworkOverview.playground; sourceTree = SOURCE_ROOT; };
+		C12E906C1BB8270C00CE3256 /* Force.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Force.swift; sourceTree = "<group>"; };
 		C170D7701BB64BF800CAD976 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		C170D7711BB64BF800CAD976 /* KeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
 		C1FA8B171BB72D4800FE8D15 /* DeviceType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceType.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 			children = (
 				C170D7701BB64BF800CAD976 /* KeyboardView.swift */,
 				C170D7711BB64BF800CAD976 /* KeyView.swift */,
+				C12E906C1BB8270C00CE3256 /* Force.swift */,
 				C1FA8B171BB72D4800FE8D15 /* DeviceType.swift */,
 			);
 			name = Keyboard;
@@ -635,6 +638,7 @@
 				96DFB6321AF6C26A005EEBD6 /* Harmony.swift in Sources */,
 				96D804B91B06A00700BEC15F /* Interval.swift in Sources */,
 				96BB1B131AF458A0005830DC /* LetterName.swift in Sources */,
+				C12E906D1BB8270C00CE3256 /* Force.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

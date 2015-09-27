@@ -1,0 +1,29 @@
+# Test file overwritten for each test
+Tests/AuditionSounds/AuditionSounds/main.swift
+
+# Playground file overwritten for each playground
+Playgrounds/AudioKitPlayground/AudioKitPlayground/Playground.m
+
+# xcode noise
+build/
+*.pyc
+*~.nib/
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.xcuserstate
+*.xccheckout
+project.xcworkspace/
+xcuserdata/
+
+# Place to put output file from scripts once you're done with them
+scripts/junk
+
+# old skool
+.svn
+
+# osx noise
+.DS_Store
+profile
+
+xcodebuild

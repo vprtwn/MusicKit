@@ -8,28 +8,26 @@
 
 import UIKit
 
-extension UITouch {
-    @available(iOS 9.0, *)
-    private var relativeForce: CGFloat {
-        return force/maximumPossibleForce
-    }
-}
-
-extension UIView {
-    private func forceWithTouch(touch: UITouch) -> CGFloat {
-        guard #available(iOS 9.0, *) else {
-            return KeyView.defaultForce
-        }
-        guard self.traitCollection.forceTouchCapability == .Available else {
-            return KeyView.defaultForce
-        }
-        return touch.relativeForce
-    }
-}
-
 class KeyView: UIView {
     /// The default force value if force is unavailable
+    // TODO: move to KeyboardView
     static var defaultForce: CGFloat = 0.5
+
+    /// The color of the key view when force = 1.0
+    var touchColor = UIColor.blueColor() {
+        didSet {
+            foregroundView.backgroundColor = touchColor
+        }
+    }
+
+    /// The current force the view is receiving
+    var force: CGFloat = 0 {
+        didSet {
+            foregroundView.backgroundColor = touchColor.colorWithAlphaComponent(force)
+        }
+    }
+
+    private lazy var foregroundView = UIView()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,9 +40,15 @@ class KeyView: UIView {
     }
 
     func load() {
+        self.addSubview(foregroundView)
         self.layer.borderWidth = 1
         self.layer.borderColor = UIColor.blackColor().CGColor
         self.backgroundColor = UIColor.clearColor()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        foregroundView.frame = bounds
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {

@@ -12,6 +12,7 @@ import MusicKit
 class ViewController: UIViewController {
 
     lazy var keyboardView: KeyboardView = KeyboardView()
+    let instrument = AKInstrument()
 
     override func loadView() {
         let view = UIView()

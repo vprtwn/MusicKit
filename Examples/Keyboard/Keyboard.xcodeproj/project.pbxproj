@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C114028C1BB82D9A0064851E /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C114028B1BB82D9A0064851E /* AudioKit.framework */; };
+		C114028D1BB82D9A0064851E /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C114028B1BB82D9A0064851E /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C12187E11BB64DF2000B22FA /* MusicKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C170D7651BB64B5600CAD976 /* MusicKit.framework */; };
 		C12187E21BB64DF2000B22FA /* MusicKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C170D7651BB64B5600CAD976 /* MusicKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C170D7381BB6351A00CAD976 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7371BB6351A00CAD976 /* AppDelegate.swift */; };
@@ -61,6 +63,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C114028D1BB82D9A0064851E /* AudioKit.framework in Embed Frameworks */,
 				C12187E21BB64DF2000B22FA /* MusicKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -69,6 +72,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C114028B1BB82D9A0064851E /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = Carthage/Build/iOS/AudioKit.framework; sourceTree = "<group>"; };
+		C11402911BB82E460064851E /* Keyboard-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Keyboard-Bridging-Header.h"; path = "Keyboard/Keyboard-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		C170D7341BB6351A00CAD976 /* Keyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Keyboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C170D7371BB6351A00CAD976 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C170D7391BB6351A00CAD976 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C114028C1BB82D9A0064851E /* AudioKit.framework in Frameworks */,
 				C12187E11BB64DF2000B22FA /* MusicKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -94,6 +100,7 @@
 		C170D72B1BB6351A00CAD976 = {
 			isa = PBXGroup;
 			children = (
+				C114028B1BB82D9A0064851E /* AudioKit.framework */,
 				C170D75B1BB64B5600CAD976 /* MusicKit.xcodeproj */,
 				C170D7361BB6351A00CAD976 /* Keyboard */,
 				C170D7351BB6351A00CAD976 /* Products */,
@@ -111,6 +118,7 @@
 		C170D7361BB6351A00CAD976 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
+				C11402911BB82E460064851E /* Keyboard-Bridging-Header.h */,
 				C170D7371BB6351A00CAD976 /* AppDelegate.swift */,
 				C170D7391BB6351A00CAD976 /* ViewController.swift */,
 				C170D73B1BB6351A00CAD976 /* Main.storyboard */,
@@ -365,15 +373,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/AudioKit/AudioKit/Platforms/iOS",
+				);
 				INFOPLIST_FILE = Keyboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.musickit.Keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/Keyboard-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -381,15 +397,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(PROJECT_DIR)/Carthage/Checkouts/AudioKit/AudioKit/Platforms/iOS",
+				);
 				INFOPLIST_FILE = Keyboard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.musickit.Keyboard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Keyboard/Keyboard-Bridging-Header.h";
 			};
 			name = Release;
 		};

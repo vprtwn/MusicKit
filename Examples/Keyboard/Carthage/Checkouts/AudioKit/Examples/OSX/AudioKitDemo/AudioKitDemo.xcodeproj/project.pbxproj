@@ -1,0 +1,544 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C42DC32A1A9C61740041B644 /* ProcessingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C42DC3291A9C61740041B644 /* ProcessingViewController.m */; };
+		C42DC3351A9C61DF0041B644 /* ConvolutionInstrument.m in Sources */ = {isa = PBXBuildFile; fileRef = C42DC3301A9C61DF0041B644 /* ConvolutionInstrument.m */; };
+		C42DC33B1A9C652E0041B644 /* AnalysisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C42DC3391A9C652E0041B644 /* AnalysisViewController.m */; };
+		C47544951A9BD0DF006151DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C47544941A9BD0DF006151DE /* AppDelegate.m */; };
+		C47544971A9BD0DF006151DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C47544961A9BD0DF006151DE /* main.m */; };
+		C475449A1A9BD0DF006151DE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47544991A9BD0DF006151DE /* ViewController.m */; };
+		C475449C1A9BD0DF006151DE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C475449B1A9BD0DF006151DE /* Images.xcassets */; };
+		C475449F1A9BD0DF006151DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C475449D1A9BD0DF006151DE /* Main.storyboard */; };
+		C47546AF1A9BD23D006151DE /* SynthesisViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C47546AE1A9BD23D006151DE /* SynthesisViewController.m */; };
+		C47546B61A9BD266006151DE /* FMSynthesizer.m in Sources */ = {isa = PBXBuildFile; fileRef = C47546B41A9BD266006151DE /* FMSynthesizer.m */; };
+		C47546BA1A9BDA11006151DE /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = C47546B91A9BDA11006151DE /* TouchView.m */; };
+		EA5D42151AD4BBFD00BEA03A /* libAudioKit OS X.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5D42121AD4BBDD00BEA03A /* libAudioKit OS X.a */; };
+		EA5D42171AD4BC0100BEA03A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5D42161AD4BC0100BEA03A /* AVFoundation.framework */; };
+		EA8655AD1B4A867000524AE0 /* MIDIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA8655AC1B4A867000524AE0 /* MIDIViewController.m */; };
+		EAB29D731AD51CC8000EA118 /* AKSoundFiles.bundle in Resources */ = {isa = PBXBuildFile; fileRef = EAB29D721AD51CC8000EA118 /* AKSoundFiles.bundle */; };
+		EAF365651ADB591400AA6551 /* CsoundLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAF365641ADB591400AA6551 /* CsoundLib.framework */; };
+		EAF365661ADB5AA700AA6551 /* CsoundLib.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EAF365641ADB591400AA6551 /* CsoundLib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EA5D420F1AD4BBDD00BEA03A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5D420A1AD4BBDD00BEA03A /* AudioKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA8E93D81AD3C5240057E979;
+			remoteInfo = "AudioKit iOS";
+		};
+		EA5D42111AD4BBDD00BEA03A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5D420A1AD4BBDD00BEA03A /* AudioKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EA8E96591AD3C6FC0057E979;
+			remoteInfo = "AudioKit OS X";
+		};
+		EA5D42131AD4BBEE00BEA03A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5D420A1AD4BBDD00BEA03A /* AudioKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = EA8E96581AD3C6FC0057E979;
+			remoteInfo = "AudioKit OS X";
+		};
+		EAA0F5BE1AE844D0007CD7C9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EA5D420A1AD4BBDD00BEA03A /* AudioKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EAA0F5941AE71C8F007CD7C9;
+			remoteInfo = "AudioKit iOS Dynamic";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C47546AA1A9BD12F006151DE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				EAF365661ADB5AA700AA6551 /* CsoundLib.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C42DC3281A9C61740041B644 /* ProcessingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessingViewController.h; path = Processing/ProcessingViewController.h; sourceTree = "<group>"; };
+		C42DC3291A9C61740041B644 /* ProcessingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProcessingViewController.m; path = Processing/ProcessingViewController.m; sourceTree = "<group>"; };
+		C42DC32F1A9C61DF0041B644 /* ConvolutionInstrument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConvolutionInstrument.h; path = AudioKitDemo/Processing/ConvolutionInstrument.h; sourceTree = "<group>"; };
+		C42DC3301A9C61DF0041B644 /* ConvolutionInstrument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConvolutionInstrument.m; path = AudioKitDemo/Processing/ConvolutionInstrument.m; sourceTree = "<group>"; };
+		C42DC3381A9C652E0041B644 /* AnalysisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnalysisViewController.h; path = Analysis/AnalysisViewController.h; sourceTree = "<group>"; };
+		C42DC3391A9C652E0041B644 /* AnalysisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnalysisViewController.m; path = Analysis/AnalysisViewController.m; sourceTree = "<group>"; };
+		C475448E1A9BD0DF006151DE /* AudioKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AudioKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C47544921A9BD0DF006151DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C47544931A9BD0DF006151DE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		C47544941A9BD0DF006151DE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		C47544961A9BD0DF006151DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C47544981A9BD0DF006151DE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		C47544991A9BD0DF006151DE /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		C475449B1A9BD0DF006151DE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C475449E1A9BD0DF006151DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C47546AD1A9BD23D006151DE /* SynthesisViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SynthesisViewController.h; path = Synthesis/SynthesisViewController.h; sourceTree = "<group>"; };
+		C47546AE1A9BD23D006151DE /* SynthesisViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SynthesisViewController.m; path = Synthesis/SynthesisViewController.m; sourceTree = "<group>"; };
+		C47546B31A9BD266006151DE /* FMSynthesizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMSynthesizer.h; path = ../../../iOS/AudioKitDemo/AudioKitDemo/Synthesis/Instruments/FMSynthesizer.h; sourceTree = "<group>"; };
+		C47546B41A9BD266006151DE /* FMSynthesizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMSynthesizer.m; path = ../../../iOS/AudioKitDemo/AudioKitDemo/Synthesis/Instruments/FMSynthesizer.m; sourceTree = "<group>"; };
+		C47546B81A9BDA11006151DE /* TouchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchView.h; path = Synthesis/TouchView.h; sourceTree = "<group>"; };
+		C47546B91A9BDA11006151DE /* TouchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TouchView.m; path = Synthesis/TouchView.m; sourceTree = "<group>"; };
+		EA5D420A1AD4BBDD00BEA03A /* AudioKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AudioKit.xcodeproj; path = ../../../AudioKit.xcodeproj; sourceTree = "<group>"; };
+		EA5D42161AD4BC0100BEA03A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EA8655AB1B4A867000524AE0 /* MIDIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MIDIViewController.h; path = MIDI/MIDIViewController.h; sourceTree = "<group>"; };
+		EA8655AC1B4A867000524AE0 /* MIDIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MIDIViewController.m; path = MIDI/MIDIViewController.m; sourceTree = "<group>"; };
+		EAB29D721AD51CC8000EA118 /* AKSoundFiles.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AKSoundFiles.bundle; path = ../../../../AudioKit/Resources/AKSoundFiles.bundle; sourceTree = "<group>"; };
+		EAF365641ADB591400AA6551 /* CsoundLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CsoundLib.framework; path = ../../../AudioKit/Platforms/OSX/CsoundLib.framework; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C475448B1A9BD0DF006151DE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAF365651ADB591400AA6551 /* CsoundLib.framework in Frameworks */,
+				EA5D42171AD4BC0100BEA03A /* AVFoundation.framework in Frameworks */,
+				EA5D42151AD4BBFD00BEA03A /* libAudioKit OS X.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C42DC32B1A9C617B0041B644 /* Processing */ = {
+			isa = PBXGroup;
+			children = (
+				C42DC3331A9C61DF0041B644 /* Instruments */,
+				C42DC3281A9C61740041B644 /* ProcessingViewController.h */,
+				C42DC3291A9C61740041B644 /* ProcessingViewController.m */,
+			);
+			name = Processing;
+			sourceTree = "<group>";
+		};
+		C42DC3331A9C61DF0041B644 /* Instruments */ = {
+			isa = PBXGroup;
+			children = (
+				C42DC32F1A9C61DF0041B644 /* ConvolutionInstrument.h */,
+				C42DC3301A9C61DF0041B644 /* ConvolutionInstrument.m */,
+			);
+			name = Instruments;
+			path = ../../../iOS/AudioKitDemo;
+			sourceTree = "<group>";
+		};
+		C42DC33D1A9C65330041B644 /* Analysis */ = {
+			isa = PBXGroup;
+			children = (
+				C42DC3381A9C652E0041B644 /* AnalysisViewController.h */,
+				C42DC3391A9C652E0041B644 /* AnalysisViewController.m */,
+			);
+			name = Analysis;
+			sourceTree = "<group>";
+		};
+		C47544851A9BD0DF006151DE = {
+			isa = PBXGroup;
+			children = (
+				EA5D420A1AD4BBDD00BEA03A /* AudioKit.xcodeproj */,
+				C47544901A9BD0DF006151DE /* AudioKitDemo */,
+				C475448F1A9BD0DF006151DE /* Products */,
+				EA5D42181AD4BC1500BEA03A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		C475448F1A9BD0DF006151DE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C475448E1A9BD0DF006151DE /* AudioKitDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C47544901A9BD0DF006151DE /* AudioKitDemo */ = {
+			isa = PBXGroup;
+			children = (
+				C475449D1A9BD0DF006151DE /* Main.storyboard */,
+				C47546B01A9BD244006151DE /* Synthesis */,
+				C42DC32B1A9C617B0041B644 /* Processing */,
+				C42DC33D1A9C65330041B644 /* Analysis */,
+				EA8655B01B4A867B00524AE0 /* MIDI */,
+				C47544911A9BD0DF006151DE /* Supporting Files */,
+			);
+			path = AudioKitDemo;
+			sourceTree = "<group>";
+		};
+		C47544911A9BD0DF006151DE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C475449B1A9BD0DF006151DE /* Images.xcassets */,
+				EAB29D721AD51CC8000EA118 /* AKSoundFiles.bundle */,
+				C47544931A9BD0DF006151DE /* AppDelegate.h */,
+				C47544941A9BD0DF006151DE /* AppDelegate.m */,
+				C47544981A9BD0DF006151DE /* ViewController.h */,
+				C47544991A9BD0DF006151DE /* ViewController.m */,
+				C47544921A9BD0DF006151DE /* Info.plist */,
+				C47544961A9BD0DF006151DE /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C47546B01A9BD244006151DE /* Synthesis */ = {
+			isa = PBXGroup;
+			children = (
+				C47546B71A9BD26D006151DE /* Instruments */,
+				C47546AD1A9BD23D006151DE /* SynthesisViewController.h */,
+				C47546AE1A9BD23D006151DE /* SynthesisViewController.m */,
+				C47546B81A9BDA11006151DE /* TouchView.h */,
+				C47546B91A9BDA11006151DE /* TouchView.m */,
+			);
+			name = Synthesis;
+			sourceTree = "<group>";
+		};
+		C47546B71A9BD26D006151DE /* Instruments */ = {
+			isa = PBXGroup;
+			children = (
+				C47546B31A9BD266006151DE /* FMSynthesizer.h */,
+				C47546B41A9BD266006151DE /* FMSynthesizer.m */,
+			);
+			name = Instruments;
+			sourceTree = "<group>";
+		};
+		EA5D420B1AD4BBDD00BEA03A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EA5D42101AD4BBDD00BEA03A /* libAudioKit iOS Static.a */,
+				EAA0F5BF1AE844D0007CD7C9 /* libAudioKit iOS Dynamic.a */,
+				EA5D42121AD4BBDD00BEA03A /* libAudioKit OS X.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EA5D42181AD4BC1500BEA03A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EAF365641ADB591400AA6551 /* CsoundLib.framework */,
+				EA5D42161AD4BC0100BEA03A /* AVFoundation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		EA8655B01B4A867B00524AE0 /* MIDI */ = {
+			isa = PBXGroup;
+			children = (
+				EA8655AB1B4A867000524AE0 /* MIDIViewController.h */,
+				EA8655AC1B4A867000524AE0 /* MIDIViewController.m */,
+			);
+			name = MIDI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C475448D1A9BD0DF006151DE /* AudioKitDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C47544AE1A9BD0DF006151DE /* Build configuration list for PBXNativeTarget "AudioKitDemo" */;
+			buildPhases = (
+				C475448A1A9BD0DF006151DE /* Sources */,
+				C475448B1A9BD0DF006151DE /* Frameworks */,
+				C475448C1A9BD0DF006151DE /* Resources */,
+				C47546AA1A9BD12F006151DE /* CopyFiles */,
+				C4F0D1F31AE3BF0400B0005E /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EA5D42141AD4BBEE00BEA03A /* PBXTargetDependency */,
+			);
+			name = AudioKitDemo;
+			productName = AudioKitDemo;
+			productReference = C475448E1A9BD0DF006151DE /* AudioKitDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C47544861A9BD0DF006151DE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Aurelius Prochazka";
+				TargetAttributes = {
+					C475448D1A9BD0DF006151DE = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
+			};
+			buildConfigurationList = C47544891A9BD0DF006151DE /* Build configuration list for PBXProject "AudioKitDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C47544851A9BD0DF006151DE;
+			productRefGroup = C475448F1A9BD0DF006151DE /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = EA5D420B1AD4BBDD00BEA03A /* Products */;
+					ProjectRef = EA5D420A1AD4BBDD00BEA03A /* AudioKit.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				C475448D1A9BD0DF006151DE /* AudioKitDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		EA5D42101AD4BBDD00BEA03A /* libAudioKit iOS Static.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libAudioKit iOS Static.a";
+			remoteRef = EA5D420F1AD4BBDD00BEA03A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EA5D42121AD4BBDD00BEA03A /* libAudioKit OS X.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libAudioKit OS X.a";
+			remoteRef = EA5D42111AD4BBDD00BEA03A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		EAA0F5BF1AE844D0007CD7C9 /* libAudioKit iOS Dynamic.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libAudioKit iOS Dynamic.a";
+			remoteRef = EAA0F5BE1AE844D0007CD7C9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C475448C1A9BD0DF006151DE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C475449C1A9BD0DF006151DE /* Images.xcassets in Resources */,
+				C475449F1A9BD0DF006151DE /* Main.storyboard in Resources */,
+				EAB29D731AD51CC8000EA118 /* AKSoundFiles.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		C4F0D1F31AE3BF0400B0005E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "\"${SRCROOT}/../../../AudioKit/Platforms/OSX/run-script.sh\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C475448A1A9BD0DF006151DE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C475449A1A9BD0DF006151DE /* ViewController.m in Sources */,
+				C42DC32A1A9C61740041B644 /* ProcessingViewController.m in Sources */,
+				C47544971A9BD0DF006151DE /* main.m in Sources */,
+				EA8655AD1B4A867000524AE0 /* MIDIViewController.m in Sources */,
+				C42DC3351A9C61DF0041B644 /* ConvolutionInstrument.m in Sources */,
+				C47546AF1A9BD23D006151DE /* SynthesisViewController.m in Sources */,
+				C42DC33B1A9C652E0041B644 /* AnalysisViewController.m in Sources */,
+				C47544951A9BD0DF006151DE /* AppDelegate.m in Sources */,
+				C47546BA1A9BDA11006151DE /* TouchView.m in Sources */,
+				C47546B61A9BD266006151DE /* FMSynthesizer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EA5D42141AD4BBEE00BEA03A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "AudioKit OS X";
+			targetProxy = EA5D42131AD4BBEE00BEA03A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C475449D1A9BD0DF006151DE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C475449E1A9BD0DF006151DE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C47544AC1A9BD0DF006151DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "../../../AudioKit/**";
+			};
+			name = Debug;
+		};
+		C47544AD1A9BD0DF006151DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				SDKROOT = macosx;
+				USER_HEADER_SEARCH_PATHS = "../../../AudioKit/**";
+			};
+			name = Release;
+		};
+		C47544AF1A9BD0DF006151DE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../AudioKit/Platforms/OSX/",
+				);
+				INFOPLIST_FILE = AudioKitDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-headerpad_max_install_names",
+				);
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.audiokit.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C47544B01A9BD0DF006151DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/../../../AudioKit/Platforms/OSX/",
+				);
+				INFOPLIST_FILE = AudioKitDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-headerpad_max_install_names",
+				);
+				OTHER_LIBTOOLFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.audiokit.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C47544891A9BD0DF006151DE /* Build configuration list for PBXProject "AudioKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C47544AC1A9BD0DF006151DE /* Debug */,
+				C47544AD1A9BD0DF006151DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C47544AE1A9BD0DF006151DE /* Build configuration list for PBXNativeTarget "AudioKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C47544AF1A9BD0DF006151DE /* Debug */,
+				C47544B01A9BD0DF006151DE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C47544861A9BD0DF006151DE /* Project object */;
+}

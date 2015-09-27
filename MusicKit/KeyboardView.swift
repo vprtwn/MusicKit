@@ -71,6 +71,35 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         scrollPad.contentSize = CGSizeMake(lastMaxX, scrollPad.bounds.height)
     }
 
+    public override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for key in keyViews {
+            for touch in touches {
+                if CGRectContainsPoint(key.frame, touch.locationInView(touch.view)) {
+                    key.force = self.forceWithTouch(touch)
+                }
+            }
+        }
+    }
+
+    public override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        for key in keyViews {
+            for touch in touches {
+                if CGRectContainsPoint(key.frame, touch.locationInView(touch.view)) {
+                    key.force = self.forceWithTouch(touch)
+                }
+            }
+        }
+    }
+
+    public override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
+
+    }
+
+    public override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+
+    }
+
+    // MARK: UIScrollViewDelegate
     public func scrollViewDidScroll(scrollView: UIScrollView) {
         keyViewContainer.contentOffset = scrollView.contentOffset
     }
