@@ -1,1 +1,1 @@
-github "benzguo/AudioKit" "master"
+github "benzguo/AudioKit" ~>2.2

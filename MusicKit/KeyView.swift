@@ -9,10 +9,6 @@
 import UIKit
 
 class KeyView: UIView {
-    /// The default force value if force is unavailable
-    // TODO: move to KeyboardView
-    static var defaultForce: CGFloat = 0.5
-
     /// The color of the key view when force = 1.0
     var touchColor = UIColor.blueColor() {
         didSet {
@@ -50,25 +46,4 @@ class KeyView: UIView {
         super.layoutSubviews()
         foregroundView.frame = bounds
     }
-
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        guard let touch = touches.first else { return }
-        let force = self.forceWithTouch(touch)
-        self.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(force)
-    }
-
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        guard let touch = touches.first else { return }
-        let force = self.forceWithTouch(touch)
-        self.backgroundColor = UIColor.blueColor().colorWithAlphaComponent(force)
-    }
-
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.backgroundColor = UIColor.clearColor()
-    }
-
-    override func touchesCancelled(touches: Set<UITouch>?, withEvent event: UIEvent?) {
-        self.backgroundColor = UIColor.clearColor()
-    }
-
 }

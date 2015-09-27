@@ -7,209 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C11402871BB82AB00064851E /* CsoundLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EAA0F5951AE71CD1007CD7C9 /* CsoundLib.framework */; };
-		C11402881BB82AB30064851E /* libsndfile.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA9F18821AE789E0009D3DA6 /* libsndfile.framework */; };
-		C16055F91BB831FE00022370 /* AKFoundation.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E93F31AD3C6840057E979 /* AKFoundation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429AE1BB83295003F90EA /* AKCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = EA15CDF41AE356B500BA279F /* AKCompatibility.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429AF1BB83298003F90EA /* AKSettings.h in Headers */ = {isa = PBXBuildFile; fileRef = EA95E9EF1AD5EC50007FC41F /* AKSettings.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429B01BB8329C003F90EA /* AKManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E93F41AD3C6840057E979 /* AKManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429B11BB832A3003F90EA /* AKOrchestra.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E93F61AD3C6840057E979 /* AKOrchestra.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429B21BB832D2003F90EA /* AKMidi.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E93FA1AD3C6840057E979 /* AKMidi.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429B31BB832D8003F90EA /* AKMidiEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA78DD8B1B605892001843F3 /* AKMidiEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429B41BB832DB003F90EA /* AKMidiInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = C4A148191B5F00660054F090 /* AKMidiInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429B51BB832E0003F90EA /* AKMidiNote.h in Headers */ = {isa = PBXBuildFile; fileRef = C4A1481F1B5F01F70054F090 /* AKMidiNote.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429B61BB832E7003F90EA /* AKInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E93FE1AD3C6840057E979 /* AKInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429B71BB832ED003F90EA /* AKInstrumentProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94001AD3C6840057E979 /* AKInstrumentProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429B81BB832F7003F90EA /* AKNote.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95A21AD3C6850057E979 /* AKNote.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429B91BB832FB003F90EA /* AKNoteProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95A41AD3C6850057E979 /* AKNoteProperty.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429BA1BB83302003F90EA /* AKParameter+Operation.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94801AD3C6840057E979 /* AKParameter+Operation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429BB1BB8330A003F90EA /* AKTrackedAmplitude.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94831AD3C6840057E979 /* AKTrackedAmplitude.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429BC1BB83310003F90EA /* AKTrackedAmplitudeFromFSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94851AD3C6840057E979 /* AKTrackedAmplitudeFromFSignal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429BD1BB83316003F90EA /* AKTrackedFrequency.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94871AD3C6840057E979 /* AKTrackedFrequency.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429BE1BB83319003F90EA /* AKTrackedFrequencyFromFSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94891AD3C6840057E979 /* AKTrackedFrequencyFromFSignal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429BF1BB8331E003F90EA /* AKCrossSynthesizedFFT.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E948C1AD3C6840057E979 /* AKCrossSynthesizedFFT.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429C01BB83322003F90EA /* AKFFT.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E948E1AD3C6840057E979 /* AKFFT.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429C11BB83326003F90EA /* AKFFTProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94901AD3C6840057E979 /* AKFFTProcessor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429C21BB8332A003F90EA /* AKMixedFFT.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94921AD3C6840057E979 /* AKMixedFFT.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429C31BB8332E003F90EA /* AKPhaseLockedVocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94941AD3C6840057E979 /* AKPhaseLockedVocoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429C41BB83331003F90EA /* AKResynthesizedAudio.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94961AD3C6840057E979 /* AKResynthesizedAudio.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429C51BB83336003F90EA /* AKScaledFFT.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94981AD3C6840057E979 /* AKScaledFFT.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429C61BB8333B003F90EA /* AKSpectralVocoder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E949A1AD3C6840057E979 /* AKSpectralVocoder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429C71BB8333F003F90EA /* AKWarpedFFT.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E949C1AD3C6840057E979 /* AKWarpedFFT.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429C81BB83344003F90EA /* AKAdditiveCosines.h in Headers */ = {isa = PBXBuildFile; fileRef = C4C6275E1B1B714900B7AD86 /* AKAdditiveCosines.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429C91BB83348003F90EA /* AKAssignment.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E949F1AD3C6840057E979 /* AKAssignment.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429CA1BB8334D003F90EA /* AKDifference.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94A11AD3C6840057E979 /* AKDifference.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429CB1BB83355003F90EA /* AKInverse.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94A31AD3C6840057E979 /* AKInverse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429CC1BB83359003F90EA /* AKMaximum.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94A51AD3C6840057E979 /* AKMaximum.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429CD1BB8335E003F90EA /* AKMinimum.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94A71AD3C6840057E979 /* AKMinimum.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429CE1BB83362003F90EA /* AKMultipleInputMathOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94A91AD3C6840057E979 /* AKMultipleInputMathOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429CF1BB83366003F90EA /* AKProduct.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94AB1AD3C6840057E979 /* AKProduct.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429D01BB8336A003F90EA /* AKSingleInputMathOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94AD1AD3C6840057E979 /* AKSingleInputMathOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429D11BB83371003F90EA /* AKSum.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94AF1AD3C6840057E979 /* AKSum.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429D21BB83375003F90EA /* AKTableValue.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94B11AD3C6840057E979 /* AKTableValue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429D31BB8337D003F90EA /* AKADSREnvelope.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94B51AD3C6840057E979 /* AKADSREnvelope.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429D41BB83381003F90EA /* AKLine.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94B71AD3C6840057E979 /* AKLine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429D51BB83385003F90EA /* AKLinearADSREnvelope.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94B91AD3C6840057E979 /* AKLinearADSREnvelope.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429D61BB8338A003F90EA /* AKLinearEnvelope.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94BB1AD3C6840057E979 /* AKLinearEnvelope.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429D71BB83416003F90EA /* AKGranularSynthesisTexture.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94BE1AD3C6840057E979 /* AKGranularSynthesisTexture.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429D81BB83416003F90EA /* AKGranularSynthesizer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94C01AD3C6840057E979 /* AKGranularSynthesizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429D91BB83416003F90EA /* AKSinusoidBursts.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94C21AD3C6840057E979 /* AKSinusoidBursts.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429DA1BB83416003F90EA /* AKMonoSoundFileLooper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94C51AD3C6840057E979 /* AKMonoSoundFileLooper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429DB1BB83416003F90EA /* AKStereoSoundFileLooper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94C71AD3C6840057E979 /* AKStereoSoundFileLooper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429DC1BB83416003F90EA /* AKTableLooper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94C91AD3C6840057E979 /* AKTableLooper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429DD1BB83416003F90EA /* AKPortamento.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94CC1AD3C6840057E979 /* AKPortamento.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429DE1BB83416003F90EA /* AKVibrato.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94CE1AD3C6840057E979 /* AKVibrato.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429DF1BB83416003F90EA /* AKFMOscillator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94D11AD3C6840057E979 /* AKFMOscillator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429E01BB83416003F90EA /* AKLowFrequencyOscillator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94D31AD3C6840057E979 /* AKLowFrequencyOscillator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429E11BB83416003F90EA /* AKOscillator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94D51AD3C6840057E979 /* AKOscillator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429E21BB83416003F90EA /* AKPhasor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94D71AD3C6840057E979 /* AKPhasor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429E31BB83416003F90EA /* AKVCOscillator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94D91AD3C6840057E979 /* AKVCOscillator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429E41BB83416003F90EA /* AKMandolin.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94DC1AD3C6840057E979 /* AKMandolin.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429E51BB83416003F90EA /* AKMarimba.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94DE1AD3C6840057E979 /* AKMarimba.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429E61BB83416003F90EA /* AKPluckedString.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94E01AD3C6840057E979 /* AKPluckedString.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429E71BB83416003F90EA /* AKStruckMetalBar.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94E21AD3C6840057E979 /* AKStruckMetalBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429E81BB83416003F90EA /* AKVibes.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94E41AD3C6840057E979 /* AKVibes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429E91BB83416003F90EA /* AKBambooSticks.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94E71AD3C6840057E979 /* AKBambooSticks.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429EA1BB83416003F90EA /* AKCabasa.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94E91AD3C6840057E979 /* AKCabasa.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429EB1BB83416003F90EA /* AKCrunch.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94EB1AD3C6840057E979 /* AKCrunch.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429EC1BB83416003F90EA /* AKDroplet.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94ED1AD3C6840057E979 /* AKDroplet.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429ED1BB83416003F90EA /* AKGuiro.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94EF1AD3C6840057E979 /* AKGuiro.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429EE1BB83416003F90EA /* AKSandPaper.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94F11AD3C6840057E979 /* AKSandPaper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429EF1BB83416003F90EA /* AKSekere.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94F31AD3C6840057E979 /* AKSekere.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429F01BB83416003F90EA /* AKSleighbells.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94F51AD3C6840057E979 /* AKSleighbells.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429F11BB83416003F90EA /* AKStick.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94F71AD3C6840057E979 /* AKStick.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429F21BB83416003F90EA /* AKTambourine.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94F91AD3C6840057E979 /* AKTambourine.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429F31BB83416003F90EA /* AKBeatenPlate.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94FE1AD3C6840057E979 /* AKBeatenPlate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429F41BB83416003F90EA /* AKBowedString.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95001AD3C6840057E979 /* AKBowedString.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429F51BB83416003F90EA /* AKFlute.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95021AD3C6840057E979 /* AKFlute.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429F61BB83416003F90EA /* AKSimpleWaveGuideModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95041AD3C6840057E979 /* AKSimpleWaveGuideModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429F71BB83416003F90EA /* AKInterpolatedRandomNumberPulse.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95071AD3C6840057E979 /* AKInterpolatedRandomNumberPulse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429F81BB83416003F90EA /* AKJitter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95091AD3C6840057E979 /* AKJitter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429F91BB83416003F90EA /* AKNoise.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E950B1AD3C6840057E979 /* AKNoise.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429FA1BB83416003F90EA /* AKRandomNumbers.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E950D1AD3C6840057E979 /* AKRandomNumbers.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429FB1BB83416003F90EA /* AKSegmentArray.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95101AD3C6840057E979 /* AKSegmentArray.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429FC1BB83416003F90EA /* AKSegmentArrayLoop.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95121AD3C6840057E979 /* AKSegmentArrayLoop.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429FD1BB8345C003F90EA /* AKAudioInput.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95181AD3C6840057E979 /* AKAudioInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429FE1BB8345C003F90EA /* AKAudioOutput.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E951A1AD3C6840057E979 /* AKAudioOutput.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C18429FF1BB8345C003F90EA /* AKFileInput.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E951C1AD3C6840057E979 /* AKFileInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A001BB8345C003F90EA /* AKLog.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E951E1AD3C6840057E979 /* AKLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A011BB8345C003F90EA /* AKMonoFileInput.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95201AD3C6840057E979 /* AKMonoFileInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A021BB8345C003F90EA /* AKMP3FileInput.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95221AD3C6840057E979 /* AKMP3FileInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A031BB8345C003F90EA /* AKMidiInput.h in Headers */ = {isa = PBXBuildFile; fileRef = C4A148251B5F05290054F090 /* AKMidiInput.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A041BB8345C003F90EA /* AKConvolution.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95261AD3C6840057E979 /* AKConvolution.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A051BB8345C003F90EA /* AKStereoConvolution.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95281AD3C6840057E979 /* AKStereoConvolution.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A061BB8345C003F90EA /* AKDelay.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E952B1AD3C6840057E979 /* AKDelay.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A071BB8345C003F90EA /* AKMultitapDelay.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E952D1AD3C6840057E979 /* AKMultitapDelay.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A081BB8345C003F90EA /* AKVariableDelay.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E952F1AD3C6840057E979 /* AKVariableDelay.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A091BB8345C003F90EA /* AKCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95321AD3C6840057E979 /* AKCompressor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A0A1BB8345C003F90EA /* AKDistortion.h in Headers */ = {isa = PBXBuildFile; fileRef = C4922BAB1B59D8DB0032EBE2 /* AKDistortion.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A0B1BB8345C003F90EA /* AKDopplerEffect.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95341AD3C6840057E979 /* AKDopplerEffect.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A0C1BB8345C003F90EA /* AKFlanger.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95361AD3C6840057E979 /* AKFlanger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A0D1BB8345C003F90EA /* AKPitchShifter.h in Headers */ = {isa = PBXBuildFile; fileRef = C4258E3E1B3E554D00D91B3D /* AKPitchShifter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A0E1BB8345C003F90EA /* AKRingModulator.h in Headers */ = {isa = PBXBuildFile; fileRef = C45552461ADF152F000C8D42 /* AKRingModulator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A0F1BB8345C003F90EA /* AKAntiresonantFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = C42966921B8374C60098A8EF /* AKAntiresonantFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A101BB8345C003F90EA /* AKClipper.h in Headers */ = {isa = PBXBuildFile; fileRef = C4C01C901B50AC060012AEB9 /* AKClipper.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A111BB8345C003F90EA /* AKCombFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95391AD3C6840057E979 /* AKCombFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A121BB8345C003F90EA /* AKDCBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E953B1AD3C6840057E979 /* AKDCBlock.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A131BB8345C003F90EA /* AKDecimator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E953D1AD3C6840057E979 /* AKDecimator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A141BB8345C003F90EA /* AKDeclick.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E953F1AD3C6840057E979 /* AKDeclick.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A151BB8345C003F90EA /* AKEqualizerFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95411AD3C6840057E979 /* AKEqualizerFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A161BB8345C003F90EA /* AKHighPassFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95431AD3C6840057E979 /* AKHighPassFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A171BB8345C003F90EA /* AKHilbertTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95451AD3C6840057E979 /* AKHilbertTransformer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A181BB8345C003F90EA /* AKLowPassFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95471AD3C6840057E979 /* AKLowPassFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A191BB8345C003F90EA /* AKMoogLadder.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95491AD3C6840057E979 /* AKMoogLadder.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A1A1BB8345C003F90EA /* AKMoogVCF.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E954B1AD3C6840057E979 /* AKMoogVCF.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A1B1BB8345C003F90EA /* AKResonantFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E954D1AD3C6840057E979 /* AKResonantFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A1C1BB8345C003F90EA /* AKStringResonator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E954F1AD3C6840057E979 /* AKStringResonator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A1D1BB8345C003F90EA /* AKThreePoleLowpassFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95511AD3C6840057E979 /* AKThreePoleLowpassFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A1E1BB8345C003F90EA /* AKVariableFrequencyResponseBandPassFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95531AD3C6840057E979 /* AKVariableFrequencyResponseBandPassFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A1F1BB8345C003F90EA /* AKBandPassButterworthFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95561AD3C6840057E979 /* AKBandPassButterworthFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A201BB8345C003F90EA /* AKBandRejectButterworthFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95581AD3C6840057E979 /* AKBandRejectButterworthFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A211BB8345C003F90EA /* AKHighPassButterworthFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E955A1AD3C6840057E979 /* AKHighPassButterworthFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A221BB8345C003F90EA /* AKLowPassButterworthFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E955C1AD3C6840057E979 /* AKLowPassButterworthFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A231BB8345C003F90EA /* AKHighShelfParametricEqualizerFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = C43DB1301B21866300C9E4D5 /* AKHighShelfParametricEqualizerFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A241BB8345C003F90EA /* AKLowShelfParametricEqualizerFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = C43DB1321B21866300C9E4D5 /* AKLowShelfParametricEqualizerFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A251BB8345C003F90EA /* AKPeakingParametricEqualizerFilter.h in Headers */ = {isa = PBXBuildFile; fileRef = C43DB1341B21866300C9E4D5 /* AKPeakingParametricEqualizerFilter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A261BB8345C003F90EA /* AKBallWithinTheBoxReverb.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E955F1AD3C6840057E979 /* AKBallWithinTheBoxReverb.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A271BB8345C003F90EA /* AKFlatFrequencyResponseReverb.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95611AD3C6840057E979 /* AKFlatFrequencyResponseReverb.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A281BB8345C003F90EA /* AKParallelCombLowPassFilterReverb.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95631AD3C6850057E979 /* AKParallelCombLowPassFilterReverb.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A291BB8345C003F90EA /* AKReverb.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95651AD3C6850057E979 /* AKReverb.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A2A1BB8345C003F90EA /* AK3DBinauralAudio.h in Headers */ = {isa = PBXBuildFile; fileRef = C455523F1ADEFD8A000C8D42 /* AK3DBinauralAudio.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A2B1BB8345C003F90EA /* AKBalance.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E95681AD3C6850057E979 /* AKBalance.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A2C1BB8345C003F90EA /* AKMix.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E956A1AD3C6850057E979 /* AKMix.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A2D1BB8345C003F90EA /* AKPanner.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E956C1AD3C6850057E979 /* AKPanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A2E1BB834D1003F90EA /* AKAudio.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94031AD3C6840057E979 /* AKAudio.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A2F1BB834D1003F90EA /* AKConstant.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94051AD3C6840057E979 /* AKConstant.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A301BB834D1003F90EA /* AKControl.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94071AD3C6840057E979 /* AKControl.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A311BB834D1003F90EA /* AKFSignal.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94091AD3C6840057E979 /* AKFSignal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A321BB834D1003F90EA /* AKParameter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E940B1AD3C6840057E979 /* AKParameter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A331BB834D1003F90EA /* AKStereoAudio.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E940D1AD3C6840057E979 /* AKStereoAudio.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A341BB834D1003F90EA /* AKEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E959B1AD3C6850057E979 /* AKEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A351BB834D1003F90EA /* AKPhrase.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E959D1AD3C6850057E979 /* AKPhrase.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A361BB834D1003F90EA /* AKSequence.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E959F1AD3C6850057E979 /* AKSequence.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A371BB834D1003F90EA /* AKSoundFontInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = C4A42C721B4271F90082DED3 /* AKSoundFontInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A381BB834D1003F90EA /* AKSoundFontInstrumentPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = C4A42C781B42756B0082DED3 /* AKSoundFontInstrumentPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A391BB834D1003F90EA /* AKSoundFontPreset.h in Headers */ = {isa = PBXBuildFile; fileRef = C4A42C6C1B42710C0082DED3 /* AKSoundFontPreset.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A3A1BB834D1003F90EA /* AKSoundFontPresetPlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = C47F637B1B2BF7A100D6FFC8 /* AKSoundFontPresetPlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A3B1BB834D1003F90EA /* AKSoundFileTable.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E946C1AD3C6840057E979 /* AKSoundFileTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A3C1BB834D1003F90EA /* AKTable.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E946E1AD3C6840057E979 /* AKTable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A3D1BB834D1003F90EA /* AKExponentialTableGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94711AD3C6840057E979 /* AKExponentialTableGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A3E1BB834D1003F90EA /* AKFourierSeriesTableGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94731AD3C6840057E979 /* AKFourierSeriesTableGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A3F1BB834D1003F90EA /* AKHarmonicCosineTableGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94751AD3C6840057E979 /* AKHarmonicCosineTableGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A401BB834D1003F90EA /* AKLineTableGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94771AD3C6840057E979 /* AKLineTableGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A411BB834D1003F90EA /* AKRandomDistributionTableGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94791AD3C6840057E979 /* AKRandomDistributionTableGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A421BB834D1003F90EA /* AKTableGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E947B1AD3C6840057E979 /* AKTableGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A431BB834D1003F90EA /* AKWindowTableGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E947D1AD3C6840057E979 /* AKWindowTableGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A441BB834D1003F90EA /* AKSampler.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94101AD3C6840057E979 /* AKSampler.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A451BB834D1003F90EA /* AKTools.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94121AD3C6840057E979 /* AKTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A461BB834D8003F90EA /* AKSoundFont.h in Headers */ = {isa = PBXBuildFile; fileRef = C47F63751B2BF33600D6FFC8 /* AKSoundFont.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A471BB834FA003F90EA /* AKAmplifier.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94161AD3C6840057E979 /* AKAmplifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A481BB834FA003F90EA /* AKStereoAmplifier.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94181AD3C6840057E979 /* AKStereoAmplifier.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A491BB834FA003F90EA /* AKAudioAnalyzer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E941B1AD3C6840057E979 /* AKAudioAnalyzer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A4A1BB834FA003F90EA /* AKBambooSticksInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E941E1AD3C6840057E979 /* AKBambooSticksInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A4B1BB834FA003F90EA /* AKMandolinInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94201AD3C6840057E979 /* AKMandolinInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A4C1BB834FA003F90EA /* AKMarimbaInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94221AD3C6840057E979 /* AKMarimbaInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A4D1BB834FA003F90EA /* AKPluckedStringInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94241AD3C6840057E979 /* AKPluckedStringInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A4E1BB834FA003F90EA /* AKSekereInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = C4C812591AE5CA03003A8B73 /* AKSekereInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A4F1BB834FA003F90EA /* AKSleighbellsInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94261AD3C6840057E979 /* AKSleighbellsInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A501BB834FA003F90EA /* AKStickInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94281AD3C6840057E979 /* AKStickInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A511BB834FA003F90EA /* AKStruckMetalBarInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E942A1AD3C6840057E979 /* AKStruckMetalBarInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A521BB834FA003F90EA /* AKTambourineInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E942C1AD3C6840057E979 /* AKTambourineInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A531BB834FA003F90EA /* AKVibraphoneInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E942E1AD3C6840057E979 /* AKVibraphoneInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A541BB834FA003F90EA /* AKAudioFilePlayer.h in Headers */ = {isa = PBXBuildFile; fileRef = C4FAE5EF1AED6B2600FD71E2 /* AKAudioFilePlayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A551BB834FA003F90EA /* AKMicrophone.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94311AD3C6840057E979 /* AKMicrophone.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A561BB834FA003F90EA /* AKDelayPedal.h in Headers */ = {isa = PBXBuildFile; fileRef = C4258E391B3D03D300D91B3D /* AKDelayPedal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A571BB834FA003F90EA /* AKPitchShifterPedal.h in Headers */ = {isa = PBXBuildFile; fileRef = C4258E441B3FAF7100D91B3D /* AKPitchShifterPedal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A581BB834FA003F90EA /* AKReverbPedal.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94341AD3C6840057E979 /* AKReverbPedal.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A591BB834FA003F90EA /* AKFMOscillatorInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94371AD3C6840057E979 /* AKFMOscillatorInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A5A1BB834FA003F90EA /* AKVCOscillatorInstrument.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94391AD3C6840057E979 /* AKVCOscillatorInstrument.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A5B1BB8352E003F90EA /* AKPlotView.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E944D1AD3C6840057E979 /* AKPlotView.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A5C1BB8352E003F90EA /* AKAudioFFTPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA321D1B1AEDCA5300DCCABD /* AKAudioFFTPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A5D1BB8352E003F90EA /* AKAudioInputFFTPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E943C1AD3C6840057E979 /* AKAudioInputFFTPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A5E1BB8352E003F90EA /* AKAudioOutputFFTPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94421AD3C6840057E979 /* AKAudioOutputFFTPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A5F1BB8352E003F90EA /* AKAudioPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA89F5711AEEE50900858344 /* AKAudioPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A601BB8352E003F90EA /* AKAudioInputPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E943E1AD3C6840057E979 /* AKAudioInputPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A611BB8352E003F90EA /* AKAudioOutputPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94441AD3C6840057E979 /* AKAudioOutputPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A621BB8352E003F90EA /* AKStereoOutputPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E944F1AD3C6840057E979 /* AKStereoOutputPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A631BB8352E003F90EA /* AKAudioRollingWaveformPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA89F5691AE99C0500858344 /* AKAudioRollingWaveformPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A641BB8352E003F90EA /* AKAudioInputRollingWaveformPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94401AD3C6840057E979 /* AKAudioInputRollingWaveformPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A651BB8352E003F90EA /* AKAudioOutputRollingWaveformPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94461AD3C6840057E979 /* AKAudioOutputRollingWaveformPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A661BB8352E003F90EA /* AKFloatPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94481AD3C6840057E979 /* AKFloatPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A671BB8352E003F90EA /* AKInstrumentPropertyPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E944A1AD3C6840057E979 /* AKInstrumentPropertyPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A681BB8352E003F90EA /* AKTablePlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94511AD3C6840057E979 /* AKTablePlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A691BB8352E003F90EA /* AKPropertyLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94651AD3C6840057E979 /* AKPropertyLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A6A1BB8352E003F90EA /* AKPropertySlider.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94671AD3C6840057E979 /* AKPropertySlider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1842A6B1BB8352E003F90EA /* AKLevelMeter.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94691AD3C6840057E979 /* AKLevelMeter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1FC48391BB83A3E0021B149 /* CsoundObj.h in Headers */ = {isa = PBXBuildFile; fileRef = EA08B56D1AD8985F00949FD5 /* CsoundObj.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1FC483A1BB83AA40021B149 /* EZPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EADE698B1B5268D100996FE0 /* EZPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1FC483B1BB83AA40021B149 /* EZAudio.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94561AD3C6840057E979 /* EZAudio.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1FC483C1BB83AA40021B149 /* EZAudioPlot.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E94581AD3C6840057E979 /* EZAudioPlot.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1FC483D1BB83AA40021B149 /* EZAudioUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = EADE69731B52687700996FE0 /* EZAudioUtilities.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1FC483E1BB83AA40021B149 /* EZAudioFloatData.h in Headers */ = {isa = PBXBuildFile; fileRef = EADE69751B52687700996FE0 /* EZAudioFloatData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1FC483F1BB83AA40021B149 /* EZAudioFloatConverter.h in Headers */ = {isa = PBXBuildFile; fileRef = EADE69771B52687700996FE0 /* EZAudioFloatConverter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1FC48401BB83AA40021B149 /* EZAudioDisplayLink.h in Headers */ = {isa = PBXBuildFile; fileRef = EADE69791B52687700996FE0 /* EZAudioDisplayLink.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1FC48411BB83AA40021B149 /* EZAudioFFT.h in Headers */ = {isa = PBXBuildFile; fileRef = EACF8E951B55E6720089700B /* EZAudioFFT.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C1FC48421BB83AA40021B149 /* TPCircularBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = EA8E945C1AD3C6840057E979 /* TPCircularBuffer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C4258E3B1B3D03D300D91B3D /* AKDelayPedal.m in Sources */ = {isa = PBXBuildFile; fileRef = C4258E3A1B3D03D300D91B3D /* AKDelayPedal.m */; };
 		C4258E3C1B3D03F400D91B3D /* AKDelayPedal.m in Sources */ = {isa = PBXBuildFile; fileRef = C4258E3A1B3D03D300D91B3D /* AKDelayPedal.m */; };
 		C4258E3D1B3D03F400D91B3D /* AKDelayPedal.m in Sources */ = {isa = PBXBuildFile; fileRef = C4258E3A1B3D03D300D91B3D /* AKDelayPedal.m */; };
@@ -852,7 +649,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C11402891BB82B4F0064851E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = AudioKit/Resources/Info.plist; sourceTree = SOURCE_ROOT; };
 		C4258E391B3D03D300D91B3D /* AKDelayPedal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AKDelayPedal.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		C4258E3A1B3D03D300D91B3D /* AKDelayPedal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AKDelayPedal.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		C4258E3E1B3E554D00D91B3D /* AKPitchShifter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKPitchShifter.h; sourceTree = "<group>"; };
@@ -1251,7 +1047,7 @@
 		EA95E9EF1AD5EC50007FC41F /* AKSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKSettings.h; sourceTree = "<group>"; };
 		EA95E9F01AD5EC50007FC41F /* AKSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKSettings.m; sourceTree = "<group>"; };
 		EA9F18821AE789E0009D3DA6 /* libsndfile.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = libsndfile.framework; sourceTree = "<group>"; };
-		EAA0F5941AE71C8F007CD7C9 /* AudioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AudioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAA0F5941AE71C8F007CD7C9 /* libAudioKit iOS Dynamic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libAudioKit iOS Dynamic.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EAA0F5951AE71CD1007CD7C9 /* CsoundLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CsoundLib.framework; sourceTree = "<group>"; };
 		EACF8E951B55E6720089700B /* EZAudioFFT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioFFT.h; sourceTree = "<group>"; };
 		EACF8E961B55E6720089700B /* EZAudioFFT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EZAudioFFT.m; sourceTree = "<group>"; };
@@ -1317,8 +1113,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C11402871BB82AB00064851E /* CsoundLib.framework in Frameworks */,
-				C11402881BB82AB30064851E /* libsndfile.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1389,7 +1183,7 @@
 			children = (
 				EA8E93D81AD3C5240057E979 /* libAudioKit iOS Static.a */,
 				EA8E96591AD3C6FC0057E979 /* libAudioKit OS X.a */,
-				EAA0F5941AE71C8F007CD7C9 /* AudioKit.framework */,
+				EAA0F5941AE71C8F007CD7C9 /* libAudioKit iOS Dynamic.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2180,7 +1974,6 @@
 		EA8E97191AD3CD130057E979 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				C11402891BB82B4F0064851E /* Info.plist */,
 				EA8E93F81AD3C6840057E979 /* AudioKit.plist */,
 				EA8E971A1AD3CF000057E979 /* AKSoundFiles.bundle */,
 			);
@@ -2235,214 +2028,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		C16055F81BB831F200022370 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C1842A0D1BB8345C003F90EA /* AKPitchShifter.h in Headers */,
-				C18429BB1BB8330A003F90EA /* AKTrackedAmplitude.h in Headers */,
-				C1842A0E1BB8345C003F90EA /* AKRingModulator.h in Headers */,
-				C1842A2F1BB834D1003F90EA /* AKConstant.h in Headers */,
-				C18429CB1BB83355003F90EA /* AKInverse.h in Headers */,
-				C18429F51BB83416003F90EA /* AKFlute.h in Headers */,
-				C18429C91BB83348003F90EA /* AKAssignment.h in Headers */,
-				C18429DD1BB83416003F90EA /* AKPortamento.h in Headers */,
-				C1842A221BB8345C003F90EA /* AKLowPassButterworthFilter.h in Headers */,
-				C1FC483D1BB83AA40021B149 /* EZAudioUtilities.h in Headers */,
-				C1842A0A1BB8345C003F90EA /* AKDistortion.h in Headers */,
-				C18429F11BB83416003F90EA /* AKStick.h in Headers */,
-				C1842A361BB834D1003F90EA /* AKSequence.h in Headers */,
-				C18429E81BB83416003F90EA /* AKVibes.h in Headers */,
-				C18429BA1BB83302003F90EA /* AKParameter+Operation.h in Headers */,
-				C18429FD1BB8345C003F90EA /* AKAudioInput.h in Headers */,
-				C18429B41BB832DB003F90EA /* AKMidiInstrument.h in Headers */,
-				C1842A451BB834D1003F90EA /* AKTools.h in Headers */,
-				C18429EC1BB83416003F90EA /* AKDroplet.h in Headers */,
-				C18429E91BB83416003F90EA /* AKBambooSticks.h in Headers */,
-				C1842A5C1BB8352E003F90EA /* AKAudioFFTPlot.h in Headers */,
-				C1842A4B1BB834FA003F90EA /* AKMandolinInstrument.h in Headers */,
-				C1842A2A1BB8345C003F90EA /* AK3DBinauralAudio.h in Headers */,
-				C18429B31BB832D8003F90EA /* AKMidiEvent.h in Headers */,
-				C18429F31BB83416003F90EA /* AKBeatenPlate.h in Headers */,
-				C1842A661BB8352E003F90EA /* AKFloatPlot.h in Headers */,
-				C1842A3D1BB834D1003F90EA /* AKExponentialTableGenerator.h in Headers */,
-				C1842A2B1BB8345C003F90EA /* AKBalance.h in Headers */,
-				C1842A0F1BB8345C003F90EA /* AKAntiresonantFilter.h in Headers */,
-				C1842A471BB834FA003F90EA /* AKAmplifier.h in Headers */,
-				C18429C11BB83326003F90EA /* AKFFTProcessor.h in Headers */,
-				C1842A591BB834FA003F90EA /* AKFMOscillatorInstrument.h in Headers */,
-				C1842A491BB834FA003F90EA /* AKAudioAnalyzer.h in Headers */,
-				C18429D21BB83375003F90EA /* AKTableValue.h in Headers */,
-				C1842A691BB8352E003F90EA /* AKPropertyLabel.h in Headers */,
-				C18429D01BB8336A003F90EA /* AKSingleInputMathOperation.h in Headers */,
-				C1842A4A1BB834FA003F90EA /* AKBambooSticksInstrument.h in Headers */,
-				C18429B11BB832A3003F90EA /* AKOrchestra.h in Headers */,
-				C1FC483A1BB83AA40021B149 /* EZPlot.h in Headers */,
-				C1842A071BB8345C003F90EA /* AKMultitapDelay.h in Headers */,
-				C18429DA1BB83416003F90EA /* AKMonoSoundFileLooper.h in Headers */,
-				C1842A5D1BB8352E003F90EA /* AKAudioInputFFTPlot.h in Headers */,
-				C1FC48391BB83A3E0021B149 /* CsoundObj.h in Headers */,
-				C1842A051BB8345C003F90EA /* AKStereoConvolution.h in Headers */,
-				C18429B01BB8329C003F90EA /* AKManager.h in Headers */,
-				C18429EF1BB83416003F90EA /* AKSekere.h in Headers */,
-				C18429E51BB83416003F90EA /* AKMarimba.h in Headers */,
-				C1842A321BB834D1003F90EA /* AKParameter.h in Headers */,
-				C1842A501BB834FA003F90EA /* AKStickInstrument.h in Headers */,
-				C18429C51BB83336003F90EA /* AKScaledFFT.h in Headers */,
-				C1842A601BB8352E003F90EA /* AKAudioInputPlot.h in Headers */,
-				C18429C31BB8332E003F90EA /* AKPhaseLockedVocoder.h in Headers */,
-				C1842A331BB834D1003F90EA /* AKStereoAudio.h in Headers */,
-				C18429EE1BB83416003F90EA /* AKSandPaper.h in Headers */,
-				C1842A5B1BB8352E003F90EA /* AKPlotView.h in Headers */,
-				C1842A401BB834D1003F90EA /* AKLineTableGenerator.h in Headers */,
-				C1842A281BB8345C003F90EA /* AKParallelCombLowPassFilterReverb.h in Headers */,
-				C18429F61BB83416003F90EA /* AKSimpleWaveGuideModel.h in Headers */,
-				C1842A3E1BB834D1003F90EA /* AKFourierSeriesTableGenerator.h in Headers */,
-				C1842A4F1BB834FA003F90EA /* AKSleighbellsInstrument.h in Headers */,
-				C18429F21BB83416003F90EA /* AKTambourine.h in Headers */,
-				C1842A251BB8345C003F90EA /* AKPeakingParametricEqualizerFilter.h in Headers */,
-				C18429F81BB83416003F90EA /* AKJitter.h in Headers */,
-				C1842A171BB8345C003F90EA /* AKHilbertTransformer.h in Headers */,
-				C18429DB1BB83416003F90EA /* AKStereoSoundFileLooper.h in Headers */,
-				C1842A3A1BB834D1003F90EA /* AKSoundFontPresetPlayer.h in Headers */,
-				C1842A681BB8352E003F90EA /* AKTablePlot.h in Headers */,
-				C18429D61BB8338A003F90EA /* AKLinearEnvelope.h in Headers */,
-				C1842A581BB834FA003F90EA /* AKReverbPedal.h in Headers */,
-				C18429D91BB83416003F90EA /* AKSinusoidBursts.h in Headers */,
-				C18429D31BB8337D003F90EA /* AKADSREnvelope.h in Headers */,
-				C1842A021BB8345C003F90EA /* AKMP3FileInput.h in Headers */,
-				C1842A541BB834FA003F90EA /* AKAudioFilePlayer.h in Headers */,
-				C1842A3B1BB834D1003F90EA /* AKSoundFileTable.h in Headers */,
-				C18429CC1BB83359003F90EA /* AKMaximum.h in Headers */,
-				C1842A151BB8345C003F90EA /* AKEqualizerFilter.h in Headers */,
-				C1842A6B1BB8352E003F90EA /* AKLevelMeter.h in Headers */,
-				C18429ED1BB83416003F90EA /* AKGuiro.h in Headers */,
-				C1842A201BB8345C003F90EA /* AKBandRejectButterworthFilter.h in Headers */,
-				C1FC483C1BB83AA40021B149 /* EZAudioPlot.h in Headers */,
-				C1FC483B1BB83AA40021B149 /* EZAudio.h in Headers */,
-				C18429FF1BB8345C003F90EA /* AKFileInput.h in Headers */,
-				C18429B81BB832F7003F90EA /* AKNote.h in Headers */,
-				C1842A671BB8352E003F90EA /* AKInstrumentPropertyPlot.h in Headers */,
-				C18429BD1BB83316003F90EA /* AKTrackedFrequency.h in Headers */,
-				C18429E11BB83416003F90EA /* AKOscillator.h in Headers */,
-				C1842A621BB8352E003F90EA /* AKStereoOutputPlot.h in Headers */,
-				C18429F41BB83416003F90EA /* AKBowedString.h in Headers */,
-				C1842A111BB8345C003F90EA /* AKCombFilter.h in Headers */,
-				C1842A261BB8345C003F90EA /* AKBallWithinTheBoxReverb.h in Headers */,
-				C1842A291BB8345C003F90EA /* AKReverb.h in Headers */,
-				C1842A1D1BB8345C003F90EA /* AKThreePoleLowpassFilter.h in Headers */,
-				C1842A001BB8345C003F90EA /* AKLog.h in Headers */,
-				C1842A4C1BB834FA003F90EA /* AKMarimbaInstrument.h in Headers */,
-				C18429F91BB83416003F90EA /* AKNoise.h in Headers */,
-				C1FC48401BB83AA40021B149 /* EZAudioDisplayLink.h in Headers */,
-				C18429E71BB83416003F90EA /* AKStruckMetalBar.h in Headers */,
-				C1842A211BB8345C003F90EA /* AKHighPassButterworthFilter.h in Headers */,
-				C1842A651BB8352E003F90EA /* AKAudioOutputRollingWaveformPlot.h in Headers */,
-				C18429C21BB8332A003F90EA /* AKMixedFFT.h in Headers */,
-				C1842A371BB834D1003F90EA /* AKSoundFontInstrument.h in Headers */,
-				C1842A121BB8345C003F90EA /* AKDCBlock.h in Headers */,
-				C1842A131BB8345C003F90EA /* AKDecimator.h in Headers */,
-				C1842A231BB8345C003F90EA /* AKHighShelfParametricEqualizerFilter.h in Headers */,
-				C18429CD1BB8335E003F90EA /* AKMinimum.h in Headers */,
-				C18429E01BB83416003F90EA /* AKLowFrequencyOscillator.h in Headers */,
-				C18429C41BB83331003F90EA /* AKResynthesizedAudio.h in Headers */,
-				C1842A351BB834D1003F90EA /* AKPhrase.h in Headers */,
-				C1842A391BB834D1003F90EA /* AKSoundFontPreset.h in Headers */,
-				C18429E21BB83416003F90EA /* AKPhasor.h in Headers */,
-				C18429C61BB8333B003F90EA /* AKSpectralVocoder.h in Headers */,
-				C18429CF1BB83366003F90EA /* AKProduct.h in Headers */,
-				C18429DC1BB83416003F90EA /* AKTableLooper.h in Headers */,
-				C1842A2E1BB834D1003F90EA /* AKAudio.h in Headers */,
-				C18429AF1BB83298003F90EA /* AKSettings.h in Headers */,
-				C1FC48411BB83AA40021B149 /* EZAudioFFT.h in Headers */,
-				C1842A271BB8345C003F90EA /* AKFlatFrequencyResponseReverb.h in Headers */,
-				C18429FB1BB83416003F90EA /* AKSegmentArray.h in Headers */,
-				C18429EB1BB83416003F90EA /* AKCrunch.h in Headers */,
-				C18429FC1BB83416003F90EA /* AKSegmentArrayLoop.h in Headers */,
-				C1842A1A1BB8345C003F90EA /* AKMoogVCF.h in Headers */,
-				C1842A1B1BB8345C003F90EA /* AKResonantFilter.h in Headers */,
-				C18429E41BB83416003F90EA /* AKMandolin.h in Headers */,
-				C18429E31BB83416003F90EA /* AKVCOscillator.h in Headers */,
-				C1842A241BB8345C003F90EA /* AKLowShelfParametricEqualizerFilter.h in Headers */,
-				C18429F01BB83416003F90EA /* AKSleighbells.h in Headers */,
-				C1842A031BB8345C003F90EA /* AKMidiInput.h in Headers */,
-				C1842A141BB8345C003F90EA /* AKDeclick.h in Headers */,
-				C1842A431BB834D1003F90EA /* AKWindowTableGenerator.h in Headers */,
-				C18429C71BB8333F003F90EA /* AKWarpedFFT.h in Headers */,
-				C1842A411BB834D1003F90EA /* AKRandomDistributionTableGenerator.h in Headers */,
-				C1842A641BB8352E003F90EA /* AKAudioInputRollingWaveformPlot.h in Headers */,
-				C1842A2C1BB8345C003F90EA /* AKMix.h in Headers */,
-				C16055F91BB831FE00022370 /* AKFoundation.h in Headers */,
-				C1842A341BB834D1003F90EA /* AKEvent.h in Headers */,
-				C1842A521BB834FA003F90EA /* AKTambourineInstrument.h in Headers */,
-				C1842A6A1BB8352E003F90EA /* AKPropertySlider.h in Headers */,
-				C1842A441BB834D1003F90EA /* AKSampler.h in Headers */,
-				C1842A381BB834D1003F90EA /* AKSoundFontInstrumentPlayer.h in Headers */,
-				C1842A011BB8345C003F90EA /* AKMonoFileInput.h in Headers */,
-				C1842A081BB8345C003F90EA /* AKVariableDelay.h in Headers */,
-				C1842A421BB834D1003F90EA /* AKTableGenerator.h in Headers */,
-				C1842A4E1BB834FA003F90EA /* AKSekereInstrument.h in Headers */,
-				C18429B51BB832E0003F90EA /* AKMidiNote.h in Headers */,
-				C1842A091BB8345C003F90EA /* AKCompressor.h in Headers */,
-				C18429D51BB83385003F90EA /* AKLinearADSREnvelope.h in Headers */,
-				C18429B91BB832FB003F90EA /* AKNoteProperty.h in Headers */,
-				C1842A2D1BB8345C003F90EA /* AKPanner.h in Headers */,
-				C1842A041BB8345C003F90EA /* AKConvolution.h in Headers */,
-				C1842A311BB834D1003F90EA /* AKFSignal.h in Headers */,
-				C18429FE1BB8345C003F90EA /* AKAudioOutput.h in Headers */,
-				C18429F71BB83416003F90EA /* AKInterpolatedRandomNumberPulse.h in Headers */,
-				C1842A101BB8345C003F90EA /* AKClipper.h in Headers */,
-				C18429D11BB83371003F90EA /* AKSum.h in Headers */,
-				C1842A5A1BB834FA003F90EA /* AKVCOscillatorInstrument.h in Headers */,
-				C1842A061BB8345C003F90EA /* AKDelay.h in Headers */,
-				C1842A3C1BB834D1003F90EA /* AKTable.h in Headers */,
-				C1842A3F1BB834D1003F90EA /* AKHarmonicCosineTableGenerator.h in Headers */,
-				C18429B71BB832ED003F90EA /* AKInstrumentProperty.h in Headers */,
-				C1842A531BB834FA003F90EA /* AKVibraphoneInstrument.h in Headers */,
-				C1842A161BB8345C003F90EA /* AKHighPassFilter.h in Headers */,
-				C1842A5E1BB8352E003F90EA /* AKAudioOutputFFTPlot.h in Headers */,
-				C1842A0C1BB8345C003F90EA /* AKFlanger.h in Headers */,
-				C1842A551BB834FA003F90EA /* AKMicrophone.h in Headers */,
-				C1842A571BB834FA003F90EA /* AKPitchShifterPedal.h in Headers */,
-				C18429DE1BB83416003F90EA /* AKVibrato.h in Headers */,
-				C1842A4D1BB834FA003F90EA /* AKPluckedStringInstrument.h in Headers */,
-				C1842A1E1BB8345C003F90EA /* AKVariableFrequencyResponseBandPassFilter.h in Headers */,
-				C18429C01BB83322003F90EA /* AKFFT.h in Headers */,
-				C1842A481BB834FA003F90EA /* AKStereoAmplifier.h in Headers */,
-				C1842A301BB834D1003F90EA /* AKControl.h in Headers */,
-				C18429BC1BB83310003F90EA /* AKTrackedAmplitudeFromFSignal.h in Headers */,
-				C1842A461BB834D8003F90EA /* AKSoundFont.h in Headers */,
-				C18429AE1BB83295003F90EA /* AKCompatibility.h in Headers */,
-				C1FC483F1BB83AA40021B149 /* EZAudioFloatConverter.h in Headers */,
-				C18429FA1BB83416003F90EA /* AKRandomNumbers.h in Headers */,
-				C18429E61BB83416003F90EA /* AKPluckedString.h in Headers */,
-				C1842A181BB8345C003F90EA /* AKLowPassFilter.h in Headers */,
-				C1842A511BB834FA003F90EA /* AKStruckMetalBarInstrument.h in Headers */,
-				C18429CE1BB83362003F90EA /* AKMultipleInputMathOperation.h in Headers */,
-				C1842A191BB8345C003F90EA /* AKMoogLadder.h in Headers */,
-				C18429C81BB83344003F90EA /* AKAdditiveCosines.h in Headers */,
-				C18429D41BB83381003F90EA /* AKLine.h in Headers */,
-				C1842A1F1BB8345C003F90EA /* AKBandPassButterworthFilter.h in Headers */,
-				C18429BF1BB8331E003F90EA /* AKCrossSynthesizedFFT.h in Headers */,
-				C18429BE1BB83319003F90EA /* AKTrackedFrequencyFromFSignal.h in Headers */,
-				C1FC483E1BB83AA40021B149 /* EZAudioFloatData.h in Headers */,
-				C18429EA1BB83416003F90EA /* AKCabasa.h in Headers */,
-				C18429B21BB832D2003F90EA /* AKMidi.h in Headers */,
-				C1842A611BB8352E003F90EA /* AKAudioOutputPlot.h in Headers */,
-				C1842A1C1BB8345C003F90EA /* AKStringResonator.h in Headers */,
-				C1842A561BB834FA003F90EA /* AKDelayPedal.h in Headers */,
-				C18429B61BB832E7003F90EA /* AKInstrument.h in Headers */,
-				C1FC48421BB83AA40021B149 /* TPCircularBuffer.h in Headers */,
-				C18429D81BB83416003F90EA /* AKGranularSynthesizer.h in Headers */,
-				C18429CA1BB8334D003F90EA /* AKDifference.h in Headers */,
-				C1842A631BB8352E003F90EA /* AKAudioRollingWaveformPlot.h in Headers */,
-				C18429D71BB83416003F90EA /* AKGranularSynthesisTexture.h in Headers */,
-				C18429DF1BB83416003F90EA /* AKFMOscillator.h in Headers */,
-				C1842A0B1BB8345C003F90EA /* AKDopplerEffect.h in Headers */,
-				C1842A5F1BB8352E003F90EA /* AKAudioPlot.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		EA8E96571AD3C6FC0057E979 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2505,23 +2090,22 @@
 			productReference = EA8E96591AD3C6FC0057E979 /* libAudioKit OS X.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		EAA0F4DE1AE71C8F007CD7C9 /* AudioKit iOS Framework */ = {
+		EAA0F4DE1AE71C8F007CD7C9 /* AudioKit iOS Dynamic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EAA0F5901AE71C8F007CD7C9 /* Build configuration list for PBXNativeTarget "AudioKit iOS Framework" */;
+			buildConfigurationList = EAA0F5901AE71C8F007CD7C9 /* Build configuration list for PBXNativeTarget "AudioKit iOS Dynamic" */;
 			buildPhases = (
 				EAA0F4DF1AE71C8F007CD7C9 /* Sources */,
 				EAA0F58C1AE71C8F007CD7C9 /* Frameworks */,
-				C16055F81BB831F200022370 /* Headers */,
 				EAA0F58F1AE71C8F007CD7C9 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = "AudioKit iOS Framework";
+			name = "AudioKit iOS Dynamic";
 			productName = AudioKit;
-			productReference = EAA0F5941AE71C8F007CD7C9 /* AudioKit.framework */;
-			productType = "com.apple.product-type.framework";
+			productReference = EAA0F5941AE71C8F007CD7C9 /* libAudioKit iOS Dynamic.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -2554,7 +2138,7 @@
 			projectRoot = "";
 			targets = (
 				EA8E93D71AD3C5240057E979 /* AudioKit iOS Static */,
-				EAA0F4DE1AE71C8F007CD7C9 /* AudioKit iOS Framework */,
+				EAA0F4DE1AE71C8F007CD7C9 /* AudioKit iOS Dynamic */,
 				EA8E96581AD3C6FC0057E979 /* AudioKit OS X */,
 			);
 		};
@@ -3414,17 +2998,14 @@
 		EAA0F5911AE71C8F007CD7C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AudioKit/Platforms/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/AudioKit/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = AudioKit;
+				PRODUCT_NAME = "AudioKit iOS Dynamic";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -3432,17 +3013,14 @@
 		EAA0F5921AE71C8F007CD7C9 /* Testing */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AudioKit/Platforms/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/AudioKit/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = AudioKit;
+				PRODUCT_NAME = "AudioKit iOS Dynamic";
 				SKIP_INSTALL = YES;
 			};
 			name = Testing;
@@ -3450,17 +3028,14 @@
 		EAA0F5931AE71C8F007CD7C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/AudioKit/Platforms/iOS",
 				);
-				INFOPLIST_FILE = "$(SRCROOT)/AudioKit/Resources/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_NAME = AudioKit;
+				PRODUCT_NAME = "AudioKit iOS Dynamic";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -3498,7 +3073,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EAA0F5901AE71C8F007CD7C9 /* Build configuration list for PBXNativeTarget "AudioKit iOS Framework" */ = {
+		EAA0F5901AE71C8F007CD7C9 /* Build configuration list for PBXNativeTarget "AudioKit iOS Dynamic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EAA0F5911AE71C8F007CD7C9 /* Debug */,

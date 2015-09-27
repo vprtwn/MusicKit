@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "667D2F63578BE4AC3769E6FFF1AE876A7A50DE72",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "667D2F63578BE4AC3769E6FFF1AE876A7A50DE72" : 0,
+    "5D7AE6F26A6D7E393D8CA002FDE5D0D8ABCDAE62" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1FF3D894-D656-4346-B105-4934BE332D35",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "667D2F63578BE4AC3769E6FFF1AE876A7A50DE72" : "MusicKit\/",
+    "5D7AE6F26A6D7E393D8CA002FDE5D0D8ABCDAE62" : "AudioKit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Keyboard",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Examples\/Keyboard\/Keyboard.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:benzguo\/AudioKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5D7AE6F26A6D7E393D8CA002FDE5D0D8ABCDAE62"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:benzguo\/MusicKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "667D2F63578BE4AC3769E6FFF1AE876A7A50DE72"
+    }
+  ]
+}
