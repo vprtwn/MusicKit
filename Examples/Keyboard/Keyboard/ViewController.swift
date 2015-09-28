@@ -58,16 +58,14 @@ class ViewController: UIViewController, KeyboardViewDelegate {
     // debug:
     func debugString(touches: Set<KeyboardTouch>) -> String {
         return touches.reduce("") { (a, r) in
-            let suffix = String(format: "(%.1f, (%.1f, %.1f))",
-                r.force, r.xOffset, r.yOffset)
             if a == "" {
-                return "\(r.pitch) \(suffix))"
+                return "\(r.debugDescription))"
             }
-            return "\(a), \(r.pitch) \(suffix)"
+            return "\(a), \(r.debugDescription)"
         }
     }
 
-    func updateLabel() {
+    func updateDebugLabel() {
         guard keyboardView.activeTouches.count > 0 else {
             debugLabel.text = ""
             addedTouches.removeAll()
@@ -75,23 +73,29 @@ class ViewController: UIViewController, KeyboardViewDelegate {
             removedTouches.removeAll()
             return
         }
-        debugLabel.text = "added: \(debugString(addedTouches))\nchanged: \(debugString(changedTouches))\nremoved: \(debugString(removedTouches))"
+//        debugLabel.text = "added: \(debugString(addedTouches))\nchanged: \(debugString(changedTouches))\nremoved: \(debugString(removedTouches))"
+        debugLabel.text = keyboardView.activeTouches.reduce("") { (a, r) in
+            if let a = a where a != "" {
+                return "\(r.debugDescription), \(a)"
+            }
+            return r.debugDescription
+        }
     }
 
     // MARK: KeyboardViewDelegate
     func keyboardView(keyboard: KeyboardView, addedTouches: Set<KeyboardTouch>) {
         self.addedTouches = addedTouches
-        updateLabel()
+        updateDebugLabel()
     }
 
     func keyboardView(keyboard: KeyboardView, changedTouches: Set<KeyboardTouch>) {
         self.changedTouches = changedTouches
-        updateLabel()
+        updateDebugLabel()
     }
 
     func keyboardView(keyboard: KeyboardView, removedTouches: Set<KeyboardTouch>) {
         self.removedTouches = removedTouches
-        updateLabel()
+        updateDebugLabel()
     }
 
 }

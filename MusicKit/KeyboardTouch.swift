@@ -43,6 +43,13 @@ public struct KeyboardTouch {
     }
 }
 
+// MARK: CustomDebugStringConvertible
+extension KeyboardTouch: CustomDebugStringConvertible {
+    public var debugDescription: String {
+        return String(format: "%@ (%.1f)", pitch.description, force)
+    }
+}
+
 // MARK: Equatable
 // Note that two touches with the same pitch are considered equal
 extension KeyboardTouch: Equatable { }

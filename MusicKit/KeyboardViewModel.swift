@@ -20,55 +20,52 @@ struct KeyboardViewModel {
         self.view = view
     }
 
-    mutating func registerNewTouches(keyTouches: [(KeyView, UITouch)]) {
-        var newTouches = Set<KeyboardTouch>()
-        for (key, touch) in keyTouches {
-            let kbTouch = KeyboardTouch(pitch: key.pitch,
-                force: view.forceWithTouch(touch),
-                initialLocation: touch.locationInView(key),
-                keySize: key.bounds.size)
-            newTouches.insert(kbTouch)
-            activeTouches.insert(kbTouch)
-        }
-        if newTouches.count > 0 {
-            view.delegate?.keyboardView(view, addedTouches: newTouches)
+    mutating func registerNewTouches(touches: Set<KeyboardTouch>) {
+        activeTouches = activeTouches.union(touches)
+        if touches.count > 0 {
+            view.delegate?.keyboardView(view, addedTouches: touches)
         }
     }
 
-    mutating func registerChangedTouches(keyTouches: [(KeyView, UITouch)]) {
+    mutating func registerChangedTouches(touches: Set<KeyboardTouch>,
+        removedKeys: [KeyView])
+    {
         var newTouches = Set<KeyboardTouch>()
         var changedTouches = Set<KeyboardTouch>()
-        var removedTouches = activeTouches
-        for (key, touch) in keyTouches {
-            let force = view.forceWithTouch(touch)
-            let locationInKey = touch.locationInView(key)
-
+        var removedTouches = Set<KeyboardTouch>()
+        for touch in touches {
             var matchedExistingTouch = false
             for kbTouch in activeTouches {
-                // moved within key
-                if kbTouch.pitch == key.pitch {
+                // moved within key: update existing touch
+                if kbTouch.pitch == touch.pitch {
                     matchedExistingTouch = true
-
-                    var newTouch = kbTouch
-                    newTouch.force = force
-                    newTouch.currentLocation = locationInKey
                     activeTouches.remove(kbTouch)
-                    activeTouches.insert(newTouch)
-
-                    removedTouches.remove(kbTouch)
-                    changedTouches.insert(newTouch)
+                    activeTouches.insert(touch)
+                    changedTouches.insert(touch)
                 }
             }
-            // moved to new key
+            // moved to new key: add new touch
             if !matchedExistingTouch {
-                let kbTouch = KeyboardTouch(pitch: key.pitch,
-                    force: view.forceWithTouch(touch),
-                    initialLocation: locationInKey,
-                    keySize: key.bounds.size)
-                newTouches.insert(kbTouch)
-                activeTouches.insert(kbTouch)
+                newTouches.insert(touch)
             }
         }
+        // moved out of key: remove touch
+        for key in removedKeys {
+            for kbTouch in activeTouches {
+                if kbTouch.pitch == key.pitch {
+                    removedTouches.insert(kbTouch)
+                }
+            }
+        }
+        // normalize
+        removedTouches = removedTouches.subtract(newTouches)
+        removedTouches = removedTouches.subtract(changedTouches)
+
+        // update active touches
+        activeTouches = activeTouches.union(newTouches)
+        activeTouches = activeTouches.subtract(removedTouches)
+
+        // inform delegate
         if newTouches.count > 0 {
             view.delegate?.keyboardView(view, addedTouches: newTouches)
         }
@@ -77,15 +74,14 @@ struct KeyboardViewModel {
         }
         if removedTouches.count > 0 {
             view.delegate?.keyboardView(view, removedTouches: removedTouches)
-            activeTouches = activeTouches.subtract(removedTouches)
         }
     }
 
-    mutating func registerRemovedTouches(keyTouches: [(KeyView, UITouch)]) {
+    mutating func registerRemovedTouches(touches: Set<KeyboardTouch>) {
         var removedTouches = Set<KeyboardTouch>()
-        for (key, _) in keyTouches {
+        for touch in touches {
             for kbTouch in activeTouches {
-                if kbTouch.pitch == key.pitch {
+                if kbTouch.pitch == touch.pitch {
                     activeTouches.remove(kbTouch)
                     removedTouches.insert(kbTouch)
                 }
