@@ -123,7 +123,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     }
 
     // MARK: Touches
-    private func parsedTouches(touches: Set<UITouch>)
+    private func parseTouches(touches: Set<UITouch>)
         -> (Set<KeyboardTouch>, [KeyView], [(KeyView, KeyboardTouch)])
     {
         var kbTouches = Set<KeyboardTouch>()
@@ -175,7 +175,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     public override func touchesBegan(touches: Set<UITouch>,
         withEvent event: UIEvent?)
     {
-        let (kbTouches, _, keyTouchTuples) = parsedTouches(touches)
+        let (kbTouches, _, keyTouchTuples) = parseTouches(touches)
         viewModel.registerNewTouches(kbTouches)
         updateWithNewTouches(keyTouchTuples)
     }
@@ -183,7 +183,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     public override func touchesMoved(touches: Set<UITouch>,
         withEvent event: UIEvent?)
     {
-        let (keyTouches, removedKeys, keyTouchTuples) = parsedTouches(touches)
+        let (keyTouches, removedKeys, keyTouchTuples) = parseTouches(touches)
         viewModel.registerChangedTouches(keyTouches, removedKeys: removedKeys)
         updateWithChangedTouches(keyTouchTuples, removedKeys: removedKeys)
     }
@@ -192,7 +192,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         withEvent event: UIEvent?)
     {
         guard let touches = touches else { return }
-        let (keyTouches, _, keyTouchTuples) = parsedTouches(touches)
+        let (keyTouches, _, keyTouchTuples) = parseTouches(touches)
         viewModel.registerRemovedTouches(keyTouches)
         updateWithRemovedTouches(keyTouchTuples)
     }
@@ -200,7 +200,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     public override func touchesEnded(touches: Set<UITouch>,
         withEvent event: UIEvent?)
     {
-        let (keyTouches, _, keyTouchTuples) = parsedTouches(touches)
+        let (keyTouches, _, keyTouchTuples) = parseTouches(touches)
         viewModel.registerRemovedTouches(keyTouches)
         updateWithRemovedTouches(keyTouchTuples)
     }
