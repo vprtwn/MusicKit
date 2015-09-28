@@ -24,13 +24,7 @@ class KeyView: UIView {
     }
 
     /// The key's pitch
-    var pitch: Pitch = Chroma.C*4 {
-        didSet {
-            debugLabel.text = pitch.description
-            debugLabel.sizeToFit()
-            setNeedsLayout()
-        }
-    }
+    var pitch: Pitch
 
     // TODO: remove
     private var debugLabel = UILabel()
@@ -40,14 +34,19 @@ class KeyView: UIView {
     convenience init(pitch: Pitch) {
         self.init(frame: CGRectZero)
         self.pitch = pitch
+        debugLabel.text = pitch.description
+        debugLabel.sizeToFit()
+        setNeedsLayout()
     }
 
     override init(frame: CGRect) {
+        self.pitch = Chroma.C*4
         super.init(frame: frame)
         load()
     }
 
     required init?(coder aDecoder: NSCoder) {
+        self.pitch = Chroma.C*4
         super.init(coder: aDecoder)
         load()
     }

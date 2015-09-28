@@ -36,14 +36,26 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         return viewModel.activeTouches
     }
 
+    /// The height of the scroll pad
+    public var scrollPadHeight: CGFloat = 128.0 {
+        didSet { setNeedsLayout() }
+    }
+
+    /// The width of white keys (mm)
+    public var whiteKeyWidth: CGFloat = 20 {
+        didSet { setNeedsLayout() }
+    }
+
+    /// The width of black keys relative to white keys
+    public var blackKeyRelativeWidth: CGFloat = 13.7/23.5
+
     private lazy var viewModel: KeyboardViewModel = {
         return KeyboardViewModel(view: self)
-    }()
+        }()
 
-    /// White key width (px)
-    private lazy var whiteKeyWidth: CGFloat = 20/UIDevice.mmPerPixel
-    /// avg black key width / avg white key width
-    private lazy var blackKeyRelativeWidth: CGFloat = 13.7/23.5
+    private var whiteKeyWidthPx: CGFloat {
+        return whiteKeyWidth/UIDevice.mmPerPixel
+    }
 
     private lazy var keyViews = [KeyView]()
     private lazy var keyContainer: UIScrollView = {
@@ -72,6 +84,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
 
     func load() {
         multipleTouchEnabled = true
+        scrollPadHeight = whiteKeyWidthPx
         updateWithPitches(pitchSet)
         addSubview(keyContainer)
         addSubview(scrollPad)
@@ -80,7 +93,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     override public func layoutSubviews() {
         super.layoutSubviews()
 
-        let scrollPadHeight = whiteKeyWidth
+        let scrollPadHeight = whiteKeyWidthPx
         scrollPad.frame = CGRectMake(0, bounds.height - scrollPadHeight,
             bounds.width, scrollPadHeight)
         keyContainer.frame = CGRectMake(0, 0,
@@ -89,7 +102,8 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         var lastMaxX: CGFloat = 0
         for i in 0..<keyViews.count {
             let view = keyViews[i]
-            view.frame = CGRectMake(CGFloat(i)*whiteKeyWidth, 0, whiteKeyWidth, bounds.height)
+            view.frame = CGRectMake(CGFloat(i)*whiteKeyWidthPx,
+                0, whiteKeyWidthPx, bounds.height - scrollPadHeight)
             lastMaxX = CGRectGetMaxX(view.frame)
         }
         keyContainer.contentSize = CGSizeMake(lastMaxX, bounds.height)
