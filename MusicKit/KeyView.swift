@@ -37,6 +37,11 @@ class KeyView: UIView {
 
     private lazy var foregroundView = UIView()
 
+    convenience init(pitch: Pitch) {
+        self.init(frame: CGRectZero)
+        self.pitch = pitch
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         load()
