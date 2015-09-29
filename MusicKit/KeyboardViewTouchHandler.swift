@@ -1,5 +1,5 @@
 //
-//  KeyboardViewModel.swift
+//  KeyboardViewTouchHandler.swift
 //  MusicKit
 //
 //  Created by Ben Guo on 9/27/15.
@@ -8,10 +8,8 @@
 
 import UIKit
 
-struct KeyboardViewModel {
+struct KeyboardViewTouchHandler {
     var view: KeyboardView
-
-    var pitchSet: PitchSet = PitchSet([])
 
     /// The keyboard's current active touches
     var activeTouches = Set<KeyboardTouch>()
@@ -27,13 +25,13 @@ struct KeyboardViewModel {
         }
     }
 
-    mutating func registerChangedTouches(touches: Set<KeyboardTouch>,
-        removedKeys: [KeyView])
+    mutating func registerChangedTouches(within: Set<KeyboardTouch>,
+        _ leaving: Set<KeyboardTouch>)
     {
         var newTouches = Set<KeyboardTouch>()
         var changedTouches = Set<KeyboardTouch>()
-        var removedTouches = Set<KeyboardTouch>()
-        for touch in touches {
+        var removedTouches = leaving
+        for touch in within {
             var matchedExistingTouch = false
             for kbTouch in activeTouches {
                 // moved within key: update existing touch
@@ -47,14 +45,6 @@ struct KeyboardViewModel {
             // moved to new key: add new touch
             if !matchedExistingTouch {
                 newTouches.insert(touch)
-            }
-        }
-        // moved out of key: remove touch
-        for key in removedKeys {
-            for kbTouch in activeTouches {
-                if kbTouch.pitch == key.pitch {
-                    removedTouches.insert(kbTouch)
-                }
             }
         }
         // normalize

@@ -25,7 +25,6 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     /// The keyboard's pitches
     public var pitchSet: PitchSet = Scale.Chromatic(Chroma.C*3).extend(3) {
         didSet {
-            viewModel.pitchSet = pitchSet
             updateWithPitches(pitchSet)
             setNeedsLayout()
         }
@@ -33,7 +32,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
 
     /// The keyboard's current active touches
     public var activeTouches: Set<KeyboardTouch> {
-        return viewModel.activeTouches
+        return touchHandler.activeTouches
     }
 
     /// The height of the scroll pad
@@ -49,8 +48,8 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     /// The width of black keys relative to white keys
     public var blackKeyRelativeWidth: CGFloat = 13.7/23.5
 
-    private lazy var viewModel: KeyboardViewModel = {
-        return KeyboardViewModel(view: self)
+    private lazy var touchHandler: KeyboardViewTouchHandler = {
+        return KeyboardViewTouchHandler(view: self)
         }()
 
     private var whiteKeyWidthPx: CGFloat {
@@ -123,16 +122,11 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     }
 
     // MARK: Touches
-    private func parseTouches(touches: Set<UITouch>)
-        -> (Set<KeyboardTouch>,
-        Set<KeyboardTouch>,
-        [KeyView],
-        [(KeyView, KeyboardTouch)])
-    {
-        var kbTouches = Set<KeyboardTouch>()
-        var keyTouchTuples = [(KeyView, KeyboardTouch)]()
-        var removedTouches = Set<KeyboardTouch>()
-        var removedKeys = [KeyView]()
+    private func parseTouches(touches: Set<UITouch>) -> KeyboardTouchDiff {
+        var touchesWithinKeys = Set<KeyboardTouch>()
+        var touchesLeavingKeys = Set<KeyboardTouch>()
+        var keyViewTouchPairs = [(KeyView, KeyboardTouch)]()
+        var abandonedKeyViews = [KeyView]()
         for key in keyViews {
             for touch in touches {
                 let currentLocation = touch.locationInView(keyContainer)
@@ -142,72 +136,69 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
                     initialLocation: touch.locationInView(key),
                     keySize: key.bounds.size)
                 if CGRectContainsPoint(key.frame, currentLocation) {
-                    kbTouches.insert(kbTouch)
-                    keyTouchTuples.append((key, kbTouch))
+                    touchesWithinKeys.insert(kbTouch)
+                    keyViewTouchPairs.append((key, kbTouch))
                 }
                 else if CGRectContainsPoint(key.frame, previousLocation) {
-                    removedKeys.append(key)
-                    removedTouches.insert(kbTouch)
+                    abandonedKeyViews.append(key)
+                    touchesLeavingKeys.insert(kbTouch)
                 }
             }
         }
-        return (kbTouches, removedTouches, removedKeys, keyTouchTuples)
+        return KeyboardTouchDiff(touchesWithinKeys: touchesWithinKeys,
+            touchesLeavingKeys: touchesLeavingKeys,
+            keyViewTouchPairs: keyViewTouchPairs,
+            abandonedKeyViews: abandonedKeyViews)
     }
 
-    private func updateWithNewTouches(keyTouches: [(KeyView, KeyboardTouch)]) {
-        for (key, touch) in keyTouches {
-            key.force = touch.force
-        }
+    private func updateWithNewTouches(pairs: [(KeyView, KeyboardTouch)]) {
+        for (key, touch) in pairs { key.force = touch.force }
     }
 
-    private func updateWithChangedTouches(keyTouches: [(KeyView, KeyboardTouch)],
-        removedKeys: [KeyView])
+    private func updateWithChangedTouches(current: [(KeyView, KeyboardTouch)],
+        _ abandoned: [KeyView])
     {
-        for (key, touch) in keyTouches {
-            key.force = touch.force
-        }
-        for key in removedKeys {
-            key.force = 0
-        }
+        for (key, touch) in current { key.force = touch.force }
+        for key in abandoned { key.force = 0 }
     }
 
-    private func updateWithRemovedTouches(keyTouches: [(KeyView, KeyboardTouch)]) {
-        for (key, _) in keyTouches {
-            key.force = 0
-        }
+    private func updateWithRemovedTouches(pairs: [(KeyView, KeyboardTouch)]) {
+        for (key, _) in pairs { key.force = 0 }
     }
 
     public override func touchesBegan(touches: Set<UITouch>,
         withEvent event: UIEvent?)
     {
-        let (kbTouches, _, _, keyTouchTuples) = parseTouches(touches)
-        viewModel.registerNewTouches(kbTouches)
-        updateWithNewTouches(keyTouchTuples)
+        let diff = parseTouches(touches)
+        touchHandler.registerNewTouches(diff.touchesWithinKeys)
+        updateWithNewTouches(diff.keyViewTouchPairs)
     }
 
     public override func touchesMoved(touches: Set<UITouch>,
         withEvent event: UIEvent?)
     {
-        let (keyTouches, removedTouches, removedKeys, keyTouchTuples) = parseTouches(touches)
-        viewModel.registerChangedTouches(keyTouches, removedKeys: removedKeys)
-        updateWithChangedTouches(keyTouchTuples, removedKeys: removedKeys)
+        let diff = parseTouches(touches)
+        touchHandler.registerChangedTouches(diff.touchesWithinKeys,
+            diff.touchesLeavingKeys)
+        updateWithChangedTouches(diff.keyViewTouchPairs,
+            diff.abandonedKeyViews)
     }
 
     public override func touchesCancelled(touches: Set<UITouch>?,
         withEvent event: UIEvent?)
     {
         guard let touches = touches else { return }
-        let (keyTouches, _, _, keyTouchTuples) = parseTouches(touches)
-        viewModel.registerRemovedTouches(keyTouches)
-        updateWithRemovedTouches(keyTouchTuples)
+        let diff = parseTouches(touches)
+        touchHandler.registerRemovedTouches(diff.touchesWithinKeys)
+        updateWithRemovedTouches(diff.keyViewTouchPairs)
     }
 
     public override func touchesEnded(touches: Set<UITouch>,
         withEvent event: UIEvent?)
     {
-        let (keyTouches, _, _, keyTouchTuples) = parseTouches(touches)
-        viewModel.registerRemovedTouches(keyTouches)
-        updateWithRemovedTouches(keyTouchTuples)
+        let diff = parseTouches(touches)
+        touchHandler.registerRemovedTouches(diff.touchesWithinKeys)
+        updateWithRemovedTouches(diff.keyViewTouchPairs)
     }
 
     // MARK: UIScrollViewDelegate
