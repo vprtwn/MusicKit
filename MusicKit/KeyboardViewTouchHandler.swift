@@ -1,5 +1,5 @@
 //
-//  KeyboardViewTouchHandler.swift
+//  KeyboardViewTouchDispatcher.swift
 //  MusicKit
 //
 //  Created by Ben Guo on 9/27/15.
@@ -8,7 +8,8 @@
 
 import UIKit
 
-struct KeyboardViewTouchHandler {
+/// Tracks touches and forwards to the KeyboardViewDelegate
+struct KeyboardViewTouchDispatcher {
     var view: KeyboardView
 
     /// The keyboard's current active touches

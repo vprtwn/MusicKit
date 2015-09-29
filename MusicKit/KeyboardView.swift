@@ -32,7 +32,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
 
     /// The keyboard's current active touches
     public var activeTouches: Set<KeyboardTouch> {
-        return touchHandler.activeTouches
+        return touchDispatcher.activeTouches
     }
 
     /// The height of the scroll pad
@@ -48,8 +48,8 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     /// The width of black keys relative to white keys
     public var blackKeyRelativeWidth: CGFloat = 13.7/23.5
 
-    private lazy var touchHandler: KeyboardViewTouchHandler = {
-        return KeyboardViewTouchHandler(view: self)
+    private lazy var touchDispatcher: KeyboardViewTouchDispatcher = {
+        return KeyboardViewTouchDispatcher(view: self)
         }()
 
     private var whiteKeyWidthPx: CGFloat {
@@ -170,7 +170,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         withEvent event: UIEvent?)
     {
         let diff = parseTouches(touches)
-        touchHandler.registerNewTouches(diff.touchesWithinKeys)
+        touchDispatcher.registerNewTouches(diff.touchesWithinKeys)
         updateWithNewTouches(diff.keyViewTouchPairs)
     }
 
@@ -178,7 +178,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         withEvent event: UIEvent?)
     {
         let diff = parseTouches(touches)
-        touchHandler.registerChangedTouches(diff.touchesWithinKeys,
+        touchDispatcher.registerChangedTouches(diff.touchesWithinKeys,
             diff.touchesLeavingKeys)
         updateWithChangedTouches(diff.keyViewTouchPairs,
             diff.abandonedKeyViews)
@@ -189,7 +189,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     {
         guard let touches = touches else { return }
         let diff = parseTouches(touches)
-        touchHandler.registerRemovedTouches(diff.touchesWithinKeys)
+        touchDispatcher.registerRemovedTouches(diff.touchesWithinKeys)
         updateWithRemovedTouches(diff.keyViewTouchPairs)
     }
 
@@ -197,7 +197,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         withEvent event: UIEvent?)
     {
         let diff = parseTouches(touches)
-        touchHandler.registerRemovedTouches(diff.touchesWithinKeys)
+        touchDispatcher.registerRemovedTouches(diff.touchesWithinKeys)
         updateWithRemovedTouches(diff.keyViewTouchPairs)
     }
 
