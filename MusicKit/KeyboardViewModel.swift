@@ -78,17 +78,10 @@ struct KeyboardViewModel {
     }
 
     mutating func registerRemovedTouches(touches: Set<KeyboardTouch>) {
-        var removedTouches = Set<KeyboardTouch>()
-        for touch in touches {
-            for kbTouch in activeTouches {
-                if kbTouch.pitch == touch.pitch {
-                    activeTouches.remove(kbTouch)
-                    removedTouches.insert(kbTouch)
-                }
-            }
+        guard touches.count > 0 else {
+            return
         }
-        if removedTouches.count > 0 {
-            view.delegate?.keyboardView(view, removedTouches: removedTouches)
-        }
+        activeTouches = activeTouches.subtract(touches)
+        view.delegate?.keyboardView(view, removedTouches: touches)
     }
 }

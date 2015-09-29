@@ -95,6 +95,7 @@
 		C10BFAFB1BB900B9001C4471 /* Pitch+KeyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10BFAFA1BB900B9001C4471 /* Pitch+KeyColor.swift */; settings = {ASSET_TAGS = (); }; };
 		C10BFAFC1BB900B9001C4471 /* Pitch+KeyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10BFAFA1BB900B9001C4471 /* Pitch+KeyColor.swift */; settings = {ASSET_TAGS = (); }; };
 		C12E906D1BB8270C00CE3256 /* KeyboardView+Force.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E906C1BB8270C00CE3256 /* KeyboardView+Force.swift */; settings = {ASSET_TAGS = (); }; };
+		C16EBDA71BBA5E1C007F7055 /* KeyboardTouchDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16EBDA61BBA5E1C007F7055 /* KeyboardTouchDiff.swift */; settings = {ASSET_TAGS = (); }; };
 		C170D7721BB64BF800CAD976 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7701BB64BF800CAD976 /* KeyboardView.swift */; settings = {ASSET_TAGS = (); }; };
 		C170D7731BB64BF800CAD976 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7711BB64BF800CAD976 /* KeyView.swift */; settings = {ASSET_TAGS = (); }; };
 		C1A8D2431BB86C22002695E2 /* KeyboardTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A8D2421BB86C22002695E2 /* KeyboardTouch.swift */; settings = {ASSET_TAGS = (); }; };
@@ -178,6 +179,7 @@
 		C10BFAF81BB8F668001C4471 /* KeyboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardViewModel.swift; sourceTree = "<group>"; };
 		C10BFAFA1BB900B9001C4471 /* Pitch+KeyColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Pitch+KeyColor.swift"; sourceTree = "<group>"; };
 		C12E906C1BB8270C00CE3256 /* KeyboardView+Force.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KeyboardView+Force.swift"; sourceTree = "<group>"; };
+		C16EBDA61BBA5E1C007F7055 /* KeyboardTouchDiff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTouchDiff.swift; sourceTree = "<group>"; };
 		C170D7701BB64BF800CAD976 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		C170D7711BB64BF800CAD976 /* KeyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyView.swift; sourceTree = "<group>"; };
 		C1A8D2421BB86C22002695E2 /* KeyboardTouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTouch.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 			children = (
 				C10BFAFA1BB900B9001C4471 /* Pitch+KeyColor.swift */,
 				C170D7701BB64BF800CAD976 /* KeyboardView.swift */,
+				C16EBDA61BBA5E1C007F7055 /* KeyboardTouchDiff.swift */,
 				C10BFAF81BB8F668001C4471 /* KeyboardViewModel.swift */,
 				C1A8D2421BB86C22002695E2 /* KeyboardTouch.swift */,
 				C12E906C1BB8270C00CE3256 /* KeyboardView+Force.swift */,
@@ -646,6 +649,7 @@
 				C1FA8B181BB72D4800FE8D15 /* DeviceType.swift in Sources */,
 				960F015F1AFFA6AA006974AE /* MIDIMessage.swift in Sources */,
 				9693F6781A57C44A006270F4 /* Scale.swift in Sources */,
+				C16EBDA71BBA5E1C007F7055 /* KeyboardTouchDiff.swift in Sources */,
 				967070EA1B0850AC00CB367E /* ChordExtensions.swift in Sources */,
 				C170D7731BB64BF800CAD976 /* KeyView.swift in Sources */,
 				96DFB6321AF6C26A005EEBD6 /* Harmony.swift in Sources */,
