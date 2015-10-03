@@ -8,15 +8,47 @@
 
 import UIKit
 
+extension CGPoint {
+    private func offset(offset: CGPoint) -> CGPoint {
+        return CGPointMake(self.x + offset.x,
+            self.y + offset.y)
+    }
+}
+
 /// Intermediate representation of a UITouch with resolved locations
 struct KeyboardViewTouch {
     let location: CGPoint
     let previousLocation: CGPoint
     let locationInKey: CGPoint
     let force: CGFloat
-    let locationIsWithinKey: Bool
-    let previousLocationIsWithinKey: Bool
+    var locationIsWithinKey: Bool {
+        return CGRectContainsPoint(key.frame, location)
+    }
+    var previousLocationIsWithinKey: Bool {
+        return CGRectContainsPoint(key.frame, previousLocation)
+    }
     let key: KeyView
+
+    init(touch: KeyboardViewTouch, offset: CGPoint) {
+        location = touch.location.offset(offset)
+        previousLocation = touch.previousLocation.offset(offset)
+        locationInKey = touch.locationInKey.offset(offset)
+        force = touch.force
+        key = touch.key
+    }
+
+    init(location: CGPoint,
+        previousLocation: CGPoint,
+        locationInKey: CGPoint,
+        force: CGFloat,
+        key: KeyView)
+    {
+        self.location = location
+        self.previousLocation = previousLocation
+        self.locationInKey = locationInKey
+        self.force = force
+        self.key = key
+    }
 
     init(touch: UITouch,
         keyContainer: UIView,
@@ -26,18 +58,6 @@ struct KeyboardViewTouch {
         location = touch.locationInView(keyContainer)
         previousLocation = touch.previousLocationInView(keyContainer)
         locationInKey = touch.locationInView(keyView)
-        if CGRectContainsPoint(keyView.frame, location) {
-            locationIsWithinKey = true
-        }
-        else {
-            locationIsWithinKey = false
-        }
-        if CGRectContainsPoint(keyView.frame, previousLocation) {
-            previousLocationIsWithinKey = true
-        }
-        else {
-            previousLocationIsWithinKey = false
-        }
         force = keyboardView.forceWithTouch(touch)
         self.key = keyView
     }
@@ -50,8 +70,6 @@ func ==(lhs: KeyboardViewTouch, rhs: KeyboardViewTouch) -> Bool {
     lhs.previousLocation == rhs.previousLocation &&
     lhs.force == rhs.force &&
     lhs.locationInKey == rhs.locationInKey &&
-    lhs.locationIsWithinKey == rhs.locationIsWithinKey &&
-    lhs.previousLocationIsWithinKey == rhs.previousLocationIsWithinKey &&
     lhs.key == rhs.key
 }
 
@@ -63,8 +81,6 @@ extension KeyboardViewTouch: Hashable {
             previousLocation.x.hashValue |
             previousLocation.y.hashValue |
             force.hashValue |
-            locationIsWithinKey.hashValue |
-            previousLocationIsWithinKey.hashValue |
             key.hashValue
     }
 }

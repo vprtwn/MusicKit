@@ -67,6 +67,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         view.userInteractionEnabled = false
         return view
     }()
+
     private lazy var scrollPad: UIScrollView = {
         let view = UIScrollView()
         view.showsHorizontalScrollIndicator = false
@@ -128,5 +129,12 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     // MARK: UIScrollViewDelegate
     public func scrollViewDidScroll(scrollView: UIScrollView) {
         keyContainer.contentOffset = scrollView.contentOffset
+
+        var activeTouches = Set<KeyboardViewTouch>()
+        for touch in activeKVTouches {
+            let kvTouch = KeyboardViewTouch(touch: touch,
+                offset: keyContainer.contentOffset)
+            activeKVTouches.insert(kvTouch)
+        }
     }
 }

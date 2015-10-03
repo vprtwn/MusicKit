@@ -78,9 +78,12 @@ extension KeyboardView {
     public override func touchesMoved(touches: Set<UITouch>,
         withEvent event: UIEvent?)
     {
-        let kvTouches = parseTouches(touches)
-        let diff = parseKVTouches(kvTouches)
-        activeKVTouches = kvTouches
+        touchesMoved(parseTouches(touches))
+    }
+
+    func touchesMoved(touches: Set<KeyboardViewTouch>) {
+        let diff = parseKVTouches(touches)
+        activeKVTouches = touches
         touchDispatcher.registerChangedTouches(diff.touchesWithinKeys,
             diff.touchesLeavingKeys)
         updateWithChangedTouches(diff.keyViewTouchPairs,
