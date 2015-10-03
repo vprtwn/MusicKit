@@ -10,28 +10,38 @@ import UIKit
 
 /// Touch handling
 extension KeyboardView {
-    
-    private func parseTouches(touches: Set<UITouch>) -> KeyboardTouchDiff {
+
+    private func parseTouches(touches: Set<UITouch>) -> Set<KeyboardViewTouch> {
+        var kvTouches = Set<KeyboardViewTouch>()
+        for key in keyViews {
+            for touch in touches {
+                let kvTouch = KeyboardViewTouch(touch: touch,
+                    keyContainer: keyContainer,
+                    keyView: key,
+                    keyboardView: self)
+                kvTouches.insert(kvTouch)
+            }
+        }
+        return kvTouches
+    }
+
+    private func parseKVTouches(touches: Set<KeyboardViewTouch>) -> KeyboardTouchDiff {
         var touchesWithinKeys = Set<KeyboardTouch>()
         var touchesLeavingKeys = Set<KeyboardTouch>()
         var keyViewTouchPairs = [(KeyView, KeyboardTouch)]()
         var abandonedKeyViews = [KeyView]()
-        for key in keyViews {
-            for touch in touches {
-                let currentLocation = touch.locationInView(keyContainer)
-                let previousLocation = touch.previousLocationInView(keyContainer)
-                let kbTouch = KeyboardTouch(pitch: key.pitch,
-                    force: self.forceWithTouch(touch),
-                    initialLocation: touch.locationInView(key),
-                    keySize: key.bounds.size)
-                if CGRectContainsPoint(key.frame, currentLocation) {
-                    touchesWithinKeys.insert(kbTouch)
-                    keyViewTouchPairs.append((key, kbTouch))
-                }
-                else if CGRectContainsPoint(key.frame, previousLocation) {
-                    abandonedKeyViews.append(key)
-                    touchesLeavingKeys.insert(kbTouch)
-                }
+        for touch in touches {
+            let kbTouch = KeyboardTouch(pitch: touch.key.pitch,
+                force: touch.force,
+                initialLocation: touch.locationInKey,
+                keySize: touch.key.bounds.size)
+            if touch.locationIsWithinKey {
+                touchesWithinKeys.insert(kbTouch)
+                keyViewTouchPairs.append((touch.key, kbTouch))
+            }
+            else if touch.previousLocationIsWithinKey {
+                abandonedKeyViews.append(touch.key)
+                touchesLeavingKeys.insert(kbTouch)
             }
         }
         return KeyboardTouchDiff(touchesWithinKeys: touchesWithinKeys,
@@ -58,7 +68,9 @@ extension KeyboardView {
     public override func touchesBegan(touches: Set<UITouch>,
         withEvent event: UIEvent?)
     {
-        let diff = parseTouches(touches)
+        let kvTouches = parseTouches(touches)
+        let diff = parseKVTouches(kvTouches)
+        activeKVTouches = kvTouches
         touchDispatcher.registerNewTouches(diff.touchesWithinKeys)
         updateWithNewTouches(diff.keyViewTouchPairs)
     }
@@ -66,7 +78,9 @@ extension KeyboardView {
     public override func touchesMoved(touches: Set<UITouch>,
         withEvent event: UIEvent?)
     {
-        let diff = parseTouches(touches)
+        let kvTouches = parseTouches(touches)
+        let diff = parseKVTouches(kvTouches)
+        activeKVTouches = kvTouches
         touchDispatcher.registerChangedTouches(diff.touchesWithinKeys,
             diff.touchesLeavingKeys)
         updateWithChangedTouches(diff.keyViewTouchPairs,
@@ -76,8 +90,10 @@ extension KeyboardView {
     public override func touchesCancelled(touches: Set<UITouch>?,
         withEvent event: UIEvent?)
     {
+        activeKVTouches = Set<KeyboardViewTouch>()
         guard let touches = touches else { return }
-        let diff = parseTouches(touches)
+        let kvTouches = parseTouches(touches)
+        let diff = parseKVTouches(kvTouches)
         touchDispatcher.registerRemovedTouches(diff.touchesWithinKeys)
         updateWithRemovedTouches(diff.keyViewTouchPairs)
     }
@@ -85,7 +101,9 @@ extension KeyboardView {
     public override func touchesEnded(touches: Set<UITouch>,
         withEvent event: UIEvent?)
     {
-        let diff = parseTouches(touches)
+        activeKVTouches = Set<KeyboardViewTouch>()
+        let kvTouches = parseTouches(touches)
+        let diff = parseKVTouches(kvTouches)
         touchDispatcher.registerRemovedTouches(diff.touchesWithinKeys)
         updateWithRemovedTouches(diff.keyViewTouchPairs)
     }

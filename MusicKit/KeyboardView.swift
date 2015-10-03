@@ -74,6 +74,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         view.delegate = self
         return view
     }()
+    var activeKVTouches = Set<KeyboardViewTouch>()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
