@@ -129,12 +129,5 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     // MARK: UIScrollViewDelegate
     public func scrollViewDidScroll(scrollView: UIScrollView) {
         keyContainer.contentOffset = scrollView.contentOffset
-
-        var activeTouches = Set<KeyboardViewTouch>()
-        for touch in activeKVTouches {
-            let kvTouch = KeyboardViewTouch(touch: touch,
-                offset: keyContainer.contentOffset)
-            activeKVTouches.insert(kvTouch)
-        }
     }
 }
