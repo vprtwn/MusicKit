@@ -48,6 +48,10 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     /// The width of black keys relative to white keys
     public var blackKeyRelativeWidth: CGFloat = 13.7/23.5
 
+    private var blackKeyWidthPx: CGFloat {
+        return whiteKeyWidthPx*blackKeyRelativeWidth
+    }
+
     lazy var touchDispatcher: KeyboardViewTouchDispatcher = {
         return KeyboardViewTouchDispatcher(view: self)
         }()
@@ -102,16 +106,52 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         keyContainer.frame = CGRectMake(0, 0,
             bounds.width, CGRectGetMinY(scrollPad.frame))
 
-        var lastMaxX: CGFloat = 0
+        var lastFrame: CGRect? = nil
+        var lastColor: KeyColor? = nil
+        let whiteHeight = bounds.height - scrollPadHeightPx
+        let blackHeight = round(whiteHeight/2.0)
+
         for i in 0..<keyViews.count {
             let view = keyViews[i]
-            view.frame = CGRectMake(CGFloat(i)*whiteKeyWidthPx,
-                0, whiteKeyWidthPx, bounds.height - scrollPadHeightPx)
-            lastMaxX = CGRectGetMaxX(view.frame)
+            var frame: CGRect
+            if view.pitch.keyColor == .Black {
+                if let lastFrame = lastFrame where lastColor == .White {
+                    let x = CGRectGetMaxX(lastFrame) - round(blackKeyWidthPx/2.0)
+                    frame = CGRectMake(x, 0, blackKeyWidthPx, blackHeight)
+                }
+                else if let lastFrame = lastFrame where lastColor == .Black {
+                    let x = CGRectGetMaxX(lastFrame)
+                    frame = CGRectMake(x, 0, blackKeyWidthPx, blackHeight)
+                }
+                else {
+                    frame = CGRectMake(0, 0, blackKeyWidthPx, blackHeight)
+                }
+                lastColor = .Black
+            }
+            else {
+                if let lastFrame = lastFrame where lastColor == .White {
+                    let x = CGRectGetMaxX(lastFrame)
+                    frame = CGRectMake(x, 0, whiteKeyWidthPx, whiteHeight)
+                }
+                else if let lastFrame = lastFrame where lastColor == .Black {
+                    let x = CGRectGetMinX(lastFrame) + round(blackKeyWidthPx/2.0)
+                    frame = CGRectMake(x, 0, whiteKeyWidthPx, whiteHeight)
+                }
+                else {
+                    frame = CGRectMake(0, 0, whiteKeyWidthPx, whiteHeight)
+                }
+                // Other = same position as White
+                lastColor = .White
+            }
+            view.frame = frame
+            lastFrame = frame
         }
-        keyContainer.contentSize = CGSizeMake(lastMaxX,
-            keyContainer.bounds.height)
-        scrollPad.contentSize = CGSizeMake(lastMaxX, scrollPad.bounds.height)
+        if let frame = lastFrame {
+            let lastMaxX = CGRectGetMaxX(frame)
+            keyContainer.contentSize = CGSizeMake(lastMaxX,
+                keyContainer.bounds.height)
+            scrollPad.contentSize = CGSizeMake(lastMaxX, scrollPad.bounds.height)
+        }
     }
 
     func updateWithPitches(pitches: PitchSet) {
