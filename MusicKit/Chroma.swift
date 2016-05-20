@@ -64,9 +64,10 @@ public enum Chroma: UInt {
 
     /// Returns true if the given name tuple is a valid name
     func validateName(name: ChromaNameTuple) -> Bool {
-        return self.names.reduce(false, combine: { (a, r) -> Bool in
+        return self.names.reduce(false) {
+          (a, r) -> Bool in
             a || (r == name)
-        })
+        }
     }
 }
 

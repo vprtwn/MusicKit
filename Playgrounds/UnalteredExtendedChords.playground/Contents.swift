@@ -65,6 +65,6 @@ func printCode(groupName: String, symbols: [String], intervals: [String]) {
     print("\n")
 }
 
-printCode("unaltered pentads", unalteredPentads.0, unalteredPentads.1)
-printCode("unaltered hexads", unalteredHexads.0, unalteredHexads.1)
-printCode("unaltered heptads", unalteredHeptads.0, unalteredHeptads.1)
+printCode("unaltered pentads", symbols: unalteredPentads.0, intervals: unalteredPentads.1)
+printCode("unaltered hexads", symbols: unalteredHexads.0, intervals: unalteredHexads.1)
+printCode("unaltered heptads", symbols: unalteredHeptads.0, intervals: unalteredHeptads.1)
