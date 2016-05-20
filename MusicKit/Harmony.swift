@@ -17,9 +17,10 @@ public struct Harmony {
     public static func create(intervals: [Float]) -> Harmonizer {
         return { firstPitch in
             let pitchSet = PitchSet(pitches: firstPitch)
-            return intervals.reduce(pitchSet, combine: { (ps, interval) -> PitchSet in
+            return intervals.reduce(pitchSet) {
+                (ps, interval) -> PitchSet in
                 return ps + [ps.last()! + interval]
-            })
+            }
         }
     }
 }

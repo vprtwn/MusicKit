@@ -4,13 +4,13 @@ let unalteredTetrads = ChordQuality.UnalteredTetrads
 let diminishedTetrads = [ChordQuality.DiminishedSeventh, ChordQuality.HalfDiminishedSeventh]
 let augmentedTetrads = [ChordQuality.AugmentedSeventh, ChordQuality.AugmentedMajorSeventh]
 var nonDiminishedTetrads = unalteredTetrads.filter {
-    !contains(diminishedTetrads, $0)
+    !diminishedTetrads.contains($0)
 }
 var nonAugmentedTetrads = unalteredTetrads.filter {
-    !contains(augmentedTetrads, $0)
+    !augmentedTetrads.contains($0)
 }
 var nonDiminishedAugmentedTetrads = unalteredTetrads.filter {
-    !contains(diminishedTetrads + augmentedTetrads, $0)
+    !(diminishedTetrads + augmentedTetrads).contains($0)
 }
 
 var flatNines = ([String](), [String]())
@@ -84,6 +84,6 @@ func printCode(groupName: String, symbols: [String], intervals: [String]) {
     print("\n")
 }
 
-printCode("flat nine heptads", flatNines.0, flatNines.1)
-printCode("sharp eleven heptads", sharpElevens.0, sharpElevens.1)
-printCode("flat thirteen heptads", flatThirteens.0, flatThirteens.1)
+printCode("flat nine heptads", symbols: flatNines.0, intervals: flatNines.1)
+printCode("sharp eleven heptads", symbols: sharpElevens.0, intervals: sharpElevens.1)
+printCode("flat thirteen heptads", symbols: flatThirteens.0, intervals: flatThirteens.1)
