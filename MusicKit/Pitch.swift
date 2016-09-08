@@ -64,10 +64,10 @@ public struct Pitch: Comparable {
         let bSharp: ChromaNameTuple = (.B, .Sharp)
         var adjustedOctaveNumber = octave
         if name == cFlat {
-            adjustedOctaveNumber++
+            adjustedOctaveNumber += 1
         }
         else if name == bSharp {
-            adjustedOctaveNumber--
+            adjustedOctaveNumber -= 1
         }
         return (name.0, name.1, adjustedOctaveNumber)
     }
