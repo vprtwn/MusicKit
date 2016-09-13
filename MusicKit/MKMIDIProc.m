@@ -17,7 +17,7 @@ static void readProc(const MIDIPacketList *packetList, void *procRef, void *srcR
     NSMutableArray *packets = [NSMutableArray array];
     const MIDIPacket *packet = &packetList->packet[0];
     UInt16 nBytes;
-    for (int i=0; i<packetCount; i++) {
+    for (NSUInteger i=0; i<packetCount; i++) {
         nBytes = packet->length;
         UInt16 iByte, size;
         iByte = 0;

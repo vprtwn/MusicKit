@@ -1,6 +1,6 @@
 //  Copyright (c) 2015 Ben Guo. All rights reserved.
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 @import CoreMIDI;
 
 typedef NS_ENUM(unsigned char, MKMIDIMessage) {
