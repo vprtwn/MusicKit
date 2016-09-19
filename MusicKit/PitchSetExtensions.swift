@@ -33,7 +33,7 @@ extension PitchSet {
 
     /// Returns the harmonic function of this pitch set (as a `Harmonizer`),
     /// in the given scale and degree.
-    public func harmonicFunction(_ scale: Harmonizer, _ degree: Float) -> Harmonizer {
+    public func harmonicFunction(_ scale: @escaping Harmonizer, _ degree: Float) -> Harmonizer {
         return HarmonicFunction.create(scale, degree: degree, chord: harmonizer())
     }
 }
