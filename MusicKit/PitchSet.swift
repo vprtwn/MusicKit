@@ -101,6 +101,11 @@ extension PitchSet: CustomStringConvertible {
 
 // MARK: CollectionType
 extension PitchSet: Collection {
+    /// Returns the position immediately after the given index.
+    public func index(after i: Int) -> Int {
+      return i+1 > count ? i : i+1;
+    }
+
     /// The position of the first pitch in the set. (Always zero.)
     public var startIndex: Int {
         return 0
@@ -267,6 +272,11 @@ extension PitchSetSlice: CustomStringConvertible {
 
 // MARK: CollectionType
 extension PitchSetSlice: Collection {
+    /// Returns the position immediately after the given index.
+    public func index(after i: Int) -> Int {
+      return i+1 > count ? i : i+1;
+    }
+
     public typealias Index = Int
 
     /// The position of the first pitch in the slice. (Always zero.)
