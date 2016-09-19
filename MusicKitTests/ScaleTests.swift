@@ -3,38 +3,38 @@ import MusicKit
 
 final class ScaleTests: XCTestCase {
     func testMajor() {
-        let sut = Scale.Major(Chroma.C*5)
+        let sut = Scale.Major(Chroma.c*5)
         let expected: PitchSet = [
-            Chroma.C*5,
-            Chroma.D*5,
-            Chroma.E*5,
-            Chroma.F*5,
-            Chroma.G*5,
-            Chroma.A*5,
-            Chroma.B*5,
+            Chroma.c*5,
+            Chroma.d*5,
+            Chroma.e*5,
+            Chroma.f*5,
+            Chroma.g*5,
+            Chroma.a*5,
+            Chroma.b*5,
         ]
         XCTAssertEqual(sut, expected)
     }
 
     func testPhrygian() {
-        let sut = Scale.Phrygian(Chroma.E*5)
+        let sut = Scale.Phrygian(Chroma.e*5)
         let expected: PitchSet = [
-            Chroma.E*5,
-            Chroma.F*5,
-            Chroma.G*5,
-            Chroma.A*5,
-            Chroma.B*5,
-            Chroma.C*6,
-            Chroma.D*6,
+            Chroma.e*5,
+            Chroma.f*5,
+            Chroma.g*5,
+            Chroma.a*5,
+            Chroma.b*5,
+            Chroma.c*6,
+            Chroma.d*6,
         ]
         XCTAssertEqual(sut, expected)
     }
 
     func testChromatic() {
-        let sut = Scale.Chromatic(Chroma.C*5)
-        let chromatic: PitchSet = [Chroma.C*5, Chroma.Cs*5, Chroma.D*5,
-            Chroma.Ds*5, Chroma.E*5, Chroma.F*5, Chroma.Fs*5, Chroma.G*5,
-            Chroma.Gs*5, Chroma.A*5, Chroma.As*5, Chroma.B*5]
+        let sut = Scale.Chromatic(Chroma.c*5)
+        let chromatic: PitchSet = [Chroma.c*5, Chroma.cs*5, Chroma.d*5,
+            Chroma.ds*5, Chroma.e*5, Chroma.f*5, Chroma.fs*5, Chroma.g*5,
+            Chroma.gs*5, Chroma.a*5, Chroma.as*5, Chroma.b*5]
         XCTAssertEqual(sut, chromatic)
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 /// Touch handling
 extension KeyboardView {
 
-    private func parseTouches(touches: Set<UITouch>) -> Set<KeyboardViewTouch> {
+    fileprivate func parseTouches(_ touches: Set<UITouch>) -> Set<KeyboardViewTouch> {
         var kvTouches = Set<KeyboardViewTouch>()
         for key in keyViews {
             for touch in touches {
@@ -25,7 +25,7 @@ extension KeyboardView {
         return kvTouches
     }
 
-    private func parseKVTouches(touches: Set<KeyboardViewTouch>) -> KeyboardTouchDiff {
+    fileprivate func parseKVTouches(_ touches: Set<KeyboardViewTouch>) -> KeyboardTouchDiff {
         var touchesWithinKeys = Set<KeyboardTouch>()
         var touchesLeavingKeys = Set<KeyboardTouch>()
         var keyViewTouchPairs = [(KeyView, KeyboardTouch)]()
@@ -50,23 +50,23 @@ extension KeyboardView {
             abandonedKeyViews: abandonedKeyViews)
     }
 
-    private func updateWithNewTouches(pairs: [(KeyView, KeyboardTouch)]) {
+    fileprivate func updateWithNewTouches(_ pairs: [(KeyView, KeyboardTouch)]) {
         for (key, touch) in pairs { key.force = touch.force }
     }
 
-    private func updateWithChangedTouches(current: [(KeyView, KeyboardTouch)],
+    fileprivate func updateWithChangedTouches(_ current: [(KeyView, KeyboardTouch)],
         _ abandoned: [KeyView])
     {
         for (key, touch) in current { key.force = touch.force }
         for key in abandoned { key.force = 0 }
     }
 
-    private func updateWithRemovedTouches(pairs: [(KeyView, KeyboardTouch)]) {
+    fileprivate func updateWithRemovedTouches(_ pairs: [(KeyView, KeyboardTouch)]) {
         for (key, _) in pairs { key.force = 0 }
     }
 
-    public override func touchesBegan(touches: Set<UITouch>,
-        withEvent event: UIEvent?)
+    open override func touchesBegan(_ touches: Set<UITouch>,
+        with event: UIEvent?)
     {
         let kvTouches = parseTouches(touches)
         let diff = parseKVTouches(kvTouches)
@@ -75,13 +75,13 @@ extension KeyboardView {
         updateWithNewTouches(diff.keyViewTouchPairs)
     }
 
-    public override func touchesMoved(touches: Set<UITouch>,
-        withEvent event: UIEvent?)
+    open override func touchesMoved(_ touches: Set<UITouch>,
+        with event: UIEvent?)
     {
         touchesMoved(parseTouches(touches))
     }
 
-    func touchesMoved(touches: Set<KeyboardViewTouch>) {
+    func touchesMoved(_ touches: Set<KeyboardViewTouch>) {
         let diff = parseKVTouches(touches)
         activeKVTouches = touches
         touchDispatcher.registerChangedTouches(diff.touchesWithinKeys,
@@ -90,8 +90,8 @@ extension KeyboardView {
             diff.abandonedKeyViews)
     }
 
-    public override func touchesCancelled(touches: Set<UITouch>?,
-        withEvent event: UIEvent?)
+    open override func touchesCancelled(_ touches: Set<UITouch>,
+        with event: UIEvent?)
     {
         activeKVTouches = Set<KeyboardViewTouch>()
         guard let touches = touches else { return }
@@ -101,8 +101,8 @@ extension KeyboardView {
         updateWithRemovedTouches(diff.keyViewTouchPairs)
     }
 
-    public override func touchesEnded(touches: Set<UITouch>,
-        withEvent event: UIEvent?)
+    open override func touchesEnded(_ touches: Set<UITouch>,
+        with event: UIEvent?)
     {
         activeKVTouches = Set<KeyboardViewTouch>()
         let kvTouches = parseTouches(touches)

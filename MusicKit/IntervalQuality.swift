@@ -3,86 +3,86 @@
 import Foundation
 
 public enum IntervalQuality: UInt, CustomStringConvertible {
-    case Unison = 0
-    case MinorSecond = 1
-    case MajorSecond = 2
-    case MinorThird = 3
-    case MajorThird = 4
-    case PerfectFourth = 5
-    case Tritone = 6
-    case PerfectFifth = 7
-    case MinorSixth = 8
-    case MajorSixth = 9
-    case MinorSeventh = 10
-    case MajorSeventh = 11
-    case Octave = 12
-    case MinorNinth = 13
-    case MajorNinth = 14
-    case MinorTenth = 15
-    case MajorTenth = 16
-    case PerfectEleventh = 17
-    case Tritave = 18
-    case PerfectTwelfth = 19
-    case MinorThirteenth = 20
-    case MajorThirteenth = 21
-    case MinorFourteenth = 22
-    case MajorFourteenth = 23
+    case unison = 0
+    case minorSecond = 1
+    case majorSecond = 2
+    case minorThird = 3
+    case majorThird = 4
+    case perfectFourth = 5
+    case tritone = 6
+    case perfectFifth = 7
+    case minorSixth = 8
+    case majorSixth = 9
+    case minorSeventh = 10
+    case majorSeventh = 11
+    case octave = 12
+    case minorNinth = 13
+    case majorNinth = 14
+    case minorTenth = 15
+    case majorTenth = 16
+    case perfectEleventh = 17
+    case tritave = 18
+    case perfectTwelfth = 19
+    case minorThirteenth = 20
+    case majorThirteenth = 21
+    case minorFourteenth = 22
+    case majorFourteenth = 23
 
     public var description: String {
         switch self {
-        case Unison: return "unison"
-        case MinorSecond: return "minor second"
-        case MajorSecond: return "major second"
-        case MinorThird: return "minor third"
-        case MajorThird: return "major third"
-        case PerfectFourth: return "perfect fourth"
-        case Tritone: return "tritone"
-        case PerfectFifth: return "perfect fifth"
-        case MinorSixth: return "minor sixth"
-        case MajorSixth: return "major sixth"
-        case MinorSeventh: return "minor seventh"
-        case MajorSeventh: return "major seventh"
-        case Octave: return "octave"
-        case MinorNinth: return "minor ninth"
-        case MajorNinth: return "major ninth"
-        case MinorTenth: return "minor tenth"
-        case MajorTenth: return "major tenth"
-        case PerfectEleventh: return "perfect eleventh"
-        case Tritave: return "tritave"
-        case PerfectTwelfth: return "perfect twelfth"
-        case MinorThirteenth: return "minor thirteenth"
-        case MajorThirteenth: return "major thirteenth"
-        case MinorFourteenth: return "minor fourteenth"
-        case MajorFourteenth: return "major fourteenth"
+        case .unison: return "unison"
+        case .minorSecond: return "minor second"
+        case .majorSecond: return "major second"
+        case .minorThird: return "minor third"
+        case .majorThird: return "major third"
+        case .perfectFourth: return "perfect fourth"
+        case .tritone: return "tritone"
+        case .perfectFifth: return "perfect fifth"
+        case .minorSixth: return "minor sixth"
+        case .majorSixth: return "major sixth"
+        case .minorSeventh: return "minor seventh"
+        case .majorSeventh: return "major seventh"
+        case .octave: return "octave"
+        case .minorNinth: return "minor ninth"
+        case .majorNinth: return "major ninth"
+        case .minorTenth: return "minor tenth"
+        case .majorTenth: return "major tenth"
+        case .perfectEleventh: return "perfect eleventh"
+        case .tritave: return "tritave"
+        case .perfectTwelfth: return "perfect twelfth"
+        case .minorThirteenth: return "minor thirteenth"
+        case .majorThirteenth: return "major thirteenth"
+        case .minorFourteenth: return "minor fourteenth"
+        case .majorFourteenth: return "major fourteenth"
         }
     }
 
     public var shortName: String {
         switch self {
-        case Unison: return "P1"
-        case MinorSecond: return "m2"
-        case MajorSecond: return "M2"
-        case MinorThird: return "m3"
-        case MajorThird: return "M3"
-        case PerfectFourth: return "P4"
-        case Tritone: return "A4"
-        case PerfectFifth: return "P5"
-        case MinorSixth: return "m6"
-        case MajorSixth: return "M6"
-        case MinorSeventh: return "m7"
-        case MajorSeventh: return "M7"
-        case Octave: return "P8"
-        case MinorNinth: return "m9"
-        case MajorNinth: return "M9"
-        case MinorTenth: return "m10"
-        case MajorTenth: return "M10"
-        case PerfectEleventh: return "P11"
-        case Tritave: return "A11"
-        case PerfectTwelfth: return "P12"
-        case MinorThirteenth: return "m13"
-        case MajorThirteenth: return "M13"
-        case MinorFourteenth: return "m14"
-        case MajorFourteenth: return "M14"
+        case .unison: return "P1"
+        case .minorSecond: return "m2"
+        case .majorSecond: return "M2"
+        case .minorThird: return "m3"
+        case .majorThird: return "M3"
+        case .perfectFourth: return "P4"
+        case .tritone: return "A4"
+        case .perfectFifth: return "P5"
+        case .minorSixth: return "m6"
+        case .majorSixth: return "M6"
+        case .minorSeventh: return "m7"
+        case .majorSeventh: return "M7"
+        case .octave: return "P8"
+        case .minorNinth: return "m9"
+        case .majorNinth: return "M9"
+        case .minorTenth: return "m10"
+        case .majorTenth: return "M10"
+        case .perfectEleventh: return "P11"
+        case .tritave: return "A11"
+        case .perfectTwelfth: return "P12"
+        case .minorThirteenth: return "m13"
+        case .majorThirteenth: return "M13"
+        case .minorFourteenth: return "m14"
+        case .majorFourteenth: return "M14"
         }
     }
 }

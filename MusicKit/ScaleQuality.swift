@@ -17,17 +17,17 @@ public enum ScaleQuality: String {
 
     public var intervals: [Float] {
         switch self {
-        case Chromatic: return [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-        case Wholetone: return [2, 2, 2, 2, 2, 2]
-        case Octatonic1: return [2, 1, 2, 1, 2, 1, 2]
-        case Octatonic2: return [1, 2, 1, 2, 1, 2, 1]
-        case Major: return [2, 2, 1, 2, 2, 2]
-        case Dorian: return [2, 1, 2, 2, 2, 1]
-        case Phrygian: return [1, 2, 2, 2, 1, 2]
-        case Lydian: return [2, 2, 2, 1, 2, 2]
-        case Mixolydian: return [2, 2, 1, 2, 2, 1]
-        case Minor: return [2, 1, 2, 2, 1, 2]
-        case Locrian: return [1, 2, 2, 1, 2, 2]
+        case .Chromatic: return [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+        case .Wholetone: return [2, 2, 2, 2, 2, 2]
+        case .Octatonic1: return [2, 1, 2, 1, 2, 1, 2]
+        case .Octatonic2: return [1, 2, 1, 2, 1, 2, 1]
+        case .Major: return [2, 2, 1, 2, 2, 2]
+        case .Dorian: return [2, 1, 2, 2, 2, 1]
+        case .Phrygian: return [1, 2, 2, 2, 1, 2]
+        case .Lydian: return [2, 2, 2, 1, 2, 2]
+        case .Mixolydian: return [2, 2, 1, 2, 2, 1]
+        case .Minor: return [2, 1, 2, 2, 1, 2]
+        case .Locrian: return [1, 2, 2, 1, 2, 2]
         }
     }
 }

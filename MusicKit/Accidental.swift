@@ -3,15 +3,15 @@
 import Foundation
 
 public enum Accidental: Float, CustomStringConvertible {
-    case DoubleFlat = -2
-    case Flat = -1
-    case Natural = 0
-    case Sharp = 1
-    case DoubleSharp = 2
+    case doubleFlat = -2
+    case flat = -1
+    case natural = 0
+    case sharp = 1
+    case doubleSharp = 2
 
-    public func description(stripNatural: Bool) -> String {
+    public func description(_ stripNatural: Bool) -> String {
         switch self {
-        case .Natural:
+        case .natural:
             return stripNatural ? "" : description
         default:
             return description
@@ -20,15 +20,15 @@ public enum Accidental: Float, CustomStringConvertible {
 
     public var description: String {
         switch self {
-        case .DoubleFlat:
+        case .doubleFlat:
             return "𝄫"
-        case .Flat:
+        case .flat:
             return "♭"
-        case .Natural:
+        case .natural:
             return "♮"
-        case .Sharp:
+        case .sharp:
             return "♯"
-        case .DoubleSharp:
+        case .doubleSharp:
             return "𝄪"
         }
     }

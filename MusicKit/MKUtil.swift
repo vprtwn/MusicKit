@@ -4,7 +4,7 @@ import Foundation
 
 public enum MKUtil {
     /// Returns the nth inversion of the given sorted array of semitone indices
-    static func invert(semitoneIndices: [Float], n: UInt) -> [Float] {
+    static func invert(_ semitoneIndices: [Float], n: UInt) -> [Float] {
         let count = semitoneIndices.count
         let modN = Int(n) % count
         var semitones = semitoneIndices
@@ -16,13 +16,13 @@ public enum MKUtil {
     }
 
     /// Transforms an array of semitone indices so that the first index is zero
-    static func zero(semitoneIndices: [Float]) -> [Float] {
+    static func zero(_ semitoneIndices: [Float]) -> [Float] {
         if semitoneIndices.count < 1 { return semitoneIndices }
         return semitoneIndices.map { return $0 - semitoneIndices[0] }
     }
 
     /// Collapses an array of semitone indices to within an octave
-    static func collapse(semitoneIndices: [Float]) -> [Float] {
+    static func collapse(_ semitoneIndices: [Float]) -> [Float] {
         let count = semitoneIndices.count
         if count < 1 { return semitoneIndices }
         let first = semitoneIndices[0]
@@ -34,12 +34,12 @@ public enum MKUtil {
             }
             newIndices = newIndices + [newIndex]
         }
-        return newIndices.sort()
+        return newIndices.sorted()
     }
 
     /// Converts an array of intervals to semitone indices
     /// e.g. [4, 3] -> [0, 4, 7]
-    public static func semitoneIndices(intervals: [Float]) -> [Float] {
+    public static func semitoneIndices(_ intervals: [Float]) -> [Float] {
         var indices: [Float] = [0]
         for i in 0..<intervals.count {
             let next = indices[i] + intervals[i]
@@ -50,7 +50,7 @@ public enum MKUtil {
 
     /// Converts an array of semitone indices to intervals
     /// e.g. [0, 4, 7] -> [4, 3]
-    public static func intervals(semitoneIndices: [Float]) -> [Float] {
+    public static func intervals(_ semitoneIndices: [Float]) -> [Float] {
         var intervals: [Float] = []
         for i in 1..<semitoneIndices.count {
             let delta = semitoneIndices[i] - semitoneIndices[i-1]
@@ -60,7 +60,7 @@ public enum MKUtil {
     }
 }
 
-extension CollectionType where Generator.Element == Pitch, Index == Int {
+extension Collection where Iterator.Element == Pitch, Index == Int {
 
     /// Returns the insertion point for `pitch` in the collection of `pitches`.
     ///
@@ -69,7 +69,7 @@ extension CollectionType where Generator.Element == Pitch, Index == Int {
     /// could be inserted, keeping `pitchSet` in order.
     ///
     /// :returns: An index in the range `0...count(pitches)` where `pitch` can be inserted.
-    func insertionIndex(pitch: Pitch) -> Int
+    func insertionIndex(_ pitch: Pitch) -> Int
     {
         if self.isEmpty {
             return 0

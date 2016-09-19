@@ -3,21 +3,21 @@
 import Foundation
 
 public enum ChordExtension: UInt, CustomStringConvertible {
-    case FlatNine = 13
-    case Nine = 14
-    case Eleven = 17
-    case SharpEleven = 18
-    case FlatThirteen = 20
-    case Thirteen = 21
+    case flatNine = 13
+    case nine = 14
+    case eleven = 17
+    case sharpEleven = 18
+    case flatThirteen = 20
+    case thirteen = 21
 
     public var description: String {
         switch self {
-        case FlatNine: return "♭9"
-        case Nine: return "9"
-        case Eleven: return "11"
-        case SharpEleven: return "♯11"
-        case FlatThirteen: return "♭13"
-        case Thirteen: return "13"
+        case .flatNine: return "♭9"
+        case .nine: return "9"
+        case .eleven: return "11"
+        case .sharpEleven: return "♯11"
+        case .flatThirteen: return "♭13"
+        case .thirteen: return "13"
         }
     }
 }

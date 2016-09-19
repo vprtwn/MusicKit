@@ -3,7 +3,7 @@ import MusicKit
 
 final class AccidentalTests: XCTestCase {
     func testDescription() {
-        let sut = Accidental.Flat
+        let sut = Accidental.flat
         let description = sut.description
         XCTAssertEqual(description, "♭")
     }

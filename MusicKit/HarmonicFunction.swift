@@ -6,7 +6,7 @@ public enum HarmonicFunction {
     /// Creates a harmonizer that applies a chord to a scale at a (1-indexed) scale degree.
     /// Note that non-integral scale degrees may be used to specify non-scale tones.
     /// A negative degree will be transposed by octave until it is non-negative.
-    public static func create(scale: Harmonizer, degree: Float, chord: Harmonizer) -> Harmonizer {
+    public static func create(_ scale: @escaping Harmonizer, degree: Float, chord: @escaping Harmonizer) -> Harmonizer {
         return { pitch in
             var zDegree = degree - 1 // 0-indexed degree
             while zDegree < 0 {

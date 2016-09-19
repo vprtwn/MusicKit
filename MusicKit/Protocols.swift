@@ -4,5 +4,5 @@ import Foundation
 
 public protocol Transposable {
     /// Returns self transposed by the given semitone distance
-    func transpose(semitones: Float) -> Self
+    func transpose(_ semitones: Float) -> Self
 }

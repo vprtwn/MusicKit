@@ -9,21 +9,21 @@
 import UIKit
 
 public protocol KeyboardViewDelegate: class {
-    func keyboardView(keyboard: KeyboardView, addedTouches: Set<KeyboardTouch>)
-    func keyboardView(keyboard: KeyboardView, changedTouches: Set<KeyboardTouch>)
-    func keyboardView(keyboard: KeyboardView, removedTouches: Set<KeyboardTouch>)
+    func keyboardView(_ keyboard: KeyboardView, addedTouches: Set<KeyboardTouch>)
+    func keyboardView(_ keyboard: KeyboardView, changedTouches: Set<KeyboardTouch>)
+    func keyboardView(_ keyboard: KeyboardView, removedTouches: Set<KeyboardTouch>)
 }
 
-public class KeyboardView: UIView, UIScrollViewDelegate {
+open class KeyboardView: UIView, UIScrollViewDelegate {
 
     /// The keyboard view's delegate
-    public var delegate: KeyboardViewDelegate?
+    open var delegate: KeyboardViewDelegate?
 
     /// The default force of the keyboard, used on devices without force
-    public var defaultForce: CGFloat = 0.5
+    open var defaultForce: CGFloat = 0.5
 
     /// The keyboard's pitches
-    public var pitchSet: PitchSet = Scale.Chromatic(Chroma.C*3).extend(3) {
+    open var pitchSet: PitchSet = Scale.Chromatic(Chroma.c*3).extend(3) {
         didSet {
             updateWithPitches(pitchSet)
             setNeedsLayout()
@@ -31,24 +31,24 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     }
 
     /// The keyboard's current active touches
-    public var activeTouches: Set<KeyboardTouch> {
+    open var activeTouches: Set<KeyboardTouch> {
         return touchDispatcher.activeTouches
     }
 
     /// The width of white keys (mm)
-    public var whiteKeyWidth: CGFloat = 20 {
+    open var whiteKeyWidth: CGFloat = 20 {
         didSet { setNeedsLayout() }
     }
 
     /// The height of the scroll pad (mm)
-    public var scrollPadHeight: CGFloat = 15 {
+    open var scrollPadHeight: CGFloat = 15 {
         didSet { setNeedsLayout() }
     }
 
     /// The width of black keys relative to white keys
-    public var blackKeyRelativeWidth: CGFloat = 13.7/23.5
+    open var blackKeyRelativeWidth: CGFloat = 13.7/23.5
 
-    private var blackKeyWidthPx: CGFloat {
+    fileprivate var blackKeyWidthPx: CGFloat {
         return whiteKeyWidthPx*blackKeyRelativeWidth
     }
 
@@ -56,23 +56,23 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         return KeyboardViewTouchDispatcher(view: self)
         }()
 
-    private var whiteKeyWidthPx: CGFloat {
+    fileprivate var whiteKeyWidthPx: CGFloat {
         return whiteKeyWidth/UIDevice.mmPerPixel
     }
 
-    private var scrollPadHeightPx: CGFloat {
+    fileprivate var scrollPadHeightPx: CGFloat {
         return scrollPadHeight/UIDevice.mmPerPixel
     }
 
     lazy var keyViews = [KeyView]()
     lazy var keyContainer: UIScrollView = {
         let view = UIScrollView()
-        view.scrollEnabled = false
-        view.userInteractionEnabled = false
+        view.isScrollEnabled = false
+        view.isUserInteractionEnabled = false
         return view
     }()
 
-    private lazy var scrollPad: UIScrollView = {
+    fileprivate lazy var scrollPad: UIScrollView = {
         let view = UIScrollView()
         view.showsHorizontalScrollIndicator = false
         view.showsVerticalScrollIndicator = false
@@ -92,19 +92,19 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     }
 
     func load() {
-        multipleTouchEnabled = true
+        isMultipleTouchEnabled = true
         updateWithPitches(pitchSet)
         addSubview(keyContainer)
         addSubview(scrollPad)
     }
 
-    override public func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
 
-        scrollPad.frame = CGRectMake(0, bounds.height - scrollPadHeightPx,
-            bounds.width, scrollPadHeightPx)
-        keyContainer.frame = CGRectMake(0, 0,
-            bounds.width, CGRectGetMinY(scrollPad.frame))
+        scrollPad.frame = CGRect(x: 0, y: bounds.height - scrollPadHeightPx,
+            width: bounds.width, height: scrollPadHeightPx)
+        keyContainer.frame = CGRect(x: 0, y: 0,
+            width: bounds.width, height: scrollPad.frame.minY)
 
         var lastFrame: CGRect? = nil
         var lastColor: KeyColor? = nil
@@ -114,47 +114,47 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
         for i in 0..<keyViews.count {
             let view = keyViews[i]
             var frame: CGRect
-            if view.pitch.keyColor == .Black {
-                if let lastFrame = lastFrame where lastColor == .White {
-                    let x = CGRectGetMaxX(lastFrame) - round(blackKeyWidthPx/2.0)
-                    frame = CGRectMake(x, 0, blackKeyWidthPx, blackHeight)
+            if view.pitch.keyColor == .black {
+                if let lastFrame = lastFrame , lastColor == .white {
+                    let x = lastFrame.maxX - round(blackKeyWidthPx/2.0)
+                    frame = CGRect(x: x, y: 0, width: blackKeyWidthPx, height: blackHeight)
                 }
-                else if let lastFrame = lastFrame where lastColor == .Black {
-                    let x = CGRectGetMaxX(lastFrame)
-                    frame = CGRectMake(x, 0, blackKeyWidthPx, blackHeight)
+                else if let lastFrame = lastFrame , lastColor == .black {
+                    let x = lastFrame.maxX
+                    frame = CGRect(x: x, y: 0, width: blackKeyWidthPx, height: blackHeight)
                 }
                 else {
-                    frame = CGRectMake(0, 0, blackKeyWidthPx, blackHeight)
+                    frame = CGRect(x: 0, y: 0, width: blackKeyWidthPx, height: blackHeight)
                 }
-                lastColor = .Black
+                lastColor = .black
             }
             else {
-                if let lastFrame = lastFrame where lastColor == .White {
-                    let x = CGRectGetMaxX(lastFrame)
-                    frame = CGRectMake(x, 0, whiteKeyWidthPx, whiteHeight)
+                if let lastFrame = lastFrame , lastColor == .white {
+                    let x = lastFrame.maxX
+                    frame = CGRect(x: x, y: 0, width: whiteKeyWidthPx, height: whiteHeight)
                 }
-                else if let lastFrame = lastFrame where lastColor == .Black {
-                    let x = CGRectGetMinX(lastFrame) + round(blackKeyWidthPx/2.0)
-                    frame = CGRectMake(x, 0, whiteKeyWidthPx, whiteHeight)
+                else if let lastFrame = lastFrame , lastColor == .black {
+                    let x = lastFrame.minX + round(blackKeyWidthPx/2.0)
+                    frame = CGRect(x: x, y: 0, width: whiteKeyWidthPx, height: whiteHeight)
                 }
                 else {
-                    frame = CGRectMake(0, 0, whiteKeyWidthPx, whiteHeight)
+                    frame = CGRect(x: 0, y: 0, width: whiteKeyWidthPx, height: whiteHeight)
                 }
                 // Other = same position as White
-                lastColor = .White
+                lastColor = .white
             }
             view.frame = frame
             lastFrame = frame
         }
         if let frame = lastFrame {
-            let lastMaxX = CGRectGetMaxX(frame)
-            keyContainer.contentSize = CGSizeMake(lastMaxX,
-                keyContainer.bounds.height)
-            scrollPad.contentSize = CGSizeMake(lastMaxX, scrollPad.bounds.height)
+            let lastMaxX = frame.maxX
+            keyContainer.contentSize = CGSize(width: lastMaxX,
+                height: keyContainer.bounds.height)
+            scrollPad.contentSize = CGSize(width: lastMaxX, height: scrollPad.bounds.height)
         }
     }
 
-    func updateWithPitches(pitches: PitchSet) {
+    func updateWithPitches(_ pitches: PitchSet) {
         for keyView in keyViews {
             keyView.removeFromSuperview()
         }
@@ -167,7 +167,7 @@ public class KeyboardView: UIView, UIScrollViewDelegate {
     }
 
     // MARK: UIScrollViewDelegate
-    public func scrollViewDidScroll(scrollView: UIScrollView) {
+    open func scrollViewDidScroll(_ scrollView: UIScrollView) {
         keyContainer.contentOffset = scrollView.contentOffset
     }
 }

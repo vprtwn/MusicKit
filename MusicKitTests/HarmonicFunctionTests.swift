@@ -7,9 +7,9 @@ final class HarmonicFunctionTests: XCTestCase {
         let neapolitan = Major.bII
         let pitchSet = neapolitan(C5)
         XCTAssertEqual(pitchSet,
-            [Pitch(chroma: Chroma.Cs, octave: 5),
-            Pitch(chroma: Chroma.F, octave: 5),
-            Pitch(chroma: Chroma.Gs, octave: 5)])
+            [Pitch(chroma: Chroma.cs, octave: 5),
+            Pitch(chroma: Chroma.f, octave: 5),
+            Pitch(chroma: Chroma.gs, octave: 5)])
     }
 
     func testMinorNeapolitan() {
@@ -17,8 +17,8 @@ final class HarmonicFunctionTests: XCTestCase {
         let neapolitan = Minor.bII
         let pitchSet = neapolitan(C5)
         XCTAssertEqual(pitchSet,
-            [Pitch(chroma: Chroma.Cs, octave: 5),
-            Pitch(chroma: Chroma.F, octave: 5),
-            Pitch(chroma: Chroma.Gs, octave: 5)])
+            [Pitch(chroma: Chroma.cs, octave: 5),
+            Pitch(chroma: Chroma.f, octave: 5),
+            Pitch(chroma: Chroma.gs, octave: 5)])
     }
 }

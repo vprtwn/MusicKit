@@ -7,63 +7,63 @@ typealias ChromaNameTuple = (LetterName, Accidental)
 /// Pitch quality; also known as pitch class.
 public enum Chroma: UInt {
     /// C
-    case C = 0
+    case c = 0
     /// C Sharp
-    case Cs = 1
+    case cs = 1
     /// D
-    case D = 2
+    case d = 2
     /// D Sharp
-    case Ds = 3
+    case ds = 3
     /// E
-    case E = 4
+    case e = 4
     /// F
-    case F = 5
+    case f = 5
     /// F Sharp
-    case Fs = 6
+    case fs = 6
     /// G
-    case G = 7
+    case g = 7
     /// G Sharp
-    case Gs = 8
+    case gs = 8
     /// A
-    case A = 9
+    case a = 9
     /// A Sharp
-    case As = 10
+    case `as` = 10
     /// B
-    case B = 11
+    case b = 11
 
     var names: [ChromaNameTuple] {
         switch self.rawValue {
         case 0:
-            return [(.C, .Natural), (.B, .Sharp), (.D, .DoubleFlat)]
+            return [(.c, .natural), (.b, .sharp), (.d, .doubleFlat)]
         case 1:
-            return [(.C, .Sharp), (.D, .Flat), (.B, .DoubleSharp)]
+            return [(.c, .sharp), (.d, .flat), (.b, .doubleSharp)]
         case 2:
-            return [(.D, .Natural), (.C, .DoubleSharp), (.E, .DoubleFlat)]
+            return [(.d, .natural), (.c, .doubleSharp), (.e, .doubleFlat)]
         case 3:
-            return [(.E, .Flat), (.D, .Sharp), (.F, .DoubleFlat)]
+            return [(.e, .flat), (.d, .sharp), (.f, .doubleFlat)]
         case 4:
-            return [(.E, .Natural), (.F, .Flat), (.D, .DoubleSharp)]
+            return [(.e, .natural), (.f, .flat), (.d, .doubleSharp)]
         case 5:
-            return [(.F, .Natural), (.E, .Sharp), (.G, .DoubleFlat)]
+            return [(.f, .natural), (.e, .sharp), (.g, .doubleFlat)]
         case 6:
-            return [(.F, .Sharp), (.G, .Flat), (.E, .DoubleSharp)]
+            return [(.f, .sharp), (.g, .flat), (.e, .doubleSharp)]
         case 7:
-            return [(.G, .Natural), (.F, .DoubleSharp), (.A, .DoubleFlat)]
+            return [(.g, .natural), (.f, .doubleSharp), (.a, .doubleFlat)]
         case 8:
-            return [(.A, .Flat), (.G, .Sharp)]
+            return [(.a, .flat), (.g, .sharp)]
         case 9:
-            return [(.A, .Natural), (.G, .DoubleSharp), (.B, .DoubleFlat)]
+            return [(.a, .natural), (.g, .doubleSharp), (.b, .doubleFlat)]
         case 10:
-            return [(.B, .Flat), (.A, .Sharp), (.C, .DoubleFlat)]
+            return [(.b, .flat), (.a, .sharp), (.c, .doubleFlat)]
         case 11:
-            return [(.B, .Natural), (.C, .Flat), (.A, .DoubleSharp)]
+            return [(.b, .natural), (.c, .flat), (.a, .doubleSharp)]
         default:
             return []
         }
     }
 
     /// Returns true if the given name tuple is a valid name
-    func validateName(name: ChromaNameTuple) -> Bool {
+    func validateName(_ name: ChromaNameTuple) -> Bool {
         return self.names.reduce(false) {
           (a, r) -> Bool in
             a || (r == name)
@@ -101,12 +101,12 @@ public func -(lhs: Chroma, rhs: Int) -> Chroma {
     return lhs + (-1*rhs)
 }
 
-postfix func --(inout chroma: Chroma) -> Chroma {
+postfix func --(chroma: inout Chroma) -> Chroma {
     chroma = chroma - 1
     return chroma
 }
 
-postfix func ++(inout chroma: Chroma) -> Chroma {
+postfix func ++(chroma: inout Chroma) -> Chroma {
     chroma = chroma + 1
     return chroma
 }

@@ -13,7 +13,7 @@ extension PitchSet {
 
 extension Chord {
     /// Returns the name of the chord if found.
-    public static func name(pitchSet: PitchSet) -> String? {
+    public static func name(_ pitchSet: PitchSet) -> String? {
         if let desc = descriptor(pitchSet) {
             let rootName = desc.root.description
             let quality = desc.quality.description
@@ -29,7 +29,7 @@ extension Chord {
     }
 
     /// Returns an optional `ChordDescriptor`.
-    public static func descriptor(pitchSet: PitchSet) -> ChordDescriptor? {
+    public static func descriptor(_ pitchSet: PitchSet) -> ChordDescriptor? {
         var pitchSet = pitchSet
         pitchSet.normalize()
         let count = pitchSet.count
@@ -99,7 +99,7 @@ extension Chord {
     }
 
     /// Returns an optional `ChordDescriptor`.
-    static func _descriptor(pitchSet: PitchSet,
+    static func _descriptor(_ pitchSet: PitchSet,
         qualities: [ChordQuality]) -> ChordDescriptor?
     {
         let count = pitchSet.count
