@@ -94,7 +94,6 @@ extension KeyboardView {
         with event: UIEvent?)
     {
         activeKVTouches = Set<KeyboardViewTouch>()
-        guard let touches = touches else { return }
         let kvTouches = parseTouches(touches)
         let diff = parseKVTouches(kvTouches)
         touchDispatcher.registerRemovedTouches(diff.touchesWithinKeys)
