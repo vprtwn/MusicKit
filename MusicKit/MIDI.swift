@@ -104,14 +104,15 @@ open class MIDI {
         MKMIDIProc.setReadCallback { packetList in
             var noteMessages = [MIDINoteMessage]()
             for packet in packetList! {
-                let channel = packet[0] as! UInt
-                let messageType = packet[1] as! UInt
+                let packet = packet as! Array<UInt>
+                let channel = packet[0]
+                let messageType = packet[1]
                 let noteOn = UInt(MKMIDIMessage.noteOn.rawValue)
                 let noteOff = UInt(MKMIDIMessage.noteOff.rawValue)
                 let noteMessageTypes = [noteOn, noteOff]
                 if noteMessageTypes.contains(messageType) {
-                    let noteNumber = packet[2] as! UInt
-                    let velocity = packet[3] as! UInt
+                    let noteNumber = packet[2]
+                    let velocity = packet[3]
                     let m = MIDINoteMessage(on: messageType == noteOn || velocity == 0,
                         channel: UInt(channel),
                         noteNumber: UInt(noteNumber),
