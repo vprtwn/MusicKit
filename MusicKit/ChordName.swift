@@ -44,7 +44,7 @@ extension Chord {
         let bassChromaOpt = bass.chroma
         // pitch set with bass removed
         var bassRemoved = pitchSet
-        bassRemoved.remove(bass)
+        _ =  bassRemoved.remove(bass)
 
         // dyads
         if count == 2 {

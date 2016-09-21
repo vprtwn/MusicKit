@@ -82,7 +82,7 @@ open class MIDI {
                 pitchSet.insert(pitch)
             }
             else {
-                pitchSet.remove(pitch)
+                _ = pitchSet.remove(pitch)
             }
             inputChannelToPitchSet[message.channel] = pitchSet
         }

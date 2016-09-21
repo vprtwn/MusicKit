@@ -62,7 +62,7 @@ extension PitchSet {
             return
         }
         var bass = self[0]
-        remove(bass)
+        _ =  remove(bass)
         let last = self[count - 1]
         while bass < last {
             bass = bass + 12
@@ -98,7 +98,7 @@ extension PitchSet {
             }
         }
         for pitch in pitchesToRemove {
-            self.remove(pitch)
+            _ =  self.remove(pitch)
         }
     }
 
@@ -111,7 +111,7 @@ extension PitchSet {
         for i in 1..<count {
             var pitch = self[i]
             if pitch - first > 12 {
-                remove(pitch)
+                _ =  remove(pitch)
                 while pitch - first > 12 {
                     pitch = pitch.transpose(-12)
                 }
@@ -144,12 +144,12 @@ public func +=(lhs: inout PitchSet, rhs: Pitch) {
 
 public func -(lhs: PitchSet, rhs: Pitch) -> PitchSet {
     var lhs = lhs
-    lhs.remove(rhs)
+    _ =  lhs.remove(rhs)
     return lhs
 }
 
 public func -=(lhs: inout PitchSet, rhs: Pitch) {
-    lhs.remove(rhs)
+    _ =  lhs.remove(rhs)
 }
 
 // MARK: PitchSet/Chroma 
@@ -164,7 +164,7 @@ public func /(lhs: PitchSet, rhs: Chroma) -> PitchSet {
     }
     var newFirstPitch = firstPitch
     while (newFirstPitch.chroma.map { $0 == rhs } != Optional(true)) {
-        newFirstPitch--
+        newFirstPitch = newFirstPitch--
     }
     lhs.insert(newFirstPitch)
     return lhs

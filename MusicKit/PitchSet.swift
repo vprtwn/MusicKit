@@ -163,14 +163,14 @@ public func +=(lhs: inout PitchSet, rhs: PitchSet) {
 public func -(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
     var lhs = lhs
     for pitch in rhs {
-        lhs.remove(pitch)
+        _ =  lhs.remove(pitch)
     }
     return lhs
 }
 
 public func -=(lhs: inout PitchSet, rhs: PitchSet) {
     for pitch in rhs {
-        lhs.remove(pitch)
+        _ =  lhs.remove(pitch)
     }
 }
 
