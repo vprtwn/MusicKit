@@ -85,14 +85,14 @@ final class PitchSetTests: XCTestCase {
 
     func testExtend() {
         var sut: PitchSet = [Chroma.c*5, Chroma.e*5, Chroma.g*5]
-        sut.extend(0)
+        sut = sut.extend(0)
         XCTAssertEqual(sut, [Chroma.c*5, Chroma.e*5, Chroma.g*5])
 
-        sut.extend(1)
+        sut = sut.extend(1)
         XCTAssertEqual(sut, [Chroma.c*5, Chroma.e*5, Chroma.g*5, Chroma.c*6, Chroma.e*6, Chroma.g*6])
 
         sut = [Chroma.c*5, Chroma.e*5, Chroma.g*5]
-        sut.extend(-1)
+        sut = sut.extend(-1)
         XCTAssertEqual(sut, [Chroma.c*4, Chroma.e*4, Chroma.g*4, Chroma.c*5, Chroma.e*5, Chroma.g*5])
     }
 
