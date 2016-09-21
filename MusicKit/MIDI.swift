@@ -60,12 +60,9 @@ open class MIDI {
             let data = message.copyOnChannel(sourceChannel).data()
             packet = MIDIPacketListAdd(packetList, 1024, packet, 0, 3, data)
         }
-        if packet != nil {
-            let s = MIDIReceived(_virtualSource, packetList)
-            success = s == 0
-        } else {
-            success = false
-        }
+        let s = MIDIReceived(_virtualSource, packetList)
+        success = s == 0
+
         packet.deinitialize()
         // this dealloc is superfluous; not sure why.
 //        packet.dealloc(sizeof(MIDIPacket))
