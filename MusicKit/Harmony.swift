@@ -9,12 +9,12 @@ public struct Harmony {
     }
 
     /// Transposes a Harmonizer
-    public static func transpose(f: Harmonizer, semitones: Float) -> Harmonizer {
+    public static func transpose(_ f: @escaping Harmonizer, semitones: Float) -> Harmonizer {
         return { pitch in f(pitch.transpose(semitones)) }
     }
 
     /// Creates a Harmonizer using the given intervals
-    public static func create(intervals: [Float]) -> Harmonizer {
+    public static func create(_ intervals: [Float]) -> Harmonizer {
         return { firstPitch in
             let pitchSet = PitchSet(pitches: firstPitch)
             return intervals.reduce(pitchSet) {
@@ -26,7 +26,7 @@ public struct Harmony {
 }
 
 // MARK: Type Aliases
-public typealias Harmonizer = (Pitch -> PitchSet)
+public typealias Harmonizer = ((Pitch) -> PitchSet)
 
 // MARK: Operators
 public func *(lhs: Harmonizer, rhs: Pitch) -> PitchSet { return lhs(rhs) }

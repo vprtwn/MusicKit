@@ -7,7 +7,7 @@ import Foundation
 public struct Pitch: Comparable {
     /// midi number to frequency
     /// TODO: move this to a temperament enum
-    public static func mtof(midi: Float) -> Float {
+    public static func mtof(_ midi: Float) -> Float {
         let exponent = Double((Float(midi) - 69.0)/12.0)
         let freq = pow(Double(2), exponent)*MusicKit.concertA
         return Float(freq)
@@ -59,9 +59,9 @@ public struct Pitch: Comparable {
 
     /// Combines an octave number with a chroma name, taking into account
     /// edge cases for enharmonics like B#
-    func noteNameWithOctave(octave: Int, nameTuple name: ChromaNameTuple) -> (LetterName, Accidental, Int) {
-        let cFlat: ChromaNameTuple = (.C, .Flat)
-        let bSharp: ChromaNameTuple = (.B, .Sharp)
+    func noteNameWithOctave(_ octave: Int, nameTuple name: ChromaNameTuple) -> (LetterName, Accidental, Int) {
+        let cFlat: ChromaNameTuple = (.c, .flat)
+        let bSharp: ChromaNameTuple = (.b, .sharp)
         var adjustedOctaveNumber = octave
         if name == cFlat {
             adjustedOctaveNumber += 1
@@ -89,7 +89,7 @@ extension Pitch: Hashable {
 
 // MARK: Transposable
 extension Pitch: Transposable {
-    public func transpose(semitones: Float) -> Pitch {
+    public func transpose(_ semitones: Float) -> Pitch {
         return Pitch(midi: midi + semitones)
     }
 }
@@ -115,12 +115,12 @@ public func -(lhs: Pitch, rhs: Pitch) -> Float {
     return lhs.midi - rhs.midi
 }
 
-postfix func --(inout pitch: Pitch) -> Pitch {
+postfix func --(pitch: inout Pitch) -> Pitch {
     pitch = pitch - 1
     return pitch
 }
 
-postfix func ++(inout pitch: Pitch) -> Pitch {
+postfix func ++(pitch: inout Pitch) -> Pitch {
     pitch = pitch + 1
     return pitch
 }

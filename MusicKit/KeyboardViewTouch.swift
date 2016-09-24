@@ -9,9 +9,9 @@
 import UIKit
 
 extension CGPoint {
-    private func offset(offset: CGPoint) -> CGPoint {
-        return CGPointMake(self.x + offset.x,
-            self.y + offset.y)
+    fileprivate func offset(_ offset: CGPoint) -> CGPoint {
+        return CGPoint(x: self.x + offset.x,
+            y: self.y + offset.y)
     }
 }
 
@@ -22,10 +22,10 @@ struct KeyboardViewTouch {
     let locationInKey: CGPoint
     let force: CGFloat
     var locationIsWithinKey: Bool {
-        return CGRectContainsPoint(key.frame, location)
+        return key.frame.contains(location)
     }
     var previousLocationIsWithinKey: Bool {
-        return CGRectContainsPoint(key.frame, previousLocation)
+        return key.frame.contains(previousLocation)
     }
     let key: KeyView
 
@@ -55,9 +55,9 @@ struct KeyboardViewTouch {
         keyView: KeyView,
         keyboardView: KeyboardView)
     {
-        location = touch.locationInView(keyContainer)
-        previousLocation = touch.previousLocationInView(keyContainer)
-        locationInKey = touch.locationInView(keyView)
+        location = touch.location(in: keyContainer)
+        previousLocation = touch.previousLocation(in: keyContainer)
+        locationInKey = touch.location(in: keyView)
         force = keyboardView.forceWithTouch(touch)
         self.key = keyView
     }

@@ -9,21 +9,21 @@
 import Foundation
 
 enum KeyColor {
-    case White
-    case Black
-    case Other
+    case white
+    case black
+    case other
 }
 
 extension Pitch {
     var keyColor: KeyColor {
         if let chroma = chroma {
             switch chroma {
-            case .C, .D, .E, .F, .G, .A, .B:
-                return .White
-            case .Cs, .Ds, .Fs, .Gs, .As:
-                return .Black
+            case .c, .d, .e, .f, .g, .a, .b:
+                return .white
+            case .cs, .ds, .fs, .gs, .as:
+                return .black
             }
         }
-        return .Other
+        return .other
     }
 }

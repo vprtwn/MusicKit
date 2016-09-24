@@ -17,19 +17,19 @@ public struct PitchSet: Equatable {
     public init() { }
 
     /// Creates a new `PitchSet` with the contents of a given sequence of pitches.
-    public init<S : SequenceType where S.Generator.Element == Pitch>(_ sequence: S) {
-        contents = Array(Set(sequence)).sort()
+    public init<S : Sequence>(_ sequence: S) where S.Iterator.Element == Pitch {
+        contents = Array(Set(sequence)).sorted()
     }
 
     /// Creates a new `PitchSet` with the given pitches.
     public init(pitches: Pitch...) {
-        contents = Array(Set(pitches)).sort()
+        contents = Array(Set(pitches)).sorted()
     }
 
     /// Returns the index of the given `pitch`
     ///
     /// :returns: The index of the first instance of `pitch`, or `nil` if `pitch` isn't found.
-    public func indexOf(pitch: Pitch) -> Int? {
+    public func indexOf(_ pitch: Pitch) -> Int? {
         let index = contents.insertionIndex(pitch)
         if index == count {
             return nil
@@ -38,7 +38,7 @@ public struct PitchSet: Equatable {
     }
 
     /// Returns true iff `pitch` is found in the collection.
-    public func contains(pitch: Pitch) -> Bool {
+    public func contains(_ pitch: Pitch) -> Bool {
         return indexOf(pitch) != nil
     }
 
@@ -48,47 +48,47 @@ public struct PitchSet: Equatable {
     }
 
     /// Returns a new `PitchSet` with the combined contents of `self` and the given pitches.
-    public func merge(pitches: Pitch...) -> PitchSet {
+    public func merge(_ pitches: Pitch...) -> PitchSet {
         return merge(pitches)
     }
 
     /// Returns a new `PitchSet` with the combined contents of `self` and the given sequence of pitches.
-    public func merge<S: SequenceType where S.Generator.Element == Pitch>(pitches: S) -> PitchSet {
+    public func merge<S: Sequence>(_ pitches: S) -> PitchSet where S.Iterator.Element == Pitch {
         return PitchSet(contents + pitches)
     }
 
     /// Inserts one or more new pitches into the `PitchSet` in the correct order.
-    public mutating func insert(pitches: Pitch...) {
+    public mutating func insert(_ pitches: Pitch...) {
         for pitch in pitches {
             if !contains(pitch) {
-                contents.insert(pitch, atIndex: contents.insertionIndex(pitch))
+                contents.insert(pitch, at: contents.insertionIndex(pitch))
             }
         }
     }
 
     /// Inserts the contents of a sequence of pitches into the `PitchSet`.
-    public mutating func insert<S: SequenceType where S.Generator.Element == Pitch>(pitches: S) {
-        contents = Array(Set(contents + pitches)).sort()
+    public mutating func insert<S: Sequence>(_ pitches: S) where S.Iterator.Element == Pitch {
+        contents = Array(Set(contents + pitches)).sorted()
     }
 
     /// Removes `pitch` from the `PitchSet` if it exists.
     ///
     /// :returns: The given pitch if found, otherwise `nil`.
-    public mutating func remove(pitch: Pitch) -> Pitch? {
+    public mutating func remove(_ pitch: Pitch) -> Pitch? {
         if let index = indexOf(pitch) {
-            return contents.removeAtIndex(index)
+            return contents.remove(at: index)
         }
         return nil
     }
 
     /// Removes and returns the pitch at `index`. Requires count > 0.
-    public mutating func removeAtIndex(index: Int) -> Pitch {
-        return contents.removeAtIndex(index)
+    public mutating func removeAtIndex(_ index: Int) -> Pitch {
+        return contents.remove(at: index)
     }
 
     /// Removes all pitches from the `PitchSet`.
-    public mutating func removeAll(keepCapacity: Bool = true) {
-        contents.removeAll(keepCapacity: keepCapacity)
+    public mutating func removeAll(_ keepCapacity: Bool = true) {
+        contents.removeAll(keepingCapacity: keepCapacity)
     }
 }
 
@@ -100,7 +100,12 @@ extension PitchSet: CustomStringConvertible {
 }
 
 // MARK: CollectionType
-extension PitchSet: CollectionType {
+extension PitchSet: Collection {
+    /// Returns the position immediately after the given index.
+    public func index(after i: Int) -> Int {
+      return i+1 > count ? i : i+1;
+    }
+
     /// The position of the first pitch in the set. (Always zero.)
     public var startIndex: Int {
         return 0
@@ -125,9 +130,9 @@ extension PitchSet: CollectionType {
 }
 
 // MARK: ArrayLiteralConvertible
-extension PitchSet: ArrayLiteralConvertible {
+extension PitchSet: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: Pitch...) {
-        self.contents = Array(Set(elements)).sort()
+        self.contents = Array(Set(elements)).sorted()
     }
 }
 
@@ -151,28 +156,28 @@ public func +(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
     return lhs
 }
 
-public func +=(inout lhs: PitchSet, rhs: PitchSet) {
+public func +=(lhs: inout PitchSet, rhs: PitchSet) {
     lhs.insert(rhs)
 }
 
 public func -(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
     var lhs = lhs
     for pitch in rhs {
-        lhs.remove(pitch)
+        _ =  lhs.remove(pitch)
     }
     return lhs
 }
 
-public func -=(inout lhs: PitchSet, rhs: PitchSet) {
+public func -=(lhs: inout PitchSet, rhs: PitchSet) {
     for pitch in rhs {
-        lhs.remove(pitch)
+        _ =  lhs.remove(pitch)
     }
 }
 
 // MARK: == PitchSetSlice ==
 /// A slice of a `PitchSet`.
 public struct PitchSetSlice {
-    private var contents: ArraySlice<Pitch> = []
+    fileprivate var contents: ArraySlice<Pitch> = []
 
     /// The number of elements the `PitchSetSlice` contains.
     public var count: Int {
@@ -183,24 +188,24 @@ public struct PitchSetSlice {
     public init() { }
 
     /// Creates a new `PitchSetSlice` with the contents of a given sequence.
-    public init<S : SequenceType where S.Generator.Element == Pitch>(_ sequence: S) {
-        contents = ArraySlice(Array(Set(sequence)).sort())
+    public init<S : Sequence>(_ sequence: S) where S.Iterator.Element == Pitch {
+        contents = ArraySlice(Array(Set(sequence)).sorted())
     }
 
     /// Creates a new `PitchSetSlice` with the given values.
     public init(values: Pitch...) {
-        contents = ArraySlice(Array(Set(values)).sort())
+        contents = ArraySlice(Array(Set(values)).sorted())
     }
 
     /// Creates a new `PitchSetSlice` from a sorted slice.
-    private init(sortedSlice: ArraySlice<Pitch>) {
+    fileprivate init(sortedSlice: ArraySlice<Pitch>) {
         contents = sortedSlice
     }
 
     /// Returns the index of the given `pitch`
     ///
     /// :returns: The index of the first instance of `pitch`, or `nil` if `pitch` isn't found.
-    public func indexOf(pitch: Pitch) -> Int? {
+    public func indexOf(_ pitch: Pitch) -> Int? {
         let index = contents.insertionIndex(pitch)
         if index == count {
             return nil
@@ -209,52 +214,52 @@ public struct PitchSetSlice {
     }
 
     /// Returns true iff `pitch` is found in the slice.
-    public func contains(pitch: Pitch) -> Bool {
+    public func contains(_ pitch: Pitch) -> Bool {
         return indexOf(pitch) != nil
     }
 
     /// Returns a new `PitchSetSlice` with the combined contents of `self` and the given pitches.
-    public func merge(pitches: Pitch...) -> PitchSetSlice {
+    public func merge(_ pitches: Pitch...) -> PitchSetSlice {
         return merge(pitches)
     }
 
     /// Returns a new `PitchSetSlice` with the combined contents of `self` and the given pitches.
-    public func merge<S: SequenceType where S.Generator.Element == Pitch>(pitches: S) -> PitchSetSlice {
+    public func merge<S: Sequence>(_ pitches: S) -> PitchSetSlice where S.Iterator.Element == Pitch {
         return PitchSetSlice(contents + pitches)
     }
 
     /// Inserts one or more new pitches into the slice in the correct order.
-    public mutating func insert(pitches: Pitch...) {
+    public mutating func insert(_ pitches: Pitch...) {
         for pitch in pitches {
             if !contains(pitch) {
-                contents.insert(pitch, atIndex: contents.insertionIndex(pitch))
+                contents.insert(pitch, at: contents.insertionIndex(pitch))
             }
         }
     }
 
     /// Inserts the contents of a sequence into the `PitchSetSlice`.
-    public mutating func insert<S: SequenceType where S.Generator.Element == Pitch>(pitches: S) {
-        contents = ArraySlice(Array(Set(contents + pitches)).sort())
+    public mutating func insert<S: Sequence>(_ pitches: S) where S.Iterator.Element == Pitch {
+        contents = ArraySlice(Array(Set(contents + pitches)).sorted())
     }
 
     /// Removes `pitch` from the slice if it exists.
     ///
     /// :returns: The given value if found, otherwise `nil`.
-    public mutating func remove(pitch: Pitch) -> Pitch? {
+    public mutating func remove(_ pitch: Pitch) -> Pitch? {
         if let index = indexOf(pitch) {
-            return contents.removeAtIndex(index)
+            return contents.remove(at: index)
         }
         return nil
     }
 
     /// Removes and returns the pitch at `index`. Requires count > 0.
-    public mutating func removeAtIndex(index: Int) -> Pitch {
-        return contents.removeAtIndex(index)
+    public mutating func removeAtIndex(_ index: Int) -> Pitch {
+        return contents.remove(at: index)
     }
 
     /// Removes all pitches from the slice.
-    public mutating func removeAll(keepCapacity: Bool = true) {
-        contents.removeAll(keepCapacity: keepCapacity)
+    public mutating func removeAll(_ keepCapacity: Bool = true) {
+        contents.removeAll(keepingCapacity: keepCapacity)
     }
 }
 
@@ -266,7 +271,12 @@ extension PitchSetSlice: CustomStringConvertible {
 }
 
 // MARK: CollectionType
-extension PitchSetSlice: CollectionType {
+extension PitchSetSlice: Collection {
+    /// Returns the position immediately after the given index.
+    public func index(after i: Int) -> Int {
+      return i+1 > count ? i : i+1;
+    }
+
     public typealias Index = Int
 
     /// The position of the first pitch in the slice. (Always zero.)
@@ -293,8 +303,8 @@ extension PitchSetSlice: CollectionType {
 }
 
 // MARK: ArrayLiteralConvertible
-extension PitchSetSlice: ArrayLiteralConvertible {
+extension PitchSetSlice: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: Pitch...) {
-        self.contents = ArraySlice(Array(Set(elements)).sort())
+        self.contents = ArraySlice(Array(Set(elements)).sorted())
     }
 }

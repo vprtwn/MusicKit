@@ -3,24 +3,24 @@ import MusicKit
 
 final class LetterNameTests: XCTestCase {
     func testDescription() {
-        let sut = LetterName.G
+        let sut = LetterName.g
         let description = sut.description
         XCTAssertEqual(description, "G")
     }
 
     func testAddition() {
-        var sut = LetterName.C
+        var sut = LetterName.c
         sut = sut + 1
-        XCTAssertEqual(sut, LetterName.D)
+        XCTAssertEqual(sut, LetterName.d)
         sut = sut + 6
-        XCTAssertEqual(sut, LetterName.C)
+        XCTAssertEqual(sut, LetterName.c)
     }
 
     func testSubtraction() {
-        var sut = LetterName.C
+        var sut = LetterName.c
         sut = sut - 1
-        XCTAssertEqual(sut, LetterName.B)
+        XCTAssertEqual(sut, LetterName.b)
         sut = sut - 6
-        XCTAssertEqual(sut, LetterName.C)
+        XCTAssertEqual(sut, LetterName.c)
     }
 }

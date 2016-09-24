@@ -5,7 +5,7 @@ final class PitchTests: XCTestCase {
     func testInitWithIntegralMidiNumber() {
         let sut = Pitch(midi: 69)
         XCTAssertEqual(sut.midi, 69)
-        XCTAssert(sut.chroma == Optional(Chroma.A))
+        XCTAssert(sut.chroma == Optional(Chroma.a))
     }
 
     func testInitWithNonIntegralMidiNumber() {
@@ -15,28 +15,28 @@ final class PitchTests: XCTestCase {
     }
 
     func testInitWithChromaOctave() {
-        let sut = Pitch(chroma: .A, octave: 4)
+        let sut = Pitch(chroma: .a, octave: 4)
         XCTAssertEqual(sut.midi, 69)
-        XCTAssert(sut.chroma == Optional(Chroma.A))
+        XCTAssert(sut.chroma == Optional(Chroma.a))
     }
 
     func testInitWithChromaOctaveSugar() {
-        let sut = Chroma.A*4
+        let sut = Chroma.a*4
         XCTAssertEqual(sut.midi, 69)
-        XCTAssert(sut.chroma == Optional(Chroma.A))
+        XCTAssert(sut.chroma == Optional(Chroma.a))
     }
 
     func testDescription() {
-        let sut = Chroma.C*5
+        let sut = Chroma.c*5
         let description = sut.description
         XCTAssertEqual(description, "C5")
     }
 
     func testTransposable() {
-        var sut = Chroma.C*5
+        var sut = Chroma.c*5
         sut = sut.transpose(12)
-        XCTAssertEqual(sut, Chroma.C*6)
+        XCTAssertEqual(sut, Chroma.c*6)
         sut = sut.transpose(-24)
-        XCTAssertEqual(sut, Chroma.C*4)
+        XCTAssertEqual(sut, Chroma.c*4)
     }
 }

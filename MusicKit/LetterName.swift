@@ -3,13 +3,13 @@
 import Foundation
 
 public enum LetterName: UInt, CustomStringConvertible {
-    case C = 0
-    case D = 1
-    case E = 2
-    case F = 3
-    case G = 4
-    case A = 5
-    case B = 6
+    case c = 0
+    case d = 1
+    case e = 2
+    case f = 3
+    case g = 4
+    case a = 5
+    case b = 6
 
     static let names: [String] = ["C", "D", "E", "F", "G", "A", "B"]
     public var description: String {

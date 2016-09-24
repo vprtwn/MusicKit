@@ -18,7 +18,7 @@ extension PitchSet {
 
 // MARK: Transposable
 extension PitchSet: Transposable {
-    public func transpose(semitones: Float) -> PitchSet {
+    public func transpose(_ semitones: Float) -> PitchSet {
         // TODO: use PitchSet.map
         return PitchSet(contents.map { $0.transpose(semitones) })
     }
@@ -33,7 +33,7 @@ extension PitchSet {
 
     /// Returns the harmonic function of this pitch set (as a `Harmonizer`),
     /// in the given scale and degree.
-    public func harmonicFunction(scale: Harmonizer, _ degree: Float) -> Harmonizer {
+    public func harmonicFunction(_ scale: @escaping Harmonizer, _ degree: Float) -> Harmonizer {
         return HarmonicFunction.create(scale, degree: degree, chord: harmonizer())
     }
 }
@@ -51,7 +51,7 @@ extension PitchSet {
 
     /// Inverts the `PitchSet` the given number of times. 
     /// A single inversion moves the bottom pitch to the top.
-    public mutating func invert(n: UInt = 1) {
+    public mutating func invert(_ n: UInt = 1) {
         for _ in 0..<n {
             _invert()
         }
@@ -62,7 +62,7 @@ extension PitchSet {
             return
         }
         var bass = self[0]
-        remove(bass)
+        _ =  remove(bass)
         let last = self[count - 1]
         while bass < last {
             bass = bass + 12
@@ -71,7 +71,7 @@ extension PitchSet {
     }
 
     /// Extends the pitch set by repeating for the given number of octaves
-    public func extend(octaves: Int) -> PitchSet {
+    public func extend(_ octaves: Int) -> PitchSet {
         var pitchSet = self
         if octaves == 0 { return pitchSet }
         let start = octaves < 0 ? -1 : 1
@@ -98,7 +98,7 @@ extension PitchSet {
             }
         }
         for pitch in pitchesToRemove {
-            self.remove(pitch)
+            _ =  self.remove(pitch)
         }
     }
 
@@ -111,7 +111,7 @@ extension PitchSet {
         for i in 1..<count {
             var pitch = self[i]
             if pitch - first > 12 {
-                remove(pitch)
+                _ =  remove(pitch)
                 while pitch - first > 12 {
                     pitch = pitch.transpose(-12)
                 }
@@ -138,18 +138,18 @@ public func +(lhs: PitchSet, rhs: Pitch) -> PitchSet {
     return lhs
 }
 
-public func +=(inout lhs: PitchSet, rhs: Pitch) {
+public func +=(lhs: inout PitchSet, rhs: Pitch) {
     lhs.insert(rhs)
 }
 
 public func -(lhs: PitchSet, rhs: Pitch) -> PitchSet {
     var lhs = lhs
-    lhs.remove(rhs)
+    _ =  lhs.remove(rhs)
     return lhs
 }
 
-public func -=(inout lhs: PitchSet, rhs: Pitch) {
-    lhs.remove(rhs)
+public func -=(lhs: inout PitchSet, rhs: Pitch) {
+    _ =  lhs.remove(rhs)
 }
 
 // MARK: PitchSet/Chroma 
@@ -164,7 +164,7 @@ public func /(lhs: PitchSet, rhs: Chroma) -> PitchSet {
     }
     var newFirstPitch = firstPitch
     while (newFirstPitch.chroma.map { $0 == rhs } != Optional(true)) {
-        newFirstPitch--
+        newFirstPitch = newFirstPitch--
     }
     lhs.insert(newFirstPitch)
     return lhs

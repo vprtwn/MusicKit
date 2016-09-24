@@ -35,15 +35,15 @@ typedef NS_ENUM(NSUInteger, MKMIDINotification) {
  A callback receiving an array of MIDI packets of the form:
  [channel #, message type, data,...]
  */
-typedef void (^MKMIDIReadCallback)(NSArray *packets);
+typedef void (^MKMIDIReadCallback)(NSArray * _Nullable packets);
 typedef void (^MKMIDINotifyCallback)(MKMIDINotification messageID);
 
 @interface MKMIDIProc: NSObject
 
-+ (void (*)(const MIDIPacketList *pktlist, void *procRef, void *srcRef))readProc;
-+ (void)setReadCallback:(MKMIDIReadCallback)callback;
++ (void (* _Null_unspecified)(const MIDIPacketList * _Nonnull pktlist, void * _Nullable procRef, void * _Nullable srcRef))readProc;
++ (void)setReadCallback:(MKMIDIReadCallback _Nullable )callback;
 
-+ (void (*)(const MIDINotification *notification, void *refCon))notifyProc;
-+ (void)setNotifyCallback:(MKMIDINotifyCallback)callback;
++ (void (* _Null_unspecified)(const MIDINotification * _Nonnull notification, void * _Nullable refCon))notifyProc;
++ (void)setNotifyCallback:(MKMIDINotifyCallback _Nullable)callback;
 
 @end

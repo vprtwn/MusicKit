@@ -10,7 +10,7 @@ import UIKit
 
 class KeyView: UIView {
     /// The color of the key view when force = 1.0
-    var touchColor = UIColor.blueColor() {
+    var touchColor = UIColor.blue {
         didSet {
             foregroundView.backgroundColor = touchColor
         }
@@ -19,7 +19,7 @@ class KeyView: UIView {
     /// The current force the view is receiving
     var force: CGFloat = 0 {
         didSet {
-            foregroundView.backgroundColor = touchColor.colorWithAlphaComponent(force)
+            foregroundView.backgroundColor = touchColor.withAlphaComponent(force)
         }
     }
 
@@ -27,12 +27,12 @@ class KeyView: UIView {
     var pitch: Pitch
 
     // TODO: remove
-    private var debugLabel = UILabel()
+    fileprivate var debugLabel = UILabel()
 
-    private lazy var foregroundView = UIView()
+    fileprivate lazy var foregroundView = UIView()
 
     convenience init(pitch: Pitch) {
-        self.init(frame: CGRectZero)
+        self.init(frame: CGRect.zero)
         self.pitch = pitch
         debugLabel.text = pitch.description
         debugLabel.sizeToFit()
@@ -40,13 +40,13 @@ class KeyView: UIView {
     }
 
     override init(frame: CGRect) {
-        self.pitch = Chroma.C*4
+        self.pitch = Chroma.c*4
         super.init(frame: frame)
         load()
     }
 
     required init?(coder aDecoder: NSCoder) {
-        self.pitch = Chroma.C*4
+        self.pitch = Chroma.c*4
         super.init(coder: aDecoder)
         load()
     }
@@ -55,14 +55,14 @@ class KeyView: UIView {
         self.addSubview(foregroundView)
         self.addSubview(debugLabel)
         self.layer.borderWidth = 1
-        self.layer.borderColor = UIColor.blackColor().CGColor
-        self.backgroundColor = UIColor.clearColor()
+        self.layer.borderColor = UIColor.black.cgColor
+        self.backgroundColor = UIColor.clear
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
         foregroundView.frame = bounds
-        debugLabel.center = CGPointMake(CGRectGetMidX(bounds),
-            CGRectGetMidY(bounds))
+        debugLabel.center = CGPoint(x: bounds.midX,
+            y: bounds.midY)
     }
 }

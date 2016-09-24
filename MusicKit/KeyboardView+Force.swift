@@ -10,17 +10,17 @@ import UIKit
 
 extension UITouch {
     @available(iOS 9.0, *)
-    private var relativeForce: CGFloat {
+    fileprivate var relativeForce: CGFloat {
         return force/maximumPossibleForce
     }
 }
 
 extension KeyboardView {
-    func forceWithTouch(touch: UITouch) -> CGFloat {
+    func forceWithTouch(_ touch: UITouch) -> CGFloat {
         guard #available(iOS 9.0, *) else {
             return self.defaultForce
         }
-        guard self.traitCollection.forceTouchCapability == .Available else {
+        guard self.traitCollection.forceTouchCapability == .available else {
             return self.defaultForce
         }
         return touch.relativeForce

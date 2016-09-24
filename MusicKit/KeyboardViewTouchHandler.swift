@@ -19,14 +19,14 @@ struct KeyboardViewTouchDispatcher {
         self.view = view
     }
 
-    mutating func registerNewTouches(touches: Set<KeyboardTouch>) {
+    mutating func registerNewTouches(_ touches: Set<KeyboardTouch>) {
         activeTouches = activeTouches.union(touches)
         if touches.count > 0 {
             view.delegate?.keyboardView(view, addedTouches: touches)
         }
     }
 
-    mutating func registerChangedTouches(within: Set<KeyboardTouch>,
+    mutating func registerChangedTouches(_ within: Set<KeyboardTouch>,
         _ leaving: Set<KeyboardTouch>)
     {
         var newTouches = Set<KeyboardTouch>()
@@ -49,12 +49,12 @@ struct KeyboardViewTouchDispatcher {
             }
         }
         // normalize
-        removedTouches = removedTouches.subtract(newTouches)
-        removedTouches = removedTouches.subtract(changedTouches)
+        removedTouches = removedTouches.subtracting(newTouches)
+        removedTouches = removedTouches.subtracting(changedTouches)
 
         // update active touches
         activeTouches = activeTouches.union(newTouches)
-        activeTouches = activeTouches.subtract(removedTouches)
+        activeTouches = activeTouches.subtracting(removedTouches)
 
         // inform delegate
         if newTouches.count > 0 {
@@ -68,11 +68,11 @@ struct KeyboardViewTouchDispatcher {
         }
     }
 
-    mutating func registerRemovedTouches(touches: Set<KeyboardTouch>) {
+    mutating func registerRemovedTouches(_ touches: Set<KeyboardTouch>) {
         guard touches.count > 0 else {
             return
         }
-        activeTouches = activeTouches.subtract(touches)
+        activeTouches = activeTouches.subtracting(touches)
         view.delegate?.keyboardView(view, removedTouches: touches)
     }
 }

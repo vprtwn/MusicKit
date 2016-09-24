@@ -91,17 +91,17 @@
 		96F2993F1A56654800D7B006 /* MusicKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F2993E1A56654800D7B006 /* MusicKit.swift */; };
 		96F299411A5665CA00D7B006 /* Pitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F299401A5665CA00D7B006 /* Pitch.swift */; };
 		96F299431A56661300D7B006 /* Scale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F299421A56661300D7B006 /* Scale.swift */; };
-		C10BFAF91BB8F668001C4471 /* KeyboardViewTouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10BFAF81BB8F668001C4471 /* KeyboardViewTouchHandler.swift */; settings = {ASSET_TAGS = (); }; };
-		C10BFAFB1BB900B9001C4471 /* Pitch+KeyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10BFAFA1BB900B9001C4471 /* Pitch+KeyColor.swift */; settings = {ASSET_TAGS = (); }; };
-		C10BFAFC1BB900B9001C4471 /* Pitch+KeyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10BFAFA1BB900B9001C4471 /* Pitch+KeyColor.swift */; settings = {ASSET_TAGS = (); }; };
-		C1114A461BC0785400A3B9C1 /* KeyboardViewTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1114A451BC0785400A3B9C1 /* KeyboardViewTouch.swift */; settings = {ASSET_TAGS = (); }; };
-		C12E906D1BB8270C00CE3256 /* KeyboardView+Force.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E906C1BB8270C00CE3256 /* KeyboardView+Force.swift */; settings = {ASSET_TAGS = (); }; };
-		C16EBDA71BBA5E1C007F7055 /* KeyboardTouchDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16EBDA61BBA5E1C007F7055 /* KeyboardTouchDiff.swift */; settings = {ASSET_TAGS = (); }; };
-		C16EBDA91BBA68C0007F7055 /* KeyboardView+Touches.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16EBDA81BBA68C0007F7055 /* KeyboardView+Touches.swift */; settings = {ASSET_TAGS = (); }; };
-		C170D7721BB64BF800CAD976 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7701BB64BF800CAD976 /* KeyboardView.swift */; settings = {ASSET_TAGS = (); }; };
-		C170D7731BB64BF800CAD976 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7711BB64BF800CAD976 /* KeyView.swift */; settings = {ASSET_TAGS = (); }; };
-		C1A8D2431BB86C22002695E2 /* KeyboardTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A8D2421BB86C22002695E2 /* KeyboardTouch.swift */; settings = {ASSET_TAGS = (); }; };
-		C1FA8B181BB72D4800FE8D15 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA8B171BB72D4800FE8D15 /* DeviceType.swift */; settings = {ASSET_TAGS = (); }; };
+		C10BFAF91BB8F668001C4471 /* KeyboardViewTouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10BFAF81BB8F668001C4471 /* KeyboardViewTouchHandler.swift */; };
+		C10BFAFB1BB900B9001C4471 /* Pitch+KeyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10BFAFA1BB900B9001C4471 /* Pitch+KeyColor.swift */; };
+		C10BFAFC1BB900B9001C4471 /* Pitch+KeyColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10BFAFA1BB900B9001C4471 /* Pitch+KeyColor.swift */; };
+		C1114A461BC0785400A3B9C1 /* KeyboardViewTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1114A451BC0785400A3B9C1 /* KeyboardViewTouch.swift */; };
+		C12E906D1BB8270C00CE3256 /* KeyboardView+Force.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12E906C1BB8270C00CE3256 /* KeyboardView+Force.swift */; };
+		C16EBDA71BBA5E1C007F7055 /* KeyboardTouchDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16EBDA61BBA5E1C007F7055 /* KeyboardTouchDiff.swift */; };
+		C16EBDA91BBA68C0007F7055 /* KeyboardView+Touches.swift in Sources */ = {isa = PBXBuildFile; fileRef = C16EBDA81BBA68C0007F7055 /* KeyboardView+Touches.swift */; };
+		C170D7721BB64BF800CAD976 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7701BB64BF800CAD976 /* KeyboardView.swift */; };
+		C170D7731BB64BF800CAD976 /* KeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C170D7711BB64BF800CAD976 /* KeyView.swift */; };
+		C1A8D2431BB86C22002695E2 /* KeyboardTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A8D2421BB86C22002695E2 /* KeyboardTouch.swift */; };
+		C1FA8B181BB72D4800FE8D15 /* DeviceType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FA8B171BB72D4800FE8D15 /* DeviceType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -540,9 +540,11 @@
 				TargetAttributes = {
 					9691BB231A57C75500421B56 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0800;
 					};
 					9693F6521A57C403006270F4 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0800;
 					};
 					96F299211A5663E500D7B006 = {
 						CreatedOnToolsVersion = 6.1.1;
@@ -754,6 +756,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "benzguo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -770,6 +773,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "benzguo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -795,6 +799,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -816,6 +821,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

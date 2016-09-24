@@ -10,7 +10,7 @@ public protocol MIDIMessage {
     func data() -> [UInt8]
 
     /// Returns a copy of this message on the given channel
-    func copyOnChannel(channel: UInt) -> Self
+    func copyOnChannel(_ channel: UInt) -> Self
 }
 
 public struct MIDINoteMessage: MIDIMessage {
@@ -28,12 +28,12 @@ public struct MIDINoteMessage: MIDIMessage {
     }
 
     public func data() -> [UInt8] {
-        let messageType = self.on ? MKMIDIMessage.NoteOn.rawValue : MKMIDIMessage.NoteOff.rawValue
+        let messageType = self.on ? MKMIDIMessage.noteOn.rawValue : MKMIDIMessage.noteOff.rawValue
         let status = UInt8(messageType + UInt8(self.channel))
         return [UInt8(status), UInt8(self.noteNumber), UInt8(self.velocity)]
     }
 
-    public func copyOnChannel(channel: UInt) -> MIDINoteMessage {
+    public func copyOnChannel(_ channel: UInt) -> MIDINoteMessage {
         return MIDINoteMessage(on: on, channel: channel, noteNumber: noteNumber, velocity: velocity)
     }
 
@@ -43,7 +43,7 @@ public struct MIDINoteMessage: MIDIMessage {
     }
 
     /// Applies the given `Harmonizer` to the message.
-    public func harmonize(harmonizer: Harmonizer) -> [MIDINoteMessage] {
+    public func harmonize(_ harmonizer: Harmonizer) -> [MIDINoteMessage] {
         let ps = harmonizer(pitch)
         var messages = [MIDINoteMessage]()
         // TODO: add a PitchSet -> Array method so this can be mapped
@@ -63,7 +63,7 @@ extension MIDINoteMessage: CustomStringConvertible {
 }
 
 extension MIDINoteMessage: Transposable {
-    public func transpose(semitones: Float) -> MIDINoteMessage {
+    public func transpose(_ semitones: Float) -> MIDINoteMessage {
         return MIDINoteMessage(on: self.on,
             channel: self.channel,
             noteNumber: self.noteNumber + UInt(semitones),

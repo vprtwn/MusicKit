@@ -30,14 +30,14 @@ enum DeviceType {
     case iPadMini3
     case iPadMini4
     case iPadPro
-    case Unknown
+    case unknown
 
     var ppi: CGFloat? {
         switch self {
-        case .iPhone4, .iPhone4s, iPhone5, .iPhone5c, .iPhone5s, .iPhone6,
+        case .iPhone4, .iPhone4s, .iPhone5, .iPhone5c, .iPhone5s, .iPhone6,
         .iPhone6s, .iPodTouch5, .iPodTouch6, .iPadMini2, .iPadMini3, .iPadMini4:
             return 326.0
-        case iPhone6Plus, .iPhone6sPlus:
+        case .iPhone6Plus, .iPhone6sPlus:
             return 401.0
         case .iPad3, .iPad4, .iPadAir, .iPadAir2, .iPadPro:
             return 264.0
@@ -55,10 +55,10 @@ extension UIDevice {
     public static var mmPerPixel: CGFloat {
         let mmPerInch: CGFloat = 25.4
         if let ppi = self.deviceType.ppi {
-            return (1.0/ppi)*mmPerInch*UIScreen.mainScreen().scale
+            return (1.0/ppi)*mmPerInch*UIScreen.main.scale
         }
         else {
-            return 0.15785*UIScreen.mainScreen().scale
+            return 0.15785*UIScreen.main.scale
         }
     }
 
@@ -69,7 +69,7 @@ extension UIDevice {
         let mirror = Mirror(reflecting: machine)
         var identifier = ""
         for child in mirror.children where child.value as? Int8 != 0 {
-            identifier.append(UnicodeScalar(UInt8(child.value as! Int8)))
+            identifier.append(String(UnicodeScalar(UInt8(child.value as! Int8))))
         }
 
         switch identifier {
@@ -110,7 +110,7 @@ extension UIDevice {
         case "iPad4,7", "iPad4,8", "iPad4,9":
             return .iPadMini3
         default:
-            return .Unknown
+            return .unknown
         }
     }
 }
