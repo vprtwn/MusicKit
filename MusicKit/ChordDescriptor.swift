@@ -18,6 +18,13 @@ public struct ChordDescriptor: CustomStringConvertible {
         self.bass = bass
     }
 
+    public var name: String {
+        if root == bass {
+            return "\(root)\(quality)"
+        }
+        return "\(root)\(quality)/\(bass)"
+    }
+
     public var description: String {
         return "root: \(root), quality: \(quality), bass: \(bass)"
     }

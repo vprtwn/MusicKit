@@ -14,18 +14,7 @@ extension PitchSet {
 extension Chord {
     /// Returns the name of the chord if found.
     public static func name(_ pitchSet: PitchSet) -> String? {
-        if let desc = descriptor(pitchSet) {
-            let rootName = desc.root.description
-            let quality = desc.quality.description
-            if desc.root == desc.bass {
-                return "\(rootName)\(quality)"
-            }
-            else {
-                let bassName = desc.bass.description
-                return "\(rootName)\(quality)/\(bassName)"
-            }
-        }
-        return nil
+        return descriptor(pitchSet)?.name
     }
 
     /// Returns an optional `ChordDescriptor`.
