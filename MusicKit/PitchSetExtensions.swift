@@ -50,9 +50,7 @@ extension PitchSet {
     }
 
     mutating func _invert() {
-        guard isEmpty else { return }
-
-        var bass = self[0]
+        guard var bass = first else { return }
         _ =  remove(bass)
         let last = self.last!
         while bass < last {
@@ -126,9 +124,8 @@ public func /(lhs: PitchSet, rhs: Chroma) -> PitchSet {
     }
     var lhs = lhs
     let firstPitch = lhs[0]
-    if firstPitch.chroma == nil {
-        return lhs
-    }
+    guard firstPitch.chroma != nil else { return lhs }
+
     var newFirstPitch = firstPitch
     while (newFirstPitch.chroma.map { $0 == rhs } != Optional(true)) {
         newFirstPitch = newFirstPitch--
