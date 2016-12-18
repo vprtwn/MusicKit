@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		377091D51E06340B00DFFEA8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377091D41E06340B00DFFEA8 /* Extensions.swift */; };
+		377091D61E06340B00DFFEA8 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377091D41E06340B00DFFEA8 /* Extensions.swift */; };
 		960F015E1AFFA6AA006974AE /* MIDIMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960F015D1AFFA6AA006974AE /* MIDIMessage.swift */; };
 		960F015F1AFFA6AA006974AE /* MIDIMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960F015D1AFFA6AA006974AE /* MIDIMessage.swift */; };
 		960F21F81B08FF320088C194 /* ChordExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960F21F71B08FF320088C194 /* ChordExtension.swift */; };
@@ -111,6 +113,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		377091D41E06340B00DFFEA8 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		960F015D1AFFA6AA006974AE /* MIDIMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIDIMessage.swift; sourceTree = "<group>"; };
 		960F21F61B08FEC70088C194 /* UnalteredExtendedChords.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = UnalteredExtendedChords.playground; path = ../Playgrounds/UnalteredExtendedChords.playground; sourceTree = "<group>"; };
 		960F21F71B08FF320088C194 /* ChordExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordExtension.swift; sourceTree = "<group>"; };
@@ -313,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				965AF8C11AF7A1DA00D31E83 /* Protocols.swift */,
+				377091D41E06340B00DFFEA8 /* Extensions.swift */,
 				96DFB6331AF6C2F0005EEBD6 /* MKUtil.swift */,
 			);
 			name = Internal;
@@ -592,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				960F21F91B08FF320088C194 /* ChordExtension.swift in Sources */,
+				377091D61E06340B00DFFEA8 /* Extensions.swift in Sources */,
 				96A06D551AFF281400029013 /* MKMIDIProc.m in Sources */,
 				96DFB6351AF6C2F0005EEBD6 /* MKUtil.swift in Sources */,
 				9693F6761A57C44A006270F4 /* MusicKit.swift in Sources */,
@@ -625,6 +630,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				960F21F81B08FF320088C194 /* ChordExtension.swift in Sources */,
+				377091D51E06340B00DFFEA8 /* Extensions.swift in Sources */,
 				96A06D541AFF281400029013 /* MKMIDIProc.m in Sources */,
 				96DFB6341AF6C2F0005EEBD6 /* MKUtil.swift in Sources */,
 				96F299411A5665CA00D7B006 /* Pitch.swift in Sources */,
