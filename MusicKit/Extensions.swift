@@ -18,6 +18,15 @@ extension Sequence {
     }
 }
 
+extension Sequence {
+    public func any(predicate: (Iterator.Element) -> Bool) -> Bool {
+        for e in self where predicate(e) {
+            return true
+        }
+        return false
+    }
+}
+
 extension Sequence where SubSequence: Sequence {
     var tuples: AnyIterator<(SubSequence.Iterator.Element, SubSequence.Iterator.Element)> {
         let i = zip(dropFirst(), dropLast())
