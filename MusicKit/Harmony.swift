@@ -19,7 +19,7 @@ public struct Harmony {
             let pitchSet = PitchSet(pitches: firstPitch)
             return intervals.reduce(pitchSet) {
                 (ps, interval) -> PitchSet in
-                return ps + [ps.last()! + interval]
+                return ps + [ps.last! + interval]
             }
         }
     }

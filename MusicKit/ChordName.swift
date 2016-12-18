@@ -96,7 +96,7 @@ extension Chord {
             return nil
         }
 
-        let bass = pitchSet.first()!
+        let bass = pitchSet.first!
         let bassChromaOpt = bass.chroma
 
         let indices = pitchSet.semitoneIndices()

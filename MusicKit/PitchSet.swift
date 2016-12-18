@@ -6,13 +6,7 @@ import Foundation
 /// A collection of unique `Pitch` instances ordered by frequency.
 public struct PitchSet: Equatable {
 
-    var contents: [Pitch] = []
-
-    /// The number of pitches the `PitchSet` contains.
-    public var count: Int {
-        return contents.count
-    }
-
+    fileprivate var contents: [Pitch] = []
     /// Creates an empty `PitchSet`
     public init() { }
 
@@ -29,7 +23,7 @@ public struct PitchSet: Equatable {
     /// Returns the index of the given `pitch`
     ///
     /// :returns: The index of the first instance of `pitch`, or `nil` if `pitch` isn't found.
-    public func indexOf(_ pitch: Pitch) -> Int? {
+    public func index(of pitch: Pitch) -> Int? {
         let index = contents.insertionIndex(pitch)
         if index == count {
             return nil
@@ -39,13 +33,9 @@ public struct PitchSet: Equatable {
 
     /// Returns true iff `pitch` is found in the collection.
     public func contains(_ pitch: Pitch) -> Bool {
-        return indexOf(pitch) != nil
+        return index(of: pitch) != nil
     }
 
-    /// Returns true iff there are no pitches in the collection
-    public func isEmpty() -> Bool {
-        return count == 0
-    }
 
     /// Returns a new `PitchSet` with the combined contents of `self` and the given pitches.
     public func merge(_ pitches: Pitch...) -> PitchSet {
@@ -75,14 +65,13 @@ public struct PitchSet: Equatable {
     ///
     /// :returns: The given pitch if found, otherwise `nil`.
     public mutating func remove(_ pitch: Pitch) -> Pitch? {
-        if let index = indexOf(pitch) {
-            return contents.remove(at: index)
+        return index(of: pitch).map {
+            self.contents.remove(at: $0)
         }
-        return nil
     }
 
     /// Removes and returns the pitch at `index`. Requires count > 0.
-    public mutating func removeAtIndex(_ index: Int) -> Pitch {
+    public mutating func remove(at index: Int) -> Pitch {
         return contents.remove(at: index)
     }
 
@@ -103,7 +92,7 @@ extension PitchSet: CustomStringConvertible {
 extension PitchSet: Collection {
     /// Returns the position immediately after the given index.
     public func index(after i: Int) -> Int {
-      return i+1 > count ? i : i+1;
+      return i + 1
     }
 
     /// The position of the first pitch in the set. (Always zero.)
@@ -114,7 +103,7 @@ extension PitchSet: Collection {
     /// One greater than the position of the last pitch in the set.
     /// Zero when the collection is empty.
     public var endIndex: Int {
-        return count
+        return contents.endIndex
     }
 
     /// Accesses the pitch at index `i`.
@@ -132,21 +121,19 @@ extension PitchSet: Collection {
 // MARK: ArrayLiteralConvertible
 extension PitchSet: ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: Pitch...) {
-        self.contents = Array(Set(elements)).sorted()
+        self.contents = Set(elements).sorted()
+    }
+}
+
+extension PitchSet: BidirectionalCollection {
+    public func index(before i: Int) -> Int {
+        return i - 1
     }
 }
 
 // MARK: Equatable
 public func ==(lhs: PitchSet, rhs: PitchSet) -> Bool {
-    if lhs.count != rhs.count {
-        return false
-    }
-    for (lhs, rhs) in zip(lhs, rhs) {
-        if lhs != rhs {
-            return false
-        }
-    }
-    return true
+    return lhs.count == rhs.count && lhs.elementsEqual(rhs)
 }
 
 // MARK: Operators
@@ -205,7 +192,7 @@ public struct PitchSetSlice {
     /// Returns the index of the given `pitch`
     ///
     /// :returns: The index of the first instance of `pitch`, or `nil` if `pitch` isn't found.
-    public func indexOf(_ pitch: Pitch) -> Int? {
+    public func index(of pitch: Pitch) -> Int? {
         let index = contents.insertionIndex(pitch)
         if index == count {
             return nil
@@ -215,7 +202,7 @@ public struct PitchSetSlice {
 
     /// Returns true iff `pitch` is found in the slice.
     public func contains(_ pitch: Pitch) -> Bool {
-        return indexOf(pitch) != nil
+        return index(of: pitch) != nil
     }
 
     /// Returns a new `PitchSetSlice` with the combined contents of `self` and the given pitches.
@@ -246,14 +233,11 @@ public struct PitchSetSlice {
     ///
     /// :returns: The given value if found, otherwise `nil`.
     public mutating func remove(_ pitch: Pitch) -> Pitch? {
-        if let index = indexOf(pitch) {
-            return contents.remove(at: index)
-        }
-        return nil
+        return index(of: pitch).map { self.contents.remove(at: $0) }
     }
 
     /// Removes and returns the pitch at `index`. Requires count > 0.
-    public mutating func removeAtIndex(_ index: Int) -> Pitch {
+    public mutating func remove(at index: Int) -> Pitch {
         return contents.remove(at: index)
     }
 
@@ -274,7 +258,7 @@ extension PitchSetSlice: CustomStringConvertible {
 extension PitchSetSlice: Collection {
     /// Returns the position immediately after the given index.
     public func index(after i: Int) -> Int {
-      return i+1 > count ? i : i+1;
+      return i + 1
     }
 
     public typealias Index = Int
@@ -299,6 +283,12 @@ extension PitchSetSlice: Collection {
     /// Access the elements in the given range.
     public subscript(range: Range<Int>) -> PitchSetSlice {
         return PitchSetSlice(contents[range])
+    }
+}
+
+extension PitchSetSlice: BidirectionalCollection {
+    public func index(before i: Int) -> Int {
+        return i - 1
     }
 }
 

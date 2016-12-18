@@ -10,14 +10,13 @@ public enum MKUtil {
         var semitones = semitoneIndices
         for _ in 0..<modN {
             let next = semitones[0] + 12
-            semitones = Array(semitones[1..<count] + [next])
+            semitones = Array(semitones.dropFirst()) + [next]
         }
         return semitones
     }
 
     /// Transforms an array of semitone indices so that the first index is zero
     static func zero(_ semitoneIndices: [Float]) -> [Float] {
-        if semitoneIndices.count < 1 { return semitoneIndices }
         return semitoneIndices.map { $0 - semitoneIndices[0] }
     }
 

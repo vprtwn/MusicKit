@@ -6,13 +6,7 @@ import Foundation
 extension PitchSet {
     /// Returns the set of chroma contained in the `PitchSet`
     public func gamut() -> Set<Chroma> {
-        var set = Set<Chroma>()
-        for pitch in self.contents {
-            if let chroma = pitch.chroma {
-                set.insert(chroma)
-            }
-        }
-        return set
+        return Set( flatMap { $0.chroma } )
     }
 }
 
@@ -20,7 +14,7 @@ extension PitchSet {
 extension PitchSet: Transposable {
     public func transpose(_ semitones: Float) -> PitchSet {
         // TODO: use PitchSet.map
-        return PitchSet(contents.map { $0.transpose(semitones) })
+        return PitchSet(map { $0.transpose(semitones) })
     }
 }
 
@@ -43,7 +37,7 @@ extension PitchSet {
     /// Returns the semitone indices when the lowest pitch is given index 0.
     public func semitoneIndices() -> [Float] {
         if self.count < 1 {
-            return [Float(0)]
+            return [0]
         }
         let first = self[0].midi
         return map { $0.midi - first }
@@ -120,15 +114,6 @@ extension PitchSet {
         }
     }
 
-    /// The first pitch, or `nil` if the set is empty.
-    public func first() -> Pitch? {
-        return contents.first
-    }
-
-    /// The last pitch, or `nil` if the set is empty
-    public func last() -> Pitch? {
-        return contents.last
-    }
 }
 
 // MARK: PitchSet-Pitch operators
