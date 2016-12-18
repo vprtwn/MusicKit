@@ -71,11 +71,9 @@ public enum Chroma: UInt {
 // MARK: Printable
 extension Chroma: CustomStringConvertible {
     public var description: String {
-        let nameTupleOpt: ChromaNameTuple? = self.names.first
-        if let (letterName, accidental) = nameTupleOpt {
-            return "\(letterName.description)\(accidental.description(true))"
-        }
-        return ""
+        return names.first.flatMap { tup in
+                "\(tup.0)\(tup.1.description(true))"
+        } ?? ""
     }
 }
 

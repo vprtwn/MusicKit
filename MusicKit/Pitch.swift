@@ -28,14 +28,14 @@ public struct Pitch: Comparable {
 
     /// The frequency of the pitch in Hz
     public var frequency: Float {
-        return Pitch.mtof(self.midi)
+        return Pitch.mtof(midi)
     }
 
     /// A `Chroma`, or nil if the pitch doesn't align with the chromas
     /// in the current tuning system.
     public var chroma: Chroma? {
-        if self.midi - floor(self.midi) == 0 {
-            return Chroma(rawValue: UInt(self.midi)%12)
+        if midi - floor(midi) == 0 {
+            return Chroma(rawValue: UInt(midi)%12)
         }
         return nil
     }
@@ -54,7 +54,7 @@ public struct Pitch: Comparable {
 
     /// Unadjusted octave number
     var octaveNumber: Int {
-        return Int((self.midi - 12.0)/12.0)
+        return Int((midi - 12.0)/12.0)
     }
 
     /// Combines an octave number with a chroma name, taking into account
