@@ -75,26 +75,11 @@ extension PitchSet {
     /// Removes duplicate chroma from the pitch set, starting from the root.
     /// Note that pitches without chroma will be ignored.
     public mutating func dedupe() {
-        var gamut = Set<Chroma>()
-        var pitchesToRemove = PitchSet()
-        for i in 0..<count {
-            let p = self[i]
-            if let chroma = p.chroma {
-                if gamut.contains(chroma) {
-                    pitchesToRemove.insert(p)
-                }
-                else {
-                    gamut.insert(chroma)
-                }
-            }
-        }
-        for pitch in pitchesToRemove {
-            _ =  self.remove(pitch)
-        }
+        duplicates.forEach { _ = self.remove($0) }
     }
 
     /// Collapses the pitch set to within an octave, maintaining the bass.
-    public mutating func collapse() {
+     public mutating func collapse() {
         if count < 2 {
             return
         }

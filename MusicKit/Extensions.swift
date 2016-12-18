@@ -18,6 +18,18 @@ extension Sequence {
     }
 }
 
+extension Sequence where Iterator.Element: Hashable {
+    var unique: [Iterator.Element] {
+        var s: Set<Iterator.Element> = []
+        return filter { s.insert($0).inserted }
+    }
+
+    var duplicates: [Iterator.Element] {
+        var s: Set<Iterator.Element> = []
+        return filter { !s.insert($0).inserted }
+    }
+}
+
 extension Sequence {
     public func any(predicate: (Iterator.Element) -> Bool) -> Bool {
         for e in self where predicate(e) {
