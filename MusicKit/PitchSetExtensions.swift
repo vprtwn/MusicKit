@@ -36,11 +36,9 @@ extension PitchSet {
 extension PitchSet {
     /// Returns the semitone indices when the lowest pitch is given index 0.
     public func semitoneIndices() -> [Float] {
-        if self.count < 1 {
-            return [0]
-        }
-        let first = self[0].midi
-        return map { $0.midi - first }
+        return first.map { f in
+            self.map { $0.midi - f.midi }
+        } ?? [0]
     }
 
     /// Inverts the `PitchSet` the given number of times. 
@@ -52,12 +50,11 @@ extension PitchSet {
     }
 
     mutating func _invert() {
-        if self.count < 1 {
-            return
-        }
+        guard isEmpty else { return }
+
         var bass = self[0]
         _ =  remove(bass)
-        let last = self[count - 1]
+        let last = self.last!
         while bass < last {
             bass = bass + 12
         }
