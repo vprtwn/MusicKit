@@ -64,7 +64,7 @@ public enum Chroma: UInt {
 
     /// Returns true if the given name tuple is a valid name
     func validateName(_ name: ChromaNameTuple) -> Bool {
-        return names.any { $0 == name }
+        return names.contains { $0 == name }
     }
     
     static public func +(lhs: Chroma, rhs: Int) -> Chroma {
