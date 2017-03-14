@@ -30,6 +30,8 @@ extension Sequence where Iterator.Element: Hashable {
     }
 }
 
+
+
 extension Sequence where SubSequence: Sequence {
     var tuples: AnyIterator<(SubSequence.Iterator.Element, SubSequence.Iterator.Element)> {
         let i = zip(dropFirst(), dropLast())

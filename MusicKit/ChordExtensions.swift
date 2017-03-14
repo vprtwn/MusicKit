@@ -10,7 +10,7 @@ extension Chord {
         }
 
         // sort and convert to zero-indexed indices
-        let sortedIndices = (indices.map { $0 - 1 }).sorted()
+        let sortedIndices = indices.map { $0 - 1 }.sorted()
         let maxIndex = Int(sortedIndices.last!)
         var scalePitches = harmonizer(Chroma.c*0)
 
