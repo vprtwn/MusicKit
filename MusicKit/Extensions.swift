@@ -32,10 +32,7 @@ extension Sequence where Iterator.Element: Hashable {
 
 extension Sequence {
     public func any(predicate: (Iterator.Element) -> Bool) -> Bool {
-        for e in self where predicate(e) {
-            return true
-        }
-        return false
+        return first { predicate($0) } != nil
     }
 }
 
