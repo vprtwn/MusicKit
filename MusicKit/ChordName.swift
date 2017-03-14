@@ -16,35 +16,30 @@ extension Chord {
     public static func name(_ pitchSet: PitchSet) -> String? {
         return descriptor(pitchSet)?.name
     }
-
+    
     /// Returns an optional `ChordDescriptor`.
     public static func descriptor(_ pitchSet: PitchSet) -> ChordDescriptor? {
         var pitchSet = pitchSet
         pitchSet.normalize()
         let count = pitchSet.count
         let gamutCount = pitchSet.gamut().count
-
+        
         // early return if:
         // - less than a dyad after normalization
         // - one or more pitch is chroma-less
         if count < 2 || count != gamutCount { return nil }
-
+        
         let bass = pitchSet[0]
         let bassChromaOpt = bass.chroma
         // pitch set with bass removed
         var bassRemoved = pitchSet
         _ =  bassRemoved.remove(bass)
-
+        
         // dyads
-        if count == 2 {
-            return _descriptor(pitchSet, qualities: ChordQuality.Dyads)
-        }
-        // triads
-        else if count == 3 {
-            return _descriptor(pitchSet, qualities: ChordQuality.Triads)
-        }
-        // Tetrads, Pentads, Hexads, Heptads
-        else if count > 3 && count < 8 {
+        switch count {
+        case 2: return _descriptor(pitchSet, qualities: ChordQuality.Dyads)
+        case 3: return _descriptor(pitchSet, qualities: ChordQuality.Triads)
+        case 4..<8:
             var fullQs = [ChordQuality]()
             var fullUnalteredQs = [ChordQuality]()
             var slashQs = [ChordQuality]()
@@ -83,17 +78,18 @@ extension Chord {
                 }
             }
             return slashNoBassOpt ?? fullOpt
+        default: return nil
         }
-        return nil
+        
     }
-
+    
     /// Returns an optional `ChordDescriptor`.
     static func _descriptor(_ pitchSet: PitchSet,
-        qualities: [ChordQuality]) -> ChordDescriptor?
+                            qualities: [ChordQuality]) -> ChordDescriptor?
     {
         guard let bass = pitchSet.first else { return nil }
         let bassChromaOpt = bass.chroma
-
+        
         let indices = pitchSet.semitoneIndices()
         // check root position chords
         for quality in qualities {
