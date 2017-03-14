@@ -16,25 +16,25 @@ extension Chord {
     public static func name(_ pitchSet: PitchSet) -> String? {
         return descriptor(pitchSet)?.name
     }
-    
+
     /// Returns an optional `ChordDescriptor`.
     public static func descriptor(_ pitchSet: PitchSet) -> ChordDescriptor? {
         var pitchSet = pitchSet
         pitchSet.normalize()
         let count = pitchSet.count
         let gamutCount = pitchSet.gamut().count
-        
+
         // early return if:
         // - less than a dyad after normalization
         // - one or more pitch is chroma-less
         if count < 2 || count != gamutCount { return nil }
-        
+
         let bass = pitchSet[0]
         let bassChromaOpt = bass.chroma
         // pitch set with bass removed
         var bassRemoved = pitchSet
         _ =  bassRemoved.remove(bass)
-        
+
         // dyads
         switch count {
         case 2: return _descriptor(pitchSet, qualities: ChordQuality.Dyads)
