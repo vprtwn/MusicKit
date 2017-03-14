@@ -122,6 +122,31 @@ extension PitchSet: Collection {
     public subscript(range: Range<Index>) -> PitchSetSlice {
         return PitchSetSlice(contents[range])
     }
+
+    // MARK: Operators
+    static public func +(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
+        var lhs = lhs
+        lhs.insert(rhs)
+        return lhs
+    }
+    
+    static public func +=(lhs: inout PitchSet, rhs: PitchSet) {
+        lhs.insert(rhs)
+    }
+    
+    static public func -(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
+        var lhs = lhs
+        for pitch in rhs {
+            _ =  lhs.remove(pitch)
+        }
+        return lhs
+    }
+    
+    static public func -=(lhs: inout PitchSet, rhs: PitchSet) {
+        for pitch in rhs {
+            _ =  lhs.remove(pitch)
+        }
+    }
 }
 
 // MARK: ArrayLiteralConvertible
@@ -134,32 +159,6 @@ extension PitchSet : ExpressibleByArrayLiteral {
 extension PitchSet : BidirectionalCollection {
     public func index(before i: Index) -> Index {
         return i - 1
-    }
-}
-
-
-// MARK: Operators
-public func +(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
-    var lhs = lhs
-    lhs.insert(rhs)
-    return lhs
-}
-
-public func +=(lhs: inout PitchSet, rhs: PitchSet) {
-    lhs.insert(rhs)
-}
-
-public func -(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
-    var lhs = lhs
-    for pitch in rhs {
-        _ =  lhs.remove(pitch)
-    }
-    return lhs
-}
-
-public func -=(lhs: inout PitchSet, rhs: PitchSet) {
-    for pitch in rhs {
-        _ =  lhs.remove(pitch)
     }
 }
 
