@@ -49,7 +49,8 @@ public enum MKUtil {
     }
 }
 
-extension Collection where Iterator.Element == Pitch, Index == Int {
+
+extension Collection where Iterator.Element : Comparable, Index == Int {
 
     /// Returns the insertion point for `pitch` in the collection of `pitches`.
     ///
@@ -58,7 +59,7 @@ extension Collection where Iterator.Element == Pitch, Index == Int {
     /// could be inserted, keeping `pitchSet` in order.
     ///
     /// :returns: An index in the range `0...count(pitches)` where `pitch` can be inserted.
-    func insertionIndex(_ pitch: Pitch) -> Int {
+    func insertionIndex(_ element: Iterator.Element) -> Index {
         if self.isEmpty {
             return 0
         }
@@ -68,14 +69,14 @@ extension Collection where Iterator.Element == Pitch, Index == Int {
 
         while low < high {
             mid = (high - low) / 2 + low
-            if self[mid] < pitch {
+            if self[mid] < element {
                 low = mid + 1
             } else {
                 high = mid
             }
         }
 
-        if self[low] >= pitch {
+        if self[low] >= element {
             return low
         }
         

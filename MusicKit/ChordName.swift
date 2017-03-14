@@ -91,12 +91,7 @@ extension Chord {
     static func _descriptor(_ pitchSet: PitchSet,
         qualities: [ChordQuality]) -> ChordDescriptor?
     {
-        let count = pitchSet.count
-        if count < 1 {
-            return nil
-        }
-
-        let bass = pitchSet.first!
+        guard let bass = pitchSet.first else { return nil }
         let bassChromaOpt = bass.chroma
 
         let indices = pitchSet.semitoneIndices()
@@ -112,10 +107,10 @@ extension Chord {
         // check inversions
         for quality in qualities {
             let _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
-            for i in 1..<count {
+            for i in 1..<pitchSet.endIndex {
                 let inversion = MKUtil.zero(MKUtil.invert(_indices, n: UInt(i)))
                 if inversion == indices {
-                    if let rootChroma = pitchSet[count - i].chroma {
+                    if let rootChroma = pitchSet[pitchSet.count - i].chroma {
                         return bassChromaOpt.map {
                             ChordDescriptor(root: rootChroma, quality: quality, bass: $0)
                         }

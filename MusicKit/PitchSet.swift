@@ -4,7 +4,7 @@ import Foundation
 
 // MARK: == PitchSet ==
 /// A collection of unique `Pitch` instances ordered by frequency.
-public struct PitchSet: Equatable {
+public struct PitchSet : Equatable {
     public typealias Index = Int
     public typealias Element = Pitch
 
@@ -81,6 +81,10 @@ public struct PitchSet: Equatable {
     public mutating func removeAll(_ keepCapacity: Bool = true) {
         contents.removeAll(keepingCapacity: keepCapacity)
     }
+    
+    static public func ==(lhs: PitchSet, rhs: PitchSet) -> Bool {
+        return lhs.count == rhs.count && lhs.elementsEqual(rhs)
+    }
 }
 
 // MARK: Printable
@@ -121,22 +125,18 @@ extension PitchSet: Collection {
 }
 
 // MARK: ArrayLiteralConvertible
-extension PitchSet: ExpressibleByArrayLiteral {
+extension PitchSet : ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: Element...) {
         self.contents = Set(elements).sorted()
     }
 }
 
-extension PitchSet: BidirectionalCollection {
+extension PitchSet : BidirectionalCollection {
     public func index(before i: Index) -> Index {
         return i - 1
     }
 }
 
-// MARK: Equatable
-public func ==(lhs: PitchSet, rhs: PitchSet) -> Bool {
-    return lhs.count == rhs.count && lhs.elementsEqual(rhs)
-}
 
 // MARK: Operators
 public func +(lhs: PitchSet, rhs: PitchSet) -> PitchSet {
@@ -247,14 +247,14 @@ public struct PitchSetSlice {
 }
 
 // MARK: Printable
-extension PitchSetSlice: CustomStringConvertible {
+extension PitchSetSlice : CustomStringConvertible {
     public var description: String {
         return contents.description
     }
 }
 
 // MARK: CollectionType
-extension PitchSetSlice: Collection {
+extension PitchSetSlice : Collection {
     /// Returns the position immediately after the given index.
     public func index(after i: Index) -> Index {
       return i + 1
@@ -283,14 +283,14 @@ extension PitchSetSlice: Collection {
     }
 }
 
-extension PitchSetSlice: BidirectionalCollection {
+extension PitchSetSlice : BidirectionalCollection {
     public func index(before i: Index) -> Index {
         return i - 1
     }
 }
 
 // MARK: ArrayLiteralConvertible
-extension PitchSetSlice: ExpressibleByArrayLiteral {
+extension PitchSetSlice : ExpressibleByArrayLiteral {
     public init(arrayLiteral elements: Element...) {
         contents = ArraySlice(Set(elements).sorted())
     }

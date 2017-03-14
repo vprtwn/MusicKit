@@ -66,6 +66,40 @@ public enum Chroma: UInt {
     func validateName(_ name: ChromaNameTuple) -> Bool {
         return names.any { $0 == name }
     }
+    
+    static public func +(lhs: Chroma, rhs: Int) -> Chroma {
+        var rhs = rhs
+        while rhs < 0 {
+            rhs = rhs + 12
+        }
+        let newRawValue = (lhs.rawValue + UInt(rhs))%12
+        return Chroma(rawValue: newRawValue)!
+    }
+    
+    static public func -(lhs: Chroma, rhs: Int) -> Chroma {
+        return lhs + (-1*rhs)
+    }
+    
+    static postfix func --(chroma: inout Chroma) -> Chroma {
+        chroma = chroma - 1
+        return chroma
+    }
+    
+    static postfix func ++(chroma: inout Chroma) -> Chroma {
+        chroma = chroma + 1
+        return chroma
+    }
+    
+    /// Returns the minimum distance between two chromas
+    static public func -(lhs: Chroma, rhs: Chroma) -> UInt {
+        let lminusr = abs(Int(lhs.rawValue) - Int(rhs.rawValue))
+        let rminusl = abs(Int(rhs.rawValue) - Int(lhs.rawValue))
+        return UInt(min(lminusr, rminusl))
+    }
+    
+    static public func *(lhs: Chroma, rhs: Int) -> Pitch {
+        return Pitch(chroma: lhs, octave: UInt(abs(rhs)))
+    }
 }
 
 // MARK: Printable
@@ -75,38 +109,4 @@ extension Chroma: CustomStringConvertible {
                 "\(tup.0)\(tup.1.description(true))"
         } ?? ""
     }
-}
-
-public func +(lhs: Chroma, rhs: Int) -> Chroma {
-    var rhs = rhs
-    while rhs < 0 {
-        rhs = rhs + 12
-    }
-    let newRawValue = (lhs.rawValue + UInt(rhs))%12
-    return Chroma(rawValue: newRawValue)!
-}
-
-public func -(lhs: Chroma, rhs: Int) -> Chroma {
-    return lhs + (-1*rhs)
-}
-
-postfix func --(chroma: inout Chroma) -> Chroma {
-    chroma = chroma - 1
-    return chroma
-}
-
-postfix func ++(chroma: inout Chroma) -> Chroma {
-    chroma = chroma + 1
-    return chroma
-}
-
-/// Returns the minimum distance between two chromas
-public func -(lhs: Chroma, rhs: Chroma) -> UInt {
-    let lminusr = abs(Int(lhs.rawValue) - Int(rhs.rawValue))
-    let rminusl = abs(Int(rhs.rawValue) - Int(lhs.rawValue))
-    return UInt(min(lminusr, rminusl))
-}
-
-public func *(lhs: Chroma, rhs: Int) -> Pitch {
-    return Pitch(chroma: lhs, octave: UInt(abs(rhs)))
 }
