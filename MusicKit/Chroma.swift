@@ -71,16 +71,10 @@ public enum Chroma: UInt {
 // MARK: Printable
 extension Chroma: CustomStringConvertible {
     public var description: String {
-        return names.first.flatMap { tup in
+        return names.first.map { tup in
                 "\(tup.0)\(tup.1.description(true))"
         } ?? ""
     }
-}
-
-// MARK: Operators
-public func == (p1:(LetterName, Accidental), p2:(LetterName, Accidental)) -> Bool
-{
-    return (p1.0 == p2.0) && (p1.1 == p2.1)
 }
 
 public func +(lhs: Chroma, rhs: Int) -> Chroma {
