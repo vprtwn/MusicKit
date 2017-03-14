@@ -38,7 +38,6 @@ public struct PitchSet : Equatable {
         return index(of: pitch) != nil
     }
 
-
     /// Returns a new `PitchSet` with the combined contents of `self` and the given pitches.
     public func merge(_ pitches: Element...) -> PitchSet {
         return merge(pitches)
