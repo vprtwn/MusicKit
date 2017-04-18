@@ -34,5 +34,5 @@ midi.noteHandler = { messages in
 }
 ```
 
-####[Framework Overview](/Documentation/FrameworkOverview.md)
+[Framework Overview](/Documentation/FrameworkOverview.md)
 
