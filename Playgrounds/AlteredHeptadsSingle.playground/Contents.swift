@@ -15,18 +15,18 @@ var nonDiminishedAugmentedTetrads = unalteredTetrads.filter {
 
 var flatNines = ([String](), [String]())
 for q in unalteredTetrads {
-    var name = q.name.stringByReplacingOccurrencesOfString("Seventh", withString: "Thirteenth")
+    var name = q.name.replacingOccurrences(of: "Seventh", with: "Thirteenth")
     name = name + "FlatNine"
-    var symbol = q.description.stringByReplacingOccurrencesOfString("7", withString: "13")
+    var symbol = q.description.replacingOccurrences(of: "7", with: "13")
     symbol = symbol + "♭9"
     var symbolLine = "case \(name) = \"\(symbol)\""
     flatNines.0.append(symbolLine)
 
     var intervals = MKUtil.intervals(
         MKUtil.semitoneIndices(q.intervals) +
-            [Float(ChordExtension.FlatNine.rawValue),
-                Float(ChordExtension.Eleven.rawValue),
-                Float(ChordExtension.Thirteen.rawValue),
+            [Float(ChordExtension.flatNine.rawValue),
+                Float(ChordExtension.eleven.rawValue),
+                Float(ChordExtension.thirteen.rawValue),
         ])
     var intIntervals = [Int]()
     for i in intervals { intIntervals.append(Int(i)) }
@@ -36,18 +36,18 @@ for q in unalteredTetrads {
 
 var sharpElevens = ([String](), [String]())
 for q in nonDiminishedTetrads {
-    var name = q.name.stringByReplacingOccurrencesOfString("Seventh", withString: "Thirteenth")
+    var name = q.name.replacingOccurrences(of: "Seventh", with: "Thirteenth")
     name = name + "SharpEleven"
-    var symbol = q.description.stringByReplacingOccurrencesOfString("7", withString: "13")
+    var symbol = q.description.replacingOccurrences(of: "7", with: "13")
     symbol = symbol + "♯11"
     var symbolLine = "case \(name) = \"\(symbol)\""
     sharpElevens.0.append(symbolLine)
 
     var intervals = MKUtil.intervals(
         MKUtil.semitoneIndices(q.intervals) +
-            [Float(ChordExtension.Nine.rawValue),
-                Float(ChordExtension.SharpEleven.rawValue),
-                Float(ChordExtension.Thirteen.rawValue),
+            [Float(ChordExtension.nine.rawValue),
+                Float(ChordExtension.sharpEleven.rawValue),
+                Float(ChordExtension.thirteen.rawValue),
         ])
     var intIntervals = [Int]()
     for i in intervals { intIntervals.append(Int(i)) }
@@ -57,18 +57,18 @@ for q in nonDiminishedTetrads {
 
 var flatThirteens = ([String](), [String]())
 for q in nonAugmentedTetrads {
-    var name = q.name.stringByReplacingOccurrencesOfString("Seventh", withString: "Eleventh")
+    var name = q.name.replacingOccurrences(of: "Seventh", with: "Eleventh")
     name = name + "FlatThirteen"
-    var symbol = q.description.stringByReplacingOccurrencesOfString("7", withString: "11")
+    var symbol = q.description.replacingOccurrences(of: "7", with: "11")
     symbol = symbol + "♭13"
     var symbolLine = "case \(name) = \"\(symbol)\""
     flatThirteens.0.append(symbolLine)
 
     var intervals = MKUtil.intervals(
         MKUtil.semitoneIndices(q.intervals) +
-            [Float(ChordExtension.Nine.rawValue),
-                Float(ChordExtension.Eleven.rawValue),
-                Float(ChordExtension.FlatThirteen.rawValue)])
+            [Float(ChordExtension.nine.rawValue),
+                Float(ChordExtension.eleven.rawValue),
+                Float(ChordExtension.flatThirteen.rawValue)])
     var intIntervals = [Int]()
     for i in intervals { intIntervals.append(Int(i)) }
     var intervalLine = "case \(name): return \(intIntervals)"
@@ -84,6 +84,6 @@ func printCode(groupName: String, symbols: [String], intervals: [String]) {
     print("\n")
 }
 
-printCode("flat nine heptads", symbols: flatNines.0, intervals: flatNines.1)
-printCode("sharp eleven heptads", symbols: sharpElevens.0, intervals: sharpElevens.1)
-printCode("flat thirteen heptads", symbols: flatThirteens.0, intervals: flatThirteens.1)
+printCode(groupName: "flat nine heptads", symbols: flatNines.0, intervals: flatNines.1)
+printCode(groupName: "sharp eleven heptads", symbols: sharpElevens.0, intervals: sharpElevens.1)
+printCode(groupName: "flat thirteen heptads", symbols: flatThirteens.0, intervals: flatThirteens.1)

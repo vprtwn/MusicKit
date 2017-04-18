@@ -64,60 +64,49 @@ public enum Chroma: UInt {
 
     /// Returns true if the given name tuple is a valid name
     func validateName(_ name: ChromaNameTuple) -> Bool {
-        return self.names.reduce(false) {
-          (a, r) -> Bool in
-            a || (r == name)
+        return names.contains { $0 == name }
+    }
+    
+    static public func +(lhs: Chroma, rhs: Int) -> Chroma {
+        var rhs = rhs
+        while rhs < 0 {
+            rhs = rhs + 12
         }
+        let newRawValue = (lhs.rawValue + UInt(rhs))%12
+        return Chroma(rawValue: newRawValue)!
+    }
+    
+    static public func -(lhs: Chroma, rhs: Int) -> Chroma {
+        return lhs + (-1*rhs)
+    }
+    
+    static postfix func --(chroma: inout Chroma) -> Chroma {
+        chroma = chroma - 1
+        return chroma
+    }
+    
+    static postfix func ++(chroma: inout Chroma) -> Chroma {
+        chroma = chroma + 1
+        return chroma
+    }
+    
+    /// Returns the minimum distance between two chromas
+    static public func -(lhs: Chroma, rhs: Chroma) -> UInt {
+        let lminusr = abs(Int(lhs.rawValue) - Int(rhs.rawValue))
+        let rminusl = abs(Int(rhs.rawValue) - Int(lhs.rawValue))
+        return UInt(min(lminusr, rminusl))
+    }
+    
+    static public func *(lhs: Chroma, rhs: Int) -> Pitch {
+        return Pitch(chroma: lhs, octave: UInt(abs(rhs)))
     }
 }
 
 // MARK: Printable
 extension Chroma: CustomStringConvertible {
     public var description: String {
-        let nameTupleOpt: ChromaNameTuple? = self.names.first
-        if let (letterName, accidental) = nameTupleOpt {
-            return "\(letterName.description)\(accidental.description(true))"
-        }
-        return ""
+        return names.first.map { tup in
+                "\(tup.0)\(tup.1.description(true))"
+        } ?? ""
     }
-}
-
-// MARK: Operators
-public func == (p1:(LetterName, Accidental), p2:(LetterName, Accidental)) -> Bool
-{
-    return (p1.0 == p2.0) && (p1.1 == p2.1)
-}
-
-public func +(lhs: Chroma, rhs: Int) -> Chroma {
-    var rhs = rhs
-    while rhs < 0 {
-        rhs = rhs + 12
-    }
-    let newRawValue = (lhs.rawValue + UInt(rhs))%12
-    return Chroma(rawValue: newRawValue)!
-}
-
-public func -(lhs: Chroma, rhs: Int) -> Chroma {
-    return lhs + (-1*rhs)
-}
-
-postfix func --(chroma: inout Chroma) -> Chroma {
-    chroma = chroma - 1
-    return chroma
-}
-
-postfix func ++(chroma: inout Chroma) -> Chroma {
-    chroma = chroma + 1
-    return chroma
-}
-
-/// Returns the minimum distance between two chromas
-public func -(lhs: Chroma, rhs: Chroma) -> UInt {
-    let lminusr = abs(Int(lhs.rawValue) - Int(rhs.rawValue))
-    let rminusl = abs(Int(rhs.rawValue) - Int(lhs.rawValue))
-    return UInt(min(lminusr, rminusl))
-}
-
-public func *(lhs: Chroma, rhs: Int) -> Pitch {
-    return Pitch(chroma: lhs, octave: UInt(abs(rhs)))
 }

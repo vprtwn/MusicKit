@@ -6,13 +6,7 @@ import Foundation
 extension PitchSet {
     /// Returns the set of chroma contained in the `PitchSet`
     public func gamut() -> Set<Chroma> {
-        var set = Set<Chroma>()
-        for pitch in self.contents {
-            if let chroma = pitch.chroma {
-                set.insert(chroma)
-            }
-        }
-        return set
+        return Set( flatMap { $0.chroma } )
     }
 }
 
@@ -20,7 +14,7 @@ extension PitchSet {
 extension PitchSet: Transposable {
     public func transpose(_ semitones: Float) -> PitchSet {
         // TODO: use PitchSet.map
-        return PitchSet(contents.map { $0.transpose(semitones) })
+        return PitchSet(map { $0.transpose(semitones) })
     }
 }
 
@@ -42,11 +36,9 @@ extension PitchSet {
 extension PitchSet {
     /// Returns the semitone indices when the lowest pitch is given index 0.
     public func semitoneIndices() -> [Float] {
-        if self.count < 1 {
-            return [Float(0)]
-        }
-        let first = self[0].midi
-        return map { $0.midi - first }
+        return first.map { f in
+            self.map { $0.midi - f.midi }
+        } ?? [0]
     }
 
     /// Inverts the `PitchSet` the given number of times. 
@@ -58,12 +50,9 @@ extension PitchSet {
     }
 
     mutating func _invert() {
-        if self.count < 1 {
-            return
-        }
-        var bass = self[0]
+        guard var bass = first else { return }
         _ =  remove(bass)
-        let last = self[count - 1]
+        let last = self.last!
         while bass < last {
             bass = bass + 12
         }
@@ -84,26 +73,11 @@ extension PitchSet {
     /// Removes duplicate chroma from the pitch set, starting from the root.
     /// Note that pitches without chroma will be ignored.
     public mutating func dedupe() {
-        var gamut = Set<Chroma>()
-        var pitchesToRemove = PitchSet()
-        for i in 0..<count {
-            let p = self[i]
-            if let chroma = p.chroma {
-                if gamut.contains(chroma) {
-                    pitchesToRemove.insert(p)
-                }
-                else {
-                    gamut.insert(chroma)
-                }
-            }
-        }
-        for pitch in pitchesToRemove {
-            _ =  self.remove(pitch)
-        }
+        duplicates.forEach { _ = self.remove($0) }
     }
 
     /// Collapses the pitch set to within an octave, maintaining the bass.
-    public mutating func collapse() {
+     public mutating func collapse() {
         if count < 2 {
             return
         }
@@ -120,15 +94,6 @@ extension PitchSet {
         }
     }
 
-    /// The first pitch, or `nil` if the set is empty.
-    public func first() -> Pitch? {
-        return contents.first
-    }
-
-    /// The last pitch, or `nil` if the set is empty
-    public func last() -> Pitch? {
-        return contents.last
-    }
 }
 
 // MARK: PitchSet-Pitch operators
@@ -159,9 +124,8 @@ public func /(lhs: PitchSet, rhs: Chroma) -> PitchSet {
     }
     var lhs = lhs
     let firstPitch = lhs[0]
-    if firstPitch.chroma == nil {
-        return lhs
-    }
+    guard firstPitch.chroma != nil else { return lhs }
+
     var newFirstPitch = firstPitch
     while (newFirstPitch.chroma.map { $0 == rhs } != Optional(true)) {
         newFirstPitch = newFirstPitch--

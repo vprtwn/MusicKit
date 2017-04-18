@@ -10,15 +10,14 @@ public enum MKUtil {
         var semitones = semitoneIndices
         for _ in 0..<modN {
             let next = semitones[0] + 12
-            semitones = Array(semitones[1..<count] + [next])
+            semitones = Array(semitones.dropFirst()) + [next]
         }
         return semitones
     }
 
     /// Transforms an array of semitone indices so that the first index is zero
     static func zero(_ semitoneIndices: [Float]) -> [Float] {
-        if semitoneIndices.count < 1 { return semitoneIndices }
-        return semitoneIndices.map { return $0 - semitoneIndices[0] }
+        return semitoneIndices.map { $0 - semitoneIndices[0] }
     }
 
     /// Collapses an array of semitone indices to within an octave
@@ -40,27 +39,18 @@ public enum MKUtil {
     /// Converts an array of intervals to semitone indices
     /// e.g. [4, 3] -> [0, 4, 7]
     public static func semitoneIndices(_ intervals: [Float]) -> [Float] {
-        var indices: [Float] = [0]
-        for i in 0..<intervals.count {
-            let next = indices[i] + intervals[i]
-            indices.append(next)
-        }
-        return indices
+        return [0] + intervals.scan(0) { $0 + $1 }
     }
 
     /// Converts an array of semitone indices to intervals
     /// e.g. [0, 4, 7] -> [4, 3]
     public static func intervals(_ semitoneIndices: [Float]) -> [Float] {
-        var intervals: [Float] = []
-        for i in 1..<semitoneIndices.count {
-            let delta = semitoneIndices[i] - semitoneIndices[i-1]
-            intervals.append(delta)
-        }
-        return intervals
+        return semitoneIndices.tuples.map { $1 - $0 }
     }
 }
 
-extension Collection where Iterator.Element == Pitch, Index == Int {
+
+extension Collection where Iterator.Element : Comparable, Index == Int {
 
     /// Returns the insertion point for `pitch` in the collection of `pitches`.
     ///
@@ -69,8 +59,7 @@ extension Collection where Iterator.Element == Pitch, Index == Int {
     /// could be inserted, keeping `pitchSet` in order.
     ///
     /// :returns: An index in the range `0...count(pitches)` where `pitch` can be inserted.
-    func insertionIndex(_ pitch: Pitch) -> Int
-    {
+    func insertionIndex(_ element: Iterator.Element) -> Index {
         if self.isEmpty {
             return 0
         }
@@ -80,14 +69,14 @@ extension Collection where Iterator.Element == Pitch, Index == Int {
 
         while low < high {
             mid = (high - low) / 2 + low
-            if self[mid] < pitch {
+            if self[mid] < element {
                 low = mid + 1
             } else {
                 high = mid
             }
         }
-        
-        if self[low] >= pitch {
+
+        if self[low] >= element {
             return low
         }
         

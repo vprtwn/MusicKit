@@ -14,18 +14,7 @@ extension PitchSet {
 extension Chord {
     /// Returns the name of the chord if found.
     public static func name(_ pitchSet: PitchSet) -> String? {
-        if let desc = descriptor(pitchSet) {
-            let rootName = desc.root.description
-            let quality = desc.quality.description
-            if desc.root == desc.bass {
-                return "\(rootName)\(quality)"
-            }
-            else {
-                let bassName = desc.bass.description
-                return "\(rootName)\(quality)/\(bassName)"
-            }
-        }
-        return nil
+        return descriptor(pitchSet)?.name
     }
 
     /// Returns an optional `ChordDescriptor`.
@@ -47,15 +36,10 @@ extension Chord {
         _ =  bassRemoved.remove(bass)
 
         // dyads
-        if count == 2 {
-            return _descriptor(pitchSet, qualities: ChordQuality.Dyads)
-        }
-        // triads
-        else if count == 3 {
-            return _descriptor(pitchSet, qualities: ChordQuality.Triads)
-        }
-        // Tetrads, Pentads, Hexads, Heptads
-        else if count > 3 && count < 8 {
+        switch count {
+        case 2: return _descriptor(pitchSet, qualities: ChordQuality.Dyads)
+        case 3: return _descriptor(pitchSet, qualities: ChordQuality.Triads)
+        case 4..<8:
             var fullQs = [ChordQuality]()
             var fullUnalteredQs = [ChordQuality]()
             var slashQs = [ChordQuality]()
@@ -94,22 +78,18 @@ extension Chord {
                 }
             }
             return slashNoBassOpt ?? fullOpt
+        default: return nil
         }
-        return nil
+        
     }
-
+    
     /// Returns an optional `ChordDescriptor`.
     static func _descriptor(_ pitchSet: PitchSet,
-        qualities: [ChordQuality]) -> ChordDescriptor?
+                            qualities: [ChordQuality]) -> ChordDescriptor?
     {
-        let count = pitchSet.count
-        if count < 1 {
-            return nil
-        }
-
-        let bass = pitchSet.first()!
+        guard let bass = pitchSet.first else { return nil }
         let bassChromaOpt = bass.chroma
-
+        
         let indices = pitchSet.semitoneIndices()
         // check root position chords
         for quality in qualities {
@@ -123,10 +103,10 @@ extension Chord {
         // check inversions
         for quality in qualities {
             let _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
-            for i in 1..<count {
+            for i in 1..<pitchSet.endIndex {
                 let inversion = MKUtil.zero(MKUtil.invert(_indices, n: UInt(i)))
                 if inversion == indices {
-                    if let rootChroma = pitchSet[count - i].chroma {
+                    if let rootChroma = pitchSet[pitchSet.count - i].chroma {
                         return bassChromaOpt.map {
                             ChordDescriptor(root: rootChroma, quality: quality, bass: $0)
                         }

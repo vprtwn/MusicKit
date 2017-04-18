@@ -15,18 +15,18 @@ var nonDiminishedAugmentedTetrads = unalteredTetrads.filter {
 
 var flatNineSharpElevens = ([String](), [String]())
 for q in nonDiminishedTetrads {
-    var name = q.name.stringByReplacingOccurrencesOfString("Seventh", withString: "Thirteenth")
+    var name = q.name.replacingOccurrences(of: "Seventh", with: "Thirteenth")
     name = name + "FlatNineSharpEleven"
-    var symbol = q.description.stringByReplacingOccurrencesOfString("7", withString: "13")
+    var symbol = q.description.replacingOccurrences(of: "7", with: "13")
     symbol = symbol + "♭9♯11"
     var symbolLine = "case \(name) = \"\(symbol)\""
     flatNineSharpElevens.0.append(symbolLine)
 
     var intervals = MKUtil.intervals(
         MKUtil.semitoneIndices(q.intervals) +
-            [Float(ChordExtension.FlatNine.rawValue),
-                Float(ChordExtension.SharpEleven.rawValue),
-                Float(ChordExtension.Thirteen.rawValue),
+            [Float(ChordExtension.flatNine.rawValue),
+                Float(ChordExtension.sharpEleven.rawValue),
+                Float(ChordExtension.thirteen.rawValue),
         ])
     var intIntervals = [Int]()
     for i in intervals { intIntervals.append(Int(i)) }
@@ -36,18 +36,18 @@ for q in nonDiminishedTetrads {
 
 var flatNineFlatThirteens = ([String](), [String]())
 for q in nonAugmentedTetrads {
-    var name = q.name.stringByReplacingOccurrencesOfString("Seventh", withString: "Eleventh")
+    var name = q.name.replacingOccurrences(of: "Seventh", with: "Eleventh")
     name = name + "FlatNineFlatThirteen"
-    var symbol = q.description.stringByReplacingOccurrencesOfString("7", withString: "11")
+    var symbol = q.description.replacingOccurrences(of: "7", with: "11")
     symbol = symbol + "♭9♭13"
     var symbolLine = "case \(name) = \"\(symbol)\""
     flatNineFlatThirteens.0.append(symbolLine)
 
     var intervals = MKUtil.intervals(
         MKUtil.semitoneIndices(q.intervals) +
-            [Float(ChordExtension.FlatNine.rawValue),
-                Float(ChordExtension.Eleven.rawValue),
-                Float(ChordExtension.FlatThirteen.rawValue)])
+            [Float(ChordExtension.flatNine.rawValue),
+                Float(ChordExtension.eleven.rawValue),
+                Float(ChordExtension.flatThirteen.rawValue)])
     var intIntervals = [Int]()
     for i in intervals { intIntervals.append(Int(i)) }
     var intervalLine = "case \(name): return \(intIntervals)"
@@ -56,18 +56,18 @@ for q in nonAugmentedTetrads {
 
 var sharpElevenFlatThirteens = ([String](), [String]())
 for q in nonDiminishedAugmentedTetrads {
-    var name = q.name.stringByReplacingOccurrencesOfString("Seventh", withString: "Ninth")
+    var name = q.name.replacingOccurrences(of: "Seventh", with: "Ninth")
     name = name + "SharpElevenFlatThirteen"
-    var symbol = q.description.stringByReplacingOccurrencesOfString("7", withString: "9")
+    var symbol = q.description.replacingOccurrences(of: "7", with: "9")
     symbol = symbol + "♯11♭13"
     var symbolLine = "case \(name) = \"\(symbol)\""
     sharpElevenFlatThirteens.0.append(symbolLine)
 
     var intervals = MKUtil.intervals(
         MKUtil.semitoneIndices(q.intervals) +
-            [Float(ChordExtension.Nine.rawValue),
-                Float(ChordExtension.SharpEleven.rawValue),
-                Float(ChordExtension.FlatThirteen.rawValue)])
+            [Float(ChordExtension.nine.rawValue),
+                Float(ChordExtension.sharpEleven.rawValue),
+                Float(ChordExtension.flatThirteen.rawValue)])
     var intIntervals = [Int]()
     for i in intervals { intIntervals.append(Int(i)) }
     var intervalLine = "case \(name): return \(intIntervals)"
@@ -83,9 +83,9 @@ for q in nonDiminishedAugmentedTetrads {
 
     var intervals = MKUtil.intervals(
         MKUtil.semitoneIndices(q.intervals) +
-            [Float(ChordExtension.FlatNine.rawValue),
-                Float(ChordExtension.SharpEleven.rawValue),
-                Float(ChordExtension.FlatThirteen.rawValue)])
+            [Float(ChordExtension.flatNine.rawValue),
+                Float(ChordExtension.sharpEleven.rawValue),
+                Float(ChordExtension.flatThirteen.rawValue)])
     var intIntervals = [Int]()
     for i in intervals { intIntervals.append(Int(i)) }
     var intervalLine = "case \(name): return \(intIntervals)"
@@ -101,7 +101,7 @@ func printCode(groupName: String, symbols: [String], intervals: [String]) {
     print("\n")
 }
 
-printCode("flat nine sharp eleven heptads", symbols: flatNineSharpElevens.0, intervals: flatNineSharpElevens.1)
-printCode("flat nine flat thirteen heptads", symbols: flatNineFlatThirteens.0, intervals: flatNineFlatThirteens.1)
-printCode("sharp eleven flat thirteen heptads", symbols: sharpElevenFlatThirteens.0, intervals: sharpElevenFlatThirteens.1)
-printCode("flat nine sharp eleven flat thirteen heptads", symbols: flatNineSharpElevenFlatThirteens.0, intervals: flatNineSharpElevenFlatThirteens.1)
+printCode(groupName: "flat nine sharp eleven heptads", symbols: flatNineSharpElevens.0, intervals: flatNineSharpElevens.1)
+printCode(groupName: "flat nine flat thirteen heptads", symbols: flatNineFlatThirteens.0, intervals: flatNineFlatThirteens.1)
+printCode(groupName: "sharp eleven flat thirteen heptads", symbols: sharpElevenFlatThirteens.0, intervals: sharpElevenFlatThirteens.1)
+printCode(groupName: "flat nine sharp eleven flat thirteen heptads", symbols: flatNineSharpElevenFlatThirteens.0, intervals: flatNineSharpElevenFlatThirteens.1)
