@@ -10,6 +10,7 @@ static MKMIDINotifyCallback _notifyCallback = nil;
  http://www.gweep.net/~prefect/eng/reference/protocol/midispec.html
  */
 static void readProc(const MIDIPacketList *packetList, void *procRef, void *srcRef) {
+#pragma unused(procRef, srcRef)
     if (!_readCallback) {
         return;
     }
@@ -62,6 +63,7 @@ static void readProc(const MIDIPacketList *packetList, void *procRef, void *srcR
 }
 
 static void notifyProc(const MIDINotification *notification, void *refCon) {
+#pragma unused(refCon)
     if (!_notifyCallback) {
         return;
     }
