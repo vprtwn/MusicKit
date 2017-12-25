@@ -21,8 +21,8 @@ public struct Temperament {
     /// A 12 elements ordered fixed sized array
     /// containing values between 1 and 2 that
     /// skew the normal (equal) temperament
-    private let ratios:[Double]
-    private init(_ r:[Double]) {
+    public let ratios:[Double]
+    public init(_ r:[Double]) {
         ratios = r
     }
     
