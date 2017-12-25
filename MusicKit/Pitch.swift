@@ -12,6 +12,12 @@ public struct Pitch: Comparable {
     public init(midi: Float) {
         self.midi = midi
     }
+    
+    /// Creates a `Pitch` with the given frequency in hz.
+    /// Note that non-integral MIDI numbers might result.
+    public init(frequency: Float) {
+        self.midi = Float(MusicKit.temperament.ftom(Double(frequency)))
+    }
 
     /// Creates a `Pitch` with the given chroma (pitch class) and octave.
     public init(chroma: Chroma, octave: UInt) {
