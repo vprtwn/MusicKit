@@ -9,9 +9,15 @@ final class PitchTests: XCTestCase {
     }
 
     func testInitWithNonIntegralMidiNumber() {
-        let sut = Pitch(midi: 69.5)
-        XCTAssertEqual(sut.midi, 69.5)
-        XCTAssert(sut.chroma == nil)
+        var sut = Pitch(midi: 69.4)
+        XCTAssertEqual(sut.midi, 69.4)
+        XCTAssert(sut.chroma == Chroma.a)
+        XCTAssert(round((sut.deviation - 0.4) * 100.0) / 100.0 == 0.0)
+        
+        sut = Pitch(midi: 69.9)
+        XCTAssertEqual(sut.midi, 69.9)
+        XCTAssert(sut.chroma == Chroma.as)
+        XCTAssert(round((sut.deviation + 0.1) * 100.0) / 100.0 == 0.0)
     }
 
     func testInitWithChromaOctave() {
