@@ -9,6 +9,6 @@ public struct MusicKit {
     public static var temperament = Temperament.equal
     /// The global base midi note. Used to map frequency to
     /// midi notes, usually 69 (A4 in midi standard, which
-    /// normally corresponds to 440.0Hz concert A
+    /// normally corresponds to 440.0Hz concert A)
     public static var baseMidiNote = 69.0
 }

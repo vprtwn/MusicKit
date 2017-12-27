@@ -6,7 +6,7 @@
 //  Copyright © 2017 benzguo. All rights reserved.
 //
 
-public struct Temperament {
+public struct Temperament: Equatable {
     
     public static let just = Temperament([1.0000, 1.0417, 1.1250, 1.2000,
                                           1.2500, 1.3333, 1.4063, 1.5000,
@@ -76,5 +76,9 @@ public struct Temperament {
         }
         assert(midi != Double.infinity)
         return midi + dev
+    }
+    
+    public static func ==(lhs: Temperament, rhs: Temperament) -> Bool {
+        return lhs.ratios == rhs.ratios
     }
 }

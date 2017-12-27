@@ -8,13 +8,13 @@
 
 import Foundation
 
-public enum Numerals: UInt {
+public enum Numerals: UInt, Equatable {
     case arabic
     case chinese
     public static let all = [Numerals.arabic, .chinese]
 }
 
-public enum Language: UInt {
+public enum Language: UInt, Equatable {
     case english
     case japanese
     case korean
