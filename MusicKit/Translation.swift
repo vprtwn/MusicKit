@@ -72,3 +72,9 @@ public struct Translation {
                 accidental: accidentals[Int(accidental.rawValue + 2)])
     }
 }
+
+extension Translation:Equatable {
+    public static func ==(lhs: Translation, rhs: Translation) -> Bool {
+        return lhs.language == rhs.language && lhs.numerals == rhs.numerals
+    }
+}
