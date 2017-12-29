@@ -46,12 +46,12 @@ public struct Translation {
             .french:    ["Do", "Re", "Mi", "Fa", "Sol", "La", "Si"],
             .japanese:  ["ド", "レ", "ミ", "ファ", "ソ", "ラ", "シ"],
             .korean:    ["다", "라", "마", "바", "사", "가", "나"]
-            ][language]!
+            ][lang]!
         octaves = [
             .arabic:    ["0", "1", "2", "3", "4", "5", "6", "7", "8"],
             .chinese:   ["空", "一", "二", "三", "四", "五", "六", "七", "八"]
-            ][numerals]!
-        accidentals = ["𝄫", "♭", showNatural ? "♮" : "", "♯", "𝄪"]
+            ][num]!
+        accidentals = ["𝄫", "♭", nat ? "♮" : "", "♯", "𝄪"]
         language = lang
         numerals = num
         showNatural = nat
