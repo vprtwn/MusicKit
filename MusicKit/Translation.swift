@@ -31,12 +31,16 @@ public struct Translation {
     private let octaves:[String]
     private let accidentals:[String]
     
+    let language:Language
+    let numerals:Numerals
+    let showNatural:Bool
+    
     /// Under normal cicumstances you'd want the following pairs:
     /// .english -> .arabic numerals ->
     /// .french -> .arabic numerals (Vive la France!)
     /// .japanese -> .chinese numerals
     /// .korean -> .chinese numerals
-    public init(_ language:Language, numerals:Numerals, showNatural:Bool = false) {
+    public init(_ lang:Language, numerals num:Numerals, showNatural nat:Bool = false) {
         letters = [
             .english:   ["C", "D", "E", "F", "G", "A", "B"],
             .french:    ["Do", "Re", "Mi", "Fa", "Sol", "La", "Si"],
@@ -48,6 +52,9 @@ public struct Translation {
             .chinese:   ["空", "一", "二", "三", "四", "五", "六", "七", "八"]
             ][numerals]!
         accidentals = ["𝄫", "♭", showNatural ? "♮" : "", "♯", "𝄪"]
+        language = lang
+        numerals = num
+        showNatural = nat
         assert(letters.count == 7)
         assert(octaves.count == 9)
         assert(accidentals.count == 5)
