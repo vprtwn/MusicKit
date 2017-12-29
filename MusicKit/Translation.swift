@@ -73,8 +73,11 @@ public struct Translation {
     }
 }
 
-extension Translation:Equatable {
+extension Translation:Equatable, Hashable {
     public static func ==(lhs: Translation, rhs: Translation) -> Bool {
         return lhs.language == rhs.language && lhs.numerals == rhs.numerals
+    }
+    public var hashValue: Int {
+        return self.language.hashValue ^ self.numerals.hashValue
     }
 }
