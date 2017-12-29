@@ -43,4 +43,17 @@ final class TemperamentTests: XCTestCase {
             }
         }
     }
+    func testEquality() {
+        XCTAssertFalse(Temperament.just == Temperament.equal)
+        XCTAssertTrue(Temperament.just == Temperament.just)
+    }
+    func testHashing() {
+        let a = Temperament.equal
+        let b = Temperament.just
+        let c = Temperament([])
+        let list = [a, b]
+        XCTAssertTrue(list.contains(a))
+        XCTAssertTrue(list.contains(b))
+        XCTAssertFalse(list.contains(c))
+    }
 }

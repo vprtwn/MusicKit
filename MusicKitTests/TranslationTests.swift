@@ -33,4 +33,18 @@ class TranslationTests: XCTestCase {
             }
         }
     }
+    func testEquality() {
+        let a = Translation(.english, numerals:.arabic)
+        let b = Translation(.english, numerals:.arabic)
+        XCTAssertTrue(a == b)
+    }
+    func testHashing() {
+        let a = Translation(.english, numerals:.arabic)
+        let b = Translation(.english, numerals:.arabic)
+        let c = Translation(.english, numerals:.chinese)
+        let list = [a]
+        XCTAssertTrue(list.contains(a))
+        XCTAssertTrue(list.contains(b))
+        XCTAssertFalse(list.contains(c))
+    }
 }
