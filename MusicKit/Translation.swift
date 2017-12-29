@@ -31,9 +31,9 @@ public struct Translation {
     private let octaves:[String]
     private let accidentals:[String]
     
-    let language:Language
-    let numerals:Numerals
-    let showNatural:Bool
+    public let language:Language
+    public let numerals:Numerals
+    public let showNatural:Bool
     
     /// Under normal cicumstances you'd want the following pairs:
     /// .english -> .arabic numerals ->
