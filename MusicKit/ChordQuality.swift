@@ -253,7 +253,7 @@ public enum ChordQuality: String {
         case .HalfDiminishedSeventhFlatThirteen: return [3, 3, 4, 10]
         case .DiminishedSeventhFlatThirteen: return [3, 3, 3, 11]
         // other pentads
-        case .SixNine: return [4, 3, 1, 5]
+        case .SixNine: return [4, 3, 2, 5]
         case .Dominant9Sus4: return [5, 2, 3, 4]
         // hexads
         // unaltered hexads
