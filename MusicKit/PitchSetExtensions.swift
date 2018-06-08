@@ -8,9 +8,7 @@ extension PitchSet {
     public func gamut() -> Set<Chroma> {
         var set = Set<Chroma>()
         for pitch in self.contents {
-            if let chroma = pitch.chroma {
-                set.insert(chroma)
-            }
+            set.insert(pitch.chroma)
         }
         return set
     }
@@ -82,19 +80,17 @@ extension PitchSet {
     }
 
     /// Removes duplicate chroma from the pitch set, starting from the root.
-    /// Note that pitches without chroma will be ignored.
+    /// Note that pitches with a deviation will be ignored.
     public mutating func dedupe() {
         var gamut = Set<Chroma>()
         var pitchesToRemove = PitchSet()
         for i in 0..<count {
             let p = self[i]
-            if let chroma = p.chroma {
-                if gamut.contains(chroma) {
-                    pitchesToRemove.insert(p)
-                }
-                else {
-                    gamut.insert(chroma)
-                }
+            if gamut.contains(p.chroma) {
+                pitchesToRemove.insert(p)
+            }
+            else {
+                gamut.insert(p.chroma)
             }
         }
         for pitch in pitchesToRemove {
@@ -159,11 +155,8 @@ public func /(lhs: PitchSet, rhs: Chroma) -> PitchSet {
     }
     var lhs = lhs
     let firstPitch = lhs[0]
-    if firstPitch.chroma == nil {
-        return lhs
-    }
     var newFirstPitch = firstPitch
-    while (newFirstPitch.chroma.map { $0 == rhs } != Optional(true)) {
+    while (newFirstPitch.chroma != rhs) {
         newFirstPitch = newFirstPitch--
     }
     lhs.insert(newFirstPitch)

@@ -5,20 +5,18 @@ import Foundation
 /// The auditory attribute of sound according to which sounds can be ordered 
 /// on a scale from low to high (ANSI 1994)
 public struct Pitch: Comparable {
-    /// midi number to frequency
-    /// TODO: move this to a temperament enum
-    public static func mtof(_ midi: Float) -> Float {
-        let exponent = Double((Float(midi) - 69.0)/12.0)
-        let freq = pow(Double(2), exponent)*MusicKit.concertA
-        return Float(freq)
-    }
-
     public let midi: Float
 
     /// Creates a `Pitch` with the given MIDI number.
     /// Note that non-integral MIDI numbers are allowed.
     public init(midi: Float) {
         self.midi = midi
+    }
+    
+    /// Creates a `Pitch` with the given frequency in hz.
+    /// Note that non-integral MIDI numbers might result.
+    public init(frequency: Float) {
+        self.midi = Float(MusicKit.temperament.ftom(Double(frequency)))
     }
 
     /// Creates a `Pitch` with the given chroma (pitch class) and octave.
@@ -28,28 +26,28 @@ public struct Pitch: Comparable {
 
     /// The frequency of the pitch in Hz
     public var frequency: Float {
-        return Pitch.mtof(self.midi)
+        return Float(MusicKit.temperament.mtof(Double(self.midi)))
     }
 
-    /// A `Chroma`, or nil if the pitch doesn't align with the chromas
-    /// in the current tuning system.
-    public var chroma: Chroma? {
-        if self.midi - floor(self.midi) == 0 {
-            return Chroma(rawValue: UInt(self.midi)%12)
-        }
-        return nil
+    /// A `Chroma` in the current tuning system.
+    public var chroma: Chroma {
+        return Chroma(rawValue: UInt(self.midi.rounded()) % 12)!
+    }
+    
+    /// A value between -0.5 and 0.5 representing
+    /// the current deviation (e.g. for midi 60.5
+    /// deviation is 0.5)
+    public var deviation: Float {
+        let a = self.midi.truncatingRemainder(dividingBy: 1.0)
+        return a >= 0.5 ? a - 1 : a
+    }
+    
+    public var isAligned: Bool {
+        return deviation == 0
     }
 
-    var noteNameTuple: (LetterName, Accidental, Int)? {
-        return chroma.flatMap {
-            $0.names.first.map {
-                noteNameWithOctave(octaveNumber, nameTuple: $0) } }
-    }
-
-    public var noteName: String? {
-        return noteNameTuple.map {
-            "\($0.0.description)\($0.1.description(true))\($0.2)"
-        }
+    public var noteName: (LetterName, Accidental, Int) {
+        return noteNameWithOctave(octaveNumber, nameTuple: chroma.names.first!)
     }
 
     /// Unadjusted octave number
@@ -76,7 +74,7 @@ public struct Pitch: Comparable {
 // MARK: Printable
 extension Pitch: CustomStringConvertible {
     public var description: String {
-        return (noteName != nil) ? "\(noteName!)" : "\(frequency)Hz"
+        return "\(noteName.0.description)\(noteName.1.description(true))\(noteName.2)"
     }
 }
 

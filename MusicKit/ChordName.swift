@@ -41,7 +41,6 @@ extension Chord {
         if count < 2 || count != gamutCount { return nil }
 
         let bass = pitchSet[0]
-        let bassChromaOpt = bass.chroma
         // pitch set with bass removed
         var bassRemoved = pitchSet
         _ =  bassRemoved.remove(bass)
@@ -89,9 +88,9 @@ extension Chord {
             let noBassOpt = _descriptor(bassRemoved, qualities: slashQs)
             var slashNoBassOpt: ChordDescriptor? = nil
             if let noBass = noBassOpt {
-                slashNoBassOpt = bassChromaOpt.map {
-                    ChordDescriptor(root: noBass.root, quality: noBass.quality, bass: $0)
-                }
+                slashNoBassOpt = ChordDescriptor(root: noBass.root,
+                                                 quality: noBass.quality,
+                                                 bass: bass.chroma)
             }
             return slashNoBassOpt ?? fullOpt
         }
@@ -108,16 +107,15 @@ extension Chord {
         }
 
         let bass = pitchSet.first()!
-        let bassChromaOpt = bass.chroma
 
         let indices = pitchSet.semitoneIndices()
         // check root position chords
         for quality in qualities {
             let _indices = MKUtil.collapse(MKUtil.semitoneIndices(quality.intervals))
             if _indices == indices {
-                return bassChromaOpt.map {
-                    ChordDescriptor(root: $0, quality: quality, bass: $0)
-                }
+                return ChordDescriptor(root: bass.chroma,
+                                       quality: quality,
+                                       bass: bass.chroma)
             }
         }
         // check inversions
@@ -126,11 +124,9 @@ extension Chord {
             for i in 1..<count {
                 let inversion = MKUtil.zero(MKUtil.invert(_indices, n: UInt(i)))
                 if inversion == indices {
-                    if let rootChroma = pitchSet[count - i].chroma {
-                        return bassChromaOpt.map {
-                            ChordDescriptor(root: rootChroma, quality: quality, bass: $0)
-                        }
-                    }
+                    return ChordDescriptor(root: pitchSet[count - i].chroma,
+                                           quality: quality,
+                                           bass: bass.chroma)
                 }
             }
         }
