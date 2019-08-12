@@ -80,8 +80,8 @@ extension Pitch: CustomStringConvertible {
 
 // MARK: Hashable
 extension Pitch: Hashable {
-    public var hashValue: Int {
-        return midi.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(midi)
     }
 }
 

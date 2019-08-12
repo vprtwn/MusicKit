@@ -79,7 +79,9 @@ extension Translation:Equatable, Hashable {
                lhs.numerals == rhs.numerals &&
                lhs.showNatural == rhs.showNatural
     }
-    public var hashValue: Int {
-        return self.language.hashValue ^ self.numerals.hashValue ^ self.showNatural.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.language)
+        hasher.combine(self.numerals)
+        hasher.combine(self.showNatural)
     }
 }

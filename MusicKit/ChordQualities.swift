@@ -1,10 +1,10 @@
 import Foundation
 
 public extension ChordQuality {
-public static let Dyads = [
+static let Dyads = [
 ChordQuality.PowerChord,
 ]
-public static let Triads = [
+static let Triads = [
 ChordQuality.Major,
 ChordQuality.Minor,
 ChordQuality.Augmented,
@@ -12,7 +12,7 @@ ChordQuality.Diminished,
 ChordQuality.Sus2,
 ChordQuality.Sus4,
 ]
-public static let UnalteredTetrads = [
+static let UnalteredTetrads = [
 ChordQuality.DominantSeventh,
 ChordQuality.MajorSeventh,
 ChordQuality.MinorMajorSeventh,
@@ -22,7 +22,7 @@ ChordQuality.AugmentedSeventh,
 ChordQuality.HalfDiminishedSeventh,
 ChordQuality.DiminishedSeventh,
 ]
-public static let AlteredTetrads = [
+static let AlteredTetrads = [
 ChordQuality.DominantSeventhFlatFive,
 ChordQuality.MajorSeventhFlatFive,
 ChordQuality.DominantSeventhSusFour,
@@ -39,7 +39,7 @@ ChordQuality.AddSharpEleven,
 ChordQuality.MinorAddSharpEleven,
 ChordQuality.AugmentedAddSharpEleven,
 ]
-public static let UnalteredPentads = [
+static let UnalteredPentads = [
 ChordQuality.DominantNinth,
 ChordQuality.MajorNinth,
 ChordQuality.MinorMajorNinth,
@@ -49,7 +49,7 @@ ChordQuality.AugmentedNinth,
 ChordQuality.HalfDiminishedNinth,
 ChordQuality.DiminishedNinth,
 ]
-public static let AlteredPentads = [
+static let AlteredPentads = [
 ChordQuality.DominantSeventhFlatNine,
 ChordQuality.MajorSeventhFlatNine,
 ChordQuality.MinorMajorSeventhFlatNine,
@@ -73,7 +73,7 @@ ChordQuality.DiminishedSeventhFlatThirteen,
 ChordQuality.Dominant9Sus4,
 ChordQuality.SixNine,
 ]
-public static let UnalteredHexads = [
+static let UnalteredHexads = [
 ChordQuality.DominantEleventh,
 ChordQuality.MajorEleventh,
 ChordQuality.MinorMajorEleventh,
@@ -83,7 +83,7 @@ ChordQuality.AugmentedEleventh,
 ChordQuality.HalfDiminishedEleventh,
 ChordQuality.DiminishedEleventh,
 ]
-public static let AlteredHexads = [
+static let AlteredHexads = [
 ChordQuality.DominantEleventhFlatNine,
 ChordQuality.MajorEleventhFlatNine,
 ChordQuality.MinorMajorEleventhFlatNine,
@@ -121,7 +121,7 @@ ChordQuality.MajorSeventhSharpElevenFlatThirteen,
 ChordQuality.MinorMajorSeventhSharpElevenFlatThirteen,
 ChordQuality.MinorSeventhSharpElevenFlatThirteen,
 ]
-public static let UnalteredHeptads = [
+static let UnalteredHeptads = [
 ChordQuality.DominantThirteenth,
 ChordQuality.MajorThirteenth,
 ChordQuality.MinorMajorThirteenth,
@@ -131,7 +131,7 @@ ChordQuality.AugmentedThirteenth,
 ChordQuality.HalfDiminishedThirteenth,
 ChordQuality.DiminishedThirteenth,
 ]
-public static let AlteredHeptads = [
+static let AlteredHeptads = [
 ChordQuality.DominantThirteenthFlatNine,
 ChordQuality.MajorThirteenthFlatNine,
 ChordQuality.MinorMajorThirteenthFlatNine,
@@ -173,11 +173,11 @@ ChordQuality.MajorSeventhFlatNineSharpElevenFlatThirteen,
 ChordQuality.MinorMajorSeventhFlatNineSharpElevenFlatThirteen,
 ChordQuality.MinorSeventhFlatNineSharpElevenFlatThirteen,
 ]
-public static let Tetrads = ChordQuality.UnalteredTetrads + ChordQuality.AlteredTetrads
-public static let Pentads = ChordQuality.UnalteredPentads + ChordQuality.AlteredPentads
-public static let Hexads = ChordQuality.UnalteredHexads + ChordQuality.AlteredHexads
-public static let Heptads = ChordQuality.UnalteredHeptads + ChordQuality.AlteredHeptads
-public static let All = [
+static let Tetrads = ChordQuality.UnalteredTetrads + ChordQuality.AlteredTetrads
+static let Pentads = ChordQuality.UnalteredPentads + ChordQuality.AlteredPentads
+static let Hexads = ChordQuality.UnalteredHexads + ChordQuality.AlteredHexads
+static let Heptads = ChordQuality.UnalteredHeptads + ChordQuality.AlteredHeptads
+static let All = [
 ChordQuality.PowerChord,
 ChordQuality.Major,
 ChordQuality.Minor,
@@ -331,7 +331,7 @@ ChordQuality.MajorSeventhFlatNineSharpElevenFlatThirteen,
 ChordQuality.MinorMajorSeventhFlatNineSharpElevenFlatThirteen,
 ChordQuality.MinorSeventhFlatNineSharpElevenFlatThirteen,
 ]
-public var name: String {
+var name: String {
 switch self {
 case .PowerChord: return "PowerChord"
 case .Major: return "Major"
