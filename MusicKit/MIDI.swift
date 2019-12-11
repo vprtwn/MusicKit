@@ -2,7 +2,9 @@
 
 import Foundation
 import CoreMIDI
+#if SWIFT_PACKAGE
 import MKMIDIProc
+#endif
 
 
 open class MIDI {
