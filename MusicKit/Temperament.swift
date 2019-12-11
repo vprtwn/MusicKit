@@ -6,6 +6,8 @@
 //  Copyright © 2017 benzguo. All rights reserved.
 //
 
+import Darwin
+
 public struct Temperament: Equatable, Hashable {
     
     public static let just = Temperament([1.0000, 1.0417, 1.1250, 1.2000,

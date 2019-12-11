@@ -2,6 +2,8 @@
 
 import Foundation
 import CoreMIDI
+import MKMIDIProc
+
 
 open class MIDI {
     /// Messages sent to the virtual MIDI source will be delivered on this channel.

@@ -133,7 +133,7 @@
 		965AF8C11AF7A1DA00D31E83 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		9662BFF01B058568008A053A /* IntervalQuality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntervalQuality.swift; sourceTree = "<group>"; };
 		96686DB41A573B7F00350A2D /* PitchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchTests.swift; sourceTree = "<group>"; };
-		966E60FA1B0930E9005EE226 /* AlteredPentads.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = AlteredPentads.playground; path = ../Playgrounds/AlteredPentads.playground; sourceTree = "<group>"; };
+		966E60FA1B0930E9005EE226 /* AlteredPentads.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = AlteredPentads.playground; path = ../Playgrounds/AlteredPentads.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		967070E81B0850AC00CB367E /* ChordExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordExtensions.swift; sourceTree = "<group>"; };
 		967070EB1B08512A00CB367E /* ChordQualities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordQualities.swift; sourceTree = "<group>"; };
 		967070EE1B08649200CB367E /* ChordQualityTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChordQualityTests.swift; sourceTree = "<group>"; };
