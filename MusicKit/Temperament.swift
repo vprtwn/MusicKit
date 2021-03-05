@@ -6,6 +6,8 @@
 //  Copyright © 2017 benzguo. All rights reserved.
 //
 
+import Darwin
+
 public struct Temperament: Equatable, Hashable {
     
     public static let just = Temperament([1.0000, 1.0417, 1.1250, 1.2000,
@@ -82,15 +84,13 @@ public struct Temperament: Equatable, Hashable {
         return lhs.ratios == rhs.ratios
     }
     
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         if let ratio = ratios.first {
-            return ratios.dropFirst().reduce(ratio.hashValue, {
-                sum, value in
-                return sum ^ value.hashValue
+            hasher.combine(ratio)
+            ratios.dropFirst().forEach({
+                value in
+                hasher.combine(value)
             })
-        }
-        else {
-            return 0
         }
     }
 }

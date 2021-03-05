@@ -2,6 +2,10 @@
 
 import Foundation
 import CoreMIDI
+#if SWIFT_PACKAGE
+import MKMIDIProc
+#endif
+
 
 open class MIDI {
     /// Messages sent to the virtual MIDI source will be delivered on this channel.
@@ -63,11 +67,11 @@ open class MIDI {
         let s = MIDIReceived(_virtualSource, packetList)
         success = s == 0
 
-        packet.deinitialize()
+        packet.deinitialize(count: MemoryLayout<MIDIPacket>.size)
         // this dealloc is superfluous; not sure why.
 //        packet.dealloc(sizeof(MIDIPacket))
-        packetList.deinitialize()
-        packetList.deallocate(capacity: MemoryLayout<MIDIPacketList>.size)
+        packetList.deinitialize(count: MemoryLayout<MIDIPacket>.size)
+        packetList.deallocate()
         return success
     }
 
